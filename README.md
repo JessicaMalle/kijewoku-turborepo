@@ -18,7 +18,7 @@ This Turborepo includes the following packages/apps:
 
 - `docs`: a [Next.js](https://nextjs.org/) app
 - `web`: another [Next.js](https://nextjs.org/) app
-- `@kijewoku/ui`: a stub React component library shared by both `web` and `docs` applications
+- `@kijewoku/react-pkg-base`: a base React component library that can be copied to new workspaces using `turbo gen workspace --copy`
 - `@kijewoku/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
 - `@kijewoku/typescript-config`: `tsconfig.json`s used throughout the monorepo
 
