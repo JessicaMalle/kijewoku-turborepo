@@ -5,9 +5,11 @@
     "build": "turbo build",
     "dev": "turbo dev",
     "lint": "turbo lint",
+    "lint:fix": "turbo lint:fix",
     "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
   "devDependencies": {
+    "@biomejs/biome": "1.9.4",
     "@types/styled-components": "^5.1.34",
     "prettier": "^3.2.5",
     "turbo": "^2.3.3",
