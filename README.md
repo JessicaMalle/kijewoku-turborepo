@@ -6,7 +6,7 @@
 [![Handlebars.js](https://img.shields.io/badge/Handlebars.js-f7931e?logo=handlebars.js&logoColor=white)](https://handlebarsjs.com/)
 [![npm](https://img.shields.io/badge/npm-CB3837?logo=npm&logoColor=white)](https://www.npmjs.com/package/npm)
 
-# 🃏Kijewoku Turborepo 🃏
+# 🩵🩷 Kijewoku Turborepo 
 ![kijewoku-logo.png](kijewoku-logo.png)
 Welcome to the official **Kijewoku Turborepo**! 🚀
 
