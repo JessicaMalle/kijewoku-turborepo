@@ -12,8 +12,8 @@ This Turborepo includes the following packages/apps:
 
 - **`build`**: Runs the Turborepo build process 🔨.
 - **`dev`**: Starts the development server for all apps and packages 🌐.
-- **`lint`**: Lints the codebase using ESLint 🧹.
-- **`lint:fix`**: Fixes linting issues in the codebase 🩹.
+- **`lint`**: Lints the codebase using Biome 🧹.
+- **`lint:fix`**: Fixes linting issues in the codebase using... Biome! 🩹.
 - **`format`**: Formats the codebase using Prettier ✨.
 - **`create-react-pkg`**: Generates a new React component package using Turbo 🎁.
 - **`create-typecript-pkg`**: Generates a new typescript utilities package using Turbo 🎁.
