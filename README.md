@@ -17,9 +17,8 @@ This Turborepo includes the following packages/apps:
 - **`format`**: Formats the codebase using Prettier ✨.
 - **`create-react-pkg`**: Generates a new React component package using Turbo 🎁.
 
-#### 💡 Tips to Generate Code
-
-Simply use the `turbo gen` command and select from all available generators 🧰.
+> [!TIP]  
+> Simply use the `turbo gen` command and select from all available generators 🧰.
 
 ### 📦 Apps and Packages
 
