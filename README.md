@@ -1,3 +1,11 @@
+[![Turborepo](https://img.shields.io/badge/Turborepo-0A0A0A?logo=turborepo&logoColor=ffffff)](https://turborepo.org/)
+[![Vite](https://img.shields.io/badge/Vite-646CFF?logo=vite&logoColor=ffffff)](https://vitejs.dev/)
+[![React](https://img.shields.io/badge/React-61DAFB?logo=react&logoColor=black)](https://www.npmjs.com/package/react)
+[![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?logo=typescript&logoColor=white)](https://www.npmjs.com/package/typescript)
+[![Styled Components](https://img.shields.io/badge/Styled--Components-DB7093?logo=styled-components&logoColor=white)](https://styled-components.com/)
+[![Handlebars.js](https://img.shields.io/badge/Handlebars.js-f7931e?logo=handlebars.js&logoColor=white)](https://handlebarsjs.com/)
+[![npm](https://img.shields.io/badge/npm-CB3837?logo=npm&logoColor=white)](https://www.npmjs.com/package/npm)
+
 # 🃏Kijewoku Turborepo 🃏
 ![kijewoku-logo.png](kijewoku-logo.png)
 Welcome to the official **Kijewoku Turborepo**! 🚀
