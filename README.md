@@ -16,6 +16,7 @@ This Turborepo includes the following packages/apps:
 - **`lint:fix`**: Fixes linting issues in the codebase 🩹.
 - **`format`**: Formats the codebase using Prettier ✨.
 - **`create-react-pkg`**: Generates a new React component package using Turbo 🎁.
+- **`create-typecript-pkg`**: Generates a new typescript utilities package using Turbo 🎁.
 
 > [!TIP]  
 > Simply use the `turbo gen` command and select from all available generators 🧰.
