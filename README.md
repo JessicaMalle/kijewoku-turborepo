@@ -3,6 +3,7 @@
 [![React](https://img.shields.io/badge/React-61DAFB?logo=react&logoColor=black)](https://www.npmjs.com/package/react)
 [![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?logo=typescript&logoColor=white)](https://www.npmjs.com/package/typescript)
 [![Styled Components](https://img.shields.io/badge/Styled--Components-DB7093?logo=styled-components&logoColor=white)](https://styled-components.com/)
+[![Storybook](https://img.shields.io/badge/Storybook-ff4785?logo=storybook&logoColor=white)](https://storybook.js.org/)
 [![Handlebars.js](https://img.shields.io/badge/Handlebars.js-f7931e?logo=handlebars.js&logoColor=white)](https://handlebarsjs.com/)
 [![npm](https://img.shields.io/badge/npm-CB3837?logo=npm&logoColor=white)](https://www.npmjs.com/package/npm)
 
@@ -32,6 +33,7 @@ This Turborepo includes the following packages/apps:
 ### 📦 Apps and Packages
 
 - **`web`**: Website for Kijewoku (Vite.js with React and TypeScript) 🌍
+- **`storybook`**: Storybook for Kijewoku components 📚
 - **`@kijewoku/typescript-config`**: `tsconfig.json`s used throughout the monorepo 🔧
 
 Each package/app is 100% [TypeScript](https://www.typescriptlang.org/) 💻.
