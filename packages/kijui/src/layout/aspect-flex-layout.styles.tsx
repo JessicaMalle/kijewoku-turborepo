@@ -27,14 +27,6 @@ export const ScreenContainer = styled.div<{ isPortrait: boolean }>`
   isPortrait ? 'calc(100dvw * (16 / 9))' : 'calc(100dvw * (9 / 16))'};
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
     overflow: hidden;
-
-    &.fullscreen {
-        width: 100vw;
-        height: 100vh;
-        max-width: none;
-        max-height: none;
-        aspect-ratio: 16 / 9;
-    }
 `;
 
 export const Content = styled.div<{ isPortrait: boolean }>`
