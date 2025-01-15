@@ -10,7 +10,10 @@
   "organizeImports": { "enabled": true },
   "linter": {
     "enabled": true,
-    "rules": { "recommended": true }
+    "rules": {
+      "recommended": true,
+      "react-hooks/exhaustive-deps": "warn"
+    }
   },
   "javascript": { "formatter": { "quoteStyle": "double" } }
 }
