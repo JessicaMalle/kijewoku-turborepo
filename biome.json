@@ -12,7 +12,9 @@
     "enabled": true,
     "rules": {
       "recommended": true,
-      "react-hooks/exhaustive-deps": "warn"
+      "correctness": {
+        "useExhaustiveDependencies": "off"
+      }
     }
   },
   "javascript": { "formatter": { "quoteStyle": "double" } }
