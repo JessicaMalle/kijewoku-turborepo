@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 function useScreenOrientation(): 'portrait' | 'landscape' {
   const [orientation, setOrientation] = useState<'portrait' | 'landscape'>(
