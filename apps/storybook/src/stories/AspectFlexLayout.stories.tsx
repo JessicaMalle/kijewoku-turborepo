@@ -1,12 +1,11 @@
-import type { Meta, StoryObj } from '@storybook/react';
 import {AspectFlexLayout} from '@kijewoku/kijui/layout';
+import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
-  title: 'Example/ScreenLayout',
+  title: 'Layout/ScreenLayout',
   component: AspectFlexLayout,
-  tags: ['autodocs'],
   parameters: {
-    layout: 'fullscreen', // Met le composant en plein écran dans Storybook
+    layout: 'fullscreen',
   },
 } satisfies Meta<typeof AspectFlexLayout>;
 
