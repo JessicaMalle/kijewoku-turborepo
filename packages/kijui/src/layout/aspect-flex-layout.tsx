@@ -1,9 +1,9 @@
 import { useContentDimensions } from '@kijewoku/hooks/layout';
 import {useScreenOrientation} from '@kijewoku/hooks/screen';
-import {useEffect, useRef, useState} from 'react';
+import {type ReactNode, useEffect, useRef, useState} from 'react';
 import {Button, Content, Main, ScreenContainer} from "./aspect-flex-layout.styles.tsx";
 
-function AspectFlexLayout() {
+function AspectFlexLayout({children}: {children: ReactNode}) {
   const orientation = useScreenOrientation();
   const [isPortrait, setIsPortrait] = useState<boolean>(orientation === 'portrait');
   const screenContainerRef = useRef<HTMLDivElement>(null);
@@ -37,8 +37,7 @@ function AspectFlexLayout() {
       <Button onClick={toggleFullscreen}>Toggle Fullscreen</Button>
       <ScreenContainer ref={screenContainerRef} isPortrait={isPortrait}>
         <Content ref={contentRef} isPortrait={isPortrait}>
-          <h1>AspectFlex Screen</h1>
-          <p>The content scales to fit the largest possible 16:9 area.</p>
+          {children}
         </Content>
       </ScreenContainer>
     </Main>

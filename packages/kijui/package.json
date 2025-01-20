@@ -4,6 +4,7 @@
 	"type": "module",
 	"private": true,
 	"exports": {
+		"./theme": "./src/theme/index.ts",
 		"./layout": "./src/layout/index.ts",
 		".": "./src/index.ts"
 	},

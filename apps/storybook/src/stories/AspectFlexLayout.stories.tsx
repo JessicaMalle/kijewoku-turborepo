@@ -1,5 +1,6 @@
 import {AspectFlexLayout} from '@kijewoku/kijui/layout';
 import type { Meta, StoryObj } from '@storybook/react';
+import logo from '../../public/kijewoku-logo.png';
 
 const meta = {
   title: 'Layout/ScreenLayout',
@@ -13,7 +14,13 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  args: {},
+  args: {
+    children: (
+      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
+        <img src={logo} alt="logo" style={{ maxWidth: '50%', maxHeight: '50%', objectFit: 'contain'  }} />
+      </div>
+    )
+  },
   parameters: {
     docs: {
       description: {
