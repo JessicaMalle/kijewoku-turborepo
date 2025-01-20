@@ -1,3 +1,4 @@
+// @ts-expect-error
 import {ThemeProvider} from "@kijewoku/kijui/theme";
 import type { Preview } from '@storybook/react';
 
