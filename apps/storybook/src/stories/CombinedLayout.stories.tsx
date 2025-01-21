@@ -12,7 +12,33 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-const TopChildren = <div>KIJEWOKU</div>
+import styled, { keyframes } from 'styled-components';
+
+const rotateA = keyframes`
+  0% { transform: rotate(-2deg); }
+  50% { transform: rotate(2deg); }
+  100% { transform: rotate(-2deg); }
+`;
+
+const rotateB = keyframes`
+  0% { transform: rotate(2deg); }
+  50% { transform: rotate(-2deg); }
+  100% { transform: rotate(2deg); }
+`;
+
+const AnimatedTextVariantA = styled.div`
+  display: inline-block;
+  animation: ${rotateA} 2s infinite;
+  font-size: 7rem;
+`;
+const AnimatedTextVariantB = styled.div`
+  display: inline-block;
+  animation: ${rotateB} 2s infinite;
+  font-size: 3rem;
+`;
+
+const TopChildren = <AnimatedTextVariantA>TOP</AnimatedTextVariantA>;
+const BottomChildren = <AnimatedTextVariantB>BOTTOM</AnimatedTextVariantB>;
 
 export const Combined: Story = {
   args: {
@@ -20,7 +46,7 @@ export const Combined: Story = {
       <AspectFlexLayout>
         <DualBackgroundLayout
           topChildren={TopChildren}
-          bottomChildren={TopChildren}
+          bottomChildren={BottomChildren}
         />
       </AspectFlexLayout>
     ),

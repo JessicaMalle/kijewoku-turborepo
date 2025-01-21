@@ -1,6 +1,6 @@
 import { DualBackgroundLayout } from '@kijewoku/kijui/layout';
 import type { Meta, StoryObj } from '@storybook/react';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 
 const meta = {
   title: 'Layout/DualBackgroundLayout',
@@ -18,10 +18,36 @@ const FullHeightContainer = styled.div`
   width: 100%;
 `;
 
+const rotateA = keyframes`
+  0% { transform: rotate(-2deg); }
+  50% { transform: rotate(2deg); }
+  100% { transform: rotate(-2deg); }
+`;
+
+const rotateB = keyframes`
+  0% { transform: rotate(2deg); }
+  50% { transform: rotate(-2deg); }
+  100% { transform: rotate(2deg); }
+`;
+
+const AnimatedTextVariantA = styled.div`
+  display: inline-block;
+  animation: ${rotateA} 2s infinite;
+  font-size: 7rem;
+`;
+const AnimatedTextVariantB = styled.div`
+  display: inline-block;
+  animation: ${rotateB} 2s infinite;
+  font-size: 3rem;
+`;
+
+const TopChildren = <AnimatedTextVariantA>TOP</AnimatedTextVariantA>;
+const BottomChildren = <AnimatedTextVariantB>BOTTOM</AnimatedTextVariantB>;
+
 export const Default: Story = {
   args: {
-    topChildren: <p>Pattern Content</p>,
-    bottomChildren: <p>Stripe Content</p>,
+    topChildren: TopChildren,
+    bottomChildren: BottomChildren,
   },
   render: (args) => (
     <FullHeightContainer>
