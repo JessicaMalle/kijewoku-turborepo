@@ -1,17 +1,6 @@
 import {AspectFlexLayout, DualBackgroundLayout} from '@kijewoku/kijui/layout';
 import type {Meta, StoryObj} from '@storybook/react';
 
-const meta = {
-  title: 'Page/CombinedLayout',
-  component: DualBackgroundLayout,
-  parameters: {
-    layout: 'fullscreen',
-  },
-} satisfies Meta<typeof DualBackgroundLayout>;
-
-export default meta;
-type Story = StoryObj<typeof meta>;
-
 import styled, { keyframes } from 'styled-components';
 
 const rotateA = keyframes`
@@ -40,18 +29,26 @@ const AnimatedTextVariantB = styled.div`
 const TopChildren = <AnimatedTextVariantA>TOP</AnimatedTextVariantA>;
 const BottomChildren = <AnimatedTextVariantB>BOTTOM</AnimatedTextVariantB>;
 
-export const Combined: Story = {
-  args: {
-    topChildren: (
-      <AspectFlexLayout>
-        <DualBackgroundLayout
-          topChildren={TopChildren}
-          bottomChildren={BottomChildren}
-        />
-      </AspectFlexLayout>
-    ),
-    bottomChildren: <p>Stripe Content</p>,
+const meta = {
+  title: 'Page/CombinedLayout',
+  component: DualBackgroundLayout,
+  parameters: {
+    layout: 'fullscreen',
   },
+} satisfies Meta<typeof DualBackgroundLayout>;
+
+export default meta;
+type Story = StoryObj<typeof meta>;
+
+export const Combined: Story = {
+  render: () => (
+    <AspectFlexLayout>
+      <DualBackgroundLayout
+        topChildren={TopChildren}
+        bottomChildren={BottomChildren}
+      />
+    </AspectFlexLayout>
+  ),
   parameters: {
     docs: {
       description: {
