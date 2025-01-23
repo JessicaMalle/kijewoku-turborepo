@@ -62,3 +62,45 @@ export const Default: Story = {
     },
   },
 };
+
+export const CustomColors1: Story = {
+  args: {
+    topChildren: TopChildren,
+    bottomChildren: BottomChildren,
+    topBackgroundColor: '#a18ca8',
+    topAccentColor: '#c5a0c5',
+  },
+  render: (args) => (
+    <FullHeightContainer>
+      <DualBackgroundLayout {...args} />
+    </FullHeightContainer>
+  ),
+};
+
+export const CustomColors2: Story = {
+  args: {
+    topChildren: TopChildren,
+    bottomChildren: BottomChildren,
+    topBackgroundColor: '#33FF57',
+    topAccentColor: '#39C700',
+  },
+  render: (args) => (
+    <FullHeightContainer>
+      <DualBackgroundLayout {...args} />
+    </FullHeightContainer>
+  ),
+};
+
+export const CustomColors3: Story = {
+  args: {
+    topChildren: TopChildren,
+    bottomChildren: BottomChildren,
+    topBackgroundColor: '#b5bcdc',
+    topAccentColor: '#8a95b2',
+  },
+  render: (args) => (
+    <FullHeightContainer>
+      <DualBackgroundLayout {...args} />
+    </FullHeightContainer>
+  ),
+};

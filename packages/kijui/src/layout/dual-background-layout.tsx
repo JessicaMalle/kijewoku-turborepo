@@ -4,12 +4,14 @@ import {Back, Bottom, Content, StyledDualBackgroundLayout, Top} from "./dual-bac
 type DualBackgroundLayoutProps = {
   topChildren?: ReactNode;
   bottomChildren?: ReactNode;
+  topBackgroundColor?: string;
+  topAccentColor?: string;
 };
 
-function DualBackgroundLayout({ topChildren, bottomChildren }: DualBackgroundLayoutProps): ReactNode {
+function DualBackgroundLayout({ topChildren, bottomChildren, topBackgroundColor, topAccentColor }: DualBackgroundLayoutProps): ReactNode {
   return (
     <StyledDualBackgroundLayout>
-      <Back>
+      <Back topBackgroundColor={topBackgroundColor} topAccentColor={topAccentColor}>
         <div id="top-container">
           <div id="heart-white-pattern" />
           <div id="heart-white-pattern-overlay" />

@@ -7,7 +7,7 @@ export const StyledDualBackgroundLayout = styled.div`
     height: 100%;
 `;
 
-export const Back = styled.div`
+export const Back = styled.div<{ topBackgroundColor?: string; topAccentColor?: string }>`
     position: absolute;
     top: 0;
     left: 0;
@@ -17,7 +17,10 @@ export const Back = styled.div`
 
     #top-container {
         height: 100%;
-        background: radial-gradient(${({ theme }) => theme.colors.secondary}, ${({ theme }) => theme.colors.secondaryAccent});
+        background: radial-gradient(
+                ${({ topBackgroundColor, theme }) => topBackgroundColor || theme.colors.secondary},
+                ${({ topAccentColor, theme }) => topAccentColor || theme.colors.secondaryAccent}
+        );
 
         #heart-white-pattern {
             height: 100%;
@@ -33,7 +36,10 @@ export const Back = styled.div`
             left: 0;
             width: 100%;
             height: 100%;
-            background: radial-gradient(transparent, ${({ theme }) => theme.colors.secondaryAccent});
+            background: radial-gradient(
+                    transparent,
+                    ${({ topAccentColor, theme }) => topAccentColor || theme.colors.secondaryAccent}
+            );
         }
     }
 
