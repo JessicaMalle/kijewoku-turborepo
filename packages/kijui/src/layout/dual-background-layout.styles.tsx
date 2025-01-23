@@ -17,7 +17,7 @@ export const Back = styled.div`
 
     #top-container {
         height: 100%;
-        background: radial-gradient(#55cacf, #45bbc0);
+        background: radial-gradient(${({ theme }) => theme.colors.secondary}, ${({ theme }) => theme.colors.secondaryAccent});
 
         #heart-white-pattern {
             height: 100%;
@@ -33,7 +33,7 @@ export const Back = styled.div`
             left: 0;
             width: 100%;
             height: 100%;
-            background: radial-gradient(transparent, #45bbc0);
+            background: radial-gradient(transparent, ${({ theme }) => theme.colors.secondaryAccent});
         }
     }
 
@@ -83,13 +83,13 @@ export const Back = styled.div`
             background-size: 18px 18px;
             background-image: linear-gradient(
                     -45deg,
-                    #e6e6e6 25%,
-                    #f0f0f0 25%,
-                    #f0f0f0 50%,
-                    #e6e6e6 50%,
-                    #e6e6e6 75%,
-                    #f0f0f0 75%,
-                    #f0f0f0 100%
+                    ${({ theme }) => theme.colors.neutralLight} 25%,
+                    ${({ theme }) => theme.colors.background} 25%,
+                    ${({ theme }) => theme.colors.background} 50%,
+                    ${({ theme }) => theme.colors.neutralLight} 50%,
+                    ${({ theme }) => theme.colors.neutralLight} 75%,
+                    ${({ theme }) => theme.colors.background} 75%,
+                    ${({ theme }) => theme.colors.background} 100%
             );
             animation: pan 360s linear infinite;
         }
