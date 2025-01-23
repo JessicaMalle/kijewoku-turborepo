@@ -1,6 +1,7 @@
 import { DualBackgroundLayout } from '@kijewoku/kijui/layout';
 import type { Meta, StoryObj } from '@storybook/react';
 import styled, { keyframes } from 'styled-components';
+import customBgImage from './assets/images/winnie-the-pooh-clicker-1x1.webp';
 
 const meta = {
   title: 'Layout/DualBackgroundLayout',
@@ -97,6 +98,19 @@ export const CustomColors3: Story = {
     bottomChildren: BottomChildren,
     topBackgroundColor: '#b5bcdc',
     topAccentColor: '#8a95b2',
+  },
+  render: (args) => (
+    <FullHeightContainer>
+      <DualBackgroundLayout {...args} />
+    </FullHeightContainer>
+  ),
+};
+
+export const CustomImage: Story = {
+  args: {
+    topChildren: TopChildren,
+    bottomChildren: BottomChildren,
+    topBackgroundImage: customBgImage,
   },
   render: (args) => (
     <FullHeightContainer>

@@ -6,12 +6,13 @@ type DualBackgroundLayoutProps = {
   bottomChildren?: ReactNode;
   topBackgroundColor?: string;
   topAccentColor?: string;
+  topBackgroundImage?: string;
 };
 
-function DualBackgroundLayout({ topChildren, bottomChildren, topBackgroundColor, topAccentColor }: DualBackgroundLayoutProps): ReactNode {
+function DualBackgroundLayout({ topChildren, bottomChildren, topBackgroundColor, topAccentColor, topBackgroundImage }: DualBackgroundLayoutProps): ReactNode {
   return (
     <StyledDualBackgroundLayout>
-      <Back topBackgroundColor={topBackgroundColor} topAccentColor={topAccentColor}>
+      <Back topBackgroundColor={topBackgroundColor} topAccentColor={topAccentColor} topBackgroundImage={topBackgroundImage}>
         <div id="top-container">
           <div id="heart-white-pattern" />
           <div id="heart-white-pattern-overlay" />

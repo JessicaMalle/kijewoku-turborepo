@@ -7,7 +7,7 @@ export const StyledDualBackgroundLayout = styled.div`
     height: 100%;
 `;
 
-export const Back = styled.div<{ topBackgroundColor?: string; topAccentColor?: string }>`
+export const Back = styled.div<{ topBackgroundColor?: string; topAccentColor?: string; topBackgroundImage?: string }>`
     position: absolute;
     top: 0;
     left: 0;
@@ -17,14 +17,14 @@ export const Back = styled.div<{ topBackgroundColor?: string; topAccentColor?: s
 
     #top-container {
         height: 100%;
-        background: radial-gradient(
-                ${({ topBackgroundColor, theme }) => topBackgroundColor || theme.colors.secondary},
-                ${({ topAccentColor, theme }) => topAccentColor || theme.colors.secondaryAccent}
-        );
+        background: ${({ topBackgroundImage, topBackgroundColor, topAccentColor, theme }) =>
+                topBackgroundImage
+                        ? `url(${topBackgroundImage}) no-repeat center center / cover`
+                        : `radial-gradient(${topBackgroundColor || theme.colors.secondary}, ${topAccentColor || theme.colors.secondaryAccent})`};
 
         #heart-white-pattern {
             height: 100%;
-            background-image: url(${bgPattern});
+            background-image: ${({ topBackgroundImage }) => (topBackgroundImage ? 'none' : `url(${bgPattern})`)};
             background-size: 10%;
             animation: pan 180s linear infinite;
             opacity: 0.25;
@@ -36,10 +36,8 @@ export const Back = styled.div<{ topBackgroundColor?: string; topAccentColor?: s
             left: 0;
             width: 100%;
             height: 100%;
-            background: radial-gradient(
-                    transparent,
-                    ${({ topAccentColor, theme }) => topAccentColor || theme.colors.secondaryAccent}
-            );
+            background: ${({ topBackgroundImage, topAccentColor, theme }) =>
+                    topBackgroundImage ? 'none' : `radial-gradient(transparent, ${topAccentColor || theme.colors.secondaryAccent})`};
         }
     }
 
