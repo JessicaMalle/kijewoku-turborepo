@@ -4,6 +4,7 @@
 	"type": "module",
 	"private": true,
 	"exports": {
+    "./data-display": "./src/data-display/index.ts",
 		"./theme": "./src/theme/index.ts",
 		"./layout": "./src/layout/index.ts",
 		".": "./src/index.ts"
