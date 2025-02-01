@@ -1,4 +1,4 @@
-export {default as GlobalStyle} from './globalStyles.ts';
+export {default as GlobalStyle} from './globalStyles.tsx';
 export {
   lightTheme,
   darkTheme,

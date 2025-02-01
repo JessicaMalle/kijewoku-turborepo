@@ -7,6 +7,7 @@ const GlobalStyle = createGlobalStyle`
     background-color: ${({ theme }) => theme.colors.background};
     color: ${({ theme }) => theme.colors.text};
     font-family: "Poppins", serif;
+    font-size: clamp(1rem, 1em + 0.25vw, 1.25rem);
   }
 `;
 

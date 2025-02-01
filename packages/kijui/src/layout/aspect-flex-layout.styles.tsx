@@ -44,6 +44,7 @@ export const ScreenContainer = styled.div<{ isPortrait: boolean }>`
 `;
 
 export const Content = styled.div<{ isPortrait: boolean }>`
+    position: relative;
     aspect-ratio: 16 / 9;
     text-align: center;
     background-color: ${({ theme }) => theme.colors.background};

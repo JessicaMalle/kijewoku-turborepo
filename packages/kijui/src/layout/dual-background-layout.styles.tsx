@@ -7,7 +7,7 @@ export const StyledDualBackgroundLayout = styled.div`
     height: 100%;
 `;
 
-export const Back = styled.div<{ topBackgroundColor?: string; topAccentColor?: string; topBackgroundImage?: string }>`
+export const Back = styled.div<{ height: number, topBackgroundColor?: string; topAccentColor?: string; topBackgroundImage?: string }>`
     position: absolute;
     top: 0;
     left: 0;
@@ -47,7 +47,7 @@ export const Back = styled.div<{ topBackgroundColor?: string; topAccentColor?: s
         left: 50%;
         bottom: 0;
         transform: translate(-50%, 0%);
-        height: 25%;
+        height: ${({height}) => height}px;
         width: 100%;
         background-color: transparent;
         clip-path: polygon(
@@ -120,13 +120,10 @@ export const Content = styled.div`
 
 export const Top = styled.div`
     flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 `;
 
-export const Bottom = styled.div`
-    height: 25%;
+export const Bottom = styled.div<{ height: number }>`
+    height: ${({height}) => height}px;
     display: flex;
     justify-content: center;
     align-items: center;
