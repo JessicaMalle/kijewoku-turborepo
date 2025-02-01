@@ -4,6 +4,8 @@ import {Cartridge} from "@kijewoku/kijui/data-display";
 import { AspectFlexLayout, DualBackgroundLayout, Layout } from '@kijewoku/kijui/layout';
 import {useDimensions} from "@kijewoku/kijui/store";
 import type { Meta, StoryObj } from '@storybook/react';
+import {gameData} from "./Layouts.data.ts";
+import imagePlaceholder from "./assets/images/winnie-the-pooh-clicker-1x1.webp";
 
 const {Header, Footer} = Layout;
 const {Text} = Typography;
@@ -29,9 +31,15 @@ const TopChildren = () => {
         gap: get(1),
         height: '100%',
       }}>
-        <Cartridge />
-        <Cartridge />
-        <Cartridge />
+        {gameData.map((game, index) => (
+          <Cartridge
+            {...game}
+            gameIndex={index}
+            illustration={imagePlaceholder}
+            handleSlotCartridge={(gameIndex) => {console.log("Insert"+gameIndex)}}
+            handleEjectCartridge={(gameIndex) => {console.log("Eject"+gameIndex)}}
+          />
+        ))}
       </div>
     </div>
   );
