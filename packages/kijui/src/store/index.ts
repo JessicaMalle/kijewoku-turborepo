@@ -1,1 +1,1 @@
-export {DimensionsProvider, useDimensions} from './dimensions.store.tsx';
+export { DimensionsProvider, useDimensions } from "./dimensions.store.tsx";

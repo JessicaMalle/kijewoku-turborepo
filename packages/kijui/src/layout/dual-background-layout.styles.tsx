@@ -7,7 +7,12 @@ export const StyledDualBackgroundLayout = styled.div`
     height: 100%;
 `;
 
-export const Back = styled.div<{ height: number, topBackgroundColor?: string; topAccentColor?: string; topBackgroundImage?: string }>`
+export const Back = styled.div<{
+	height: number;
+	topBackgroundColor?: string;
+	topAccentColor?: string;
+	topBackgroundImage?: string;
+}>`
     position: absolute;
     top: 0;
     left: 0;
@@ -17,14 +22,19 @@ export const Back = styled.div<{ height: number, topBackgroundColor?: string; to
 
     #top-container {
         height: 100%;
-        background: ${({ topBackgroundImage, topBackgroundColor, topAccentColor, theme }) =>
-                topBackgroundImage
-                        ? `url(${topBackgroundImage}) no-repeat center center / cover`
-                        : `radial-gradient(${topBackgroundColor || theme.colors.secondary}, ${topAccentColor || theme.colors.secondaryAccent})`};
+        background: ${({
+					topBackgroundImage,
+					topBackgroundColor,
+					topAccentColor,
+					theme,
+				}) =>
+					topBackgroundImage
+						? `url(${topBackgroundImage}) no-repeat center center / cover`
+						: `radial-gradient(${topBackgroundColor || theme.colors.secondary}, ${topAccentColor || theme.colors.secondaryAccent})`};
 
         #heart-white-pattern {
             height: 100%;
-            background-image: ${({ topBackgroundImage }) => (topBackgroundImage ? 'none' : `url(${bgPattern})`)};
+            background-image: ${({ topBackgroundImage }) => (topBackgroundImage ? "none" : `url(${bgPattern})`)};
             background-size: 10%;
             animation: pan 180s linear infinite;
             opacity: 0.25;
@@ -37,7 +47,9 @@ export const Back = styled.div<{ height: number, topBackgroundColor?: string; to
             width: 100%;
             height: 100%;
             background: ${({ topBackgroundImage, topAccentColor, theme }) =>
-                    topBackgroundImage ? 'none' : `radial-gradient(transparent, ${topAccentColor || theme.colors.secondaryAccent})`};
+							topBackgroundImage
+								? "none"
+								: `radial-gradient(transparent, ${topAccentColor || theme.colors.secondaryAccent})`};
         }
     }
 
@@ -47,7 +59,7 @@ export const Back = styled.div<{ height: number, topBackgroundColor?: string; to
         left: 50%;
         bottom: 0;
         transform: translate(-50%, 0%);
-        height: ${({height}) => height}px;
+        height: ${({ height }) => height}px;
         width: 100%;
         background-color: transparent;
         clip-path: polygon(
@@ -123,7 +135,7 @@ export const Top = styled.div`
 `;
 
 export const Bottom = styled.div<{ height: number }>`
-    height: ${({height}) => height}px;
+    height: ${({ height }) => height}px;
     display: flex;
     justify-content: center;
     align-items: center;

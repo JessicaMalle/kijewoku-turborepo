@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import bgPattern from '../assets/k-heart-white-pattern.png';
+import bgPattern from "../assets/k-heart-white-pattern.png";
 
 export const Main = styled.main`
     margin: 0;
@@ -26,7 +26,7 @@ export const DarkBackground = styled.div`
 `;
 
 export const ScreenContainer = styled.div<{ isPortrait: boolean }>`
-    aspect-ratio: ${({ isPortrait }) => (isPortrait ? '9 / 16' : '16 / 9')};
+    aspect-ratio: ${({ isPortrait }) => (isPortrait ? "9 / 16" : "16 / 9")};
     background-color: ${({ theme }) => theme.colors.background};
     display: flex;
     justify-content: center;
@@ -35,9 +35,9 @@ export const ScreenContainer = styled.div<{ isPortrait: boolean }>`
     width: 100%;
     height: 100%;
     max-width: ${({ isPortrait }) =>
-            isPortrait ? 'calc(100dvh * (9 / 16))' : 'calc(100dvh * (16 / 9))'};
+			isPortrait ? "calc(100dvh * (9 / 16))" : "calc(100dvh * (16 / 9))"};
     max-height: ${({ isPortrait }) =>
-            isPortrait ? 'calc(100dvw * (16 / 9))' : 'calc(100dvw * (9 / 16))'};
+			isPortrait ? "calc(100dvw * (16 / 9))" : "calc(100dvw * (9 / 16))"};
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
     overflow: hidden;
     z-index: 1;
@@ -49,7 +49,7 @@ export const Content = styled.div<{ isPortrait: boolean }>`
     text-align: center;
     background-color: ${({ theme }) => theme.colors.background};
     color: ${({ theme }) => theme.colors.text};
-    transform: ${({ isPortrait }) => (isPortrait ? 'rotate(-90deg)' : 'none')};
+    transform: ${({ isPortrait }) => (isPortrait ? "rotate(-90deg)" : "none")};
     transform-origin: center;
 `;
 

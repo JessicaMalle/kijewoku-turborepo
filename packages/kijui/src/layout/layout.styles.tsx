@@ -5,7 +5,7 @@ export const StyledHeader = styled.header<{ gr3: number }>`
     justify-content: space-between;
     align-items: center;
     height: ${({ gr3 }) => gr3}px;
-    padding: 0 ${({gr3}) => gr3}px;
+    padding: 0 ${({ gr3 }) => gr3}px;
     background-color: #f0f0f0;
     z-index: 999;
     

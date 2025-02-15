@@ -4,8 +4,8 @@
 	"type": "module",
 	"private": true,
 	"exports": {
-    	"./screen": "./src/screen/index.ts",
-    	"./layout": "./src/layout/index.ts",
+		"./screen": "./src/screen/index.ts",
+		"./layout": "./src/layout/index.ts",
 		".": "./src/index.ts"
 	},
 	"scripts": {

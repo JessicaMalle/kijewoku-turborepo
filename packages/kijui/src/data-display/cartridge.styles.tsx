@@ -22,8 +22,8 @@ export const ButtonStyle = styled.button<{ size: number }>`
 `;
 
 export const DetailsStyle = styled.div<{ isOpen: boolean }>`
-    visibility: ${({ isOpen }) => (isOpen ? 'visible' : 'hidden')};
-    height: ${({ isOpen }) => (isOpen ? 'auto' : 0)};
+    visibility: ${({ isOpen }) => (isOpen ? "visible" : "hidden")};
+    height: ${({ isOpen }) => (isOpen ? "auto" : 0)};
 `;
 
 export const CreditsStyle = styled.div`
