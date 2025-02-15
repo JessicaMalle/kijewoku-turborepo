@@ -7,6 +7,8 @@
     "lint": "turbo lint",
     "lint:fix": "turbo lint:fix",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "create-docs": "turbo create-docs",
+    "docs": "turbo docs",
     "create-react-pkg": "turbo gen \"Create a new React component package\"",
     "create-typecript-pkg": "turbo gen \"Create a new TypeScript utility package\""
   },
@@ -26,6 +28,8 @@
     "packages/*"
   ],
   "dependencies": {
+    "docsify-cli": "^4.4.4",
+    "strip-indent": "2.0.0",
     "styled-components": "^6.1.13"
   }
 }

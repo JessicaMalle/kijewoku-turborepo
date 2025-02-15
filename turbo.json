@@ -19,6 +19,12 @@
     "dev": {
       "cache": false,
       "persistent": true
+    },
+    "create-docs": {
+      "dependsOn": ["^create-docs"]
+    },
+    "docs": {
+      "dependsOn": ["^docs"]
     }
   }
 }
