@@ -1,12 +1,13 @@
 import type React from 'react';
 import { useReducer } from 'react';
+import DeckService from "../services/DeckService.ts";
+import type {Deck} from "../types/gameTypes.ts";
 import {GameContext, type GameState} from "./GameContext.ts";
 import { GameReducer } from './GameReducer.ts';
 
 const initialGameState: GameState = {
   chips: 0,
-  hands: 1,
-  clickerBonus: 1,
+  deck: DeckService.createDeck(),
 };
 
 export const GameProvider = ({ children }: { children: React.ReactNode }) => {
@@ -16,18 +17,17 @@ export const GameProvider = ({ children }: { children: React.ReactNode }) => {
   const addChips = (chips: number) =>
     dispatch({ type: "ADD_CHIPS", payload: chips });
 
-  const buyHand = () =>
-    dispatch({ type: "BUY_HAND" });
+  const shuffleDeck = () =>
+    dispatch({ type: 'SHUFFLE_DECK' });
 
-  const addClickerBonus = (bonus: number) =>
-    dispatch({ type: "ADD_CLICKER_BONUS", payload: bonus });
+  const revealDeck = (deck: Deck) => DeckService.revealDeck(deck);
 
   return (
     <GameContext.Provider value={{
       ...state,
       addChips,
-      buyHand,
-      addClickerBonus
+      shuffleDeck,
+      revealDeck,
     }}>
       {children}
     </GameContext.Provider>
