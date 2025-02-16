@@ -35,26 +35,41 @@ src/
 ### 💾 ChipsService.ts
 ```typescript
 // src/services/ChipsService.ts
-export class ChipsService {
-  static addChips(currentChips: number, chipsToAdd: number): number {
-    return currentChips + chipsToAdd;
-  }
+function addChips(currentChips: number, chipsToAdd: number): number {
+  return currentChips + chipsToAdd;
 }
+
+const ChipsService = {
+  addChips,
+}
+
+export default ChipsService;
+
 ```
 
-## 🔄 4. Using Services in Hooks
-### 🎮 useChips.ts
+## 🔄 4. Using Services
+### ⚙️ In the reducer
+```typescript
+type Action =
+  | { type: "ADD_CHIPS"; payload: number }
+
+export const GameReducer = (state: GameState, action: Action): GameState => {
+  switch (action.type) {
+    case "ADD_CHIPS":
+      return { ...state, chips: ChipsService.addChips(state.chips, action.payload) };
+    default:
+      return state;
+  }
+};
+```
+### 🎮 In a custom hook
 ```typescript
 // src/hooks/useChips.ts
-import { useGame } from "../context/useGame";
-import { ChipsService } from "../services/ChipsService";
-
 export const useChips = () => {
   const { chips, addChips } = useGame();
 
   const handleAddChips = (chipsToAdd: number) => {
-    const newChips = ChipsService.addChips(chips, chipsToAdd);
-    addChips(newChips);
+    addChips(chipsToAdd);
   };
 
   return {
