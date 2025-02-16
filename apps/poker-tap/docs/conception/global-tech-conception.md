@@ -24,65 +24,54 @@ import { createContext } from "react";
 
 export interface GameState {
   chips: number;
-  hands: number;
-  clickerBonus: number;
   addChips: (chips: number) => void;
-  buyHand: () => void;
-  addClickerBonus: (bonus: number) => void;
 }
 
-// Creating the context with `undefined` to enforce proper usage via `useGame`
 export const GameContext = createContext<GameState | undefined>(undefined);
 ```
 ### 🎮 GameProvider
 
 ```tsx
 // src/context/GameProvider.tsx
-import { ReactNode, useReducer } from "react";
-import { GameContext } from "./GameContext";
-import { AppReducer } from "./AppReducer";
+import type React from 'react';
+import { useReducer } from 'react';
+import {GameContext, type GameState} from "./GameContext.ts";
+import { GameReducer } from './GameReducer.ts';
 
-const initialState = {
+const initialGameState: GameState = {
   chips: 0,
-  hands: 1,
-  clickerBonus: 1,
 };
 
-export const GameProvider = ({ children }: { children: ReactNode }) => {
-  const [state, dispatch] = useReducer(AppReducer, initialState);
+export const GameProvider = ({ children }: { children: React.ReactNode }) => {
+  const [state, dispatch] = useReducer(GameReducer, initialGameState);
 
   // Actions
-  const addChips = (chips: number) => dispatch({ type: "ADD_CHIPS", payload: chips });
-  const buyHand = () => dispatch({ type: "BUY_HAND" });
-  const addClickerBonus = (bonus: number) => dispatch({ type: "ADD_CLICKER_BONUS", payload: bonus });
+  const addChips = (chips: number) =>
+    dispatch({ type: "ADD_CHIPS", payload: chips });
 
   return (
-    <GameContext.Provider value={{ ...state, addChips, buyHand, addClickerBonus }}>
+    <GameContext.Provider value={{
+      ...state,
+      addChips,
+    }}>
       {children}
     </GameContext.Provider>
   );
 };
+
 ```
 
-### ⚙️ AppReducer
+### ⚙️ GameReducer
 
 ```tsx
-// src/context/AppReducer.ts
-import { GameState } from "./GameContext";
-
-type Action =
+// src/context/GameReducer.ts
+export type Action =
   | { type: "ADD_CHIPS"; payload: number }
-  | { type: "BUY_HAND" }
-  | { type: "ADD_CLICKER_BONUS"; payload: number };
 
-export const AppReducer = (state: GameState, action: Action): GameState => {
+export const gameReducer = (state: GameState, action: Action): GameState => {
   switch (action.type) {
     case "ADD_CHIPS":
       return { ...state, chips: state.chips + action.payload };
-    case "BUY_HAND":
-      return { ...state, hands: state.hands + 1 };
-    case "ADD_CLICKER_BONUS":
-      return { ...state, clickerBonus: state.clickerBonus + action.payload };
     default:
       return state;
   }
@@ -112,17 +101,13 @@ export const useGame = () => {
 import { useGame } from "../context/useGame";
 
 const ExampleComponent = () => {
-  const { chips, hands, clickerBonus, addChips, buyHand, addClickerBonus } = useGame();
+  const { chips, addChips } = useGame();
 
   return (
     <div>
       <h1>Poker Tap</h1>
       <p>Chips: {chips}</p>
-      <p>Hands: {hands}</p>
-      <p>Clicker Bonus: {clickerBonus}</p>
       <button onClick={() => addChips(10)}>Add 10 Chips</button>
-      <button onClick={buyHand}>Buy Hand</button>
-      <button onClick={() => addClickerBonus(5)}>Add 5 Clicker Bonus</button>
     </div>
   );
 };
