@@ -12,7 +12,6 @@ export interface Card {
 
 export interface Hand {
   cards: Card[];
-  combinationUid: string;
 }
 
 export interface Deck {

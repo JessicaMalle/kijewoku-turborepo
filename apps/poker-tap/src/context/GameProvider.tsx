@@ -7,6 +7,7 @@ import { GameReducer } from './GameReducer.ts';
 
 const initialGameState: GameState = {
   chips: 0,
+  hand: { cards: [] },
   deck: DeckService.createDeck(),
 };
 
@@ -22,12 +23,16 @@ export const GameProvider = ({ children }: { children: React.ReactNode }) => {
 
   const revealDeck = (deck: Deck) => DeckService.revealDeck(deck);
 
+  const drawHand = () =>
+    dispatch({ type: 'DRAW_HAND' })
+
   return (
     <GameContext.Provider value={{
       ...state,
       addChips,
       shuffleDeck,
       revealDeck,
+      drawHand,
     }}>
       {children}
     </GameContext.Provider>
