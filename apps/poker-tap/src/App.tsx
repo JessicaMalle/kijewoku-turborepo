@@ -1,34 +1,19 @@
-import { useState } from "react";
-import viteLogo from "/vite.svg";
-import reactLogo from "./assets/react.svg";
 import "./App.css";
+import {useGame} from "./hooks/useGame.ts";
 
 function App() {
-	const [count, setCount] = useState(0);
+	const { chips, hands, clickerBonus, addChips, buyHand, addClickerBonus } = useGame();
 
 	return (
-		<>
-			<div>
-				<a href="https://vite.dev" target="_blank" rel="noreferrer">
-					<img src={viteLogo} className="logo" alt="Vite logo" />
-				</a>
-				<a href="https://react.dev" target="_blank" rel="noreferrer">
-					<img src={reactLogo} className="logo react" alt="React logo" />
-				</a>
-			</div>
-			<h1>Vite + React</h1>
-			<div className="card">
-				<button type="button" onClick={() => setCount((count) => count + 1)}>
-					count is {count}
-				</button>
-				<p>
-					Edit <code>src/App.tsx</code> and save to test HMR
-				</p>
-			</div>
-			<p className="read-the-docs">
-				Click on the Vite and React logos to learn more
-			</p>
-		</>
+		<main>
+			<h1>Poker Tap</h1>
+			<p>Chips: {chips}</p>
+			<p>Hands: {hands}</p>
+			<p>Clicker Bonus: {clickerBonus}</p>
+			<button type="button" onClick={() => addChips(1)}>Add 1 Chip</button>
+			<button type="button" onClick={buyHand}>Buy Hand</button>
+			<button type="button" onClick={() => addClickerBonus(5)}>Add 5 Clicker Bonus</button>
+		</main>
 	);
 }
 
