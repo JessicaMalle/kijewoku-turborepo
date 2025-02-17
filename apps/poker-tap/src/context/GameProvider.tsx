@@ -8,7 +8,7 @@ import { GameReducer } from './GameReducer.ts';
 const initialGameState: GameState = {
   chips: 0,
   hand: { cards: [] },
-  deck: DeckService.createDeck(),
+  deck: DeckService.shuffleDeck(DeckService.createDeck()),
 };
 
 export const GameProvider = ({ children }: { children: React.ReactNode }) => {
