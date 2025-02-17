@@ -1,4 +1,5 @@
 import "./App.css";
+import SaveControls from "../components/SaveControls.tsx";
 import {useChips} from "./hooks/useChips.ts";
 import {useDeck} from "./hooks/useDeck.ts";
 import {useHand} from "./hooks/useHand.ts";
@@ -11,6 +12,7 @@ function App() {
 	return (
 		<main>
 			<h1>Poker Tap</h1>
+			<SaveControls />
 			<p>Chips: {chips}</p>
 			{hand.cards.map((card, index) => (
 				<div key={`hand-card-${card.color}-${card.value}-i${index}`}>
