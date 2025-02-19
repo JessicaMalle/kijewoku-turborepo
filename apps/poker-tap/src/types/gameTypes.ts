@@ -10,8 +10,12 @@ export interface Card {
   numericValue: number;
 }
 
+export interface HandCard extends Card {
+  active: boolean;
+}
+
 export interface Hand {
-  cards: Card[];
+  handCards: HandCard[];
 }
 
 export interface Deck {

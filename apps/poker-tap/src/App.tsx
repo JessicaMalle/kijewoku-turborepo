@@ -7,15 +7,21 @@ import {useHand} from "./hooks/useHand.ts";
 function App() {
 	const { chips, handleAddChips } = useChips();
 	const { deck, shuffleDeck, revealDeck } = useDeck();
-	const { hand, drawHand } = useHand();
+	const { hand, drawHand, toggleSelectedHandCard } = useHand();
 
 	return (
 		<main>
 			<h1>Poker Tap</h1>
 			<SaveControls />
 			<p>Chips: {chips}</p>
-			{hand.cards.map((card, index) => (
-				<div key={`hand-card-${card.color}-${card.value}-i${index}`}>
+			{hand.handCards.map((card, index) => (
+				// TODO: edit Biome configuration
+				// biome-ignore lint/a11y/useKeyWithClickEvents: <explanation>
+				<div
+					key={`hand-card-${card.color}-${card.value}-i${index}`}
+					style={{ color: card.active ? 'red' : 'black' }}
+					onClick={() => toggleSelectedHandCard(index)}
+				>
 					{card.value} of {card.color}
 				</div>
 			))}

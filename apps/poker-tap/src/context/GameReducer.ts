@@ -7,6 +7,7 @@ type Action =
   | { type: "ADD_CHIPS"; payload: number }
   | { type: 'SHUFFLE_DECK' }
   | { type: 'DRAW_HAND' }
+  | { type: 'TOGGLE_SELECTED_HAND_CARD'; payload: number }
 
 export const GameReducer = (state: GameState, action: Action): GameState => {
   switch (action.type) {
@@ -15,17 +16,25 @@ export const GameReducer = (state: GameState, action: Action): GameState => {
     case 'SHUFFLE_DECK':
       return { ...state, deck: DeckService.shuffleDeck(state.deck) };
     case 'DRAW_HAND': {
-      const { hand: newHand, deck: newDeck } = HandService.drawHand(state.deck, state.hand.cards);
+      const { hand: newHand, deck: newDeck } = HandService.drawHand(state.deck, state.hand.handCards);
 
       return {
         ...state,
         hand: {
           ...state.hand,
-          cards: newHand,
+          handCards: newHand,
         },
         deck: newDeck,
       }
     }
+    case 'TOGGLE_SELECTED_HAND_CARD':
+      return {
+        ...state,
+        hand: {
+          ...state.hand,
+          handCards: HandService.toggleSelectedHandCard(state.hand.handCards, action.payload)
+        }
+      };
     default:
       return state;
   }

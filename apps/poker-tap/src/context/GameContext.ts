@@ -12,6 +12,7 @@ interface GameContextType extends GameState {
   shuffleDeck: () => void;
   revealDeck: (deck: Deck) => void;
   drawHand: () => void;
+  toggleSelectedHandCard: (cardIndex: number) => void;
 }
 
 export const GameContext = createContext<GameContextType | undefined>(undefined);

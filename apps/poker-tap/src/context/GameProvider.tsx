@@ -9,7 +9,7 @@ import { GameReducer } from './GameReducer.ts';
 
 const initialGameState: GameState = {
   chips: 0,
-  hand: { cards: [] },
+  hand: { handCards: [] },
   deck: DeckService.shuffleDeck(DeckService.createDeck()),
 };
 
@@ -33,6 +33,9 @@ export const GameProvider = ({ children }: { children: React.ReactNode }) => {
   const drawHand = () =>
     dispatch({ type: 'DRAW_HAND' })
 
+  const toggleSelectedHandCard = (cardIndex: number) =>
+    dispatch({ type: 'TOGGLE_SELECTED_HAND_CARD', payload: cardIndex });
+
   return (
     <GameContext.Provider value={{
       ...state,
@@ -40,6 +43,7 @@ export const GameProvider = ({ children }: { children: React.ReactNode }) => {
       shuffleDeck,
       revealDeck,
       drawHand,
+      toggleSelectedHandCard,
     }}>
       {children}
     </GameContext.Provider>
