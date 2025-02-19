@@ -5,7 +5,7 @@ import {useDeck} from "./hooks/useDeck.ts";
 import {useHand} from "./hooks/useHand.ts";
 
 function App() {
-	const { chips, handleAddChips } = useChips();
+	const { chips, addChips } = useChips();
 	const { deck, shuffleDeck, revealDeck } = useDeck();
 	const { hand, drawHand, toggleSelectedHandCard } = useHand();
 
@@ -26,7 +26,7 @@ function App() {
 				</div>
 			))}
 			<button type="button" onClick={drawHand}>Draw hand</button>
-			<button type="button" onClick={() => handleAddChips(1)}>Add 1 Chip</button>
+			<button type="button" onClick={() => addChips(1)}>Add 1 Chip</button>
 			<button type="button" onClick={shuffleDeck}>Shuffle deck</button>
 			<button type="button" onClick={() => revealDeck(deck)}>Reveal deck</button>
 		</main>
