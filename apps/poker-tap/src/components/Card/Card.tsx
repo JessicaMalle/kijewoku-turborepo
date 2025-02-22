@@ -1,7 +1,7 @@
 import type {ReactNode} from "react";
-import {useHand} from "../../src/hooks/useHand.ts";
-import type {HandCard} from "../../src/types/gameTypes";
-import {CardSuit, CardValue, StyledCard } from "./Card.styles";
+import {useHand} from "../../hooks/useHand.ts";
+import type {HandCard} from "../../types/gameTypes.ts";
+import {CardSuit, CardValue, StyledCard } from "./Card.styles.ts";
 
 interface CardProps extends HandCard {
   index: number;

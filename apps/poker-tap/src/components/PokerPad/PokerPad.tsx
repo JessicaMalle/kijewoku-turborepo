@@ -1,7 +1,7 @@
 import type {ReactNode} from "react";
-import {useHand} from "../../src/hooks/useHand.ts";
-import {usePokerPad} from "../../src/hooks/usePokerPad.ts";
-import PokerPadService from "../../src/services/PokerPadService.ts";
+import {useHand} from "../../hooks/useHand.ts";
+import {usePokerPad} from "../../hooks/usePokerPad.ts";
+import PokerPadService from "../../services/PokerPadService.ts";
 import Card from "../Card/Card.tsx";
 import {StyledPokerPad} from "./PokerPad.styles.ts";
 

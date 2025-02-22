@@ -1,4 +1,4 @@
-import {useSave} from "../src/hooks/useSave";
+import {useSave} from "../hooks/useSave.ts";
 
 const SaveControls = () => {
   const { saveGame, clearSave } = useSave();

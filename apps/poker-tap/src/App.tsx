@@ -1,8 +1,8 @@
-import BigChip from "../components/Chips/BigChip.tsx";
-import Hand from "../components/Hand/Hand.tsx";
-import PokerPad from "../components/PokerPad/PokerPad.tsx";
-import SaveControls from "../components/SaveControls.tsx";
 import {Button, Main, Section} from "./App.styled.ts";
+import BigChip from "./components/Chips/BigChip.tsx";
+import Hand from "./components/Hand/Hand.tsx";
+import PokerPad from "./components/PokerPad/PokerPad.tsx";
+import SaveControls from "./components/SaveControls.tsx";
 import {useChips} from "./hooks/useChips.ts";
 import {useDeck} from "./hooks/useDeck.ts";
 

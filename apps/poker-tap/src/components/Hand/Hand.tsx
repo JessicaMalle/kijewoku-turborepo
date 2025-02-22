@@ -1,9 +1,9 @@
 import type {ReactNode} from "react";
-import {useDeck} from "../../src/hooks/useDeck.ts";
-import {useGame} from "../../src/hooks/useGame.tsx";
-import {useHand} from "../../src/hooks/useHand";
-import Card from "../Card/Card";
-import {StyledHand} from "./Hand.styles";
+import {useDeck} from "../../hooks/useDeck.ts";
+import {useGame} from "../../hooks/useGame.tsx";
+import {useHand} from "../../hooks/useHand.ts";
+import Card from "../Card/Card.tsx";
+import {StyledHand} from "./Hand.styles.ts";
 
 function Hand(): ReactNode {
   const { drawCardAndDeductChips } = useGame();
