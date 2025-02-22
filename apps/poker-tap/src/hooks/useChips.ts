@@ -1,7 +1,7 @@
-import {useGame} from "./useGame.ts";
+import {useAppContext} from "./useAppContext.ts";
 
 export const useChips = () => {
-  const { chips, addChips } = useGame();
+  const { chips, addChips } = useAppContext();
 
   return {
     chips,

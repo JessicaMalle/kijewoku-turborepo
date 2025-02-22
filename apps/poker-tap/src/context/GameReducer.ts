@@ -1,16 +1,17 @@
 import ChipsService from "../services/ChipsService.ts";
 import DeckService from "../services/DeckService.ts";
+import GameService from "../services/GameService.ts";
 import HandService from "../services/HandService.ts";
 import PokerPadService from "../services/PokerPadService.ts";
-import type {Card} from "../types/gameTypes.ts";
 import type { GameState } from "./GameContext";
 
 type Action =
-  | { type: "ADD_CHIPS"; payload: { currentChips: number, cards: Card[] } }
+  | { type: "ADD_CHIPS" }
   | { type: 'SHUFFLE_DECK' }
   | { type: 'TOGGLE_SELECTED_HAND_CARD'; payload: number }
   | { type: "PLACE_CARDS_ON_TABLE" }
   | { type: "DRAW_CARD", payload: number }
+  | { type: "DRAW_CARD_AND_DEDUCT_CHIPS" }
 
 export const GameReducer = (state: GameState, action: Action): GameState => {
   switch (action.type) {
@@ -33,6 +34,15 @@ export const GameReducer = (state: GameState, action: Action): GameState => {
           ...state.deck,
           cards: deck.cards
         }
+      };
+    }
+    case "DRAW_CARD_AND_DEDUCT_CHIPS": {
+      const { deck, hand, remainingChips } = GameService.drawCardAndDeductChips(state.deck, state.hand, state.chips);
+      return {
+        ...state,
+        deck,
+        hand,
+        chips: remainingChips,
       };
     }
     case 'TOGGLE_SELECTED_HAND_CARD':

@@ -1,10 +1,10 @@
 import {useEffect, useState} from "react";
 import PokerPadService from "../services/PokerPadService.ts";
-import { useGame } from "./useGame.ts";
+import { useAppContext } from "./useAppContext.ts";
 import {useHand} from "./useHand.ts";
 
 export const usePokerPad = () => {
-  const { pokerPad, placeCardsOnTable } = useGame();
+  const { pokerPad, placeCardsOnTable } = useAppContext();
   const { countSelectedCards } = useHand();
 
   const [detectedHand, setDetectedHand] = useState<string>("");

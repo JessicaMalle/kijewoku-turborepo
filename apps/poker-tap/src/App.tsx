@@ -7,13 +7,14 @@ import {useDeck} from "./hooks/useDeck.ts";
 
 function App() {
 	const { chips, addChips } = useChips();
-	const { deck, shuffleDeck, revealDeck } = useDeck();
+	const { deck, shuffleDeck, revealDeck, nextCardPrice } = useDeck();
 
 	return (
 		<main>
 			<h1>Poker Tap</h1>
 			<SaveControls/>
 			<p>Chips: {chips}</p>
+			<p>Next card price: {nextCardPrice}</p>
 			<button type="button" onClick={() => addChips(1)}>Add 1 Chip</button>
 			<button type="button" onClick={shuffleDeck}>Shuffle deck</button>
 			<button type="button" onClick={() => revealDeck(deck)}>Reveal deck</button>

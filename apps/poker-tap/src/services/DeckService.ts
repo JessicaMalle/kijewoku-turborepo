@@ -45,12 +45,22 @@ const revealDeck = (deck: Deck) => {
   console.log(deck);
 }
 
+const nextCardPrice = (deck: Deck): number => {
+  const totalCards = 52;
+  const remainingCards = deck.cards.length;
+  const basePrice = 10;
+  const priceMultiplier = 2;
+
+  return basePrice + (totalCards - remainingCards) * priceMultiplier;
+};
+
 const DeckService = {
   createDeck,
   shuffleDeck,
   drawCardFromDeck,
   placeCardUnderDeck,
   revealDeck,
+  nextCardPrice,
 };
 
 export default DeckService;

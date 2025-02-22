@@ -1,8 +1,8 @@
 import HandService from "../services/HandService.ts";
-import {useGame} from "./useGame.ts";
+import {useAppContext} from "./useAppContext.ts";
 
 export const useHand = () => {
-  const { hand, drawCard, toggleSelectedHandCard } = useGame();
+  const { hand, drawCard, toggleSelectedHandCard } = useAppContext();
 
   const countSelectedCards = HandService.countSelectedCards(hand);
 

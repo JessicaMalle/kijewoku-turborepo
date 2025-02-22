@@ -1,8 +1,8 @@
 import { SaveService } from "../services/SaveService";
-import {useGame} from "./useGame.ts";
+import {useAppContext} from "./useAppContext.ts";
 
 export const useSave = () => {
-  const { chips, hand, deck } = useGame();
+  const { chips, hand, deck } = useAppContext();
 
   const saveGame = () => {
     SaveService.saveGame({ chips, hand, deck });

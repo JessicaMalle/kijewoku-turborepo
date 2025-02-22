@@ -24,8 +24,8 @@ export const GameProvider = ({ children }: { children: React.ReactNode }) => {
   }, [state]);
 
   // Actions
-  const addChips = (chips: number) =>
-    dispatch({ type: "ADD_CHIPS", payload: chips });
+  const addChips = () =>
+    dispatch({ type: "ADD_CHIPS" });
 
   const shuffleDeck = () =>
     dispatch({ type: 'SHUFFLE_DECK' });
@@ -34,6 +34,10 @@ export const GameProvider = ({ children }: { children: React.ReactNode }) => {
 
   const drawCard = (numberOfCardsToDraw = 1) =>
     dispatch({ type: 'DRAW_CARD', payload: numberOfCardsToDraw })
+
+  const drawCardAndDeductChips = () => {
+    dispatch({type: 'DRAW_CARD_AND_DEDUCT_CHIPS'})
+  }
 
   const toggleSelectedHandCard = (cardIndex: number) =>
     dispatch({ type: 'TOGGLE_SELECTED_HAND_CARD', payload: cardIndex });
@@ -47,6 +51,7 @@ export const GameProvider = ({ children }: { children: React.ReactNode }) => {
       shuffleDeck,
       revealDeck,
       drawCard,
+      drawCardAndDeductChips,
       toggleSelectedHandCard,
       placeCardsOnTable,
     }}>
