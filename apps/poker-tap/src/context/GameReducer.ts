@@ -1,6 +1,7 @@
 import ChipsService from "../services/ChipsService.ts";
 import DeckService from "../services/DeckService.ts";
 import HandService from "../services/HandService.ts";
+import PokerPadService from "../services/PokerPadService.ts";
 import type { GameState } from "./GameContext";
 
 type Action =
@@ -8,6 +9,7 @@ type Action =
   | { type: 'SHUFFLE_DECK' }
   | { type: 'DRAW_HAND' }
   | { type: 'TOGGLE_SELECTED_HAND_CARD'; payload: number }
+  | { type: "PLACE_CARDS_ON_TABLE" }
 
 export const GameReducer = (state: GameState, action: Action): GameState => {
   switch (action.type) {
@@ -35,6 +37,21 @@ export const GameReducer = (state: GameState, action: Action): GameState => {
           handCards: HandService.toggleSelectedHandCard(state.hand.handCards, action.payload)
         }
       };
+    case "PLACE_CARDS_ON_TABLE": {
+      const { newHand, newTable } = PokerPadService.placeCardsOnTable(state.hand.handCards, state.pokerPad.cards);
+      return {
+        ...state,
+        hand: {
+          ...state.hand,
+          handCards: newHand,
+        },
+        pokerPad: {
+          ...state.pokerPad,
+          cards: newTable,
+        },
+      };
+    }
+
     default:
       return state;
   }

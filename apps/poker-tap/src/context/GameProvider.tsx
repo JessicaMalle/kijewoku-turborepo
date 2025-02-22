@@ -11,6 +11,7 @@ const initialGameState: GameState = {
   chips: 0,
   hand: { handCards: [] },
   deck: DeckService.shuffleDeck(DeckService.createDeck()),
+  pokerPad: { cards: [] },
 };
 
 export const GameProvider = ({ children }: { children: React.ReactNode }) => {
@@ -36,6 +37,8 @@ export const GameProvider = ({ children }: { children: React.ReactNode }) => {
   const toggleSelectedHandCard = (cardIndex: number) =>
     dispatch({ type: 'TOGGLE_SELECTED_HAND_CARD', payload: cardIndex });
 
+  const placeCardsOnTable = () => dispatch({ type: "PLACE_CARDS_ON_TABLE" });
+
   return (
     <GameContext.Provider value={{
       ...state,
@@ -44,6 +47,7 @@ export const GameProvider = ({ children }: { children: React.ReactNode }) => {
       revealDeck,
       drawHand,
       toggleSelectedHandCard,
+      placeCardsOnTable,
     }}>
       {children}
     </GameContext.Provider>

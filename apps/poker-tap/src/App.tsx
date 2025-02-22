@@ -18,7 +18,6 @@ function App() {
 			<p>Chips: {chips}</p>
 			<PokerPad />
 			{hand.handCards.map((card, index) => (
-				// TODO: edit Biome configuration
 				<Card
 					{...card}
 					index={index}

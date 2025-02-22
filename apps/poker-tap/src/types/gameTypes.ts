@@ -33,3 +33,7 @@ export interface History {
   totalHandsAdded: number;
   totalDealersAcquired: number;
 }
+
+export interface PokerPad {
+  cards: Card[];
+}

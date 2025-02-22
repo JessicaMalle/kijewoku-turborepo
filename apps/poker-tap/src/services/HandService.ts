@@ -25,9 +25,14 @@ const toggleSelectedHandCard = (hand: Hand['handCards'], cardIndex: number): Han
   }));
 };
 
+const removeSelectedCards = (hand: Hand['handCards']): Hand['handCards'] => {
+  return hand.filter(card => !card.active);
+};
+
 const HandService = {
   drawHand: drawFirstHand,
   toggleSelectedHandCard,
+  removeSelectedCards,
 };
 
 export default HandService;
