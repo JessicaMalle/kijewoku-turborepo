@@ -8,6 +8,7 @@ export const usePokerPad = () => {
   const { countSelectedCards } = useHand();
 
   const [detectedHand, setDetectedHand] = useState<string>("");
+  const [handScore, setHandScore] = useState<number>(0);
 
   const countEmptySlots = PokerPadService.countEmptySlots(pokerPad.cards);
 
@@ -19,7 +20,10 @@ export const usePokerPad = () => {
   useEffect(() => {
     const hand = PokerPadService.detectPokerHand(pokerPad.cards);
     setDetectedHand(hand);
+
+    const score = PokerPadService.getPokerHandScore(pokerPad.cards);
+    setHandScore(score);
   }, [pokerPad.cards]);
 
-  return { pokerPad, placeCardsOnTable, countEmptySlots, canHoldSelectedCards, detectedHand };
+  return { pokerPad, placeCardsOnTable, countEmptySlots, canHoldSelectedCards, detectedHand, handScore };
 };
