@@ -4,10 +4,9 @@ export const StyledPokerPad = styled.div`
     display: flex;
     align-items: center;
     gap: 10px;
-    width: 500px;
+    width: 654px;
     height: 170px;
     padding: 10px;
     margin: 10px;
-    border: 2px solid forestgreen;
     background-color: darkgreen;
 `;

@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const StyledCard = styled.div<{ color: string; active: boolean }>`
   width: 100px;
+  min-width: 100px;
   height: 150px;
   border: 1px solid #000;
   border-radius: 8px;

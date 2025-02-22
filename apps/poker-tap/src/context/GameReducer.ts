@@ -41,17 +41,22 @@ export const GameReducer = (state: GameState, action: Action): GameState => {
       };
     case "PLACE_CARDS_ON_TABLE": {
       const { newHand, newTable } = PokerPadService.placeCardsOnTable(state.hand.handCards, state.pokerPad.cards);
-      return {
-        ...state,
-        hand: {
-          ...state.hand,
-          handCards: newHand,
-        },
-        pokerPad: {
-          ...state.pokerPad,
-          cards: newTable,
-        },
-      };
+
+      if (newHand !== state.hand.handCards || newTable !== state.pokerPad.cards) {
+        return {
+          ...state,
+          hand: {
+            ...state.hand,
+            handCards: newHand,
+          },
+          pokerPad: {
+            ...state.pokerPad,
+            cards: newTable,
+          },
+        };
+      }
+
+      return state;
     }
 
     default:
