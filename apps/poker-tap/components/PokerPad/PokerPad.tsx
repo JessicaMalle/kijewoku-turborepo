@@ -1,14 +1,18 @@
 import type {ReactNode} from "react";
+import {useHand} from "../../src/hooks/useHand.ts";
 import {usePokerPad} from "../../src/hooks/usePokerPad.ts";
 import Card from "../Card/Card.tsx";
 import {StyledPokerPad} from "./PokerPad.styles.ts";
 
 function PokerPad(): ReactNode {
-  const { pokerPad, placeCardsOnTable } = usePokerPad();
+  const { pokerPad, placeCardsOnTable, countEmptySlots, canHoldSelectedCards } = usePokerPad();
+  const { countSelectedCards } = useHand();
 
   return (
     <div>
-      <button type="button" onClick={placeCardsOnTable}>Place selected cards</button>
+      <button type="button" onClick={placeCardsOnTable} disabled={!canHoldSelectedCards || (countSelectedCards === 0)}>
+        {!canHoldSelectedCards ? `TOO MANY SELECTED CARDS (Empty slots : ${countEmptySlots})` : 'Place selected cards'}
+      </button>
       <StyledPokerPad>
         {pokerPad.cards.map((card, index) => (
           <Card

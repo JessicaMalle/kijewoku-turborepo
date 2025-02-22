@@ -1,6 +1,10 @@
 import type {Deck, Hand} from "../types/gameTypes.ts";
 import DeckService from "./DeckService.ts";
 
+const countSelectedCards = (hand: Hand): number => {
+  return hand.handCards.filter(card => card.active).length;
+}
+
 const drawCard = (deck: Deck, currentHand: Hand, numberOfCardsToDraw = 1): { hand: Hand, deck: Deck } => {
   const newDeck = { ...deck, cards: [...deck.cards] };
   const newHand = { ...currentHand, handCards: [...currentHand.handCards] };
@@ -30,6 +34,7 @@ const removeSelectedCards = (hand: Hand['handCards']): Hand['handCards'] => {
 };
 
 const HandService = {
+  countSelectedCards,
   drawCard,
   toggleSelectedHandCard,
   removeSelectedCards,
