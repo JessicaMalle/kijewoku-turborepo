@@ -1,26 +1,34 @@
-import "./App.css";
+import BigChip from "../components/Chips/BigChip.tsx";
 import Hand from "../components/Hand/Hand.tsx";
 import PokerPad from "../components/PokerPad/PokerPad.tsx";
 import SaveControls from "../components/SaveControls.tsx";
+import {Button, Main, Section} from "./App.styled.ts";
 import {useChips} from "./hooks/useChips.ts";
 import {useDeck} from "./hooks/useDeck.ts";
 
 function App() {
-	const { chips, addChips } = useChips();
-	const { deck, shuffleDeck, revealDeck, nextCardPrice } = useDeck();
+	const { chips } = useChips();
+	const { deck, shuffleDeck, revealDeck } = useDeck();
 
 	return (
-		<main>
-			<h1>Poker Tap</h1>
-			<SaveControls/>
-			<p>Chips: {chips}</p>
-			<p>Next card price: {nextCardPrice}</p>
-			<button type="button" onClick={() => addChips(1)}>Add 1 Chip</button>
-			<button type="button" onClick={shuffleDeck}>Shuffle deck</button>
-			<button type="button" onClick={() => revealDeck(deck)}>Reveal deck</button>
-			<PokerPad/>
-			<Hand/>
-		</main>
+		<Main>
+			<Section>
+				<h1>Poker Tap</h1>
+				<h2>Chips: {chips}</h2>
+				<BigChip />
+			</Section>
+			<Section>
+				<div>
+					<PokerPad />
+					<Hand />
+				</div>
+			</Section>
+			<Section>
+				<SaveControls />
+				<Button type="button" onClick={shuffleDeck}>Shuffle deck</Button>
+				<Button type="button" onClick={() => revealDeck(deck)}>Reveal deck</Button>
+			</Section>
+		</Main>
 	);
 }
 

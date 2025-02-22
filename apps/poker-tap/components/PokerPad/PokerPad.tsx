@@ -13,10 +13,7 @@ function PokerPad(): ReactNode {
 
   return (
     <div>
-      <button type="button" onClick={placeCardsOnTable} disabled={!canHoldSelectedCards || (countSelectedCards === 0)}>
-        {!canHoldSelectedCards ? `TOO MANY SELECTED CARDS (Empty slots : ${countEmptySlots})` : 'Place selected cards'}
-      </button>
-      <p><b>Combination:</b> {hand} <b>- Multiplier:</b> +{multiplier}%</p>
+      <h3><b>Combination:</b> {hand} <b>- Multiplier:</b> +{multiplier}%</h3>
       <StyledPokerPad>
         {pokerPad.cards.map((card, index) => (
           <Card
@@ -27,6 +24,9 @@ function PokerPad(): ReactNode {
           />
         ))}
       </StyledPokerPad>
+      <button type="button" onClick={placeCardsOnTable} disabled={!canHoldSelectedCards || (countSelectedCards === 0)}>
+        {!canHoldSelectedCards ? `TOO MANY SELECTED CARDS (Empty slots : ${countEmptySlots})` : 'Place selected cards'}
+      </button>
     </div>
   )
 }
