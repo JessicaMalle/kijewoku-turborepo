@@ -1,4 +1,5 @@
 import "./App.css";
+import PokerPad from "../components/PokerPad/PokerPad.tsx";
 import SaveControls from "../components/SaveControls.tsx";
 import {useChips} from "./hooks/useChips.ts";
 import {useDeck} from "./hooks/useDeck.ts";
@@ -14,6 +15,7 @@ function App() {
 			<h1>Poker Tap</h1>
 			<SaveControls />
 			<p>Chips: {chips}</p>
+			<PokerPad />
 			{hand.handCards.map((card, index) => (
 				// TODO: edit Biome configuration
 				// biome-ignore lint/a11y/useKeyWithClickEvents: <explanation>
