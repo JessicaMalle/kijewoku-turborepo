@@ -1,7 +1,7 @@
 import {useGame} from "./useGame.ts";
 
 export const useHand = () => {
-  const { hand, drawHand, toggleSelectedHandCard } = useGame();
+  const { hand, drawCard, toggleSelectedHandCard } = useGame();
 
-  return { hand, drawHand, toggleSelectedHandCard };
+  return { hand, drawCard, toggleSelectedHandCard };
 }

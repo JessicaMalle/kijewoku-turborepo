@@ -16,6 +16,7 @@ export interface HandCard extends Card {
 
 export interface Hand {
   handCards: HandCard[];
+  firstPickMade: boolean;
 }
 
 export interface Deck {

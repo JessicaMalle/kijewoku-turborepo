@@ -1,21 +1,21 @@
 import type {Deck, Hand} from "../types/gameTypes.ts";
 import DeckService from "./DeckService.ts";
 
-const drawFirstHand = (deck: Deck, currentHand: Hand['handCards'] = []): { hand: Hand['handCards'], deck: Deck } => {
-  let currentDeck = deck;
-  const hand: Hand['handCards'] = [...currentHand];
+const drawCard = (deck: Deck, currentHand: Hand, numberOfCardsToDraw = 1): { hand: Hand, deck: Deck } => {
+  const newDeck = { ...deck, cards: [...deck.cards] };
+  const newHand = { ...currentHand, handCards: [...currentHand.handCards] };
 
-  for (let i = hand.length; i < 2; i++) {
-    const { card, deck: newDeck } = DeckService.drawCard(currentDeck);
-    if (card) {
-      hand.push({...card, active: false});
-      currentDeck = newDeck;
-    } else {
-      break;
+  for (let i = 0; i < numberOfCardsToDraw; i++) {
+    if (newHand.handCards.length < 7) {
+      const { card, deck: updatedDeck } = DeckService.drawCardFromDeck(newDeck);
+      if (card) {
+        newHand.handCards.push({ ...card, active: false });
+        newDeck.cards = updatedDeck.cards;
+      }
     }
   }
 
-  return { hand, deck: currentDeck };
+  return { hand: newHand, deck: newDeck };
 };
 
 const toggleSelectedHandCard = (hand: Hand['handCards'], cardIndex: number): Hand['handCards'] => {
@@ -30,7 +30,7 @@ const removeSelectedCards = (hand: Hand['handCards']): Hand['handCards'] => {
 };
 
 const HandService = {
-  drawHand: drawFirstHand,
+  drawCard,
   toggleSelectedHandCard,
   removeSelectedCards,
 };

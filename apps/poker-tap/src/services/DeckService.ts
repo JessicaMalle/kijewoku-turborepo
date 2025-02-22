@@ -31,7 +31,7 @@ const shuffleDeck = (deck: Deck): Deck => {
   return { cards: shuffled };
 };
 
-const drawCard = (deck: Deck): { card: Card | null, deck: Deck } => {
+const drawCardFromDeck = (deck: Deck): { card: Card | null, deck: Deck } => {
   if (deck.cards.length === 0) return { card: null, deck };
   const [card, ...rest] = deck.cards;
   return { card, deck: { cards: rest } };
@@ -48,7 +48,7 @@ const revealDeck = (deck: Deck) => {
 const DeckService = {
   createDeck,
   shuffleDeck,
-  drawCard,
+  drawCardFromDeck,
   placeCardUnderDeck,
   revealDeck,
 };
