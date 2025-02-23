@@ -5,18 +5,7 @@ import GameService from "../services/GameService.ts";
 import HandService from "../services/HandService.ts";
 import PokerPadService from "../services/PokerPadService.ts";
 import PokerPasService from "../services/PokerPadService.ts";
-import type { GameState } from "./GameContext";
-
-type Action =
-  | { type: "ADD_CHIPS" }
-  | { type: "BUY_POKER_PAD" }
-  | { type: 'SHUFFLE_DECK' }
-  | { type: 'TOGGLE_SELECTED_HAND_CARD'; payload: string }
-  | { type: "PLACE_CARDS_ON_TABLE", payload: number }
-  | { type: "DRAW_CARD", payload: number }
-  | { type: "DRAW_CARD_AND_DEDUCT_CHIPS" }
-  | { type: "BUY_CROUPIER" }
-  | { type: "ADD_CHIPS_BY_CROUPIERS" }
+import type {Action, GameState} from "./GameContext";
 
 export const GameReducer = (state: GameState, action: Action): GameState => {
   switch (action.type) {

@@ -24,4 +24,15 @@ interface GameContextType extends GameState {
   buyCroupier: () => void;
 }
 
+export type Action =
+  | { type: "ADD_CHIPS" }
+  | { type: "BUY_POKER_PAD" }
+  | { type: 'SHUFFLE_DECK' }
+  | { type: 'TOGGLE_SELECTED_HAND_CARD'; payload: string }
+  | { type: "PLACE_CARDS_ON_TABLE", payload: number }
+  | { type: "DRAW_CARD", payload: number }
+  | { type: "DRAW_CARD_AND_DEDUCT_CHIPS" }
+  | { type: "BUY_CROUPIER" }
+  | { type: "ADD_CHIPS_BY_CROUPIERS" }
+
 export const GameContext = createContext<GameContextType | undefined>(undefined);

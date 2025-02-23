@@ -1,7 +1,6 @@
 import type React from 'react';
-import {useRef} from 'react';
-import {useEffect} from 'react';
 import { useReducer } from 'react';
+import useGameLoop from "../hooks/useGameLoop.ts";
 import ChipsService from "../services/ChipsService.ts";
 import DeckService from "../services/DeckService.ts";
 import PokerPadService from "../services/PokerPadService.ts";
@@ -21,45 +20,8 @@ const initialGameState: GameState = {
 
 export const GameProvider = ({ children }: { children: React.ReactNode }) => {
   const [state, dispatch] = useReducer(GameReducer, SaveService.loadGame(initialGameState));
-  const animationFrameRef = useRef<number | null>(null);
-  const lastUpdateTimeRef = useRef<number>(Date.now());
-  const lastSaveTimeRef = useRef<number>(Date.now());
 
-  useEffect(() => {
-    const updateChips = () => {
-      dispatch({ type: "ADD_CHIPS_BY_CROUPIERS" });
-    };
-
-    const saveGame = () => {
-      SaveService.saveGame(state);
-    };
-
-    const gameLoop = () => {
-      const now = Date.now();
-      const elapsedUpdate = now - lastUpdateTimeRef.current;
-      const elapsedSave = now - lastSaveTimeRef.current;
-
-      if (elapsedUpdate >= 1000) {
-        updateChips();
-        lastUpdateTimeRef.current = now;
-      }
-
-      if (elapsedSave >= 10000) {
-        saveGame();
-        lastSaveTimeRef.current = now;
-      }
-
-      animationFrameRef.current = requestAnimationFrame(gameLoop);
-    };
-
-    animationFrameRef.current = requestAnimationFrame(gameLoop);
-
-    return () => {
-      if (animationFrameRef.current !== null) {
-        cancelAnimationFrame(animationFrameRef.current);
-      }
-    };
-  }, [state]);
+  useGameLoop(state, dispatch);
 
   // Actions
   const addChips = () =>

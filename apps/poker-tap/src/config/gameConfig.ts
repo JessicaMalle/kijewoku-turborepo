@@ -1,0 +1,2 @@
+export const GLOBAL_INTERVAL = 1000;
+export const AUTOSAVE_INTERVAL = 10000;
