@@ -2,7 +2,6 @@ import {createContext} from "react";
 import type {Deck, Hand, PokerPad} from "../types/gameTypes.ts";
 
 export interface GameState {
-  gameInitialized: boolean;
   chips: number;
   prevChips: number;
   hand: Hand;
