@@ -11,7 +11,7 @@ export interface Card {
 }
 
 export interface HandCard extends Card {
-  active: boolean;
+  active?: boolean;
 }
 
 export interface Hand {

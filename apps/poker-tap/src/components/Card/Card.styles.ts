@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const StyledCard = styled.div<{ color: string; active: boolean }>`
+export const StyledCard = styled.div<{ color: string; active?: string }>`
   width: 100px;
   min-width: 100px;
   height: 150px;

@@ -18,7 +18,11 @@ function Card({color, value, active, index }: CardProps): ReactNode {
   const {toggleSelectedHandCard} = useHand();
 
   return (
-    <StyledCard color={color} active={active} onClick={() => toggleSelectedHandCard(index)}>
+    <StyledCard
+      color={color}
+      active={active ? "true" : undefined}
+      onClick={() => toggleSelectedHandCard(index)}
+    >
       <CardValue>{value}</CardValue>
       <CardSuit>{suitSymbols[color]}</CardSuit>
       <CardValue>{value}</CardValue>

@@ -19,7 +19,6 @@ function PokerPad({index}: {index: number}): ReactNode {
           <Card
             {...card}
             index={index}
-            active={false}
             key={`hand-card-${card.color}-${card.value}-i${index}`}
           />
         ))}
