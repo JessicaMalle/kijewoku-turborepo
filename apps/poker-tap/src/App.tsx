@@ -22,7 +22,7 @@ function App() {
 			</Section>
 			<Section>
 				<div>
-					<h3>Total Multiplier: {totalMultiplier}%</h3>
+					<h3>Total Bonus: +{totalMultiplier} CpC</h3>
 					{pokerPads.map((pad, index) => (
 						<PokerPad key={`${pad.uid}-${index}`} index={index} />
 					))}

@@ -4,7 +4,7 @@ import {SaveService} from "./SaveService.ts";
 export interface PokerHandResult {
   hand: string;
   score: number;
-  multiplier: number;
+  bonus: number;
 }
 
 const countEmptySlots = (table: PokerPad['cards']): number => {
@@ -120,7 +120,7 @@ const getPokerHandScore = (cards: Card[]): number => {
 
 export const getPokerHandDetails = (cards: Card[]): PokerHandResult => {
   if (cards.length === 0) {
-    return { hand: "", score: 0, multiplier: 0 };
+    return { hand: "", score: 0, bonus: 0 };
   }
 
   const hand = detectPokerHand(cards);
@@ -161,9 +161,9 @@ export const getPokerHandDetails = (cards: Card[]): PokerHandResult => {
       break;
   }
 
-  const multiplier = 1 + (score / 100) * multiplierBase;
+  const bonus = 1 + (score / 100) * multiplierBase;
 
-  return { hand, score, multiplier };
+  return { hand, score, bonus };
 };
 
 function calculatePokerPadCost(pokerPadCount: number): number {

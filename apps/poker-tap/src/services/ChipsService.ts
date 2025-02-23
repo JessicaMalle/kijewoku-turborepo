@@ -10,8 +10,8 @@ function addChips({ currentChips, pokerPads }: { currentChips: number, pokerPads
 
 function getTotalMultiplier(pokerPads: PokerPad[]): number {
   return pokerPads.reduce((acc, pad) => {
-    const { multiplier } = PokerPadService.getPokerHandDetails(pad.cards);
-    return acc + multiplier;
+    const { bonus } = PokerPadService.getPokerHandDetails(pad.cards);
+    return acc + bonus;
   }, 0);
 }
 

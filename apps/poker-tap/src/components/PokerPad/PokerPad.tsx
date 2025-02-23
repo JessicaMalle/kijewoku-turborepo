@@ -9,11 +9,11 @@ function PokerPad({index}: {index: number}): ReactNode {
   const { pokerPad, placeCardsOnTable, countEmptySlots, canHoldSelectedCards } = usePokerPad(index);
   const { countSelectedCards } = useHand();
 
-  const {hand, multiplier} = PokerPadService.getPokerHandDetails(pokerPad.cards);
+  const {hand, bonus} = PokerPadService.getPokerHandDetails(pokerPad.cards);
 
   return (
     <div>
-      <h4><b>Combination:</b> {hand} <b>- Multiplier:</b> +{multiplier}%</h4>
+      <h4><b>Combination:</b> {hand} <b>- Bonus:</b> +{bonus} CpC</h4>
       <StyledPokerPad>
         {pokerPad.cards.map((card, index) => (
           <Card
