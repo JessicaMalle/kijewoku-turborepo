@@ -1,4 +1,5 @@
 import ChipsService from "../services/ChipsService.ts";
+import CroupierService from "../services/CroupierService.ts";
 import DeckService from "../services/DeckService.ts";
 import GameService from "../services/GameService.ts";
 import HandService from "../services/HandService.ts";
@@ -14,6 +15,7 @@ type Action =
   | { type: "PLACE_CARDS_ON_TABLE", payload: number }
   | { type: "DRAW_CARD", payload: number }
   | { type: "DRAW_CARD_AND_DEDUCT_CHIPS" }
+  | { type: "BUY_CROUPIER" }
 
 export const GameReducer = (state: GameState, action: Action): GameState => {
   switch (action.type) {
@@ -82,6 +84,18 @@ export const GameReducer = (state: GameState, action: Action): GameState => {
         };
       }
 
+      return state;
+    }
+    case "BUY_CROUPIER": {
+      const cost = CroupierService.calculateCroupierCost(state.croupiers.length);
+      if (state.chips >= cost) {
+        const newCroupier = CroupierService.createCroupier(state.croupiers.length);
+        return {
+          ...state,
+          chips: state.chips - cost,
+          croupiers: [...state.croupiers, newCroupier],
+        };
+      }
       return state;
     }
 

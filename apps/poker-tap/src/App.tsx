@@ -1,6 +1,7 @@
 import {Button, Main, Section} from "./App.styled.ts";
 import BigChip from "./components/Chips/BigChip.tsx";
 import ChipsCounter from "./components/Chips/ChipsCounter.tsx";
+import Croupiers from "./components/Croupiers/Croupiers.tsx";
 import Deck from "./components/Deck/Deck.tsx";
 import Hand from "./components/Hand/Hand.tsx";
 import PokerPad from "./components/PokerPad/PokerPad.tsx";
@@ -36,6 +37,7 @@ function App() {
 			</Section>
 			<Section>
 				<Deck />
+				<Croupiers />
 			</Section>
 		</Main>
 	);

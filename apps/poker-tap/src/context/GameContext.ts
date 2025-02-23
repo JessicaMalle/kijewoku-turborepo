@@ -1,5 +1,5 @@
 import {createContext} from "react";
-import type {Deck, Hand, PokerPad} from "../types/gameTypes.ts";
+import type {Croupier, Deck, Hand, PokerPad} from "../types/gameTypes.ts";
 
 export interface GameState {
   chips: number;
@@ -7,6 +7,7 @@ export interface GameState {
   hand: Hand;
   deck: Deck;
   pokerPads: PokerPad[];
+  croupiers: Croupier[];
 }
 
 interface GameContextType extends GameState {
@@ -20,6 +21,7 @@ interface GameContextType extends GameState {
   placeCardsOnTable: (index: number) => void;
   drawCardAndDeductChips: () => void;
   getTotalBonus: () => number;
+  buyCroupier: () => void;
 }
 
 export const GameContext = createContext<GameContextType | undefined>(undefined);

@@ -15,6 +15,7 @@ const initialGameState: GameState = {
   hand: { Cards: [], firstPickMade: false },
   deck: DeckService.shuffleDeck(DeckService.createDeck()),
   pokerPads: SaveService.initializePokerPads(),
+  croupiers: [],
 };
 
 export const GameProvider = ({ children }: { children: React.ReactNode }) => {
@@ -54,6 +55,10 @@ export const GameProvider = ({ children }: { children: React.ReactNode }) => {
 
   const getTotalBonus = () => ChipsService.getTotalBonus(state.pokerPads)
 
+  const buyCroupier = () => {
+    dispatch({ type: "BUY_CROUPIER" });
+  };
+
   return (
     <GameContext.Provider value={{
       ...state,
@@ -67,6 +72,7 @@ export const GameProvider = ({ children }: { children: React.ReactNode }) => {
       toggleSelectedCard,
       placeCardsOnTable,
       getTotalBonus,
+      buyCroupier,
     }}>
       {children}
     </GameContext.Provider>

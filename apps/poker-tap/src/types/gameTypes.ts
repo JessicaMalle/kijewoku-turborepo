@@ -39,3 +39,8 @@ export interface PokerPad {
   uid: string;
   cards: Card[];
 }
+
+export interface Croupier {
+  uid: string;
+  bonus: number;
+}
