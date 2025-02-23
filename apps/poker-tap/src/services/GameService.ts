@@ -3,7 +3,7 @@ import DeckService from "./DeckService";
 import HandService from "./HandService";
 
 const drawCardAndDeductChips = (deck: Deck, hand: Hand, currentChips: number): { deck: Deck, hand: Hand, remainingChips: number } => {
-  if (hand.handCards.length === 7) {
+  if (hand.Cards.length === 7) {
     console.error("Can't draw 8 or more cards");
     return {
       deck,

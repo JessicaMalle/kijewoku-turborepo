@@ -16,7 +16,7 @@ interface GameContextType extends GameState {
   shuffleDeck: () => void;
   drawCard: (numberOfCardsToDraw?: number) => void;
   revealDeck: (deck: Deck) => void;
-  toggleSelectedHandCard: (cardIndex: number) => void;
+  toggleSelectedCard: (uid: string) => void;
   placeCardsOnTable: (index: number) => void;
   drawCardAndDeductChips: () => void;
   getTotalBonus: () => number;

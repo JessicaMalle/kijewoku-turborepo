@@ -1,4 +1,6 @@
+import { v5 as uuIdv5 } from 'uuid';
 import type {Card, CardColor, CardValue, Deck} from "../types/gameTypes.ts";
+import {NAMESPACE} from "./SaveService.ts";
 
 const createDeck = (): Deck => {
   const colors: CardColor[] = ['spades', 'hearts', 'clover', 'diamonds'];
@@ -7,7 +9,8 @@ const createDeck = (): Deck => {
 
   for (const color of colors) {
     for (const value of values) {
-      cards.push({ color, value, numericValue: getNumericValue(value) });
+      const uid = uuIdv5(`card-${color}-${value}`, NAMESPACE);
+      cards.push({ uid, color, value, numericValue: getNumericValue(value) });
     }
   }
 

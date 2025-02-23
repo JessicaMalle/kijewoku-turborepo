@@ -31,7 +31,7 @@ export const SaveService = {
 
   initializeGame: (initialGameState: { deck: Deck; hand: Hand }): { deck: Deck; hand: Hand; pokerPads: PokerPad[] } => {
     let newDeck: Deck = { cards: [...initialGameState.deck.cards] };
-    let newHand: Hand = { handCards: [...initialGameState.hand.handCards], firstPickMade: initialGameState.hand.firstPickMade };
+    let newHand: Hand = { Cards: [...initialGameState.hand.Cards], firstPickMade: initialGameState.hand.firstPickMade };
 
     const result = HandService.drawCard(newDeck, newHand, 2);
     newDeck = result.deck;

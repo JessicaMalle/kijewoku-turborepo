@@ -1,13 +1,9 @@
 import type {ReactNode} from "react";
 import {useHand} from "../../hooks/states/useHand.ts";
-import type {HandCard} from "../../types/gameTypes.ts";
+import type {Card as CardType} from "../../types/gameTypes.ts";
 import {CardSuit, CardValue, StyledCard } from "./Card.styles.ts";
 
-interface CardProps extends HandCard {
-  index: number;
-}
-
-function Card({color, value, active, index }: CardProps): ReactNode {
+function Card({uid, color, value, active }: CardType): ReactNode {
   const suitSymbols: Record<string, string> = {
     spades: '♠',
     hearts: '♥',
@@ -15,13 +11,13 @@ function Card({color, value, active, index }: CardProps): ReactNode {
     diamonds: '♦'
   };
 
-  const {toggleSelectedHandCard} = useHand();
+  const {toggleSelectedCard} = useHand();
 
   return (
     <StyledCard
       color={color}
       active={active ? "true" : undefined}
-      onClick={() => toggleSelectedHandCard(index)}
+      onClick={() => toggleSelectedCard(uid)}
     >
       <CardValue>{value}</CardValue>
       <CardSuit>{suitSymbols[color]}</CardSuit>

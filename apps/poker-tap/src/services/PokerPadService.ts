@@ -15,7 +15,7 @@ const canHoldSelectedCards = ({countSelectedCards, table}: { countSelectedCards:
   return countSelectedCards <= countEmptySlots(table);
 }
 
-const placeCardsOnTable = (hand: Hand['handCards'], pokerPads: PokerPad[], index: number): { newHand: Hand['handCards'], newPokerPads: PokerPad[] } => {
+const placeCardsOnTable = (hand: Hand['Cards'], pokerPads: PokerPad[], index: number): { newHand: Hand['Cards'], newPokerPads: PokerPad[] } => {
   const selectedCards = hand.filter(card => card.active);
   const table = pokerPads[index].cards;
 

@@ -12,7 +12,7 @@ import { GameReducer } from './GameReducer.ts';
 const initialGameState: GameState = {
   chips: 0,
   prevChips: 0,
-  hand: { handCards: [], firstPickMade: false },
+  hand: { Cards: [], firstPickMade: false },
   deck: DeckService.shuffleDeck(DeckService.createDeck()),
   pokerPads: SaveService.initializePokerPads(),
 };
@@ -47,8 +47,8 @@ export const GameProvider = ({ children }: { children: React.ReactNode }) => {
     dispatch({type: 'DRAW_CARD_AND_DEDUCT_CHIPS'})
   }
 
-  const toggleSelectedHandCard = (cardIndex: number) =>
-    dispatch({ type: 'TOGGLE_SELECTED_HAND_CARD', payload: cardIndex });
+  const toggleSelectedCard = (uid: string) =>
+    dispatch({ type: 'TOGGLE_SELECTED_HAND_CARD', payload: uid });
 
   const placeCardsOnTable = (index: number) => dispatch({ type: "PLACE_CARDS_ON_TABLE", payload: index });
 
@@ -64,7 +64,7 @@ export const GameProvider = ({ children }: { children: React.ReactNode }) => {
       revealDeck,
       drawCard,
       drawCardAndDeductChips,
-      toggleSelectedHandCard,
+      toggleSelectedCard,
       placeCardsOnTable,
       getTotalBonus,
     }}>

@@ -1,3 +1,5 @@
+export type SortType = "value" | "color";
+
 export type CardColor = 'spades' | 'hearts' | 'clover' | 'diamonds';
 
 export type CardValue =
@@ -5,17 +7,15 @@ export type CardValue =
   | 'J' | 'Q' | 'K' | 'A';
 
 export interface Card {
+  uid: string;
   color: CardColor;
   value: CardValue;
   numericValue: number;
-}
-
-export interface HandCard extends Card {
-  active?: boolean;
+  active?: boolean
 }
 
 export interface Hand {
-  handCards: HandCard[];
+  Cards: Card[];
   firstPickMade: boolean;
 }
 
