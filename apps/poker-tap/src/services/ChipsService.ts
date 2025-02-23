@@ -1,14 +1,23 @@
-import type {Card} from "../types/gameTypes.ts";
+import type {PokerPad} from "../types/gameTypes.ts";
 import PokerPadService from './PokerPadService';
 
-function addChips({ currentChips, cards }: { currentChips: number, cards: Card[] }): number {
-  const { multiplier } = PokerPadService.getPokerHandDetails(cards);
+function addChips({ currentChips, pokerPads }: { currentChips: number, pokerPads: PokerPad[] }): number {
+  const base = 1;
+  const totalMultiplier = getTotalMultiplier(pokerPads);
 
-  return currentChips + multiplier;
+  return currentChips + base + totalMultiplier;
+}
+
+function getTotalMultiplier(pokerPads: PokerPad[]): number {
+  return pokerPads.reduce((acc, pad) => {
+    const { multiplier } = PokerPadService.getPokerHandDetails(pad.cards);
+    return acc + multiplier;
+  }, 0);
 }
 
 const ChipsService = {
   addChips,
+  getTotalMultiplier,
 }
 
 export default ChipsService;

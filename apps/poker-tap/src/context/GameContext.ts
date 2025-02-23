@@ -7,7 +7,7 @@ export interface GameState {
   prevChips: number;
   hand: Hand;
   deck: Deck;
-  pokerPad: PokerPad;
+  pokerPads: PokerPad[];
 }
 
 interface GameContextType extends GameState {
@@ -16,8 +16,9 @@ interface GameContextType extends GameState {
   drawCard: (numberOfCardsToDraw?: number) => void;
   revealDeck: (deck: Deck) => void;
   toggleSelectedHandCard: (cardIndex: number) => void;
-  placeCardsOnTable: () => void;
+  placeCardsOnTable: (index: number) => void;
   drawCardAndDeductChips: () => void;
+  getTotalMultiplier: (pokerPads: PokerPad[]) => number;
 }
 
 export const GameContext = createContext<GameContextType | undefined>(undefined);

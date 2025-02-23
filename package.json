@@ -30,6 +30,7 @@
   "dependencies": {
     "docsify-cli": "^4.4.4",
     "strip-indent": "2.0.0",
-    "styled-components": "^6.1.13"
+    "styled-components": "^6.1.13",
+    "uuidv5": "^1.0.0"
   }
 }

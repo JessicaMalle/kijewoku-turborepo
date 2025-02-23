@@ -1,9 +1,11 @@
+import { v5 as uuIdv5 } from 'uuid';
 import type {GameState} from "../context/GameContext.ts";
-import type {Deck, Hand} from "../types/gameTypes.ts";
+import type {Deck, Hand, PokerPad} from "../types/gameTypes.ts";
 import { EncryptionService } from "./EncryptionService";
 import HandService from "./HandService.ts";
 
 const SAVE_KEY = "poker_tap_save";
+const NAMESPACE = '6ba7b810-9dad-11d1-80b4-00c04fd430c8'; // Example namespace, you can use any valid UUID
 
 export const SaveService = {
   saveGame: (state: GameState) => {
@@ -16,7 +18,14 @@ export const SaveService = {
     }
   },
 
-  initializeGame: (initialGameState: { deck: Deck; hand: Hand }): { deck: Deck; hand: Hand } => {
+  initializePokerPads: (): PokerPad[] => {
+    return Array(3).fill(null).map((_, index) => ({
+      uid: uuIdv5(`pokerPad-${index}`, NAMESPACE),
+      cards: []
+    }));
+  },
+
+  initializeGame: (initialGameState: { deck: Deck; hand: Hand }): { deck: Deck; hand: Hand; pokerPads: PokerPad[] } => {
     let newDeck: Deck = { cards: [...initialGameState.deck.cards] };
     let newHand: Hand = { handCards: [...initialGameState.hand.handCards], firstPickMade: initialGameState.hand.firstPickMade };
 
@@ -24,9 +33,12 @@ export const SaveService = {
     newDeck = result.deck;
     newHand = result.hand;
 
+    const pokerPads = SaveService.initializePokerPads();
+
     return {
       deck: newDeck,
       hand: newHand,
+      pokerPads: pokerPads,
     };
   },
 

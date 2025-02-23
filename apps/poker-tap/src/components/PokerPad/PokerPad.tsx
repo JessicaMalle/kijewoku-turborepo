@@ -5,15 +5,15 @@ import PokerPadService from "../../services/PokerPadService.ts";
 import Card from "../Card/Card.tsx";
 import {StyledPokerPad} from "./PokerPad.styles.ts";
 
-function PokerPad(): ReactNode {
-  const { pokerPad, placeCardsOnTable, countEmptySlots, canHoldSelectedCards } = usePokerPad();
+function PokerPad({index}: {index: number}): ReactNode {
+  const { pokerPad, placeCardsOnTable, countEmptySlots, canHoldSelectedCards } = usePokerPad(index);
   const { countSelectedCards } = useHand();
 
   const {hand, multiplier} = PokerPadService.getPokerHandDetails(pokerPad.cards);
 
   return (
     <div>
-      <h3><b>Combination:</b> {hand} <b>- Multiplier:</b> +{multiplier}%</h3>
+      <h4><b>Combination:</b> {hand} <b>- Multiplier:</b> +{multiplier}%</h4>
       <StyledPokerPad>
         {pokerPad.cards.map((card, index) => (
           <Card
@@ -24,7 +24,7 @@ function PokerPad(): ReactNode {
           />
         ))}
       </StyledPokerPad>
-      <button type="button" onClick={placeCardsOnTable} disabled={!canHoldSelectedCards || (countSelectedCards === 0)}>
+      <button type="button" onClick={() => placeCardsOnTable(index)} disabled={!canHoldSelectedCards || (countSelectedCards === 0)}>
         {!canHoldSelectedCards ? `TOO MANY SELECTED CARDS (Empty slots : ${countEmptySlots})` : 'Place selected cards'}
       </button>
     </div>

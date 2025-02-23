@@ -1,9 +1,10 @@
 import type React from 'react';
 import {useEffect} from 'react';
 import { useReducer } from 'react';
+import ChipsService from "../services/ChipsService.ts";
 import DeckService from "../services/DeckService.ts";
 import {SaveService} from "../services/SaveService.ts";
-import type {Deck} from "../types/gameTypes.ts";
+import type {Deck, PokerPad} from "../types/gameTypes.ts";
 import {GameContext, type GameState} from "./GameContext.ts";
 import { GameReducer } from './GameReducer.ts';
 
@@ -13,7 +14,7 @@ const initialGameState: GameState = {
   prevChips: 0,
   hand: { handCards: [], firstPickMade: false },
   deck: DeckService.shuffleDeck(DeckService.createDeck()),
-  pokerPad: { cards: [] },
+  pokerPads: SaveService.initializePokerPads(),
 };
 
 export const GameProvider = ({ children }: { children: React.ReactNode }) => {
@@ -43,7 +44,9 @@ export const GameProvider = ({ children }: { children: React.ReactNode }) => {
   const toggleSelectedHandCard = (cardIndex: number) =>
     dispatch({ type: 'TOGGLE_SELECTED_HAND_CARD', payload: cardIndex });
 
-  const placeCardsOnTable = () => dispatch({ type: "PLACE_CARDS_ON_TABLE" });
+  const placeCardsOnTable = (index: number) => dispatch({ type: "PLACE_CARDS_ON_TABLE", payload: index });
+
+  const getTotalMultiplier = (pokerPads: PokerPad[]) => ChipsService.getTotalMultiplier(pokerPads)
 
   return (
     <GameContext.Provider value={{
@@ -55,6 +58,7 @@ export const GameProvider = ({ children }: { children: React.ReactNode }) => {
       drawCardAndDeductChips,
       toggleSelectedHandCard,
       placeCardsOnTable,
+      getTotalMultiplier,
     }}>
       {children}
     </GameContext.Provider>

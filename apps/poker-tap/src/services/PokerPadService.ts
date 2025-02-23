@@ -14,17 +14,22 @@ const canHoldSelectedCards = ({countSelectedCards, table}: { countSelectedCards:
   return countSelectedCards <= countEmptySlots(table);
 }
 
-const placeCardsOnTable = (hand: Hand['handCards'], table: PokerPad['cards']): { newHand: Hand['handCards'], newTable: PokerPad['cards'] } => {
+const placeCardsOnTable = (hand: Hand['handCards'], pokerPads: PokerPad[], index: number): { newHand: Hand['handCards'], newPokerPads: PokerPad[] } => {
   const selectedCards = hand.filter(card => card.active);
+  const table = pokerPads[index].cards;
 
   if (table.length + selectedCards.length > 5) {
-    return { newHand: hand, newTable: table };
+    return { newHand: hand, newPokerPads: pokerPads };
   }
 
   const newHand = hand.filter(card => !card.active);
   const newTable = [...table, ...selectedCards.map(card => ({ ...card, active: false }))];
 
-  return { newHand, newTable };
+  const newPokerPads = pokerPads.map((pokerPad, i) =>
+    i === index ? { ...pokerPad, cards: newTable } : pokerPad
+  );
+
+  return { newHand, newPokerPads };
 };
 
 const detectPokerHand = (cards: Card[]): string => {
@@ -114,7 +119,7 @@ const getPokerHandScore = (cards: Card[]): number => {
 
 export const getPokerHandDetails = (cards: Card[]): PokerHandResult => {
   if (cards.length === 0) {
-    return { hand: "", score: 0, multiplier: 1 };
+    return { hand: "", score: 0, multiplier: 0 };
   }
 
   const hand = detectPokerHand(cards);

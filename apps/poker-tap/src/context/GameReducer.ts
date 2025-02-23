@@ -9,7 +9,7 @@ type Action =
   | { type: "ADD_CHIPS" }
   | { type: 'SHUFFLE_DECK' }
   | { type: 'TOGGLE_SELECTED_HAND_CARD'; payload: number }
-  | { type: "PLACE_CARDS_ON_TABLE" }
+  | { type: "PLACE_CARDS_ON_TABLE", payload: number }
   | { type: "DRAW_CARD", payload: number }
   | { type: "DRAW_CARD_AND_DEDUCT_CHIPS" }
 
@@ -19,7 +19,7 @@ export const GameReducer = (state: GameState, action: Action): GameState => {
       return {
         ...state,
         prevChips: state.chips,
-        chips: ChipsService.addChips({currentChips: state.chips, cards: state.pokerPad.cards})
+        chips: ChipsService.addChips({currentChips: state.chips, pokerPads: state.pokerPads})
       };
     case 'SHUFFLE_DECK':
       return { ...state, deck: DeckService.shuffleDeck(state.deck) };
@@ -55,19 +55,16 @@ export const GameReducer = (state: GameState, action: Action): GameState => {
         }
       };
     case "PLACE_CARDS_ON_TABLE": {
-      const { newHand, newTable } = PokerPadService.placeCardsOnTable(state.hand.handCards, state.pokerPad.cards);
+      const { newHand, newPokerPads } = PokerPadService.placeCardsOnTable(state.hand.handCards, state.pokerPads, action.payload);
 
-      if (newHand !== state.hand.handCards || newTable !== state.pokerPad.cards) {
+      if (newHand !== state.hand.handCards || newPokerPads !== state.pokerPads) {
         return {
           ...state,
           hand: {
             ...state.hand,
             handCards: newHand,
           },
-          pokerPad: {
-            ...state.pokerPad,
-            cards: newTable,
-          },
+          pokerPads: newPokerPads,
         };
       }
 

@@ -4,10 +4,14 @@ import ChipsCounter from "./components/Chips/ChipsCounter.tsx";
 import Hand from "./components/Hand/Hand.tsx";
 import PokerPad from "./components/PokerPad/PokerPad.tsx";
 import SaveControls from "./components/SaveControls.tsx";
+import {useAppContext} from "./hooks/states/useAppContext.ts";
+import {useChips} from "./hooks/states/useChips.ts";
 import {useDeck} from "./hooks/states/useDeck.ts";
 
 function App() {
 	const { deck, shuffleDeck, revealDeck } = useDeck();
+	const { pokerPads } = useAppContext()
+	const { totalMultiplier } = useChips();
 
 	return (
 		<Main>
@@ -18,7 +22,10 @@ function App() {
 			</Section>
 			<Section>
 				<div>
-					<PokerPad />
+					<h3>Total Multiplier: {totalMultiplier}%</h3>
+					{pokerPads.map((pad, index) => (
+						<PokerPad key={`${pad.uid}-${index}`} index={index} />
+					))}
 					<Hand />
 				</div>
 			</Section>
