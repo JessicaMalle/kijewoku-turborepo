@@ -9,4 +9,11 @@ export const StyledBigChip = styled.div`
     font-size: 120px;
     line-height: 240px;
     text-align: center;
+    user-select: none;
+    cursor: pointer;
+    transition: 0.2s;
+
+    &:active {
+        transform: scale(0.9);
+    }
 `;

@@ -1,4 +1,13 @@
-import {Button, Main, Section} from "./App.styled.ts";
+import {
+	BigChipSection,
+	Header,
+	Main,
+	PokerInfo,
+	PokerPadSection,
+	PokerPadWrapper,
+	RightSection,
+	ShopSection
+} from "./App.styled.ts";
 import BigChip from "./components/Chips/BigChip.tsx";
 import ChipsCounter from "./components/Chips/ChipsCounter.tsx";
 import Deck from "./components/Deck/Deck.tsx";
@@ -19,29 +28,35 @@ function App() {
 
 	return (
 		<Main>
-			<Section>
-				<h1>Poker Tap</h1>
+			<BigChipSection>
 				<ChipsCounter />
 				<BigChip />
-			</Section>
-			<Section>
-				<div>
-					<SaveControls />
-				</div>
-				<div>
+			</BigChipSection>
+			<PokerPadSection>
+				<Header>
+					<h1>Poker Tap</h1>
+					<div>
+						<SaveControls />
+					</div>
+				</Header>
+				<PokerInfo>
 					<h3>Total Bonus: +{formatedTotalBonus} CpC</h3>
-					<Button type="button" onClick={buyPokerPad}>Buy Poker Pad ({formatedNextPokerPadPrice}€)</Button>
+					<button type="button" onClick={buyPokerPad}>Buy Poker Pad ({formatedNextPokerPadPrice}€)</button>
+				</PokerInfo>
+				<PokerPadWrapper>
 					{pokerPads.map((pad, index) => (
 						<PokerPad key={`${pad.uid}-${index}`} index={index} />
 					))}
-					<Hand />
-				</div>
-			</Section>
-			<Section>
+				</PokerPadWrapper>
+				<Hand />
+			</PokerPadSection>
+			<RightSection>
+				<ShopSection>
+					<Cursors />
+					<Croupiers />
+				</ShopSection>
 				<Deck />
-				<Cursors />
-				<Croupiers />
-			</Section>
+			</RightSection>
 		</Main>
 	);
 }

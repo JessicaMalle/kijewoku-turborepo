@@ -9,15 +9,14 @@ function Deck(): ReactNode {
 
   return (
     <div>
-      <StyledCardBack>
+      <StyledCardBack onClick={drawCardAndDeductChips}>
         <Rest>{deck.cards.length}</Rest>
-        <button type="button" onClick={drawCardAndDeductChips} disabled={!canDrawNextCard()}>
-          Draw a card ({nextCardPrice}€)
-        </button>
-        <button type="button" onClick={() => revealDeck(deck)}>
-          Reveal Deck
-        </button>
+        <p>Draw a card ({nextCardPrice}€)</p>
       </StyledCardBack>
+      <p>{!canDrawNextCard && 'Not enough Chips'}</p>
+      <button type="button" onClick={() => revealDeck(deck)}>
+        Reveal Deck
+      </button>
     </div>
   );
 }

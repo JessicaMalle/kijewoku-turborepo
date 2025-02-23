@@ -13,11 +13,14 @@ export const StyledCardBack = styled.div`
     gap: 10px;
     padding: 10px;
     background-color: #c40e0e;
-    background-image: radial-gradient(circle, #fff 1px, #c40e0e 1px);
+    background-image: radial-gradient(circle, #251f04 1px, #c40e0e 1px);
     background-size: 10px 10px;
-    color: black;
+    color: white;
+    font-weight: bold;
     transform: scale(1);
     transition: transform 0.2s;
+    user-select: none;
+    cursor: pointer;
 `;
 
 export const Rest = styled.div`
