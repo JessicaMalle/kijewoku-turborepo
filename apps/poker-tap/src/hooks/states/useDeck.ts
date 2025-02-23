@@ -3,7 +3,7 @@ import DeckService from "../../services/DeckService.ts";
 import { useAppContext } from './useAppContext.ts';
 
 export const useDeck = () => {
-  const { chips, deck, shuffleDeck, revealDeck } = useAppContext();
+  const { chips, deck, revealDeck } = useAppContext();
 
   const [nextCardPrice, setNextCardPrice] = useState<number>(0);
 
@@ -17,7 +17,6 @@ export const useDeck = () => {
 
   return {
     deck,
-    shuffleDeck,
     revealDeck,
     nextCardPrice,
     canDrawNextCard,
