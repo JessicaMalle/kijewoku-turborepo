@@ -1,4 +1,5 @@
 import type {Card, Hand, PokerPad} from "../types/gameTypes.ts";
+import {SaveService} from "./SaveService.ts";
 
 export interface PokerHandResult {
   hand: string;
@@ -165,6 +166,17 @@ export const getPokerHandDetails = (cards: Card[]): PokerHandResult => {
   return { hand, score, multiplier };
 };
 
+function calculatePokerPadCost(pokerPadCount: number): number {
+  return 100 + pokerPadCount * 20;
+}
+
+function createPokerPad(index: number): PokerPad {
+  return {
+    uid: SaveService.getUid('PokerPad', index),
+    cards: []
+  };
+}
+
 const PokerPasService = {
   countEmptySlots,
   canHoldSelectedCards,
@@ -172,6 +184,8 @@ const PokerPasService = {
   detectPokerHand,
   getPokerHandScore,
   getPokerHandDetails,
+  calculatePokerPadCost,
+  createPokerPad,
 };
 
 export default PokerPasService;

@@ -10,7 +10,7 @@ import {useDeck} from "./hooks/states/useDeck.ts";
 
 function App() {
 	const { deck, shuffleDeck, revealDeck } = useDeck();
-	const { pokerPads } = useAppContext()
+	const { pokerPads, buyPokerPad, nextPokerPadPrice } = useAppContext()
 	const { totalMultiplier } = useChips();
 
 	return (
@@ -33,6 +33,7 @@ function App() {
 				<SaveControls />
 				<Button type="button" onClick={shuffleDeck}>Shuffle deck</Button>
 				<Button type="button" onClick={() => revealDeck(deck)}>Reveal deck</Button>
+				<Button type="button" onClick={buyPokerPad}>Buy Poker Pad ({nextPokerPadPrice}€)</Button>
 			</Section>
 		</Main>
 	);

@@ -5,7 +5,7 @@ import { EncryptionService } from "./EncryptionService";
 import HandService from "./HandService.ts";
 
 const SAVE_KEY = "poker_tap_save";
-const NAMESPACE = '6ba7b810-9dad-11d1-80b4-00c04fd430c8'; // Example namespace, you can use any valid UUID
+export const NAMESPACE = '6ba7b810-9dad-11d1-80b4-00c04fd430c8';
 
 export const SaveService = {
   saveGame: (state: GameState) => {
@@ -18,8 +18,12 @@ export const SaveService = {
     }
   },
 
+  getUid: (type: string, index: number) => {
+    return uuIdv5(`${type}-${index}`, NAMESPACE);
+  },
+
   initializePokerPads: (): PokerPad[] => {
-    return Array(3).fill(null).map((_, index) => ({
+    return Array(1).fill(null).map((_, index) => ({
       uid: uuIdv5(`pokerPad-${index}`, NAMESPACE),
       cards: []
     }));

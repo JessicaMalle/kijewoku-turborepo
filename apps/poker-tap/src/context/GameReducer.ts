@@ -3,10 +3,12 @@ import DeckService from "../services/DeckService.ts";
 import GameService from "../services/GameService.ts";
 import HandService from "../services/HandService.ts";
 import PokerPadService from "../services/PokerPadService.ts";
+import PokerPasService from "../services/PokerPadService.ts";
 import type { GameState } from "./GameContext";
 
 type Action =
   | { type: "ADD_CHIPS" }
+  | { type: "BUY_POKER_PAD" }
   | { type: 'SHUFFLE_DECK' }
   | { type: 'TOGGLE_SELECTED_HAND_CARD'; payload: number }
   | { type: "PLACE_CARDS_ON_TABLE", payload: number }
@@ -21,6 +23,18 @@ export const GameReducer = (state: GameState, action: Action): GameState => {
         prevChips: state.chips,
         chips: ChipsService.addChips({currentChips: state.chips, pokerPads: state.pokerPads})
       };
+    case "BUY_POKER_PAD": {
+      const cost = PokerPadService.calculatePokerPadCost(state.pokerPads.length);
+      if (state.chips >= cost) {
+        const newPokerPad = PokerPasService.createPokerPad(state.pokerPads.length);
+        return {
+          ...state,
+          chips: state.chips - cost,
+          pokerPads: [...state.pokerPads, newPokerPad]
+        };
+      }
+      return state;
+    }
     case 'SHUFFLE_DECK':
       return { ...state, deck: DeckService.shuffleDeck(state.deck) };
     case 'DRAW_CARD': {

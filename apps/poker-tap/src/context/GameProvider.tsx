@@ -3,6 +3,7 @@ import {useEffect} from 'react';
 import { useReducer } from 'react';
 import ChipsService from "../services/ChipsService.ts";
 import DeckService from "../services/DeckService.ts";
+import PokerPadService from "../services/PokerPadService.ts";
 import {SaveService} from "../services/SaveService.ts";
 import type {Deck, PokerPad} from "../types/gameTypes.ts";
 import {GameContext, type GameState} from "./GameContext.ts";
@@ -29,6 +30,12 @@ export const GameProvider = ({ children }: { children: React.ReactNode }) => {
   const addChips = () =>
     dispatch({ type: "ADD_CHIPS" });
 
+  const buyPokerPad = () => {
+    dispatch({ type: "BUY_POKER_PAD" });
+  };
+
+  const nextPokerPadPrice = PokerPadService.calculatePokerPadCost(state.pokerPads.length)
+
   const shuffleDeck = () =>
     dispatch({ type: 'SHUFFLE_DECK' });
 
@@ -52,6 +59,8 @@ export const GameProvider = ({ children }: { children: React.ReactNode }) => {
     <GameContext.Provider value={{
       ...state,
       addChips,
+      buyPokerPad,
+      nextPokerPadPrice,
       shuffleDeck,
       revealDeck,
       drawCard,

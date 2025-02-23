@@ -12,6 +12,8 @@ export interface GameState {
 
 interface GameContextType extends GameState {
   addChips: (chips: number) => void;
+  buyPokerPad: () => void;
+  nextPokerPadPrice: number;
   shuffleDeck: () => void;
   drawCard: (numberOfCardsToDraw?: number) => void;
   revealDeck: (deck: Deck) => void;
