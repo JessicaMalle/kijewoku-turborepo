@@ -10,7 +10,7 @@ const drawCard = (deck: Deck, currentHand: Hand, numberOfCardsToDraw = 1): { han
   const newHand = { ...currentHand, Cards: [...currentHand.Cards] };
 
   for (let i = 0; i < numberOfCardsToDraw; i++) {
-    if (newHand.Cards.length < 7) {
+    if (newHand.Cards.length < 7 && newDeck.cards.length > 0) {
       const { card, deck: updatedDeck } = DeckService.drawCardFromDeck(newDeck);
       if (card) {
         newHand.Cards.push({ ...card, active: false });
