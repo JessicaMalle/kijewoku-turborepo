@@ -1,4 +1,4 @@
-import HandService from "../services/HandService.ts";
+import HandService from "../../services/HandService.ts";
 import {useAppContext} from "./useAppContext.ts";
 
 export const useHand = () => {

@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react";
-import PokerPadService from "../services/PokerPadService.ts";
+import PokerPadService from "../../services/PokerPadService.ts";
 import { useAppContext } from "./useAppContext.ts";
 import {useHand} from "./useHand.ts";
 

@@ -1,5 +1,5 @@
 import type {ReactNode} from "react";
-import {useChips} from "../../hooks/useChips.ts";
+import {useChips} from "../../hooks/states/useChips.ts";
 import {StyledBigChip} from "./BigChip.styles.ts";
 
 function BigChip(): ReactNode {

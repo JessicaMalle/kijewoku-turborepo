@@ -1,7 +1,7 @@
 import type {ReactNode} from "react";
-import {useDeck} from "../../hooks/useDeck.ts";
-import {useGame} from "../../hooks/useGame.tsx";
-import {useHand} from "../../hooks/useHand.ts";
+import {useDeck} from "../../hooks/states/useDeck.ts";
+import {useGame} from "../../hooks/states/useGame.tsx";
+import {useHand} from "../../hooks/states/useHand.ts";
 import Card from "../Card/Card.tsx";
 import {StyledHand} from "./Hand.styles.ts";
 

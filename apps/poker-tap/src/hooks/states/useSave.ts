@@ -1,4 +1,4 @@
-import { SaveService } from "../services/SaveService";
+import { SaveService } from "../../services/SaveService.ts";
 import {useAppContext} from "./useAppContext.ts";
 
 export const useSave = () => {

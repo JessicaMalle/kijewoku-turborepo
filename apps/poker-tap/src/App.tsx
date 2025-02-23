@@ -3,8 +3,8 @@ import BigChip from "./components/Chips/BigChip.tsx";
 import Hand from "./components/Hand/Hand.tsx";
 import PokerPad from "./components/PokerPad/PokerPad.tsx";
 import SaveControls from "./components/SaveControls.tsx";
-import {useChips} from "./hooks/useChips.ts";
-import {useDeck} from "./hooks/useDeck.ts";
+import {useChips} from "./hooks/states/useChips.ts";
+import {useDeck} from "./hooks/states/useDeck.ts";
 
 function App() {
 	const { chips } = useChips();

@@ -1,5 +1,5 @@
 import type {ReactNode} from "react";
-import {useHand} from "../../hooks/useHand.ts";
+import {useHand} from "../../hooks/states/useHand.ts";
 import type {HandCard} from "../../types/gameTypes.ts";
 import {CardSuit, CardValue, StyledCard } from "./Card.styles.ts";
 

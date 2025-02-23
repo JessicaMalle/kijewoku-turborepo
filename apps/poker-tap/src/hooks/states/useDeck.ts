@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react";
-import DeckService from "../services/DeckService.ts";
+import DeckService from "../../services/DeckService.ts";
 import { useAppContext } from './useAppContext.ts';
 
 export const useDeck = () => {
