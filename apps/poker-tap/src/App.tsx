@@ -15,6 +15,7 @@ function App() {
 	const { pokerPads, buyPokerPad, nextPokerPadPrice } = useAppContext()
 	const { totalBonus } = useChips();
 	const formatedTotalBonus = useDigits({value: totalBonus, digits: 2})
+	const formatedNextPokerPadPrice = useDigits({value: nextPokerPadPrice, digits: 0})
 
 	return (
 		<Main>
@@ -29,7 +30,7 @@ function App() {
 				</div>
 				<div>
 					<h3>Total Bonus: +{formatedTotalBonus} CpC</h3>
-					<Button type="button" onClick={buyPokerPad}>Buy Poker Pad ({nextPokerPadPrice}€)</Button>
+					<Button type="button" onClick={buyPokerPad}>Buy Poker Pad ({formatedNextPokerPadPrice}€)</Button>
 					{pokerPads.map((pad, index) => (
 						<PokerPad key={`${pad.uid}-${index}`} index={index} />
 					))}

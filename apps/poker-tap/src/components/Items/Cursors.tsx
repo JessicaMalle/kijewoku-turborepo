@@ -5,7 +5,7 @@ import CursorService from "../../services/CursorService.ts";
 function Cursors() {
   const { cursors, buyCursor } = useAppContext();
   const nextCursorPrice = CursorService.calculateCursorCost(cursors);
-  const formattedPrice = useDigits({ value: nextCursorPrice, digits: 2 })
+  const formattedPrice = useDigits({ value: nextCursorPrice, digits: 0 })
 
   return (
     <div>

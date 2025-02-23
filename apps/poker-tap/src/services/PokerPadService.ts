@@ -1,3 +1,7 @@
+import {
+  POKER_PADS_BASE_PRICE,
+  POKER_PADS_PRICE_MULTIPLIER,
+} from "../config/gameConfig.ts";
 import type {Card, Hand, PokerPad} from "../types/gameTypes.ts";
 import {SaveService} from "./SaveService.ts";
 
@@ -167,7 +171,7 @@ export const getPokerHandDetails = (cards: Card[]): PokerHandResult => {
 };
 
 function calculatePokerPadCost(pokerPadCount: number): number {
-  return 100 + pokerPadCount * 20;
+  return POKER_PADS_BASE_PRICE * (POKER_PADS_PRICE_MULTIPLIER ** pokerPadCount);
 }
 
 function createPokerPad(index: number): PokerPad {

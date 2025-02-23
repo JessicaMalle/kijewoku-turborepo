@@ -1,6 +1,11 @@
+import {
+  CURSORS_BASE_PRICE,
+  CURSORS_PRICE_MULTIPLIER
+} from "../config/gameConfig.ts";
+
 const CursorService = {
   calculateCursorCost: (currentCursors: number): number => {
-    return 15 * (currentCursors + 1);
+    return CURSORS_BASE_PRICE * (CURSORS_PRICE_MULTIPLIER ** currentCursors);
   },
 };
 

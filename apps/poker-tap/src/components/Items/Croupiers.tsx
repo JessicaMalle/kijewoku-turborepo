@@ -5,7 +5,7 @@ import CroupierService from "../../services/CroupierService.ts";
 function Croupiers() {
   const { croupiers, buyCroupier } = useAppContext();
   const nextCroupierPrice = CroupierService.calculateCroupierCost(croupiers.length);
-  const formattedPrice = useDigits({ value: nextCroupierPrice, digits: 2 })
+  const formattedPrice = useDigits({ value: nextCroupierPrice, digits: 0 })
 
   return (
     <div>
