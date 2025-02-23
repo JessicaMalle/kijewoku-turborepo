@@ -1,9 +1,10 @@
 import {Button, Main, Section} from "./App.styled.ts";
 import BigChip from "./components/Chips/BigChip.tsx";
 import ChipsCounter from "./components/Chips/ChipsCounter.tsx";
-import Croupiers from "./components/Croupiers/Croupiers.tsx";
 import Deck from "./components/Deck/Deck.tsx";
 import Hand from "./components/Hand/Hand.tsx";
+import Croupiers from "./components/Items/Croupiers.tsx";
+import Cursors from "./components/Items/Cursors.tsx";
 import PokerPad from "./components/PokerPad/PokerPad.tsx";
 import SaveControls from "./components/SaveControls.tsx";
 import {useAppContext} from "./hooks/states/useAppContext.ts";
@@ -37,6 +38,7 @@ function App() {
 			</Section>
 			<Section>
 				<Deck />
+				<Cursors />
 				<Croupiers />
 			</Section>
 		</Main>

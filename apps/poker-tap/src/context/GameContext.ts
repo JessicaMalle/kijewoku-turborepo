@@ -7,6 +7,7 @@ export interface GameState {
   hand: Hand;
   deck: Deck;
   pokerPads: PokerPad[];
+  cursors: number;
   croupiers: Croupier[];
 }
 
@@ -21,6 +22,7 @@ interface GameContextType extends GameState {
   placeCardsOnTable: (index: number) => void;
   drawCardAndDeductChips: () => void;
   getTotalBonus: () => number;
+  buyCursor: () => void;
   buyCroupier: () => void;
 }
 
@@ -32,7 +34,9 @@ export type Action =
   | { type: "PLACE_CARDS_ON_TABLE", payload: number }
   | { type: "DRAW_CARD", payload: number }
   | { type: "DRAW_CARD_AND_DEDUCT_CHIPS" }
+  | { type: "BUY_CURSOR" }
   | { type: "BUY_CROUPIER" }
   | { type: "ADD_CHIPS_BY_CROUPIERS" }
+  | { type: "ADD_CHIPS_BY_CURSORS" }
 
 export const GameContext = createContext<GameContextType | undefined>(undefined);

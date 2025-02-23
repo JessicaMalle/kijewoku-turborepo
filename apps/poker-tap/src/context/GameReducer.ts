@@ -1,5 +1,6 @@
 import ChipsService from "../services/ChipsService.ts";
 import CroupierService from "../services/CroupierService.ts";
+import CursorService from "../services/CursorService.ts";
 import DeckService from "../services/DeckService.ts";
 import GameService from "../services/GameService.ts";
 import HandService from "../services/HandService.ts";
@@ -21,6 +22,14 @@ export const GameReducer = (state: GameState, action: Action): GameState => {
         ...state,
         prevChips: state.chips,
         chips: state.chips + totalBonus,
+      };
+    }
+    case "ADD_CHIPS_BY_CURSORS": {
+      const chipsFromCursors = state.cursors * 0.1;
+      return {
+        ...state,
+        prevChips: state.chips,
+        chips: state.chips + chipsFromCursors,
       };
     }
     case "BUY_POKER_PAD": {
@@ -92,6 +101,17 @@ export const GameReducer = (state: GameState, action: Action): GameState => {
           ...state,
           chips: state.chips - cost,
           croupiers: [...state.croupiers, newCroupier],
+        };
+      }
+      return state;
+    }
+    case "BUY_CURSOR": {
+      const cost = CursorService.calculateCursorCost(state.cursors);
+      if (state.chips >= cost) {
+        return {
+          ...state,
+          chips: state.chips - cost,
+          cursors: state.cursors + 1,
         };
       }
       return state;

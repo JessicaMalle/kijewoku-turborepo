@@ -8,7 +8,7 @@ const createCroupier = (index: number): Croupier => ({
 });
 
 const calculateCroupierCost = (count: number): number => {
-  return 10 * (1.15 ** count);
+  return 100 * (1.15 ** count);
 };
 
 const CroupierService = {

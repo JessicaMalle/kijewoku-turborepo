@@ -5,31 +5,26 @@ import { SaveService } from '../services/SaveService.ts';
 
 const useGameLoop = (state: GameState, dispatch: React.Dispatch<Action>) => {
   const animationFrameRef = useRef<number | null>(null);
-  const lastUpdateTimeRef = useRef<number>(Date.now());
   const lastSaveTimeRef = useRef<number>(Date.now());
+  const lastCursorUpdateTimeRef = useRef<number>(Date.now());
 
   useEffect(() => {
-    const updateChips = () => {
-      dispatch({ type: "ADD_CHIPS_BY_CROUPIERS" });
-    };
-
-    const saveGame = () => {
-      SaveService.saveGame(state);
-    };
-
     const gameLoop = () => {
       const now = Date.now();
-      const elapsedUpdate = now - lastUpdateTimeRef.current;
       const elapsedSave = now - lastSaveTimeRef.current;
-
-      if (elapsedUpdate >= GLOBAL_INTERVAL) {
-        updateChips();
-        lastUpdateTimeRef.current = now;
-      }
+      const elapsedCursorUpdate = now - lastCursorUpdateTimeRef.current;
 
       if (elapsedSave >= AUTOSAVE_INTERVAL) {
-        saveGame();
+        SaveService.saveGame(state);
+
         lastSaveTimeRef.current = now;
+      }
+
+      if (elapsedCursorUpdate >= GLOBAL_INTERVAL) {
+        dispatch({ type: "ADD_CHIPS_BY_CURSORS" });
+        dispatch({ type: "ADD_CHIPS_BY_CROUPIERS" });
+
+        lastCursorUpdateTimeRef.current = now;
       }
 
       animationFrameRef.current = requestAnimationFrame(gameLoop);

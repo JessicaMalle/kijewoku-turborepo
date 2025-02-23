@@ -15,6 +15,7 @@ const initialGameState: GameState = {
   hand: { Cards: [], firstPickMade: false },
   deck: DeckService.shuffleDeck(DeckService.createDeck()),
   pokerPads: SaveService.initializePokerPads(),
+  cursors: 0,
   croupiers: [],
 };
 
@@ -52,6 +53,10 @@ export const GameProvider = ({ children }: { children: React.ReactNode }) => {
 
   const getTotalBonus = () => ChipsService.getTotalBonus(state.pokerPads)
 
+  const buyCursor = () => {
+    dispatch({ type: "BUY_CURSOR" });
+  };
+
   const buyCroupier = () => {
     dispatch({ type: "BUY_CROUPIER" });
   };
@@ -69,6 +74,7 @@ export const GameProvider = ({ children }: { children: React.ReactNode }) => {
       toggleSelectedCard,
       placeCardsOnTable,
       getTotalBonus,
+      buyCursor,
       buyCroupier,
     }}>
       {children}
