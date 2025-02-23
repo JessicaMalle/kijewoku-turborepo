@@ -7,10 +7,12 @@ import PokerPad from "./components/PokerPad/PokerPad.tsx";
 import SaveControls from "./components/SaveControls.tsx";
 import {useAppContext} from "./hooks/states/useAppContext.ts";
 import {useChips} from "./hooks/states/useChips.ts";
+import useDigits from "./hooks/utils/useDigits.utils.ts";
 
 function App() {
 	const { pokerPads, buyPokerPad, nextPokerPadPrice } = useAppContext()
-	const { totalMultiplier } = useChips();
+	const { totalBonus } = useChips();
+	const formatedTotalBonus = useDigits({value: totalBonus, digits: 2})
 
 	return (
 		<Main>
@@ -24,7 +26,7 @@ function App() {
 					<SaveControls />
 				</div>
 				<div>
-					<h3>Total Bonus: +{totalMultiplier} CpC</h3>
+					<h3>Total Bonus: +{formatedTotalBonus} CpC</h3>
 					<Button type="button" onClick={buyPokerPad}>Buy Poker Pad ({nextPokerPadPrice}€)</Button>
 					{pokerPads.map((pad, index) => (
 						<PokerPad key={`${pad.uid}-${index}`} index={index} />

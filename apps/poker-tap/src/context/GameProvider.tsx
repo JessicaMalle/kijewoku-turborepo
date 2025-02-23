@@ -52,7 +52,7 @@ export const GameProvider = ({ children }: { children: React.ReactNode }) => {
 
   const placeCardsOnTable = (index: number) => dispatch({ type: "PLACE_CARDS_ON_TABLE", payload: index });
 
-  const getTotalMultiplier = () => ChipsService.getTotalMultiplier(state.pokerPads)
+  const getTotalBonus = () => ChipsService.getTotalBonus(state.pokerPads)
 
   return (
     <GameContext.Provider value={{
@@ -66,7 +66,7 @@ export const GameProvider = ({ children }: { children: React.ReactNode }) => {
       drawCardAndDeductChips,
       toggleSelectedHandCard,
       placeCardsOnTable,
-      getTotalMultiplier,
+      getTotalBonus,
     }}>
       {children}
     </GameContext.Provider>

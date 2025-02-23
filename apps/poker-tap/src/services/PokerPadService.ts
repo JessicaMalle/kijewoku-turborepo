@@ -126,42 +126,42 @@ export const getPokerHandDetails = (cards: Card[]): PokerHandResult => {
   const hand = detectPokerHand(cards);
   const score = getPokerHandScore(cards);
 
-  let multiplierBase = 1;
+  let bonusBase = 1;
 
   switch (hand) {
     case "High Card":
-      multiplierBase = 1;
+      bonusBase = 1;
       break;
     case "One Pair":
-      multiplierBase = 2;
+      bonusBase = 2;
       break;
     case "Two Pair":
-      multiplierBase = 3;
+      bonusBase = 3;
       break;
     case "Three of a Kind":
-      multiplierBase = 2;
+      bonusBase = 2;
       break;
     case "Straight":
-      multiplierBase = 2.5;
+      bonusBase = 2.5;
       break;
     case "Flush":
-      multiplierBase = 5;
+      bonusBase = 5;
       break;
     case "Full House":
-      multiplierBase = 3;
+      bonusBase = 3;
       break;
     case "Four of a Kind":
-      multiplierBase = 5;
+      bonusBase = 5;
       break;
     case "Straight Flush":
-      multiplierBase = 10;
+      bonusBase = 10;
       break;
     default:
-      multiplierBase = 1;
+      bonusBase = 1;
       break;
   }
 
-  const bonus = 1 + (score / 100) * multiplierBase;
+  const bonus = 1 + (score / 100) * bonusBase;
 
   return { hand, score, bonus };
 };

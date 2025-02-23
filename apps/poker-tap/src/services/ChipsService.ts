@@ -3,12 +3,12 @@ import PokerPadService from './PokerPadService';
 
 function addChips({ currentChips, pokerPads }: { currentChips: number, pokerPads: PokerPad[] }): number {
   const base = 1;
-  const totalMultiplier = getTotalMultiplier(pokerPads);
+  const totalBonus = getTotalBonus(pokerPads);
 
-  return currentChips + base + totalMultiplier;
+  return currentChips + base + totalBonus;
 }
 
-function getTotalMultiplier(pokerPads: PokerPad[]): number {
+function getTotalBonus(pokerPads: PokerPad[]): number {
   return pokerPads.reduce((acc, pad) => {
     const { bonus } = PokerPadService.getPokerHandDetails(pad.cards);
     return acc + bonus;
@@ -17,7 +17,7 @@ function getTotalMultiplier(pokerPads: PokerPad[]): number {
 
 const ChipsService = {
   addChips,
-  getTotalMultiplier,
+  getTotalBonus,
 }
 
 export default ChipsService;

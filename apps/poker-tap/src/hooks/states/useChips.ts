@@ -1,14 +1,14 @@
 import {useAppContext} from "./useAppContext.ts";
 
 export const useChips = () => {
-  const { chips, prevChips, addChips, getTotalMultiplier, pokerPads } = useAppContext();
+  const { chips, prevChips, addChips, getTotalBonus } = useAppContext();
 
-  const totalMultiplier = getTotalMultiplier(pokerPads);
+  const totalBonus = getTotalBonus();
 
   return {
     chips,
     prevChips,
     addChips,
-    totalMultiplier,
+    totalBonus,
   };
 };

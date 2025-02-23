@@ -1,6 +1,7 @@
 import type {ReactNode} from "react";
 import {useHand} from "../../hooks/states/useHand.ts";
 import {usePokerPad} from "../../hooks/states/usePokerPad.ts";
+import useDigits from "../../hooks/utils/useDigits.utils.ts";
 import PokerPadService from "../../services/PokerPadService.ts";
 import Card from "../Card/Card.tsx";
 import {StyledPokerPad} from "./PokerPad.styles.ts";
@@ -10,10 +11,11 @@ function PokerPad({index}: {index: number}): ReactNode {
   const { countSelectedCards } = useHand();
 
   const {hand, bonus} = PokerPadService.getPokerHandDetails(pokerPad.cards);
+  const formatedBonus = useDigits({value: bonus, digits: 2});
 
   return (
     <div>
-      <h4><b>Combination:</b> {hand} <b>- Bonus:</b> +{bonus} CpC</h4>
+      <h4><b>Combination:</b> {hand} <b>- Bonus:</b> +{formatedBonus} CpC</h4>
       <StyledPokerPad>
         {pokerPad.cards.map((card, index) => (
           <Card
