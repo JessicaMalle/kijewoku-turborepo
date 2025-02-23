@@ -10,6 +10,7 @@ import { GameReducer } from './GameReducer.ts';
 const initialGameState: GameState = {
   gameInitialized: false,
   chips: 0,
+  prevChips: 0,
   hand: { handCards: [], firstPickMade: false },
   deck: DeckService.shuffleDeck(DeckService.createDeck()),
   pokerPad: { cards: [] },

@@ -1,10 +1,11 @@
 import {useAppContext} from "./useAppContext.ts";
 
 export const useChips = () => {
-  const { chips, addChips } = useAppContext();
+  const { chips, prevChips, addChips } = useAppContext();
 
   return {
     chips,
+    prevChips,
     addChips,
   };
 };

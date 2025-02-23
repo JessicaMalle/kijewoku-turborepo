@@ -1,20 +1,19 @@
 import {Button, Main, Section} from "./App.styled.ts";
 import BigChip from "./components/Chips/BigChip.tsx";
+import ChipsCounter from "./components/Chips/ChipsCounter.tsx";
 import Hand from "./components/Hand/Hand.tsx";
 import PokerPad from "./components/PokerPad/PokerPad.tsx";
 import SaveControls from "./components/SaveControls.tsx";
-import {useChips} from "./hooks/states/useChips.ts";
 import {useDeck} from "./hooks/states/useDeck.ts";
 
 function App() {
-	const { chips } = useChips();
 	const { deck, shuffleDeck, revealDeck } = useDeck();
 
 	return (
 		<Main>
 			<Section>
 				<h1>Poker Tap</h1>
-				<h2>Chips: {chips}</h2>
+				<ChipsCounter />
 				<BigChip />
 			</Section>
 			<Section>

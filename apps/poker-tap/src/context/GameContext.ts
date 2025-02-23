@@ -4,6 +4,7 @@ import type {Deck, Hand, PokerPad} from "../types/gameTypes.ts";
 export interface GameState {
   gameInitialized: boolean;
   chips: number;
+  prevChips: number;
   hand: Hand;
   deck: Deck;
   pokerPad: PokerPad;

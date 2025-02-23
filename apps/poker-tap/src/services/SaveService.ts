@@ -43,7 +43,7 @@ export const SaveService = {
         };
       }
       const decryptedState = EncryptionService.decrypt(encryptedState);
-      return JSON.parse(decryptedState) as GameState;
+      return { ...JSON.parse(decryptedState), prevChips: 0 } as GameState;
     } catch (error) {
       console.error("Failed to load game:", error);
       return initialGameState;

@@ -18,6 +18,7 @@ export const GameReducer = (state: GameState, action: Action): GameState => {
     case "ADD_CHIPS":
       return {
         ...state,
+        prevChips: state.chips,
         chips: ChipsService.addChips({currentChips: state.chips, cards: state.pokerPad.cards})
       };
     case 'SHUFFLE_DECK':
