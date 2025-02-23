@@ -1,15 +1,13 @@
-import type {ReactNode} from "react";
-import {useChips} from "../../hooks/states/useChips.ts";
-import {StyledBigChip} from "./BigChip.styles.ts";
+import type { ReactNode } from "react";
+import { useChips } from "../../hooks/states/useChips.ts";
+import {StyledPokerChip} from "./BigChip.styles.ts";
 
 function BigChip(): ReactNode {
   const { addChips } = useChips();
 
   return (
-    <StyledBigChip onClick={() => addChips(1)}>
-      +1
-    </StyledBigChip>
-  )
+    <StyledPokerChip onClick={() => addChips(1)} />
+  );
 }
 
 export default BigChip;
