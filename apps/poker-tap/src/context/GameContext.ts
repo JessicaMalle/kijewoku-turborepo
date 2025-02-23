@@ -20,7 +20,7 @@ interface GameContextType extends GameState {
   toggleSelectedHandCard: (cardIndex: number) => void;
   placeCardsOnTable: (index: number) => void;
   drawCardAndDeductChips: () => void;
-  getTotalMultiplier: (pokerPads: PokerPad[]) => number;
+  getTotalMultiplier: () => number;
 }
 
 export const GameContext = createContext<GameContextType | undefined>(undefined);

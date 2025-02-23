@@ -5,7 +5,7 @@ import ChipsService from "../services/ChipsService.ts";
 import DeckService from "../services/DeckService.ts";
 import PokerPadService from "../services/PokerPadService.ts";
 import {SaveService} from "../services/SaveService.ts";
-import type {Deck, PokerPad} from "../types/gameTypes.ts";
+import type {Deck} from "../types/gameTypes.ts";
 import {GameContext, type GameState} from "./GameContext.ts";
 import { GameReducer } from './GameReducer.ts';
 
@@ -53,7 +53,7 @@ export const GameProvider = ({ children }: { children: React.ReactNode }) => {
 
   const placeCardsOnTable = (index: number) => dispatch({ type: "PLACE_CARDS_ON_TABLE", payload: index });
 
-  const getTotalMultiplier = (pokerPads: PokerPad[]) => ChipsService.getTotalMultiplier(pokerPads)
+  const getTotalMultiplier = () => ChipsService.getTotalMultiplier(state.pokerPads)
 
   return (
     <GameContext.Provider value={{
