@@ -4,7 +4,7 @@ import useCountToUtils from "../../hooks/utils/useCountTo.utils.ts";
 
 function ChipsCounter(): ReactNode {
   const {chips, prevChips} = useChips();
-  const currentValue = useCountToUtils({ from: prevChips, to: chips, speed: 200, delay: 100, digits: 0 });
+  const currentValue = useCountToUtils({ from: prevChips, to: chips, speed: 1000, delay: 100, digits: 0 });
 
   return (
     <div>

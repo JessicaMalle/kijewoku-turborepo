@@ -16,6 +16,7 @@ type Action =
   | { type: "DRAW_CARD", payload: number }
   | { type: "DRAW_CARD_AND_DEDUCT_CHIPS" }
   | { type: "BUY_CROUPIER" }
+  | { type: "ADD_CHIPS_BY_CROUPIERS" }
 
 export const GameReducer = (state: GameState, action: Action): GameState => {
   switch (action.type) {
@@ -25,6 +26,14 @@ export const GameReducer = (state: GameState, action: Action): GameState => {
         prevChips: state.chips,
         chips: ChipsService.addChips({currentChips: state.chips, pokerPads: state.pokerPads})
       };
+    case "ADD_CHIPS_BY_CROUPIERS": {
+      const totalBonus = state.croupiers.reduce((acc, croupier) => acc + croupier.bonus, 0);
+      return {
+        ...state,
+        prevChips: state.chips,
+        chips: state.chips + totalBonus,
+      };
+    }
     case "BUY_POKER_PAD": {
       const cost = PokerPadService.calculatePokerPadCost(state.pokerPads.length);
       if (state.chips >= cost) {
