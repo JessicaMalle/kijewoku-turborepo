@@ -2,11 +2,9 @@ import styled from "styled-components";
 
 interface StyledPokerChipProps {
   value: string;
-  linesColor: string;
-  backgroundColor: string;
-  backLinesColor: string;
-  darkBackgroundColor: string;
-  textColor: string;
+  accentColor: string;
+  primaryColor: string;
+  secondaryColor: string;
 }
 
 export const StyledPokerChip = styled.div<StyledPokerChipProps>`
@@ -45,23 +43,23 @@ export const StyledPokerChip = styled.div<StyledPokerChipProps>`
     left: 20px;
   }
 
-  background-image: linear-gradient(0deg, transparent 0, transparent 67.5px, ${(props) => props.linesColor} 67.5px, ${(props) => props.linesColor} 83.5px, transparent 83.5px, transparent 151px),
-                    linear-gradient(60deg, transparent 0, transparent 97.4304px, ${(props) => props.linesColor} 97.4304px, ${(props) => props.linesColor} 113.4304px, transparent 113.4304px, transparent 151px),
-                    linear-gradient(120deg, ${(props) => props.backgroundColor} 0, ${(props) => props.backgroundColor} 97.4304px, ${(props) => props.linesColor} 97.4304px, ${(props) => props.linesColor} 113.4304px, ${(props) => props.backgroundColor} 113.4304px, ${(props) => props.backgroundColor} 151px);
+  background-image: linear-gradient(0deg, transparent 0, transparent 67.5px, ${(props) => props.accentColor} 67.5px, ${(props) => props.accentColor} 83.5px, transparent 83.5px, transparent 151px),
+                    linear-gradient(60deg, transparent 0, transparent 97.4304px, ${(props) => props.accentColor} 97.4304px, ${(props) => props.accentColor} 113.4304px, transparent 113.4304px, transparent 151px),
+                    linear-gradient(120deg, ${(props) => props.primaryColor} 0, ${(props) => props.primaryColor} 97.4304px, ${(props) => props.accentColor} 97.4304px, ${(props) => props.accentColor} 113.4304px, ${(props) => props.primaryColor} 113.4304px, ${(props) => props.primaryColor} 151px);
 
   &:before {
-    border: 8px solid ${(props) => props.backgroundColor};
-    background-image: linear-gradient(0deg, transparent 0, transparent 69.5px, ${(props) => props.backLinesColor} 69.5px, ${(props) => props.backLinesColor} 81.5px, transparent 81.5px, transparent 151px),
-                      linear-gradient(30deg, transparent 0, transparent 98.7104px, ${(props) => props.backLinesColor} 98.7104px, ${(props) => props.backLinesColor} 110.7104px, transparent 110.7104px, transparent 151px),
-                      linear-gradient(60deg, transparent 0, transparent 98.7104px, ${(props) => props.backLinesColor} 98.7104px, ${(props) => props.backLinesColor} 110.7104px, transparent 110.7104px, transparent 151px),
-                      linear-gradient(90deg, transparent 0, transparent 69.5px, ${(props) => props.backLinesColor} 69.5px, ${(props) => props.backLinesColor} 81.5px, transparent 81.5px, transparent 151px),
-                      linear-gradient(120deg, transparent 0, transparent 98.7104px, ${(props) => props.backLinesColor} 98.7104px, ${(props) => props.backLinesColor} 110.7104px, transparent 110.7104px, transparent 151px),
-                      linear-gradient(150deg, ${(props) => props.darkBackgroundColor} 0, ${(props) => props.darkBackgroundColor} 98.7104px, ${(props) => props.backLinesColor} 98.7104px, ${(props) => props.backLinesColor} 110.7104px, ${(props) => props.darkBackgroundColor} 110.7104px, ${(props) => props.darkBackgroundColor} 151px);
+    border: 8px solid ${(props) => props.primaryColor};
+    background-image: linear-gradient(0deg, transparent 0, transparent 69.5px, ${(props) => props.accentColor} 69.5px, ${(props) => props.accentColor} 81.5px, transparent 81.5px, transparent 151px),
+                      linear-gradient(30deg, transparent 0, transparent 98.7104px, ${(props) => props.accentColor} 98.7104px, ${(props) => props.accentColor} 110.7104px, transparent 110.7104px, transparent 151px),
+                      linear-gradient(60deg, transparent 0, transparent 98.7104px, ${(props) => props.accentColor} 98.7104px, ${(props) => props.accentColor} 110.7104px, transparent 110.7104px, transparent 151px),
+                      linear-gradient(90deg, transparent 0, transparent 69.5px, ${(props) => props.accentColor} 69.5px, ${(props) => props.accentColor} 81.5px, transparent 81.5px, transparent 151px),
+                      linear-gradient(120deg, transparent 0, transparent 98.7104px, ${(props) => props.accentColor} 98.7104px, ${(props) => props.accentColor} 110.7104px, transparent 110.7104px, transparent 151px),
+                      linear-gradient(150deg, ${(props) => props.secondaryColor} 0, ${(props) => props.secondaryColor} 98.7104px, ${(props) => props.accentColor} 98.7104px, ${(props) => props.accentColor} 110.7104px, ${(props) => props.secondaryColor} 110.7104px, ${(props) => props.secondaryColor} 151px);
   }
 
   &:after {
     content: "${(props) => props.value}";
-    background: ${(props) => props.backgroundColor};
-    color: ${(props) => props.textColor};
+    background: ${(props) => props.primaryColor};
+    color: ${(props) => props.accentColor};
   }
 `;

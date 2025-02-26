@@ -6,41 +6,33 @@ Here, some example of the component with classic colors :
 <StyledPokerChip
   onClick={() => addChips(20)}
   value="20"
-  linesColor="#fff"
-  backgroundColor="#B22222"
-  backLinesColor="#fff"
-  darkBackgroundColor="#8B0000"
-  textColor="#fff"
+  accentColor="#fff"
+  primaryColor="#B22222"
+  secondaryColor="#8B0000"
 />
 
 <StyledPokerChip
   onClick={() => addChips(50)}
   value="50"
-  linesColor="#fff"
-  backgroundColor="#0000cc"
-  backLinesColor="#fff"
-  darkBackgroundColor="#191970"
-  textColor="#fff"
+  accentColor="#fff"
+  primaryColor="#0000cc"
+  secondaryColor="#191970"
 />
 
 <StyledPokerChip
   onClick={() => addChips(100)}
   value="100"
-  linesColor="#fff"
-  backgroundColor="#32CD32"
-  backLinesColor="#fff"
-  darkBackgroundColor="#228B22"
-  textColor="#228B22"
+  accentColor="#fff"
+  primaryColor="#32CD32"
+  secondaryColor="#228B22"
 />
 
 <StyledPokerChip
   onClick={() => addChips(500)}
   value="500"
-  linesColor="#fff"
-  backgroundColor="#000"
-  backLinesColor="#fff"
-  darkBackgroundColor="#2F4F4F"
-  textColor="#fff"
+  accentColor="#fff"
+  primaryColor="#000"
+  secondaryColor="#2F4F4F"
 />
 ```
 
@@ -50,11 +42,9 @@ And here's an example of the Poker token of my dreams!
 <StyledPokerChip
   onClick={() => addChips(20)}
   value="🦄"
-  linesColor="#FFB6C1"
-  backgroundColor="#FF69B4"
-  backLinesColor="#FFB6C1"
-  darkBackgroundColor="#FF1493"
-  textColor="#FFFFFF"
+  accentColor="#FFB6C1"
+  primaryColor="#FF69B4"
+  secondaryColor="#FF1493"
 />
 ```
 

@@ -7,13 +7,12 @@ function BigChip(): ReactNode {
 
   return (
     <StyledPokerChip
-      onClick={() => addChips(10)}
       value="10"
-      linesColor="#004080"
-      backgroundColor="#eee"
-      backLinesColor="#004080"
-      darkBackgroundColor="#fff"
-      textColor="#004080"
+      accentColor="#004080"
+      primaryColor="#eee"
+      secondaryColor="#fff"
+
+      onClick={() => addChips(10)}
     />
   );
 }
