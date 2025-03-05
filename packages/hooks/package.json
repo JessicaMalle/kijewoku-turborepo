@@ -4,6 +4,7 @@
 	"type": "module",
 	"private": true,
 	"exports": {
+		"./animation": "./src/animation/index.ts",
 		"./screen": "./src/screen/index.ts",
 		"./layout": "./src/layout/index.ts",
 		".": "./src/index.ts"
