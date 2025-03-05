@@ -15,11 +15,6 @@ export const StyledPokerChip = styled.div<StyledPokerChipProps>`
   background-size: 151px 151px;
   background-position: center center;
   cursor: pointer;
-  transition: 200ms;
-
-  &:active {
-    transform: scale(90%);
-  }
 
   &:before {
     position: absolute;
