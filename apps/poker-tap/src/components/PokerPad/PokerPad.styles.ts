@@ -5,8 +5,10 @@ export const StyledPokerPad = styled.div`
     align-items: center;
     gap: 10px;
     width: 654px;
-    height: 170px;
+    height: 154px;
     padding: 10px;
     margin: 10px;
-    background-color: darkgreen;
+    border-radius: 12px;
+    background-color: #26854c;
+    border: 2px solid #5ab552;
 `;
