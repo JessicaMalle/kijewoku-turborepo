@@ -4,6 +4,7 @@
   "scripts": {
     "build": "turbo build",
     "dev": "turbo dev",
+    "dev:poker-tap": "turbo dev --filter=poker-tap",
     "lint": "turbo lint",
     "lint:fix": "turbo lint:fix",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
