@@ -2,20 +2,22 @@ import styled from "styled-components";
 
 export const StyledCard = styled.div<{ color: string; active?: string }>`
     position: relative;
-    width: 100px;
-    min-width: 100px;
-    height: 150px;
+    width: clamp(60px, 12vw, 100px);
     border: 2px solid #f6e8e0;
+    aspect-ratio: 2 / 3;
     border-radius: 8px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    
     background-color: white;
     color: ${props => (props.color === 'hearts' || props.color === 'diamonds') ? '#ec273f' : '#5e5b8c'};
     transform: ${props => props.active ? 'translateY(-5px)' : 'translateY(0)'};
-    transition: transform 0.2s, box-shadow 0.2s;
+    transition: transform 0.2s;
     font-family: "Bebas Neue", sans-serif;
+    
     user-select: none;
+    overflow: hidden;
     cursor: pointer;
     
     &:hover {
@@ -77,18 +79,11 @@ export const BigCardValue = styled.div<BigCardValueProps>`
     position: absolute;
     width: 100%;
     bottom: 0;
-    font-size: 90px;
-    text-align: center;
+    font-size: clamp(50px, 12vw, 90px);
     font-weight: 800;
+    text-align: center;
 
-    /*
-      1. Fallback "color": s’applique dans les navigateurs
-         qui ne supportent pas la technique du background-clip: text.
-      2. linear-gradient + background-clip: text +
-         -webkit-text-fill-color: transparent
-         pour appliquer le dégradé dans les navigateurs récents.
-    */
-    color: ${({ color }) => (color === 'hearts' || color === 'diamonds') ? 'red' : 'black'};
+    color: ${({ color }) => (color === 'hearts' || color === 'diamonds') ? '#ec273f' : '#5e5b8c'};
     background: ${({ color }) =>
             (color === 'hearts' || color === 'diamonds')
                     ? 'linear-gradient(to bottom, #ec273f, #ac2847)'
@@ -97,7 +92,6 @@ export const BigCardValue = styled.div<BigCardValueProps>`
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 
-    /* Exemple de décalage quand value = 10 */
     ${({ value }) =>
             Number(value) === 10 &&
             `
