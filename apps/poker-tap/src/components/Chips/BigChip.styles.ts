@@ -15,7 +15,7 @@ export const StyledPokerChip = styled.div<StyledPokerChipProps>`
   background-size: 151px 151px;
   background-position: center center;
   cursor: pointer;
-
+  
   &:before {
     position: absolute;
     content: "";
@@ -36,6 +36,7 @@ export const StyledPokerChip = styled.div<StyledPokerChipProps>`
     border-radius: 100%;
     top: 20px;
     left: 20px;
+    text-align: center;
   }
 
   background-image: linear-gradient(0deg, transparent 0, transparent 67.5px, ${(props) => props.accentColor} 67.5px, ${(props) => props.accentColor} 83.5px, transparent 83.5px, transparent 151px),

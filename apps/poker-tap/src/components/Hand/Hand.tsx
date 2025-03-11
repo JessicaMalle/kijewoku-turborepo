@@ -22,11 +22,9 @@ import { type ReactNode, useState } from "react";
             ))}
           </StyledCards>
           <StyledSorter>
-            <p>Sort by:</p>
-            <div>
-              <button type="button" onClick={() => setHandSort('value')}>Value</button>
-              <button type="button" onClick={() => setHandSort('color')}>Color</button>
-            </div>
+            <div>Sort by:</div>
+            <button type="button" onClick={() => setHandSort('value')}>Value</button>
+            <button type="button" onClick={() => setHandSort('color')}>Color</button>
           </StyledSorter>
         </StyledHand>
       );

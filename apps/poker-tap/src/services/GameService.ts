@@ -3,7 +3,7 @@ import DeckService from "./DeckService";
 import HandService from "./HandService";
 
 const drawCardAndDeductChips = (deck: Deck, hand: Hand, currentChips: number): { deck: Deck, hand: Hand, remainingChips: number } => {
-  const isFullHand = hand.Cards.length === 7;
+  const isFullHand = hand.Cards.length === 5;
   const isDeckEmpty = deck.cards.length === 0;
 
   if (isFullHand || isDeckEmpty) {

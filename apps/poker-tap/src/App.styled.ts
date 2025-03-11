@@ -1,72 +1,61 @@
 import styled from "styled-components";
 
-const sidebarWidth = "380px";
-const mainContentWidth = "1fr";
-const rightSidebarWidth = "320px";
-const headerHeight = "40px";
-const pokerInfoHeight = "60px";
-const handHeight = "240px";
-const backgroundColor = "#f0f0f0";
+export const Main = 	styled.main`
+	display: grid;
+	grid-template-rows: 40px 1fr fit-content(100%);
+	height: 100vh;
+	max-height: 100vh;
+	background-color: #5e5b8c;
+`;
 
-export const Main = styled.main`
+export const GameLayout = styled.div`
     display: grid;
-    grid-template-columns: ${sidebarWidth} ${mainContentWidth} ${rightSidebarWidth};
-    height: 100vh;
-    max-height: 100vh;
+	grid-template-columns: 280px 1fr 240px;
+	grid-template-rows: 120px 1fr 1fr 1fr 1fr 120px;
+	gap: 15px;
+	height: 100%;
+	padding: 0 15px;
+	overflow: hidden;
+
+    #chips-counter {
+		grid-column: 1/2;
+		grid-row: 1/2;
+    }
+
+    #big-chip {
+		grid-column: 1/2;
+        grid-row: 2/7;
+    }
+
+    #poker-pads {
+		grid-column: 2/3;
+		grid-row: 1/7;
+		overflow: scroll;
+    }
+
+    #items {
+        grid-column: 3/4;
+		grid-row: 1/5;
+    }
+
+    #deck {
+        grid-column: 3/4;
+		grid-row: 5/7;
+    }
 `;
 
-export const Header = styled.header`
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 20px;
-`;
+export const Header = styled.div`
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	height: 40px;
+	padding: 0 15px;
+	
+	> h1 {
+		margin: 0;
+		font-size: 1.2rem;
+	}
+`
 
-export const Section = styled.section`
-    height: 100%;
-    text-align: center;
-`;
-
-export const PokerPadSection = styled(Section)`
-    display: grid;
-    grid-template-rows: ${headerHeight} ${pokerInfoHeight} 1fr ${handHeight};
-    background-color: ${backgroundColor};
-`;
-
-export const PokerPadWrapper = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    max-height: calc(100vh - ${headerHeight} - ${pokerInfoHeight} - ${handHeight});
-    overflow-y: auto;
-`;
-
-export const PokerInfo = styled.div`
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 20px;
-`;
-
-export const BigChipSection = styled(Section)`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 200px;
-    background-color: steelblue;
-`;
-
-export const RightSection = styled(Section)`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-    max-height: 100vh;
-`;
-
-export const ShopSection = styled(Section)`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-`;
+export const HandLayout = styled.div`
+`

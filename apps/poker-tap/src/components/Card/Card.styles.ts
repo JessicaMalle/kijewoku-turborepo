@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const StyledCard = styled.div<{ color: string; active?: string }>`
     position: relative;
     width: clamp(60px, 12vw, 100px);
+    min-width: 60px;
     border: 2px solid #f6e8e0;
     aspect-ratio: 2 / 3;
     border-radius: 8px;
@@ -12,17 +13,19 @@ export const StyledCard = styled.div<{ color: string; active?: string }>`
     
     background-color: white;
     color: ${props => (props.color === 'hearts' || props.color === 'diamonds') ? '#ec273f' : '#5e5b8c'};
-    transform: ${props => props.active ? 'translateY(-5px)' : 'translateY(0)'};
+    transform: ${props => props.active ? 'translateY(-10px)' : 'translateY(0)'};
     transition: transform 0.2s;
     font-family: "Bebas Neue", sans-serif;
     
     user-select: none;
     overflow: hidden;
     cursor: pointer;
-    
-    &:hover {
-        transform: translateY(-5px);
-    } 
+
+    @media (hover: hover) and (pointer: fine) {
+        &:hover {
+            transform: scale(1.1);
+        }
+    }
 `;
 
 export const SuitAndValueWrapper = styled.div`
@@ -79,7 +82,7 @@ export const BigCardValue = styled.div<BigCardValueProps>`
     position: absolute;
     width: 100%;
     bottom: 0;
-    font-size: clamp(50px, 12vw, 90px);
+    font-size: clamp(50px, 10vw, 90px);
     font-weight: 800;
     text-align: center;
 
