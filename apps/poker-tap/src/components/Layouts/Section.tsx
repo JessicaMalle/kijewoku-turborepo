@@ -4,11 +4,12 @@ import {StyledSection} from "./Section.styles.ts";
 
 interface SectionProps {
   children: React.JSX.Element;
+  neutralStyle?: boolean;
 }
 
-function Section({ children }: SectionProps): ReactNode {
+function Section({ children, neutralStyle }: SectionProps): ReactNode {
   return (
-    <StyledSection>
+    <StyledSection neutralStyle={neutralStyle}>
       {children}
     </StyledSection>
   )

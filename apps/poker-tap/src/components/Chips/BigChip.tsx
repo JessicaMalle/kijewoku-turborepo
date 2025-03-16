@@ -1,7 +1,7 @@
 import { useAnimation } from "@kijewoku/hooks/animation";
         import type { ReactNode } from "react";
         import { useChips } from "../../hooks/states/useChips.ts";
-        import { StyledPokerChip } from "./BigChip.styles.ts";
+        import {StyledBigChipWrapper, StyledPokerChip} from "./BigChip.styles.ts";
 
         function BigChip(): ReactNode {
           const { addChips } = useChips();
@@ -66,19 +66,21 @@ import { useAnimation } from "@kijewoku/hooks/animation";
           });
 
           return (
-            <StyledPokerChip
-              ref={element => {
-                mouseDownAnimationRef.current = element;
-                mouseUpAnimationRef.current = element;
-                mouseEnterAnimationRef.current = element;
-                mouseLeaveAnimationRef.current = element;
-              }}
-              value="10"
-              accentColor="#004080"
-              primaryColor="#eee"
-              secondaryColor="#fff"
-              onClick={() => addChips(10)}
-            />
+            <StyledBigChipWrapper>
+              <StyledPokerChip
+                ref={element => {
+                  mouseDownAnimationRef.current = element;
+                  mouseUpAnimationRef.current = element;
+                  mouseEnterAnimationRef.current = element;
+                  mouseLeaveAnimationRef.current = element;
+                }}
+                value="10"
+                accentColor="#004080"
+                primaryColor="#eee"
+                secondaryColor="#fff"
+                onClick={() => addChips(10)}
+              />
+            </StyledBigChipWrapper>
           );
         }
 

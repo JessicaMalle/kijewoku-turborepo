@@ -59,3 +59,10 @@ export const StyledPokerChip = styled.div<StyledPokerChipProps>`
     color: ${(props) => props.accentColor};
   }
 `;
+
+export const StyledBigChipWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+`;

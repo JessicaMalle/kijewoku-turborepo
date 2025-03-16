@@ -1,36 +1,43 @@
 import type {ReactNode} from "react";
-import {useHand} from "../../hooks/states/useHand.ts";
 import {usePokerPad} from "../../hooks/states/usePokerPad.ts";
 import useDigits from "../../hooks/utils/useDigits.utils.ts";
 import {useSortedCards} from "../../hooks/utils/useSortedCards.utils.ts";
 import PokerPadService from "../../services/PokerPadService.ts";
 import Card from "../Card/Card.tsx";
-import {StyledPokerPad} from "./PokerPad.styles.ts";
+import CardPlaceholder from "../Card/CardPlaceholder.tsx";
+import {StyledPokerPad, StyledPokerPadInfos} from "./PokerPad.styles.ts";
 
-function PokerPad({index}: {index: number}): ReactNode {
-  const { pokerPad, placeCardsOnTable, countEmptySlots, canHoldSelectedCards } = usePokerPad(index);
-  const { sortedCards } = useSortedCards(pokerPad.cards, "value");
-  const { countSelectedCards } = useHand();
+function PokerPad({cardId}: {cardId: number}): ReactNode {
+	const { pokerPad, placeCardsOnTable } = usePokerPad(cardId);
+	const { sortedCards } = useSortedCards(pokerPad.cards, "value");
 
-  const {hand, bonus} = PokerPadService.getPokerHandDetails(pokerPad.cards);
-  const formatedBonus = useDigits({value: bonus, digits: 2});
+	const {hand, bonus} = PokerPadService.getPokerHandDetails(pokerPad.cards);
+	const formatedBonus = useDigits({value: bonus, digits: 2});
 
-  return (
-    <div>
-      <h4><b>Combination:</b> {hand} <b>- Bonus:</b> +{formatedBonus} CpC</h4>
-      <StyledPokerPad>
-        {sortedCards.map((card, index) => (
-          <Card
-            {...card}
-            key={`hand-card-${card.color}-${card.value}-i${index}`}
-          />
-        ))}
-      </StyledPokerPad>
-      <button type="button" onClick={() => placeCardsOnTable(index)} disabled={!canHoldSelectedCards || (countSelectedCards === 0)}>
-        {!canHoldSelectedCards ? `TOO MANY SELECTED CARDS (Empty slots : ${countEmptySlots})` : 'Place selected cards'}
-      </button>
-    </div>
-  )
+	const cardsWithPlaceholders = [...sortedCards, ...Array(5 - sortedCards.length).fill(null)];
+
+	return (
+		<div>
+			<StyledPokerPadInfos>
+				<div><b>Combination:</b> {hand} <b>- Bonus:</b> +{formatedBonus} CpC</div>
+			</StyledPokerPadInfos>
+			<StyledPokerPad>
+				{cardsWithPlaceholders.map((card, index) => (
+					card ? (
+						<Card
+							{...card}
+							key={`hand-card-${card.color}-${card.value}-i${index}`}
+						/>
+					) : (
+						<CardPlaceholder
+							key={window.btoa(`placeholder-${index}`)}
+							onClick={() => placeCardsOnTable(cardId)}
+						/>
+					)
+				))}
+			</StyledPokerPad>
+		</div>
+	)
 }
 
 export default PokerPad;

@@ -1,33 +1,67 @@
-import { type ReactNode, useState } from "react";
-    import { useHand } from "../../hooks/states/useHand.ts";
-    import { useSortedCards } from "../../hooks/utils/useSortedCards.utils.ts";
-    import type {Card as CardType, SortType} from "../../types/gameTypes.ts";
-    import Card from "../Card/Card.tsx";
-    import {StyledCards, StyledHand, StyledSorter} from "./Hand.styles.ts";
+import { useState, useEffect, type ReactNode } from "react";
+import { useHand } from "../../hooks/states/useHand.ts";
+import Card from "../Card/Card.tsx";
+import { StyledHand, StyledCard } from "./Hand.styles.ts";
 
-    function Hand(): ReactNode {
-      const { hand } = useHand();
+function Hand(): ReactNode {
+  const { hand } = useHand();
 
-      const [handSort, setHandSort] = useState<SortType>("value");
-      const { sortedCards } = useSortedCards(hand.Cards, handSort);
+  const totalArc = 20;
+  const baseTranslation = 30;
+  const multiplier = 2;
 
-      return (
-        <StyledHand>
-          <StyledCards>
-            {sortedCards.map((card: CardType, index: number) => (
-              <Card
-                {...card}
-                key={`hand-card-${card.color}-${card.value}-i${index}`}
-              />
-            ))}
-          </StyledCards>
-          <StyledSorter>
-            <div>Sort by:</div>
-            <button type="button" onClick={() => setHandSort('value')}>Value</button>
-            <button type="button" onClick={() => setHandSort('color')}>Color</button>
-          </StyledSorter>
-        </StyledHand>
-      );
+  const [angles, setAngles] = useState<number[]>([]);
+  const [translations, setTranslations] = useState<number[]>([]);
+
+  useEffect(() => {
+    console.log('CALC')
+    if (hand.Cards.length === 0) {
+      setAngles([]);
+      setTranslations([]);
+      return;
     }
 
-    export default Hand;
+    if (hand.Cards.length === 1) {
+      setAngles([0]);
+      setTranslations([0]);
+      return;
+    }
+
+    const newAngles = hand.Cards.map((_, i) =>
+      hand.Cards.length > 1
+        ? totalArc / (hand.Cards.length - 1) * i - totalArc / 2
+        : 0
+    );
+
+    const newTranslations = hand.Cards.map((_, i) => {
+      const distanceFromCenter = Math.abs((hand.Cards.length - 1) / 2 - i);
+      const adjustedBaseTranslation = baseTranslation * 0.85;
+      return -(adjustedBaseTranslation - distanceFromCenter ** 1.5 * (adjustedBaseTranslation / (hand.Cards.length - 1)) * multiplier);
+    });
+
+    setAngles(newAngles);
+    setTranslations(newTranslations);
+  }, [hand, hand.Cards.length]);
+
+  if (hand.Cards.length === 0) return null;
+
+  return (
+    <StyledHand>
+      {hand.Cards.map((card, index) => (
+        <StyledCard
+          key={`hand-card-${card.color}-${card.value}-i${index}`}
+          style={{
+            transform: `
+              rotate(${angles[index]}deg) 
+              translateY(${translations[index]}px)
+            `,
+          }}
+        >
+          <Card {...card} />
+        </StyledCard>
+      ))}
+    </StyledHand>
+  );
+}
+
+export default Hand;

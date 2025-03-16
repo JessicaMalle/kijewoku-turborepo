@@ -1,6 +1,8 @@
-import styled from "styled-components";
+import styled, {css} from "styled-components";
 
 export const StyledCard = styled.div<{ color: string; active?: string }>`
+    container-name: card;
+    container-type: inline-size;
     position: relative;
     width: clamp(60px, 12vw, 100px);
     min-width: 60px;
@@ -78,13 +80,30 @@ interface BigCardValueProps {
   color: 'hearts' | 'diamonds' | 'spades' | 'clover';
 }
 
+const generateFontSizeContainers = (sizes: number[]) => {
+    return sizes.map(
+        (size) => css`
+      @container card (max-width: ${size}px) {
+        font-size: ${size - 10}px;
+      }
+    `
+    );
+};
+
+const fontSizeSteps = Array.from({ length: 31 }, (_, i) => 90 - i);
+
 export const BigCardValue = styled.div<BigCardValueProps>`
     position: absolute;
     width: 100%;
+    aspect-ratio: 1/1;
     bottom: 0;
-    font-size: clamp(50px, 10vw, 90px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
     font-weight: 800;
-    text-align: center;
+    
+    font-size: 90px;
+    ${generateFontSizeContainers(fontSizeSteps)}
 
     color: ${({ color }) => (color === 'hearts' || color === 'diamonds') ? '#ec273f' : '#5e5b8c'};
     background: ${({ color }) =>

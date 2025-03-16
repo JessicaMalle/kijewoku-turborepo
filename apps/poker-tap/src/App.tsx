@@ -4,62 +4,40 @@ import Deck from "./components/Deck/Deck.tsx";
 import Hand from "./components/Hand/Hand.tsx";
 import Croupiers from "./components/Items/Croupiers.tsx";
 import Cursors from "./components/Items/Cursors.tsx";
-import PokerPad from "./components/PokerPad/PokerPad.tsx";
 import SaveControls from "./components/SaveControls.tsx";
-import {useAppContext} from "./hooks/states/useAppContext.ts";
-import {useChips} from "./hooks/states/useChips.ts";
-import useDigits from "./hooks/utils/useDigits.utils.ts";
-import {StyledSection} from "./components/Layouts/Section.styles.ts";
-import {GameLayout, HandLayout, Header, Main} from "./App.styled.ts";
+import { StyledSection } from "./components/Layouts/Section.styles.ts";
+import { GameLayout, Header, Main } from "./App.styles.ts";
+import PokerPads from "./components/Layouts/PokerPads.tsx";
+import type {ReactNode} from "react";
 
-function App() {
-	const { pokerPads, buyPokerPad, nextPokerPadPrice } = useAppContext()
-	const { totalBonus } = useChips();
-	const formatedTotalBonus = useDigits({value: totalBonus, digits: 2})
-	const formatedNextPokerPadPrice = useDigits({value: nextPokerPadPrice, digits: 0})
-
+function App(): ReactNode {
 	return (
 		<Main>
 			<Header>
 				<h1>Poker Tap</h1>
 				<SaveControls />
 			</Header>
-            <GameLayout>
-                <StyledSection id="chips-counter">
+			<GameLayout>
+				<StyledSection id="chips-counter">
 					<ChipsCounter />
-                </StyledSection>
-                <StyledSection id="big-chip">
-					<div style={{
-						display: 'flex',
-						justifyContent: 'center',
-						alignItems: 'center',
-						height: '100%'
-					}}>
-                    	<BigChip />
-					</div>
-                </StyledSection>
-                <StyledSection id="poker-pads">
-                    <div>
-                        <h3>Total Bonus: +{formatedTotalBonus} CpC</h3>
-                        <button type="button" onClick={buyPokerPad}>Buy Poker Pad ({formatedNextPokerPadPrice}€)</button>
-                    </div>
-                    <div>
-                        {pokerPads.map((pad, index) => (
-                            <PokerPad key={`${pad.uid}-${index}`} index={index} />
-                        ))}
-                    </div>
-                </StyledSection>
-                <StyledSection id="items">
-                    <Cursors />
-                    <Croupiers />
-                </StyledSection>
-                <StyledSection id="deck">
-                    <Deck />
-                </StyledSection>
-            </GameLayout>
-			<HandLayout>
-                <Hand />
-			</HandLayout>
+				</StyledSection>
+				<StyledSection id="big-chip">
+					<BigChip />
+				</StyledSection>
+				<StyledSection id="poker-pads" neutralStyle>
+					<PokerPads />
+				</StyledSection>
+				<StyledSection id="items">
+					<Cursors />
+					<Croupiers />
+				</StyledSection>
+				<StyledSection id="deck">
+					<Deck />
+				</StyledSection>
+			</GameLayout>
+			<StyledSection id="hand" neutralStyle>
+				<Hand />
+			</StyledSection>
 		</Main>
 	);
 }
