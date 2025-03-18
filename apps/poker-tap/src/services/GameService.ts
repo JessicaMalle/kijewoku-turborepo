@@ -20,6 +20,11 @@ const drawCardAndDeductChips = (deck: Deck, hand: Hand, currentChips: number): {
   const cardPrice = DeckService.nextCardPrice(deck);
   if (currentChips < cardPrice) {
     console.error("Not enough chips to draw a card");
+    return {
+      deck,
+      hand,
+      remainingChips: currentChips,
+    }
   }
 
   const { deck: newDeck, hand: newHand } = HandService.drawCard(deck, hand, 1);
