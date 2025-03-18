@@ -6,15 +6,14 @@ import { StyledHand, StyledCard } from "./Hand.styles.ts";
 function Hand(): ReactNode {
   const { hand } = useHand();
 
-  const totalArc = 20;
-  const baseTranslation = 30;
-  const multiplier = 2;
+  const totalArc = 10;
+  const baseTranslation = 20;
+  const multiplier = 1.5;
 
   const [angles, setAngles] = useState<number[]>([]);
   const [translations, setTranslations] = useState<number[]>([]);
 
   useEffect(() => {
-    console.log('CALC')
     if (hand.Cards.length === 0) {
       setAngles([]);
       setTranslations([]);

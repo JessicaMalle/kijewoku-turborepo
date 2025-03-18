@@ -8,10 +8,8 @@ export const StyledHand = styled.div`
     display: flex;
     align-items: flex-end;
     justify-content: center;
-    width: 100%;
     max-width: calc(100% - (400px + 350px) - (15px * 2));
     padding: 30px 0;
-    gap: -20px;
     margin: 0 auto;
     z-index: 2;
     transition: bottom 0.2s;
