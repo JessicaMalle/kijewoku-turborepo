@@ -61,12 +61,12 @@ export const GameReducer = (state: GameState, action: Action): GameState => {
       };
     }
     case "DRAW_CARD_AND_DEDUCT_CHIPS": {
-      const { deck, hand, remainingChips } = GameService.drawCardAndDeductChips(state.deck, state.hand, state.chips);
+      const { deck, hand, updatedChips } = GameService.drawCardAndDeductChips(state.deck, state.hand, state.chips);
       return {
         ...state,
         deck,
         hand,
-        chips: remainingChips,
+        chips: updatedChips,
       };
     }
     case 'TOGGLE_SELECTED_HAND_CARD':
