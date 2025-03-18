@@ -1,6 +1,7 @@
 import { useAppContext } from "../../hooks/states/useAppContext";
 import useDigits from "../../hooks/utils/useDigits.utils.ts";
 import CroupierService from "../../services/CroupierService.ts";
+import {ItemName, ItemPrice, ItemTotal, StyledItem} from "./Item.styles.ts";
 
 function Croupiers() {
   const { croupiers, buyCroupier } = useAppContext();
@@ -8,13 +9,14 @@ function Croupiers() {
   const formattedPrice = useDigits({ value: nextCroupierPrice, digits: 0 })
 
   return (
-    <div>
-      <h3>Croupiers</h3>
-      <p>Number of Croupiers: {croupiers.length}</p>
+    <StyledItem>
+      <ItemName>Croupiers</ItemName>
+      <ItemTotal>{croupiers.length}</ItemTotal>
+      <ItemPrice>{formattedPrice}€</ItemPrice>
       <button type="button" onClick={buyCroupier}>
-        Buy Croupier ({formattedPrice}€)
+        buy croupier
       </button>
-    </div>
+    </StyledItem>
   );
 }
 

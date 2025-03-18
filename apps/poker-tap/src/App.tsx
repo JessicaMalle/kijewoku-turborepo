@@ -9,6 +9,7 @@ import { StyledSection } from "./components/Layouts/Section.styles.ts";
 import { GameLayout, Header, Main } from "./App.styles.ts";
 import PokerPads from "./components/Layouts/PokerPads.tsx";
 import type {ReactNode} from "react";
+import {StyledItems} from "./components/Items/Item.styles.ts";
 
 function App(): ReactNode {
 	return (
@@ -28,8 +29,10 @@ function App(): ReactNode {
 					<PokerPads />
 				</StyledSection>
 				<StyledSection id="items">
-					<Cursors />
-					<Croupiers />
+					<StyledItems>
+						<Cursors />
+						<Croupiers />
+					</StyledItems>
 				</StyledSection>
 				<StyledSection id="deck">
 					<Deck />
