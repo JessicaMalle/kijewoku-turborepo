@@ -1,7 +1,7 @@
 import { useAppContext } from "../../hooks/states/useAppContext";
 import useDigits from "../../hooks/utils/useDigits.utils.ts";
 import CursorService from "../../services/CursorService.ts";
-import {ItemName, ItemPrice, ItemTotal, StyledItem} from "./Item.styles.ts";
+import {ItemCentralInfos, ItemImage, ItemName, ItemPrice, ItemTotal, StyledItem} from "./Item.styles.ts";
 
 function Cursors() {
   const { cursors, buyCursor } = useAppContext();
@@ -10,9 +10,12 @@ function Cursors() {
 
   return (
     <StyledItem>
-      <ItemName>Cursors</ItemName>
+      <ItemImage/>
+      <ItemCentralInfos>
+        <ItemName>Cursors</ItemName>
+        <ItemPrice>{formattedPrice}€</ItemPrice>
+      </ItemCentralInfos>
       <ItemTotal>{cursors}</ItemTotal>
-      <ItemPrice>{formattedPrice}€</ItemPrice>
       <button type="button" onClick={buyCursor}>
         buy cursor
       </button>

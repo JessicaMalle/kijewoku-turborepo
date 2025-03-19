@@ -6,6 +6,7 @@ export const Main = styled.main`
 		height: 100vh;
 		max-height: 100vh;
 		background-color: #5e5b8c;
+		color: #10121c
 `;
 
 export const GameLayout = styled.div`
