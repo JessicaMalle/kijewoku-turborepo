@@ -4,6 +4,7 @@ import PokerPad from "../PokerPad/PokerPad.tsx";
 import {useChips} from "../../hooks/states/useChips.ts";
 import useDigits from "../../hooks/utils/useDigits.utils.ts";
 import {useAppContext} from "../../hooks/states/useAppContext.ts";
+import Button from "../Button/Button.tsx";
 
 function PokerPads(): ReactNode {
 	const { pokerPads, buyPokerPad, nextPokerPadPrice } = useAppContext()
@@ -16,7 +17,7 @@ function PokerPads(): ReactNode {
 		<StyledPokerPadsWrapper>
 			<PokerPadsTopNav>
 				<h3>Total Bonus: +{formatedTotalBonus} CpC</h3>
-				<button type="button" onClick={buyPokerPad}>Buy Poker Pad ({formatedNextPokerPadPrice}€)</button>
+				<Button onClick={buyPokerPad}>Buy Poker Pad ({formatedNextPokerPadPrice}€)</Button>
 			</PokerPadsTopNav>
 			{pokerPads.map((pad, index) => (
 				<PokerPad key={`${pad.uid}-${index}`} cardId={index} />

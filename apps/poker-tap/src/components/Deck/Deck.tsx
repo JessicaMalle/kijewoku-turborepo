@@ -2,6 +2,7 @@ import type {ReactNode} from "react";
 import {useDeck} from "../../hooks/states/useDeck.ts";
 import {useGame} from "../../hooks/states/useGame.tsx";
 import {Rest, StyledCardBack} from "./Deck.styles.ts";
+import Button from "../Button/Button.tsx";
 
 function Deck(): ReactNode {
   const { drawCardAndDeductChips } = useGame();
@@ -14,9 +15,9 @@ function Deck(): ReactNode {
         <p>Draw a card ({nextCardPrice}€)</p>
       </StyledCardBack>
       <p>{!canDrawNextCard && 'Not enough Chips'}</p>
-      <button type="button" onClick={() => revealDeck(deck)}>
+      <Button onClick={() => revealDeck(deck)}>
         Reveal Deck
-      </button>
+      </Button>
     </div>
   );
 }
