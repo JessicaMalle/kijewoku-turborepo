@@ -7,7 +7,7 @@ import { useEffect, useRef } from 'react';
     }
 
     const useAnimation = ({ keyframes, options, eventType }: AnimationOptions) => {
-      const elementRef = useRef<HTMLDivElement | null>(null);
+      const elementRef = useRef<HTMLElement | null>(null);
 
       useEffect(() => {
         const element = elementRef.current;

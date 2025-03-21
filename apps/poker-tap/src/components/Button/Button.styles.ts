@@ -6,9 +6,9 @@ export const StyledButton = styled.button`
       justify-content: center;
       align-items: flex-start;
       cursor: pointer;
-      border: 3px solid black;
+      border: 3px solid #3859b3;
       border-radius: 6px;
-      background-color: grey;
+      background-color: #3388de;
       height: 45px;
 
       > span {
@@ -16,18 +16,8 @@ export const StyledButton = styled.button`
           height: 40px;
           line-height: 40px;
           padding: 0 30px;
-          background-color: white;
+          background-color: #36c5f4;
           border-radius: 3px;
-		      color: black;
-      }
-
-      &:hover {
-          height: 44px;
-          transform: translateY(1px);
-      }
-
-      &:active {
-          height: 43px;
-          transform: translateY(2px);
+		      color: #3859b3;
       }
 `;
