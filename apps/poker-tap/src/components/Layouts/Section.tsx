@@ -10,7 +10,9 @@ interface SectionProps {
 function Section({ children, neutralStyle }: SectionProps): ReactNode {
   return (
     <StyledSection neutralStyle={neutralStyle}>
-      {children}
+      <div>
+        {children}
+      </div>
     </StyledSection>
   )
 }
