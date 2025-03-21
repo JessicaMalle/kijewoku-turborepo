@@ -15,9 +15,7 @@ function Deck(): ReactNode {
         <p>Draw a card ({nextCardPrice}€)</p>
       </StyledCardBack>
       <p>{!canDrawNextCard && 'Not enough Chips'}</p>
-      <Button onClick={() => revealDeck(deck)}>
-        Reveal Deck
-      </Button>
+      <Button label={'Reveal Deck'} onClick={() => revealDeck(deck)}/>
     </div>
   );
 }

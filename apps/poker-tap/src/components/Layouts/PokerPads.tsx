@@ -17,7 +17,7 @@ function PokerPads(): ReactNode {
 		<StyledPokerPadsWrapper>
 			<PokerPadsTopNav>
 				<h3>Total Bonus: +{formatedTotalBonus} CpC</h3>
-				<Button onClick={buyPokerPad}>Buy Poker Pad ({formatedNextPokerPadPrice}€)</Button>
+				<Button label={`Buy Poker Pad (${formatedNextPokerPadPrice}€)`} onClick={buyPokerPad} />
 			</PokerPadsTopNav>
 			{pokerPads.map((pad, index) => (
 				<PokerPad key={`${pad.uid}-${index}`} cardId={index} />

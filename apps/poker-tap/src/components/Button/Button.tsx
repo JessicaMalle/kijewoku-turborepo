@@ -1,17 +1,18 @@
 import type {ReactNode} from "react";
+import {StyledButton} from "./Button.styles.ts";
 
 interface ButtonProps {
-	children: React.ReactNode;
+	label?: string;
 	disabled?: boolean;
 	onClick?: () => void;
 	type?: 'button' | 'submit' | 'reset';
 }
 
-function Button({ children, disabled, onClick, type = 'button' }: ButtonProps): ReactNode {
+function Button({ label, disabled, onClick, type = 'button' }: ButtonProps): ReactNode {
 	return (
-		<button type={type} disabled={disabled} onClick={onClick}>
-			{children}
-		</button>
+		<StyledButton type={type} disabled={disabled} onClick={onClick}>
+			<span>{label}</span>
+		</StyledButton>
 	);
 }
 

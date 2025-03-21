@@ -17,9 +17,7 @@ function Croupiers() {
         <ItemPrice>{formattedPrice}€</ItemPrice>
       </ItemCentralInfos>
       <ItemTotal>{croupiers.length}</ItemTotal>
-      <Button onClick={buyCroupier}>
-        buy croupier
-      </Button>
+      <Button label={'buy croupier'} onClick={buyCroupier} />
     </StyledItem>
   );
 }

@@ -17,9 +17,7 @@ function Cursors() {
         <ItemPrice>{formattedPrice}€</ItemPrice>
       </ItemCentralInfos>
       <ItemTotal>{cursors}</ItemTotal>
-      <Button onClick={buyCursor}>
-        buy cursor
-      </Button>
+      <Button label={'buy cursor'} onClick={buyCursor} />
     </StyledItem>
   );
 }

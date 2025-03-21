@@ -6,8 +6,8 @@ const SaveControls = () => {
 
   return (
     <div>
-      <Button onClick={saveGame}>Save Game</Button>
-      <Button onClick={clearSave}>Clear Save</Button>
+      <Button label={'Save Game'} onClick={saveGame} />
+      <Button label={'Clear Save'} onClick={clearSave} />
     </div>
   );
 };
