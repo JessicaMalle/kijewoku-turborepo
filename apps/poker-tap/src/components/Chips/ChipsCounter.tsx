@@ -1,16 +1,29 @@
 import type {ReactNode} from "react";
 import {useChips} from "../../hooks/states/useChips.ts";
-import useCountToUtils from "../../hooks/utils/useCountTo.utils.ts";
 import {StyledChipsCounter} from "./ChipsCounter.styles.ts";
+import {colors} from "../../Colors.styles.ts";
+import {StyledPokerChip} from "./BigChip.styles.ts";
+import Counter from "../DataDisplay/Counter.tsx";
 
 function ChipsCounter(): ReactNode {
   const {chips, prevChips} = useChips();
-  const currentValue = useCountToUtils({ from: prevChips, to: chips, speed: 1000, delay: 100, digits: 0 });
 
   return (
     <StyledChipsCounter>
       <h2>Chips</h2>
-      <p>{currentValue}</p>
+
+      <Counter
+        icon={
+          <StyledPokerChip
+            value="O"
+            accentColor={colors.blues.darkBlue}
+            primaryColor={colors.neutrals.white}
+            secondaryColor={colors.neutrals.veryPaleLight}
+            scale={0.15}
+          />
+        }
+        value={{ from: prevChips, to: chips }}
+      />
     </StyledChipsCounter>
   )
 }
