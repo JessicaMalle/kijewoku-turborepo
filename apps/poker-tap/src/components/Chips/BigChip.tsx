@@ -82,6 +82,7 @@ import {colors} from "../../Colors.styles.ts";
                 primaryColor={colors.neutrals.white}
                 secondaryColor={colors.neutrals.veryPaleLight}
                 onClick={() => addChips(10)}
+                scale={1.5}
               />
               <p>Total Bonus: +{formatedTotalBonus} CpC</p>
             </StyledBigChipWrapper>
