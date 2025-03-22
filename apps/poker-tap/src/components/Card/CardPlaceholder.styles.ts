@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import {colors} from "../../Colors.styles.ts";
 
 export const StyledCardPlaceholder = styled.div`
     container-name: card-placeholder;
@@ -12,13 +13,13 @@ export const StyledCardPlaceholder = styled.div`
     justify-content: center;
     align-items: center;
 
-    border: 2px dashed #006554;
-    background-color: #1e404425;
+    border: 2px dashed ${colors.greens.darkGreen};
+    background-color: ${colors.greens.green}50;
 		
 		transition: background-color 0.2s;
 		
 		&:hover {
-    	background-color: #1e404450;
+    	background-color: ${colors.greens.darkGreen}50;
 		}
 
     user-select: none;

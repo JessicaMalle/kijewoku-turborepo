@@ -3,6 +3,7 @@ import { useAnimation } from "@kijewoku/hooks/animation";
         import { useChips } from "../../hooks/states/useChips.ts";
         import {StyledBigChipWrapper, StyledPokerChip} from "./BigChip.styles.ts";
 import useDigits from "../../hooks/utils/useDigits.utils.ts";
+import {colors} from "../../Colors.styles.ts";
 
         function BigChip(): ReactNode {
           const { addChips, totalBonus } = useChips();
@@ -77,9 +78,9 @@ import useDigits from "../../hooks/utils/useDigits.utils.ts";
                   mouseLeaveAnimationRef.current = element;
                 }}
                 value="10"
-                accentColor="#004080"
-                primaryColor="#eee"
-                secondaryColor="#fff"
+                accentColor={colors.blues.darkBlue}
+                primaryColor={colors.neutrals.white}
+                secondaryColor={colors.neutrals.veryPaleLight}
                 onClick={() => addChips(10)}
               />
               <p>Total Bonus: +{formatedTotalBonus} CpC</p>

@@ -1,4 +1,5 @@
 import styled, {css} from "styled-components";
+import {colors} from "../../Colors.styles.ts";
 
 export const StyledCard = styled.div<{ color: string; active?: string }>`
     container-name: card;
@@ -6,15 +7,15 @@ export const StyledCard = styled.div<{ color: string; active?: string }>`
     position: relative;
     width: clamp(60px, 12vw, 100px);
     min-width: 60px;
-    border: 2px solid #f6e8e0;
+    border: 2px solid ${colors.neutrals.veryPaleLight};
     aspect-ratio: 2 / 3;
     border-radius: 8px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     
-    background-color: white;
-    color: ${props => (props.color === 'hearts' || props.color === 'diamonds') ? '#ec273f' : '#5e5b8c'};
+    background-color: ${colors.neutrals.white};
+    color: ${props => (props.color === 'hearts' || props.color === 'diamonds') ? colors.reds.cherryRed : colors.neutrals.paleDark};
     transform: ${props => props.active ? 'translateY(-10px)' : 'translateY(0)'};
     transition: transform 0.2s;
     font-family: "Bebas Neue", sans-serif;
@@ -40,12 +41,12 @@ export const SuitAndValueWrapper = styled.div`
     border: 2px solid transparent;
     border-radius: 6px;
     background:
-        linear-gradient(to bottom, #fff, #fff) padding-box,
+        linear-gradient(to bottom, ${colors.neutrals.white}, ${colors.neutrals.white}) padding-box,
         linear-gradient(
                 to top,
-                #f6e8e0 0%,
-                #fff 75%,
-                #fff 100%
+                ${colors.neutrals.veryPaleLight} 0%,
+                ${colors.neutrals.white} 75%,
+                ${colors.neutrals.white} 100%
         ) border-box;
     background-clip: content-box, border-box;
 `;
@@ -105,11 +106,11 @@ export const BigCardValue = styled.div<BigCardValueProps>`
     font-size: 90px;
     ${generateFontSizeContainers(fontSizeSteps)}
 
-    color: ${({ color }) => (color === 'hearts' || color === 'diamonds') ? '#ec273f' : '#5e5b8c'};
+    color: ${({ color }) => (color === 'hearts' || color === 'diamonds') ? colors.reds.cherryRed : colors.neutrals.pale};
     background: ${({ color }) =>
             (color === 'hearts' || color === 'diamonds')
-                    ? 'linear-gradient(to bottom, #ec273f, #ac2847)'
-                    : 'linear-gradient(to bottom, #5e5b8c, #3e3b65)'
+                    ? `linear-gradient(to bottom, ${colors.reds.cherryRed}, ${colors.reds.crimson})`
+                    : `linear-gradient(to bottom, ${colors.neutrals.medium}, ${colors.neutrals.mediumDark})`
     };
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;

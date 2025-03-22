@@ -1,12 +1,13 @@
 import styled from "styled-components";
+import {colors} from "./Colors.styles.ts";
 
 export const Main = styled.main`
 		display: grid;
 		grid-template-rows: 60px 1fr fit-content(100%);
 		height: 100vh;
 		max-height: 100vh;
-		background-color: #5e5b8c;
-		color: #10121c
+		background-color: ${colors.blues.navyBlue};
+		color: ${colors.neutrals.white};
 `;
 
 export const GameLayout = styled.div`
@@ -33,7 +34,7 @@ export const GameLayout = styled.div`
 		#poker-pads {
 				position: relative;
         grid-column: 2/3;
-        grid-row: 1/9;
+        grid-row: 1/10;
         overflow-y: scroll;
 		}
 

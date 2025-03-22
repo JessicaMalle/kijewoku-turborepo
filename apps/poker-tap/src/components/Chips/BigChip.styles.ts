@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import {colors} from "../../Colors.styles.ts";
 
 interface StyledPokerChipProps {
   value: string;
@@ -15,7 +16,10 @@ export const StyledPokerChip = styled.div<StyledPokerChipProps>`
   background-size: 151px 151px;
   background-position: center center;
   cursor: pointer;
-  
+  border-bottom: 5px solid ${props => props.accentColor};
+
+  box-shadow: 0 0 0 4px ${colors.neutrals.dark};
+
   &:before {
     position: absolute;
     content: "";

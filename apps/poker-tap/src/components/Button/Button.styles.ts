@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import {colors} from "../../Colors.styles.ts";
 
 export const StyledButton = styled.button`
       all: unset;
@@ -6,9 +7,9 @@ export const StyledButton = styled.button`
       justify-content: center;
       align-items: flex-start;
       cursor: pointer;
-      border: 3px solid #94493a;
+      border: 3px solid ${colors.neutrals.dark};
       border-radius: 6px;
-      background-color: #e98537;
+      background-color: ${colors.oranges.orange2};
       height: 45px;
 
       > span {
@@ -16,9 +17,9 @@ export const StyledButton = styled.button`
           height: 40px;
           line-height: 40px;
           padding: 0 30px;
-          background-color: #f3a833;
+          background-color: ${colors.oranges.orangeYellow};
           border-radius: 3px;
-		      color: #94493a;
+		      color: ${colors.neutrals.dark};
 		      font-weight: 700;
       }
 `;

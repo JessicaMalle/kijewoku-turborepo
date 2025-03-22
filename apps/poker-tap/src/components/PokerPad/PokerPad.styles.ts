@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import {colors} from "../../Colors.styles.ts";
 
 export const StyledPokerPad = styled.div`
     display: flex;
@@ -10,9 +11,11 @@ export const StyledPokerPad = styled.div`
     padding: 10px;
 		margin: 0 auto 30px auto;
     border-radius: 12px;
-    border: 2px solid #5ab552;
+    border: 2px solid ${colors.greens.limeGreen};
+		
+		box-shadow: 0 4px 0 0 ${colors.greens.darkGreen};
 
-    background-color: #26854c;
+    background-color: ${colors.greens.forestGreen};
     background-image:
             radial-gradient(circle at 5% 20%, rgba(0, 0, 0, 0.04) 1px, transparent 1px),
             radial-gradient(circle at 80% 5%, rgba(0, 0, 0, 0.03) 1px, transparent 1px),
@@ -29,5 +32,5 @@ export const StyledPokerPad = styled.div`
 
 export const StyledPokerPadInfos = styled.div`
 	text-align: center;
-	color: white;
+	color: ${colors.neutrals.white};
 `
