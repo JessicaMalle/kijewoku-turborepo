@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Main = styled.main`
 		display: grid;
-		grid-template-rows: 40px 1fr fit-content(100%);
+		grid-template-rows: 60px 1fr fit-content(100%);
 		height: 100vh;
 		max-height: 100vh;
 		background-color: #5e5b8c;
@@ -31,21 +31,22 @@ export const GameLayout = styled.div`
 		}
 
 		#poker-pads {
+				position: relative;
         grid-column: 2/3;
-        grid-row: 1/10;
+        grid-row: 1/9;
         overflow-y: scroll;
 		}
 
 		#items {
 				grid-column: 3/4;
-				grid-row: 1/8;
+				grid-row: 1/7;
         position: relative;
         z-index: 2;
 		}
 
 		#deck {
 				grid-column: 3/4;
-				grid-row: 8/10;
+				grid-row: 7/10;
         position: relative;
         z-index: 2;
 		}
@@ -55,7 +56,7 @@ export const Header = styled.div`
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
-		height: 40px;
+		height: 60px;
 		padding: 0 15px;
 
 		> h1 {

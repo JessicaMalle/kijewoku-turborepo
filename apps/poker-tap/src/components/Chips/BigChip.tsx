@@ -2,9 +2,11 @@ import { useAnimation } from "@kijewoku/hooks/animation";
         import type { ReactNode } from "react";
         import { useChips } from "../../hooks/states/useChips.ts";
         import {StyledBigChipWrapper, StyledPokerChip} from "./BigChip.styles.ts";
+import useDigits from "../../hooks/utils/useDigits.utils.ts";
 
         function BigChip(): ReactNode {
-          const { addChips } = useChips();
+          const { addChips, totalBonus } = useChips();
+          const formatedTotalBonus = useDigits({value: totalBonus, digits: 2});
 
           const mouseDownAnimationRef = useAnimation({
             keyframes: [
@@ -80,6 +82,7 @@ import { useAnimation } from "@kijewoku/hooks/animation";
                 secondaryColor="#fff"
                 onClick={() => addChips(10)}
               />
+              <p>Total Bonus: +{formatedTotalBonus} CpC</p>
             </StyledBigChipWrapper>
           );
         }

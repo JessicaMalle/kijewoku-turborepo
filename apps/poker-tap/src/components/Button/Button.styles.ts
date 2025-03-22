@@ -19,5 +19,6 @@ export const StyledButton = styled.button`
           background-color: #f3a833;
           border-radius: 3px;
 		      color: #94493a;
+		      font-weight: 700;
       }
 `;

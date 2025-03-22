@@ -1,14 +1,15 @@
-import {useSave} from "../hooks/states/useSave.ts";
-import Button from "./Button/Button.tsx";
+import {useSave} from "../../hooks/states/useSave.ts";
+import Button from "../Button/Button.tsx";
+import {StyledSaveControls} from "./SaveControles.styles.ts";
 
 const SaveControls = () => {
   const { saveGame, clearSave } = useSave();
 
   return (
-    <div>
+    <StyledSaveControls>
       <Button label={'Save Game'} onClick={saveGame} />
       <Button label={'Clear Save'} onClick={clearSave} />
-    </div>
+    </StyledSaveControls>
   );
 };
 

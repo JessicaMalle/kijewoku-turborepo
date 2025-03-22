@@ -62,6 +62,7 @@ export const StyledPokerChip = styled.div<StyledPokerChipProps>`
 
 export const StyledBigChipWrapper = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 100%;
