@@ -1,26 +1,22 @@
 import styled from "styled-components";
+import {colors} from "../../Colors.styles.ts";
 
 export const StyledCardBack = styled.div`
-    width: 100px;
+    width: 120px;
     min-width: 100px;
-    height: 150px;
-    border: 1px solid #000;
+    aspect-ratio: 2 / 3;
+    background-color: ${colors.neutrals.white};
+    background-image:  linear-gradient(135deg, ${colors.reds.cherryRed} 25%, transparent 25%),
+                       linear-gradient(225deg, ${colors.reds.cherryRed} 25%, transparent 25%),
+    									 linear-gradient(45deg, ${colors.reds.cherryRed} 25%, transparent 25%),
+    									 linear-gradient(315deg, ${colors.reds.cherryRed} 25%, ${colors.neutrals.white} 25%);
+    background-position:  20px 0, 20px 0, 0 0, 0 0;
+    background-size: 20px 20px;
+    background-repeat: repeat;
     border-radius: 8px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    padding: 10px;
-    background-color: #c40e0e;
-    background-image: radial-gradient(circle, #251f04 1px, #c40e0e 1px);
-    background-size: 10px 10px;
-    color: white;
-    font-weight: bold;
-    transform: scale(1);
-    transition: transform 0.2s;
-    user-select: none;
-    cursor: pointer;
+		border: 3px solid ${colors.reds.red};
+		box-shadow: 0 0 0 4px ${colors.neutrals.dark};
+		cursor: pointer;
 `;
 
 export const Rest = styled.div`
@@ -28,4 +24,8 @@ export const Rest = styled.div`
     font-size: 2rem;
     background-color: black;
     padding: 10px;
+		
+		display: none;
 `;
+
+
