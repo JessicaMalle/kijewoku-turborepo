@@ -26,7 +26,7 @@ export const GameLayout = styled.div`
 
 		#big-chip {
 				grid-column: 1/2;
-				grid-row: 2/10;
+				grid-row: 1/10;
         position: relative;
 				z-index: 2;
 		}

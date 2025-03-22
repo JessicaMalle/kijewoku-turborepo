@@ -17,11 +17,11 @@ function App(): ReactNode {
 				<SaveControls />
 			</Header>
 			<GameLayout>
-				<StyledSection id="chips-counter">
-					<ChipsCounter />
-				</StyledSection>
 				<StyledSection id="big-chip">
-					<BigChip />
+					<div>
+						<ChipsCounter />
+						<BigChip />
+					</div>
 				</StyledSection>
 				<StyledSection id="poker-pads" neutralStyle>
 					<PokerPads />
