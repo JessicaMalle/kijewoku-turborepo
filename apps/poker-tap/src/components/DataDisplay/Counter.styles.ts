@@ -13,7 +13,8 @@ export const CounterIcon = styled.div`
 		    left: -5px;
 		    top: -5px;
         > div {
-	          border: 2px solid ${colors.neutrals.dark};
+	          border: 3px solid ${colors.neutrals.dark};
+		        border-radius: 50%;
 	          cursor: default;
 				}
 		}

@@ -8,8 +8,13 @@ import { GameLayout, Header, Main } from "./App.styles.ts";
 import PokerPads from "./components/Layouts/PokerPads.tsx";
 import type {ReactNode} from "react";
 import ShopSection from "./components/Layouts/ShopSection.tsx";
+import {useChips} from "./hooks/states/useChips.ts";
+import useDigits from "./hooks/utils/useDigits.utils.ts";
 
 function App(): ReactNode {
+	const { totalBonus } = useChips();
+	const formatedTotalBonus = useDigits({value: totalBonus, digits: 2});
+
 	return (
 		<Main>
 			<Header>
@@ -20,7 +25,8 @@ function App(): ReactNode {
 				<StyledSection id="big-chip">
 					<div>
 						<ChipsCounter />
-						<BigChip />
+						<div>Total Bonus: +{formatedTotalBonus} CpC</div>
+						<BigChip scale={1.5} />
 					</div>
 				</StyledSection>
 				<StyledSection id="poker-pads" neutralStyle>

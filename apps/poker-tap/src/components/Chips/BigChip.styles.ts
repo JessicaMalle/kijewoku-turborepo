@@ -6,17 +6,18 @@ interface StyledPokerChipProps {
   accentColor: string;
   primaryColor: string;
   secondaryColor: string;
-  scale?: number; // Paramètre multiplicateur pour la taille
+  noInteraction?: boolean;
+  scale?: number;
 }
 
 export const StyledPokerChip = styled.div<StyledPokerChipProps>`
   position: relative;
-  width: ${props => 151 * (props.scale || 1)}px; /* Largeur multipliée par scale */
-  height: ${props => 151 * (props.scale || 1)}px; /* Hauteur multipliée par scale */
+  width: ${props => 151 * (props.scale || 1)}px;
+  height: ${props => 151 * (props.scale || 1)}px;
   border-radius: 100%;
   background-size: ${props => 151 * (props.scale || 1)}px ${props => 151 * (props.scale || 1)}px;
   background-position: center center;
-  cursor: pointer;
+  cursor: ${props => props.noInteraction ? "default" : "pointer"};
   border-bottom: ${props => 5 * (props.scale || 1)}px solid ${props => props.accentColor};
 
   box-shadow: 0 0 0 ${props => 4 * (props.scale || 1)}px ${colors.neutrals.dark};
