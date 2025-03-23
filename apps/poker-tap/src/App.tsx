@@ -7,9 +7,9 @@ import { StyledSection } from "./components/Layouts/Section.styles.ts";
 import {GameLayout, Header, Main, MeshGradientWrapper} from "./App.styles.ts";
 import PokerPads from "./components/Layouts/PokerPads.tsx";
 import type {ReactNode} from "react";
-import ShopSection from "./components/Layouts/ShopSection.tsx";
 import {useChips} from "./hooks/states/useChips.ts";
 import useDigits from "./hooks/utils/useDigits.utils.ts";
+import ShopSection from "./components/DataDisplay/ShopSection.tsx";
 
 function App(): ReactNode {
 	const { totalBonus } = useChips();

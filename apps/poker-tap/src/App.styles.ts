@@ -4,7 +4,7 @@ import {colors} from "./Colors.styles.ts";
 // Animation clé pour déplacer le gradient
 const meshGradientAnimation = keyframes`
     0% {
-        background-position: 0% 50%;
+        background-position: 0 50%;
     }
     25% {
         background-position: 30% 70%;
@@ -16,7 +16,7 @@ const meshGradientAnimation = keyframes`
         background-position: 70% 90%;
     }
     100% {
-        background-position: 0% 50%;
+        background-position: 0 50%;
     }
 `;
 
@@ -34,7 +34,6 @@ export const MeshGradientWrapper = styled.div`
     animation: ${meshGradientAnimation} 15s ease-in-out infinite;
 		z-index: -1;
 `;
-
 
 export const Main = styled.main`
 		position: relative;
