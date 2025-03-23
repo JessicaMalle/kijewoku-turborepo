@@ -23,7 +23,7 @@ export const SaveService = {
   },
 
   initializePokerPads: (): PokerPad[] => {
-    return Array(10).fill(null).map((_, index) => ({
+    return Array(1).fill(null).map((_, index) => ({
       uid: uuIdv5(`pokerPad-${index}`, NAMESPACE),
       cards: []
     }));
