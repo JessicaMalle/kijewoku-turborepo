@@ -66,10 +66,16 @@ export const GameLayout = styled.div`
 		}
 
 		#poker-pads {
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+				align-self: center;
 				position: relative;
         grid-column: 2/3;
         grid-row: 1/10;
         overflow-y: scroll;
+				max-height: 80%;
 		}
 
 		#items {
