@@ -10,6 +10,7 @@ export const StyledButton = styled.button`
       border: 3px solid ${colors.neutrals.dark};
       border-radius: 6px;
       background-color: ${colors.oranges.orange2};
+			max-width: fit-content;
       height: 45px;
 
       > span {

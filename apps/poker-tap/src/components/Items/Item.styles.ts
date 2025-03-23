@@ -1,17 +1,20 @@
 import styled from "styled-components";
+import {colors} from "../../Colors.styles.ts";
 
 export const StyledItems = styled.div`
 		display: flex;
 		flex-direction: column;
-		gap: 15px
+		gap: 15px;
+		color: ${colors.neutrals.dark};
 `
 
 export const StyledItem = styled.div`
 		position: relative;
 		height: 64px;
-		border: 2px solid #8c78a5;
-		border-radius: 36px;
-		background-color: #b0a7b8;
+		border: 2px solid ${colors.neutrals.paleLight};
+		border-radius: 8px;
+		background-color: ${colors.neutrals.veryPaleLight};
+    box-shadow: 0 0 0 2px ${colors.neutrals.dark};
 		
 		display: flex;
 		justify-content: space-between;
@@ -39,7 +42,7 @@ export const ItemImage = styled.div`
 		width: 80px;
 		min-width: 80px;
 		height: 64px;
-		background-color: #8c78a5;
+		background-color: ${colors.neutrals.pale};
 `
 
 export const ItemCentralInfos = styled.div`
@@ -57,12 +60,11 @@ export const ItemTotal = styled.div`
 		min-width: 56px;
     height: 56px;
     line-height: 56px;
-		border-radius: 100%;
     font-size: 32px;
 		font-weight: 700;
 		text-align: center;
 		margin-right: 4px;
-		background-color: #ffffff;
+		color: ${colors.neutrals.mediumDark};
 `
 
 export const ItemPrice = styled.div`

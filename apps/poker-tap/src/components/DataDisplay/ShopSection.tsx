@@ -5,6 +5,7 @@ import Button from "../Button/Button.tsx";
 import {useAppContext} from "../../hooks/states/useAppContext.ts";
 import useDigits from "../../hooks/utils/useDigits.utils.ts";
 import {StyledShopSection} from "./StyledShopSection.styles.ts";
+import {StyledItems} from "../Items/Item.styles.ts";
 
 function ShopSection(): ReactNode {
 		const { pokerPads, buyPokerPad, nextPokerPadPrice } = useAppContext()
@@ -13,8 +14,10 @@ function ShopSection(): ReactNode {
 		return (
 			<StyledShopSection>
 				<h2>Shopoker</h2>
-				<Cursors />
-				<Croupiers />
+				<StyledItems>
+					<Cursors />
+					<Croupiers />
+				</StyledItems>
 				<h2>Poker Pads</h2>
 				<p>We have {pokerPads.length} actually.</p>
 				<Button label={`Buy Poker Pad (${formatedNextPokerPadPrice}€)`} onClick={buyPokerPad} />
