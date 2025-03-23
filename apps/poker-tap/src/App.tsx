@@ -4,7 +4,7 @@ import Deck from "./components/Deck/Deck.tsx";
 import Hand from "./components/Hand/Hand.tsx";
 import SaveControls from "./components/Layouts/SaveControls.tsx";
 import { StyledSection } from "./components/Layouts/Section.styles.ts";
-import { GameLayout, Header, Main } from "./App.styles.ts";
+import {GameLayout, Header, Main, MeshGradientWrapper} from "./App.styles.ts";
 import PokerPads from "./components/Layouts/PokerPads.tsx";
 import type {ReactNode} from "react";
 import ShopSection from "./components/Layouts/ShopSection.tsx";
@@ -17,6 +17,7 @@ function App(): ReactNode {
 
 	return (
 		<Main>
+			<MeshGradientWrapper />
 			<Header>
 				<h1>Poker Tap</h1>
 				<SaveControls />
