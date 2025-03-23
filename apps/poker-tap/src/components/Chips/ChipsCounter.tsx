@@ -13,7 +13,7 @@ function ChipsCounter(): ReactNode {
         icon={
           <BigChip
             noInteraction
-            size={40}
+            size={34}
           />
         }
         label="Chips"

@@ -2,33 +2,50 @@ import styled from "styled-components";
 import {colors} from "../../Colors.styles.ts";
 
 export const StyledCounter = styled.div`
-		position: relative;
-		text-align: right;
-		height: 42px;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		gap: 10px;
+		padding: 10px;
+		background-color: ${colors.blues.cyan};
+		border: 2px solid ${colors.blues.turquoise};
+    border-bottom: 10px solid ${colors.blues.turquoise};
+		border-radius: 5px;
+`
+
+export const LeftCounterPart = styled.div`
+		display: flex;
+		align-items: center;
+		gap: 5px;
 `
 
 export const CounterIcon = styled.div`
-    > div {
-	    	position: absolute;
-		    left: -5px;
-		    top: -5px;
-        > div {
-	          border: 3px solid ${colors.neutrals.dark};
-		        border-radius: 50%;
-	          cursor: default;
-				}
-		}
+		border: 3px solid ${colors.blues.turquoise};
+		border-radius: 50%;
+`
+
+export const CounterLabel = styled.span`
+		text-transform: uppercase;
+		font-weight: 700;
+		color: ${colors.neutrals.dark};
+		text-shadow: 0 2px 0 ${colors.neutrals.veryPaleLight};
+`
+
+export const CounterValue = styled.span`
+    text-align: right;
+    color: ${colors.neutrals.dark};
+    font-size: 24px;
+    font-weight: 700;
 `
 
 export const CounterValueWrapper = styled.div`
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-		width: calc(100% - 20px);
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		width: 100%;
+		background-color: ${colors.neutrals.white};
 		padding: 0 10px;
-    font-size: 20px;
-    font-weight: 700;
-		border-radius: 4px;
-    background-color: ${colors.neutrals.dark}75;
-		border-bottom: 3px solid ${colors.neutrals.dark}50;
+		border-radius: 3px;
+		border-bottom: 3px solid ${colors.neutrals.veryPaleLight};
+    box-shadow: 0 0 0 2px ${colors.blues.turquoise};
 `

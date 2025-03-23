@@ -1,6 +1,13 @@
 import type {ReactNode} from "react";
 import useCountToUtils from "../../hooks/utils/useCountTo.utils.ts";
-import {CounterIcon, CounterValueWrapper, StyledCounter} from "./Counter.styles.ts";
+import {
+	CounterIcon,
+	CounterLabel,
+	CounterValue,
+	CounterValueWrapper,
+	LeftCounterPart,
+	StyledCounter
+} from "./Counter.styles.ts";
 
 interface CounterProps {
 	label: string;
@@ -17,10 +24,19 @@ function Counter({ label, value, icon, speed = 1000, delay = 100, digits = 0 }: 
 	return (
 		<StyledCounter>
 			<>
-				<CounterIcon>
-					<div>{icon}</div>
-				</CounterIcon>
-				<CounterValueWrapper>{currentValue} {label}</CounterValueWrapper>
+				<LeftCounterPart>
+					<CounterIcon>
+						<div>{icon}</div>
+					</CounterIcon>
+				</LeftCounterPart>
+				<CounterValueWrapper>
+					<CounterLabel>
+						{label}
+					</CounterLabel>
+					<CounterValue>
+						{currentValue}
+					</CounterValue>
+				</CounterValueWrapper>
 			</>
 		</StyledCounter>
 	)
