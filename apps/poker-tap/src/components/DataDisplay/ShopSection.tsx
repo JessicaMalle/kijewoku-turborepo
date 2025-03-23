@@ -20,7 +20,7 @@ function ShopSection(): ReactNode {
 				</StyledItems>
 				<h2>Poker Pads</h2>
 				<p>We have {pokerPads.length} actually.</p>
-				<Button label={`Buy Poker Pad (${formatedNextPokerPadPrice}€)`} onClick={buyPokerPad} />
+				<Button label={`Add Poker Pad (${formatedNextPokerPadPrice}€)`} onClick={buyPokerPad} />
 			</StyledShopSection>
 		);
 }
