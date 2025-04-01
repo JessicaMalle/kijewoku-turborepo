@@ -9,7 +9,6 @@ export const StyledCounter = styled.div`
 		padding: 10px;
 		background-color: ${colors.blues.cyan};
 		border: 2px solid ${colors.blues.turquoise};
-    border-bottom: 10px solid ${colors.blues.turquoise};
 		border-radius: 5px;
 `
 
