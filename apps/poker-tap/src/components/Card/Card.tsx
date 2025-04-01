@@ -2,8 +2,9 @@ import type {ReactNode} from "react";
 import {useHand} from "../../hooks/states/useHand.ts";
 import type {Card as CardType} from "../../types/gameTypes.ts";
 import {BigCardValue, CardSuit, CardValue, StyledCard, SuitAndValueWrapper} from "./Card.styles.ts";
+import {useDragAndDrop} from "../../hooks/utils/useDragAndDrop.utils.ts";
 
-function Card({uid, color, value, active, isDraggable }: CardType): ReactNode {
+function Card({uid, color, value, active, isDraggable = false }: CardType): ReactNode {
   const suitSymbols: Record<string, string> = {
     spades: '♠',
     hearts: '♥',
@@ -11,10 +12,19 @@ function Card({uid, color, value, active, isDraggable }: CardType): ReactNode {
     diamonds: '♦'
   };
 
-  const {toggleSelectedCard} = useHand();
+  const {toggleSelectedCard, forceHandOpen} = useHand();
+
+  const { elementRef, handleMouseDown, isDragging } = useDragAndDrop({
+    isDraggable,
+    onDragStart: () => forceHandOpen(true),
+    onDragEnd: () => forceHandOpen(false),
+  });
 
   return (
     <StyledCard
+      ref={elementRef}
+      onMouseDown={handleMouseDown}
+      isDragging={isDragging}
       color={color}
       active={active ? "true" : undefined}
       isDraggable={isDraggable}

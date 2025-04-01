@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
-export const StyledHand = styled.div`
+export const StyledHand = styled.div<{ forceOpen: boolean }>`
     position: fixed;
-    bottom: -80px;
+    bottom: ${props => (props.forceOpen) ? '20px' : '-45px'};
 		transform: translateX(-50%);
     left: 50%;
     display: flex;
@@ -15,7 +15,7 @@ export const StyledHand = styled.div`
     transition: bottom 0.2s;
 
     &:hover {
-        bottom: 0;
+        bottom: 20px;
     }
 `;
 

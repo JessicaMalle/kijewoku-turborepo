@@ -6,5 +6,7 @@ export const useHand = () => {
 
   const countSelectedCards = HandService.countSelectedCards(hand);
 
-  return { hand, drawCard, toggleSelectedCard, countSelectedCards };
+  const forceHandOpen = (open: boolean) => HandService.forceHandOpen(hand, open);
+
+  return { hand, drawCard, toggleSelectedCard, countSelectedCards, forceHandOpen };
 }

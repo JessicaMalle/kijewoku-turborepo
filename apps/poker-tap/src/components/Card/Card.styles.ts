@@ -1,7 +1,7 @@
 import styled, {css} from "styled-components";
 import {colors} from "../../Colors.styles.ts";
 
-export const StyledCard = styled.div<{ color: string; active?: string, isDraggable?: boolean }>`
+export const StyledCard = styled.div<{ color: string; active?: string, isDraggable?: boolean, isDragging?: boolean }>`
     container-name: card;
     container-type: inline-size;
     position: relative;
@@ -17,7 +17,7 @@ export const StyledCard = styled.div<{ color: string; active?: string, isDraggab
     background-color: ${colors.neutrals.white};
     color: ${props => (props.color === 'hearts' || props.color === 'diamonds') ? colors.reds.cherryRed : colors.neutrals.paleDark};
     transform: ${props => props.active ? 'translateY(-10px)' : 'translateY(0)'};
-    transition: transform 0.2s;
+    transition: ${props => (props.isDragging ? '0ms' : '200ms')};
     font-family: "Bebas Neue", sans-serif;
     
     user-select: none;
@@ -25,8 +25,8 @@ export const StyledCard = styled.div<{ color: string; active?: string, isDraggab
     cursor: ${props => (props.isDraggable) ? 'pointer' : 'default'};
 
     @media (hover: hover) and (pointer: fine) {
-        &:hover {
-            transform: ${props => (props.isDraggable) ? 'scale(1.1)' : 'scale(1)'};
+        &:hover > div:last-child {
+            filter: ${props => (props.isDraggable) ? 'contrast(1.4)' : 'brightness(1)'};
         }
     }
 `;

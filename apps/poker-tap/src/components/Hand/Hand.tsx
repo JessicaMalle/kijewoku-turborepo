@@ -45,7 +45,7 @@ function Hand(): ReactNode {
   if (hand.Cards.length === 0) return null;
 
   return (
-    <StyledHand>
+    <StyledHand forceOpen={hand.forceOpen || false}>
       {hand.Cards.map((card, index) => (
         <StyledCard
           key={`hand-card-${card.color}-${card.value}-i${index}`}

@@ -33,11 +33,16 @@ const removeSelectedCards = (hand: Hand['Cards']): Hand['Cards'] => {
   return hand.filter(card => !card.active);
 };
 
+const forceHandOpen = (hand: Hand, open: boolean): Hand => {
+  return { ...hand, forceOpen: open };
+};
+
 const HandService = {
   countSelectedCards,
   drawCard,
   toggleSelectedCard,
   removeSelectedCards,
+  forceHandOpen,
 };
 
 export default HandService;

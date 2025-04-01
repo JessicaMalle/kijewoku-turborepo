@@ -18,6 +18,7 @@ export interface Card {
 export interface Hand {
   Cards: Card[];
   firstPickMade: boolean;
+  forceOpen?: boolean;
 }
 
 export interface Deck {
