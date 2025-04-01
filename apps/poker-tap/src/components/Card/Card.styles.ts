@@ -1,7 +1,7 @@
 import styled, {css} from "styled-components";
 import {colors} from "../../Colors.styles.ts";
 
-export const StyledCard = styled.div<{ color: string; active?: string }>`
+export const StyledCard = styled.div<{ color: string; active?: string, isDraggable?: boolean }>`
     container-name: card;
     container-type: inline-size;
     position: relative;
@@ -22,11 +22,11 @@ export const StyledCard = styled.div<{ color: string; active?: string }>`
     
     user-select: none;
     overflow: hidden;
-    cursor: pointer;
+    cursor: ${props => (props.isDraggable) ? 'pointer' : 'default'};
 
     @media (hover: hover) and (pointer: fine) {
         &:hover {
-            transform: scale(1.1);
+            transform: ${props => (props.isDraggable) ? 'scale(1.1)' : 'scale(1)'};
         }
     }
 `;

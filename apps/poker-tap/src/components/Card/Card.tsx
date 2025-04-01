@@ -3,7 +3,7 @@ import {useHand} from "../../hooks/states/useHand.ts";
 import type {Card as CardType} from "../../types/gameTypes.ts";
 import {BigCardValue, CardSuit, CardValue, StyledCard, SuitAndValueWrapper} from "./Card.styles.ts";
 
-function Card({uid, color, value, active }: CardType): ReactNode {
+function Card({uid, color, value, active, isDraggable }: CardType): ReactNode {
   const suitSymbols: Record<string, string> = {
     spades: '♠',
     hearts: '♥',
@@ -17,6 +17,7 @@ function Card({uid, color, value, active }: CardType): ReactNode {
     <StyledCard
       color={color}
       active={active ? "true" : undefined}
+      isDraggable={isDraggable}
       onClick={() => toggleSelectedCard(uid)}
     >
       <SuitAndValueWrapper>

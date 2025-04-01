@@ -12,6 +12,7 @@ export interface Card {
   value: CardValue;
   numericValue: number;
   active?: boolean
+  isDraggable?: boolean;
 }
 
 export interface Hand {

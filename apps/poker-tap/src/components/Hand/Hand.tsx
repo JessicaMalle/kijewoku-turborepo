@@ -56,7 +56,7 @@ function Hand(): ReactNode {
             `,
           }}
         >
-          <Card {...card} />
+          <Card isDraggable {...card} />
         </StyledCard>
       ))}
     </StyledHand>
