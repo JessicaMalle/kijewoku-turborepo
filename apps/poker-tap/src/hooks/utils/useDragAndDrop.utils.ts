@@ -23,6 +23,16 @@ export function useDragAndDrop({
 		setIsDragging(true);
 		startPosition.current = { x: e.clientX, y: e.clientY };
 
+		const deltaX = e.clientX - startPosition.current.x;
+		const deltaY = e.clientY - startPosition.current.y;
+
+		setPosition({ x: deltaX, y: deltaY });
+
+		const element = elementRef.current;
+		if (element) {
+			element.style.transform = `translate(${deltaX}px, ${deltaY}px)`;
+		}
+
 		// Appel du callback
 		onDragStart?.();
 
@@ -33,7 +43,6 @@ export function useDragAndDrop({
 	const handleMouseMove = (e: MouseEvent) => {
 		if (!isDragging) return;
 
-		// Calcul de la nouvelle position
 		const deltaX = e.clientX - startPosition.current.x;
 		const deltaY = e.clientY - startPosition.current.y;
 
@@ -41,7 +50,6 @@ export function useDragAndDrop({
 
 		const element = elementRef.current;
 		if (element) {
-			// Mise à jour de la position de l'élément (transform CSS)
 			element.style.transform = `translate(${deltaX}px, ${deltaY}px)`;
 		}
 	};

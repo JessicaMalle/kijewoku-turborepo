@@ -49,12 +49,13 @@ function Hand(): ReactNode {
       {hand.Cards.map((card, index) => (
         <StyledCard
           key={`hand-card-${card.color}-${card.value}-i${index}`}
-          style={{
+          isDragging={hand.draggingCardUid === card.uid}
+          style={hand.draggingCardUid !== card.uid ? {
             transform: `
               rotate(${angles[index]}deg) 
               translateY(${translations[index]}px)
             `,
-          }}
+          } : {}}
         >
           <Card isDraggable {...card} />
         </StyledCard>

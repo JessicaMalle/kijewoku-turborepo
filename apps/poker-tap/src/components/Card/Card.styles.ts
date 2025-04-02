@@ -22,7 +22,7 @@ export const StyledCard = styled.div<{ color: string; active?: string, isDraggab
     
     user-select: none;
     overflow: hidden;
-    cursor: ${props => (props.isDraggable) ? 'pointer' : 'default'};
+    cursor: ${props => (props.isDraggable) ? 'grab' : 'default'};
 
     @media (hover: hover) and (pointer: fine) {
         &:hover > div:last-child {

@@ -19,13 +19,22 @@ export const StyledHand = styled.div<{ forceOpen: boolean }>`
     }
 `;
 
-export const StyledCard = styled.div`
-    position: relative;
-    transform-origin: bottom center;
-    transition: transform 0.2s ease-in-out;
+export const StyledCard = styled.div<{ isDragging: boolean }>((props) => ({
+	...(props.isDragging
+		? {
+			zIndex: 999,
+			transform: "none",
+			transition: "none",
+			transformOrigin: "center center",
+		}
+		: {
+			position: "relative",
+			transformOrigin: "bottom center",
+			transition: "transform 0.2s ease-in-out",
+			"&:hover": {
+				transform: "translateY(-40px) scale(1.1)",
+				zIndex: 10,
+			},
+		}),
+}));
 
-    &:hover {
-        transform: translateY(-40px) scale(1.1);
-        z-index: 10;
-    }
-`;
