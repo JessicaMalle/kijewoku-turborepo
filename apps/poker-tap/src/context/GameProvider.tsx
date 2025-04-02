@@ -46,6 +46,14 @@ export const GameProvider = ({ children }: { children: React.ReactNode }) => {
     dispatch({type: 'DRAW_CARD_AND_DEDUCT_CHIPS'})
   }
 
+  const setDraggingCardUid = (cardUid: string) => {
+    dispatch({type: 'SET_DRAGGING_CARD_UID', payload: cardUid})
+  }
+
+  const clearDraggingCardUid = () => {
+    dispatch({type: 'CLEAR_DRAGGING_CARD_UID'})
+  }
+
   const toggleSelectedCard = (uid: string) =>
     dispatch({ type: 'TOGGLE_SELECTED_HAND_CARD', payload: uid });
 
@@ -71,6 +79,8 @@ export const GameProvider = ({ children }: { children: React.ReactNode }) => {
       revealDeck,
       drawCard,
       drawCardAndDeductChips,
+      setDraggingCardUid,
+      clearDraggingCardUid,
       toggleSelectedCard,
       placeCardsOnTable,
       getTotalBonus,

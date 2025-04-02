@@ -21,6 +21,8 @@ interface GameContextType extends GameState {
   toggleSelectedCard: (uid: string) => void;
   placeCardsOnTable: (index: number) => void;
   drawCardAndDeductChips: () => void;
+  setDraggingCardUid: (cardUid: string) => void;
+  clearDraggingCardUid: () => void;
   getTotalBonus: () => number;
   buyCursor: () => void;
   buyCroupier: () => void;
@@ -34,6 +36,8 @@ export type Action =
   | { type: "PLACE_CARDS_ON_TABLE", payload: number }
   | { type: "DRAW_CARD", payload: number }
   | { type: "DRAW_CARD_AND_DEDUCT_CHIPS" }
+  | { type: "SET_DRAGGING_CARD_UID", payload: string }
+  | { type: "CLEAR_DRAGGING_CARD_UID" }
   | { type: "BUY_CURSOR" }
   | { type: "BUY_CROUPIER" }
   | { type: "ADD_CHIPS_BY_CROUPIERS" }

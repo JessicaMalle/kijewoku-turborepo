@@ -69,7 +69,7 @@ export const GameReducer = (state: GameState, action: Action): GameState => {
         chips: updatedChips,
       };
     }
-    case 'TOGGLE_SELECTED_HAND_CARD':
+    case 'TOGGLE_SELECTED_HAND_CARD': {
       return {
         ...state,
         hand: {
@@ -77,6 +77,25 @@ export const GameReducer = (state: GameState, action: Action): GameState => {
           Cards: HandService.toggleSelectedCard(state.hand.Cards, action.payload)
         }
       };
+    }
+    case 'SET_DRAGGING_CARD_UID': {
+      return {
+        ...state,
+        hand: {
+          ...state.hand,
+          draggingCardUid: action.payload,
+        }
+      }
+    }
+    case 'CLEAR_DRAGGING_CARD_UID': {
+      return {
+        ...state,
+        hand: {
+          ...state.hand,
+          draggingCardUid: undefined,
+        }
+      }
+    }
     case "PLACE_CARDS_ON_TABLE": {
       const { newHand, newPokerPads } = PokerPadService.placeCardsOnTable(state.hand.Cards, state.pokerPads, action.payload);
 

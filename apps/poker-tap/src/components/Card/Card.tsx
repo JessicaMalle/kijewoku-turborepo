@@ -12,12 +12,18 @@ function Card({uid, color, value, active, isDraggable = false }: CardType): Reac
     diamonds: '♦'
   };
 
-  const {toggleSelectedCard, forceHandOpen} = useHand();
+  const {toggleSelectedCard, forceHandOpen, setDraggingCardUid, clearDraggingCardUid} = useHand();
 
   const { elementRef, handleMouseDown, isDragging } = useDragAndDrop({
     isDraggable,
-    onDragStart: () => forceHandOpen(true),
-    onDragEnd: () => forceHandOpen(false),
+    onDragStart: () => {
+      setDraggingCardUid(uid)
+      forceHandOpen(true)
+    },
+    onDragEnd: () => {
+      clearDraggingCardUid()
+      forceHandOpen(false)
+    },
   });
 
   return (
