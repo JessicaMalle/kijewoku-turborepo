@@ -14,7 +14,7 @@ function Card({uid, color, value, active, isDraggable = false }: CardType): Reac
 
   const {toggleSelectedCard, forceHandOpen, setDraggingCardUid, clearDraggingCardUid} = useHand();
 
-  const { elementRef, handleMouseDown, isDragging } = useDragAndDrop({
+  const { elementRef, handleMouseDown, handleTouchStart, isDragging } = useDragAndDrop({
     isDraggable,
     onDragStart: () => {
       setDraggingCardUid(uid)
@@ -30,6 +30,7 @@ function Card({uid, color, value, active, isDraggable = false }: CardType): Reac
     <StyledCard
       ref={elementRef}
       onMouseDown={handleMouseDown}
+      onTouchStart={handleTouchStart}
       isDragging={isDragging}
       color={color}
       active={active ? "true" : undefined}
