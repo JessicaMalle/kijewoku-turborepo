@@ -83,6 +83,7 @@ export const GameReducer = (state: GameState, action: Action): GameState => {
         ...state,
         hand: {
           ...state.hand,
+          forceOpen: true,
           draggingCardUid: action.payload,
         }
       }
@@ -92,6 +93,7 @@ export const GameReducer = (state: GameState, action: Action): GameState => {
         ...state,
         hand: {
           ...state.hand,
+          forceOpen: false,
           draggingCardUid: undefined,
         }
       }
