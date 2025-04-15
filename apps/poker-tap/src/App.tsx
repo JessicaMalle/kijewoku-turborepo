@@ -10,6 +10,7 @@ import type {ReactNode} from "react";
 import {useChips} from "./hooks/states/useChips.ts";
 import useDigits from "./hooks/utils/useDigits.utils.ts";
 import ShopSection from "./components/DataDisplay/ShopSection.tsx";
+import {PositionProvider} from "./context/PositionStore.tsx";
 
 function App(): ReactNode {
 	const { totalBonus } = useChips();
@@ -22,27 +23,29 @@ function App(): ReactNode {
 				<h1>Poker Tap</h1>
 				<SaveControls />
 			</Header>
-			<GameLayout>
-				<StyledSection id="big-chip">
-					<div>
-						<ChipsCounter />
-						<div>Total Bonus: +{formatedTotalBonus} CpC</div>
-						<BigChip scale={1.5} />
-					</div>
+			<PositionProvider>
+				<GameLayout>
+					<StyledSection id="big-chip">
+						<div>
+							<ChipsCounter />
+							<div>Total Bonus: +{formatedTotalBonus} CpC</div>
+							<BigChip scale={1.5} />
+						</div>
+					</StyledSection>
+					<StyledSection id="poker-pads" neutralStyle>
+						<PokerPads />
+					</StyledSection>
+					<StyledSection id="items">
+						<ShopSection />
+					</StyledSection>
+					<StyledSection id="deck">
+						<Deck />
+					</StyledSection>
+				</GameLayout>
+				<StyledSection id="hand" neutralStyle>
+					<Hand />
 				</StyledSection>
-				<StyledSection id="poker-pads" neutralStyle>
-					<PokerPads />
-				</StyledSection>
-				<StyledSection id="items">
-					<ShopSection />
-				</StyledSection>
-				<StyledSection id="deck">
-					<Deck />
-				</StyledSection>
-			</GameLayout>
-			<StyledSection id="hand" neutralStyle>
-				<Hand />
-			</StyledSection>
+			</PositionProvider>
 		</Main>
 	);
 }
