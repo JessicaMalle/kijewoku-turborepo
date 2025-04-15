@@ -3,10 +3,10 @@ import { useState, useRef, useEffect } from "react";
 export type Position = { x: number; y: number };
 
 export function useDragAndDrop({
-	                               isDraggable = false,
-	                               onDragStart,
-	                               onDragEnd,
-                               }: {
+	isDraggable = false,
+	onDragStart,
+	onDragEnd,
+}: {
 	isDraggable: boolean;
 	onDragStart?: () => void;
 	onDragEnd?: (position: Position) => void;
@@ -98,7 +98,9 @@ export function useDragAndDrop({
 			// Attacher les événements globaux
 			document.addEventListener("mousemove", handleMouseMove);
 			document.addEventListener("mouseup", handleMouseUp);
-			document.addEventListener("touchmove", handleTouchMove, { passive: false });
+			document.addEventListener("touchmove", handleTouchMove, {
+				passive: false,
+			});
 			document.addEventListener("touchend", handleTouchEnd);
 			document.addEventListener("touchcancel", handleTouchEnd);
 		} else {
@@ -124,6 +126,6 @@ export function useDragAndDrop({
 		isDragging,
 		position,
 		handleMouseDown,
-		handleTouchStart
+		handleTouchStart,
 	};
 }

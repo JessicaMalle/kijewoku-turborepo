@@ -8,18 +8,29 @@ import CardPlaceholder from "../Card/CardPlaceholder.tsx";
 import { StyledPokerPad, StyledPokerPadInfos } from "./PokerPad.styles.ts";
 import { usePosition } from "../../hooks/process/usePosition.ts";
 import { useElementBounds } from "../../hooks/utils/useElementBounds.ts";
+import { useHand } from "../../hooks/states/useHand.ts";
+import { useGlobalMouseUp } from "../../providers/useGlobalMouseEvent.tsx";
 
-function PokerPad({ cardId }: { cardId: number }): ReactNode {
-	const { pokerPad, placeCardsOnTable } = usePokerPad(cardId);
+function PokerPad({ id }: { id: number }): ReactNode {
+	const { pokerPad, placeCardsOnTable } = usePokerPad(id);
 	const { sortedCards } = useSortedCards(pokerPad.cards, "value");
 	const { position } = usePosition();
+	const { hand, clearDraggingCardUid } = useHand();
 	const myElementRef = useRef<HTMLDivElement>(null);
 	const isInsideElement = useElementBounds<HTMLDivElement>({
 		elementRef: myElementRef,
 		...position,
 	});
 
-	const { hand, bonus } = PokerPadService.getPokerHandDetails(pokerPad.cards);
+	useGlobalMouseUp(() => {
+		if (isInsideElement && hand.draggingCardUid) {
+			clearDraggingCardUid();
+		}
+	});
+
+	const { hand: pokerHand, bonus } = PokerPadService.getPokerHandDetails(
+		pokerPad.cards,
+	);
 	const formatedBonus = useDigits({ value: bonus, digits: 2 });
 
 	const cardsWithPlaceholders = [
@@ -30,10 +41,13 @@ function PokerPad({ cardId }: { cardId: number }): ReactNode {
 	return (
 		<div>
 			<StyledPokerPadInfos>
-				{position.x}/{position.y} - isInside:{" "}
+				{position.x}/{position.y}
+				<br />
 				{isInsideElement ? "Dedans" : "Dehors"}
+				<br />
+				card: {hand.draggingCardUid}
 				<div>
-					<b>Combination:</b> {hand} <b>- Bonus:</b> +{formatedBonus} CpC
+					<b>Combination:</b> {pokerHand} <b>- Bonus:</b> +{formatedBonus} CpC
 				</div>
 			</StyledPokerPadInfos>
 			<StyledPokerPad ref={myElementRef}>
@@ -46,7 +60,7 @@ function PokerPad({ cardId }: { cardId: number }): ReactNode {
 					) : (
 						<CardPlaceholder
 							key={window.btoa(`placeholder-${index}`)}
-							onClick={() => placeCardsOnTable(cardId)}
+							onClick={() => placeCardsOnTable(id)}
 						/>
 					),
 				)}

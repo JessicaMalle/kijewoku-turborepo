@@ -2,7 +2,7 @@ import type {PokerPad} from "../types/gameTypes.ts";
 import PokerPadService from './PokerPadService';
 
 function addChips({ currentChips, pokerPads }: { currentChips: number, pokerPads: PokerPad[] }): number {
-  const base = 1;
+  const base = 100;
   const totalBonus = getTotalBonus(pokerPads);
 
   return currentChips + base + totalBonus;
