@@ -1,43 +1,60 @@
-import { useEffect, useRef } from 'react';
-import {AUTOSAVE_INTERVAL, GLOBAL_INTERVAL} from "../config/gameConfig.ts";
-import type { Action, GameState } from '../context/GameContext.ts';
-import { SaveService } from '../services/SaveService.ts';
+import { useEffect, useRef, useCallback } from "react";
+import { AUTOSAVE_INTERVAL, GLOBAL_INTERVAL } from "../config/gameConfig.ts";
+import type { Action, GameState } from "../context/GameContext.ts";
+import { SaveService } from "../services/SaveService.ts";
 
 const useGameLoop = (state: GameState, dispatch: React.Dispatch<Action>) => {
-  const animationFrameRef = useRef<number | null>(null);
-  const lastSaveTimeRef = useRef<number>(Date.now());
-  const lastCursorUpdateTimeRef = useRef<number>(Date.now());
+	const animationFrameRef = useRef<number | null>(null);
+	const stateRef = useRef(state);
+	const dispatchRef = useRef(dispatch);
+	const accumulatedSaveTimeRef = useRef<number>(0);
+	const accumulatedUpdateTimeRef = useRef<number>(0);
 
-  useEffect(() => {
-    const gameLoop = () => {
-      const now = Date.now();
-      const elapsedSave = now - lastSaveTimeRef.current;
-      const elapsedCursorUpdate = now - lastCursorUpdateTimeRef.current;
+	useEffect(() => {
+		stateRef.current = state;
+		dispatchRef.current = dispatch;
+	}, [state, dispatch]);
 
-      if (elapsedSave >= AUTOSAVE_INTERVAL) {
-        SaveService.saveGame(state);
+	const saveGame = useCallback(() => {
+		SaveService.saveGame(stateRef.current);
+	}, []);
 
-        lastSaveTimeRef.current = now;
-      }
+	const updateResources = useCallback(() => {
+		dispatchRef.current({ type: "ADD_CHIPS_BY_CURSORS" });
+		dispatchRef.current({ type: "ADD_CHIPS_BY_CROUPIERS" });
+	}, []);
 
-      if (elapsedCursorUpdate >= GLOBAL_INTERVAL) {
-        dispatch({ type: "ADD_CHIPS_BY_CURSORS" });
-        dispatch({ type: "ADD_CHIPS_BY_CROUPIERS" });
+	useEffect(() => {
+		let lastFrameTime = performance.now();
 
-        lastCursorUpdateTimeRef.current = now;
-      }
+		const gameLoop = (timestamp: number) => {
+			const deltaTime = timestamp - lastFrameTime;
+			lastFrameTime = timestamp;
 
-      animationFrameRef.current = requestAnimationFrame(gameLoop);
-    };
+			accumulatedSaveTimeRef.current += deltaTime;
+			accumulatedUpdateTimeRef.current += deltaTime;
 
-    animationFrameRef.current = requestAnimationFrame(gameLoop);
+			if (accumulatedSaveTimeRef.current >= AUTOSAVE_INTERVAL) {
+				saveGame();
+				accumulatedSaveTimeRef.current = 0; // Réinitialisation du compteur
+			}
 
-    return () => {
-      if (animationFrameRef.current !== null) {
-        cancelAnimationFrame(animationFrameRef.current);
-      }
-    };
-  }, [state, dispatch]);
+			if (accumulatedUpdateTimeRef.current >= GLOBAL_INTERVAL) {
+				updateResources();
+				accumulatedUpdateTimeRef.current = 0; // Réinitialisation du compteur
+			}
+
+			animationFrameRef.current = requestAnimationFrame(gameLoop);
+		};
+
+		animationFrameRef.current = requestAnimationFrame(gameLoop);
+
+		return () => {
+			if (animationFrameRef.current !== null) {
+				cancelAnimationFrame(animationFrameRef.current);
+			}
+		};
+	}, []);
 };
 
 export default useGameLoop;
