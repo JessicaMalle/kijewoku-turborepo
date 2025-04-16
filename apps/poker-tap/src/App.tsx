@@ -34,7 +34,7 @@ function App(): ReactNode {
 								<BigChip scale={1.5} />
 							</div>
 						</StyledSection>
-						<StyledSection id="poker-pads" neutralStyle>
+						<StyledSection id="poker-pads" $neutralStyle>
 							<PokerPads />
 						</StyledSection>
 						<StyledSection id="items">
@@ -44,7 +44,7 @@ function App(): ReactNode {
 							<Deck />
 						</StyledSection>
 					</GameLayout>
-					<StyledSection id="hand" neutralStyle>
+					<StyledSection id="hand" $neutralStyle>
 						<Hand />
 					</StyledSection>
 				</PositionProvider>

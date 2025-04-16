@@ -50,7 +50,11 @@ function PokerPad({ id }: { id: number }): ReactNode {
 					<b>Combination:</b> {pokerHand} <b>- Bonus:</b> +{formatedBonus} CpC
 				</div>
 			</StyledPokerPadInfos>
-			<StyledPokerPad id={`pp-${id}`} ref={myElementRef}>
+			<StyledPokerPad
+				id={`pp-${id}`}
+				ref={myElementRef}
+				$hovered={isInsideElement && !!hand.draggingCardUid}
+			>
 				{cardsWithPlaceholders.map((card, index) =>
 					card ? (
 						<Card

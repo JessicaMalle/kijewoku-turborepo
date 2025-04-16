@@ -1,7 +1,12 @@
-import styled, {css} from "styled-components";
-import {colors} from "../../Colors.styles.ts";
+import styled, { css } from "styled-components";
+import { colors } from "../../Colors.styles.ts";
 
-export const StyledCard = styled.div<{ color: string; active?: string, isDraggable?: boolean, isDragging?: boolean }>`
+export const StyledCard = styled.div<{
+	color: string;
+	active?: string;
+	$isDraggable?: boolean;
+	$isDragging?: boolean;
+}>`
     container-name: card;
     container-type: inline-size;
     position: relative;
@@ -15,18 +20,18 @@ export const StyledCard = styled.div<{ color: string; active?: string, isDraggab
     justify-content: space-between;
     
     background-color: ${colors.neutrals.white};
-    color: ${props => (props.color === 'hearts' || props.color === 'diamonds') ? colors.reds.cherryRed : colors.neutrals.paleDark};
-    transform: ${props => props.active ? 'translateY(-10px)' : 'translateY(0)'};
-    transition: ${props => (props.isDragging ? '0ms' : '200ms')};
+    color: ${(props) => (props.color === "hearts" || props.color === "diamonds" ? colors.reds.cherryRed : colors.neutrals.paleDark)};
+    transform: ${(props) => (props.active ? "translateY(-10px)" : "translateY(0)")};
+    transition: ${(props) => (props.$isDragging ? "0ms" : "200ms")};
     font-family: "Bebas Neue", sans-serif;
     
     user-select: none;
     overflow: hidden;
-    cursor: ${props => (props.isDraggable) ? 'grab' : 'default'};
+    cursor: ${(props) => (props.$isDragging ? "grab" : "default")};
 
     @media (hover: hover) and (pointer: fine) {
         &:hover > div:last-child {
-            filter: ${props => (props.isDraggable) ? 'contrast(1.4)' : 'brightness(1)'};
+            filter: ${(props) => (props.$isDragging ? "contrast(1.4)" : "brightness(1)")};
         }
     }
 `;
@@ -77,18 +82,18 @@ export const CardSuit = styled.div`
 `;
 
 interface BigCardValueProps {
-  value: string;
-  color: 'hearts' | 'diamonds' | 'spades' | 'clover';
+	value: string;
+	color: "hearts" | "diamonds" | "spades" | "clover";
 }
 
 const generateFontSizeContainers = (sizes: number[]) => {
-    return sizes.map(
-        (size) => css`
+	return sizes.map(
+		(size) => css`
       @container card (max-width: ${size}px) {
         font-size: ${size - 10}px;
       }
-    `
-    );
+    `,
+	);
 };
 
 const fontSizeSteps = Array.from({ length: 31 }, (_, i) => 90 - i);
@@ -106,23 +111,17 @@ export const BigCardValue = styled.div<BigCardValueProps>`
     font-size: 90px;
     ${generateFontSizeContainers(fontSizeSteps)}
 
-    color: ${({ color }) => (color === 'hearts' || color === 'diamonds') ? colors.reds.cherryRed : colors.neutrals.pale};
+    color: ${({ color }) => (color === "hearts" || color === "diamonds" ? colors.reds.cherryRed : colors.neutrals.pale)};
     background: ${({ color }) =>
-            (color === 'hearts' || color === 'diamonds')
-                    ? `linear-gradient(to bottom, ${colors.reds.cherryRed}, ${colors.reds.crimson})`
-                    : `linear-gradient(to bottom, ${colors.neutrals.medium}, ${colors.neutrals.mediumDark})`
-    };
+			(color === "hearts" || color === "diamonds")
+				? `linear-gradient(to bottom, ${colors.reds.cherryRed}, ${colors.reds.crimson})`
+				: `linear-gradient(to bottom, ${colors.neutrals.medium}, ${colors.neutrals.mediumDark})`};
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 
     ${({ value }) =>
-            Number(value) === 10 &&
-            `
+			Number(value) === 10 &&
+			`
       transform: translateX(-2px);
-    `
-    }
+    `}
 `;
-
-
-
-

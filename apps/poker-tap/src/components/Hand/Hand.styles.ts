@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
-export const StyledHand = styled.div<{ forceOpen: boolean }>`
+export const StyledHand = styled.div<{ $forceOpen: boolean }>`
     position: fixed;
-    bottom: ${props => (props.forceOpen) ? '20px' : '-45px'};
+    bottom: ${(props) => (props.$forceOpen ? "20px" : "-45px")};
 		transform: translateX(-50%);
     left: 50%;
     display: flex;
@@ -19,22 +19,21 @@ export const StyledHand = styled.div<{ forceOpen: boolean }>`
     }
 `;
 
-export const StyledCard = styled.div<{ isDragging: boolean }>((props) => ({
-	...(props.isDragging
+export const StyledCard = styled.div<{ $isDragging: boolean }>((props) => ({
+	...(props.$isDragging
 		? {
-			zIndex: 999,
-			transform: "none",
-			transition: "none",
-			transformOrigin: "center center",
-		}
+				zIndex: 999,
+				transform: "none",
+				transition: "none",
+				transformOrigin: "center center",
+			}
 		: {
-			position: "relative",
-			transformOrigin: "bottom center",
-			transition: "transform 0.2s ease-in-out",
-			"&:hover": {
-				transform: "translateY(-40px) scale(1.1)",
-				zIndex: 10,
-			},
-		}),
+				position: "relative",
+				transformOrigin: "bottom center",
+				transition: "transform 0.2s ease-in-out",
+				"&:hover": {
+					transform: "translateY(-40px) scale(1.1)",
+					zIndex: 10,
+				},
+			}),
 }));
-

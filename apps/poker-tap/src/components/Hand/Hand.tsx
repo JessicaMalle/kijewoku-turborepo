@@ -54,11 +54,11 @@ function Hand(): ReactNode {
 	if (hand.Cards.length === 0) return null;
 
 	return (
-		<StyledHand forceOpen={hand.forceOpen || false}>
+		<StyledHand $forceOpen={hand.forceOpen || false}>
 			{hand.Cards.map((card, index) => (
 				<StyledCard
 					key={`hand-card-${card.color}-${card.value}-i${index}`}
-					isDragging={hand.draggingCardUid === card.uid}
+					$isDragging={hand.draggingCardUid === card.uid}
 					style={
 						hand.draggingCardUid !== card.uid
 							? {

@@ -43,10 +43,10 @@ function Card({
 			ref={elementRef}
 			onMouseDown={handleMouseDown}
 			onTouchStart={handleTouchStart}
-			isDragging={isDragging}
+			$isDragging={isDragging}
 			color={color}
 			active={active ? "true" : undefined}
-			isDraggable={isDraggable}
+			$isDraggable={isDraggable}
 			onClick={() => toggleSelectedCard(uid)}
 		>
 			<SuitAndValueWrapper>

@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import {colors} from "../../Colors.styles.ts";
+import { colors } from "../../Colors.styles.ts";
 
-export const StyledPokerPad = styled.div`
+export const StyledPokerPad = styled.div<{ $hovered: boolean }>`
     display: flex;
     align-items: center;
     gap: 10px;
@@ -28,9 +28,20 @@ export const StyledPokerPad = styled.div`
 
     background-size: 6px 6px;
 
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+
+    ${({ $hovered }) =>
+			$hovered &&
+			`
+        transform: translateY(-5px) scale(1.02);
+        box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2), 0 6px 0 0 ${colors.greens.darkGreen};
+        border-color: ${colors.greens.paleGreen};
+        background-color: ${colors.greens.green};
+    `}
+
 `;
 
 export const StyledPokerPadInfos = styled.div`
 	text-align: center;
 	color: ${colors.neutrals.white};
-`
+`;
