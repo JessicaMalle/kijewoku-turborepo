@@ -10,19 +10,19 @@ export function useGameLoop() {
 		throw new Error("useGameLoop must be used within a GameLoopProvider");
 	}
 
-	const idRef = useRef<string>(
-		`component-${Math.random().toString(36).substr(2, 9)}`,
+	const { current } = useRef<string>(
+		`component-${Math.random().toString(36).slice(2, 11)}`,
 	);
 
 	useEffect(() => {
 		return () => {
-			context.removeUpdate(idRef.current);
+			context.removeUpdate(current);
 		};
 	}, [context]);
 
 	const wrappedUpdate = useCallback(
 		(callback: UpdateCallback) => {
-			context.update(callback, idRef.current);
+			context.update(callback, current);
 		},
 		[context],
 	);
