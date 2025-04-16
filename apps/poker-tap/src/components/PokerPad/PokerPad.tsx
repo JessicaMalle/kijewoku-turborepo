@@ -9,8 +9,11 @@ import { StyledPokerPad, StyledPokerPadInfos } from "./PokerPad.styles.ts";
 import { usePosition } from "../../hooks/process/usePosition.ts";
 import { useElementBounds } from "../../hooks/utils/useElementBounds.ts";
 import { useHand } from "../../hooks/states/useHand.ts";
+import { useGameLoop } from "../../hooks/process/useGameLoop.ts";
 
 function PokerPad({ id }: { id: number }): ReactNode {
+	const { play, pause, start, update, isRunning } = useGameLoop();
+
 	const { pokerPad, placeCardOnTable } = usePokerPad(id);
 	const { sortedCards } = useSortedCards(pokerPad.cards, "value");
 	const { position } = usePosition();
@@ -37,8 +40,22 @@ function PokerPad({ id }: { id: number }): ReactNode {
 		}
 	}, [isInsideElement, hand.draggingCardUid]);
 
+	start(() => {
+		console.log("Game started!");
+	});
+
+	update((deltaTime) => {
+		console.log("Game loop update", deltaTime);
+	});
+
 	return (
 		<div>
+			<button type="button" onClick={play} disabled={isRunning}>
+				Play
+			</button>
+			<button type="button" onClick={pause} disabled={!isRunning}>
+				Pause
+			</button>
 			<StyledPokerPadInfos>
 				{position.x}/{position.y}
 				<br />
