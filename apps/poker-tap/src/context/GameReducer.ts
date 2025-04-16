@@ -137,11 +137,12 @@ export const GameReducer = (state: GameState, action: Action): GameState => {
 				},
 			};
 		}
-		case "PLACE_CARDS_ON_TABLE": {
-			const { newHand, newPokerPads } = PokerPadService.placeCardsOnTable(
+		case "PLACE_CARD_ON_TABLE": {
+			const { newHand, newPokerPads } = PokerPadService.placeCardOnTable(
 				state.hand.Cards,
 				state.pokerPads,
-				action.payload,
+				action.payload.index,
+				action.payload.cardUid,
 			);
 
 			if (newHand !== state.hand.Cards || newPokerPads !== state.pokerPads) {

@@ -1,4 +1,4 @@
-import { type ReactNode, useRef } from "react";
+import { type ReactNode, useEffect, useRef } from "react";
 import { usePokerPad } from "../../hooks/states/usePokerPad.ts";
 import useDigits from "../../hooks/utils/useDigits.utils.ts";
 import { useSortedCards } from "../../hooks/utils/useSortedCards.utils.ts";
@@ -9,23 +9,16 @@ import { StyledPokerPad, StyledPokerPadInfos } from "./PokerPad.styles.ts";
 import { usePosition } from "../../hooks/process/usePosition.ts";
 import { useElementBounds } from "../../hooks/utils/useElementBounds.ts";
 import { useHand } from "../../hooks/states/useHand.ts";
-import { useGlobalMouseUp } from "../../providers/useGlobalMouseEvent.tsx";
 
 function PokerPad({ id }: { id: number }): ReactNode {
-	const { pokerPad, placeCardsOnTable } = usePokerPad(id);
+	const { pokerPad, placeCardOnTable } = usePokerPad(id);
 	const { sortedCards } = useSortedCards(pokerPad.cards, "value");
 	const { position } = usePosition();
-	const { hand, clearDraggingCardUid } = useHand();
+	const { hand } = useHand();
 	const myElementRef = useRef<HTMLDivElement>(null);
 	const isInsideElement = useElementBounds<HTMLDivElement>({
 		elementRef: myElementRef,
 		...position,
-	});
-
-	useGlobalMouseUp(() => {
-		if (isInsideElement && hand.draggingCardUid) {
-			clearDraggingCardUid();
-		}
 	});
 
 	const { hand: pokerHand, bonus } = PokerPadService.getPokerHandDetails(
@@ -37,6 +30,12 @@ function PokerPad({ id }: { id: number }): ReactNode {
 		...sortedCards,
 		...Array(5 - sortedCards.length).fill(null),
 	];
+
+	useEffect(() => {
+		if (isInsideElement && hand.draggingCardUid) {
+			placeCardOnTable(id, hand.draggingCardUid);
+		}
+	}, [isInsideElement, hand.draggingCardUid]);
 
 	return (
 		<div>
@@ -50,7 +49,7 @@ function PokerPad({ id }: { id: number }): ReactNode {
 					<b>Combination:</b> {pokerHand} <b>- Bonus:</b> +{formatedBonus} CpC
 				</div>
 			</StyledPokerPadInfos>
-			<StyledPokerPad ref={myElementRef}>
+			<StyledPokerPad id={`pp-${id}`} ref={myElementRef}>
 				{cardsWithPlaceholders.map((card, index) =>
 					card ? (
 						<Card
@@ -60,7 +59,7 @@ function PokerPad({ id }: { id: number }): ReactNode {
 					) : (
 						<CardPlaceholder
 							key={window.btoa(`placeholder-${index}`)}
-							onClick={() => placeCardsOnTable(id)}
+							onClick={() => placeCardOnTable(id, card.uid)}
 						/>
 					),
 				)}

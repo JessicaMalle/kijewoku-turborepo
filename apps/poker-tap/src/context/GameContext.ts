@@ -19,12 +19,10 @@ interface GameContextType extends GameState {
 	drawCard: (numberOfCardsToDraw?: number) => void;
 	revealDeck: (deck: Deck) => void;
 	toggleSelectedCard: (uid: string) => void;
-	placeCardsOnTable: (index: number) => void;
+	placeCardOnTable: (index: number, cardUid: string) => void;
 	drawCardAndDeductChips: () => void;
 	setDraggingCardUid: (cardUid: string) => void;
-	setLastDraggingCardUid: (cardUid: string) => void;
 	clearDraggingCardUid: () => void;
-	clearLastDraggingCardUid: () => void;
 	getTotalBonus: () => number;
 	buyCursor: () => void;
 	buyCroupier: () => void;
@@ -35,7 +33,10 @@ export type Action =
 	| { type: "BUY_POKER_PAD" }
 	| { type: "SHUFFLE_DECK" }
 	| { type: "TOGGLE_SELECTED_HAND_CARD"; payload: string }
-	| { type: "PLACE_CARDS_ON_TABLE"; payload: number }
+	| {
+			type: "PLACE_CARD_ON_TABLE";
+			payload: { index: number; cardUid: string };
+	  }
 	| { type: "DRAW_CARD"; payload: number }
 	| { type: "DRAW_CARD_AND_DEDUCT_CHIPS" }
 	| { type: "SET_DRAGGING_CARD_UID"; payload: string }
