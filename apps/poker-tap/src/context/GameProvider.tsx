@@ -1,6 +1,6 @@
 import type React from "react";
 import { useReducer } from "react";
-import useGameLoop from "../hooks/useGameLoop.ts";
+import useGameLoop from "../hooks/process/useGameLoop.ts";
 import ChipsService from "../services/ChipsService.ts";
 import DeckService from "../services/DeckService.ts";
 import PokerPadService from "../services/PokerPadService.ts";

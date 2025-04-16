@@ -1,4 +1,4 @@
-import { type ReactNode, useEffect, useRef } from "react";
+import { type ReactNode, useRef } from "react";
 import { usePokerPad } from "../../hooks/states/usePokerPad.ts";
 import useDigits from "../../hooks/utils/useDigits.utils.ts";
 import { useSortedCards } from "../../hooks/utils/useSortedCards.utils.ts";
@@ -9,11 +9,9 @@ import { StyledPokerPad, StyledPokerPadInfos } from "./PokerPad.styles.ts";
 import { usePosition } from "../../hooks/process/usePosition.ts";
 import { useElementBounds } from "../../hooks/utils/useElementBounds.ts";
 import { useHand } from "../../hooks/states/useHand.ts";
-import { useGameLoop } from "../../hooks/process/useGameLoop.ts";
+import useReleaseDetection from "../../hooks/process/useReleaseDetection.ts";
 
 function PokerPad({ id }: { id: number }): ReactNode {
-	const { play, pause, start, update, isRunning } = useGameLoop();
-
 	const { pokerPad, placeCardOnTable } = usePokerPad(id);
 	const { sortedCards } = useSortedCards(pokerPad.cards, "value");
 	const { position } = usePosition();
@@ -22,6 +20,16 @@ function PokerPad({ id }: { id: number }): ReactNode {
 	const isInsideElement = useElementBounds<HTMLDivElement>({
 		elementRef: myElementRef,
 		...position,
+	});
+
+	const handleRelease = () => {
+		if (isInsideElement && hand.draggingCardUid) {
+			placeCardOnTable(id, hand.draggingCardUid);
+		}
+	};
+
+	useReleaseDetection({
+		onRelease: handleRelease,
 	});
 
 	const { hand: pokerHand, bonus } = PokerPadService.getPokerHandDetails(
@@ -34,34 +42,10 @@ function PokerPad({ id }: { id: number }): ReactNode {
 		...Array(5 - sortedCards.length).fill(null),
 	];
 
-	useEffect(() => {
-		if (isInsideElement && hand.draggingCardUid) {
-			placeCardOnTable(id, hand.draggingCardUid);
-		}
-	}, [isInsideElement, hand.draggingCardUid]);
-
-	start(() => {
-		console.log("Game started!");
-	});
-
-	update((deltaTime) => {
-		console.log("Game loop update", deltaTime);
-	});
-
 	return (
 		<div>
-			<button type="button" onClick={play} disabled={isRunning}>
-				Play
-			</button>
-			<button type="button" onClick={pause} disabled={!isRunning}>
-				Pause
-			</button>
 			<StyledPokerPadInfos>
-				{position.x}/{position.y}
-				<br />
 				{isInsideElement ? "Dedans" : "Dehors"}
-				<br />
-				card: {hand.draggingCardUid}
 				<div>
 					<b>Combination:</b> {pokerHand} <b>- Bonus:</b> +{formatedBonus} CpC
 				</div>
