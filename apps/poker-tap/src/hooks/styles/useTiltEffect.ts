@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from "react";
 
 type TiltOptions = {
 	max?: number; // ------------- Maximum tilt angle in degrees
@@ -66,29 +66,29 @@ export const useTiltEffect = (options: TiltOptions = {}) => {
 		if (!element) return;
 
 		if (!glareRef.current) {
-			const glareElement = document.createElement('div');
-			glareElement.className = 'glare-container';
-			glareElement.style.position = 'absolute';
-			glareElement.style.top = '0';
-			glareElement.style.left = '0';
-			glareElement.style.width = '100%';
-			glareElement.style.height = '100%';
-			glareElement.style.overflow = 'hidden';
-			glareElement.style.borderRadius = 'inherit';
-			glareElement.style.pointerEvents = 'none';
+			const glareElement = document.createElement("div");
+			glareElement.className = "glare-container";
+			glareElement.style.position = "absolute";
+			glareElement.style.top = "0";
+			glareElement.style.left = "0";
+			glareElement.style.width = "100%";
+			glareElement.style.height = "100%";
+			glareElement.style.overflow = "hidden";
+			glareElement.style.borderRadius = "inherit";
+			glareElement.style.pointerEvents = "none";
 
-			const glareInner = document.createElement('div');
-			glareInner.className = 'glare';
-			glareInner.style.position = 'absolute';
-			glareInner.style.top = '50%';
-			glareInner.style.left = '50%';
-			glareInner.style.transformOrigin = '0% 0%';
-			glareInner.style.pointerEvents = 'none';
+			const glareInner = document.createElement("div");
+			glareInner.className = "glare";
+			glareInner.style.position = "absolute";
+			glareInner.style.top = "50%";
+			glareInner.style.left = "50%";
+			glareInner.style.transformOrigin = "0% 0%";
+			glareInner.style.pointerEvents = "none";
 			glareInner.style.width = `${glareSize}%`;
 			glareInner.style.height = `${glareSize}%`;
 			glareInner.style.background = `linear-gradient(0deg, ${glareColor} 0%, transparent 80%)`;
-			glareInner.style.opacity = '0';
-			glareInner.style.transform = 'rotate(180deg) translate(-50%, -50%)';
+			glareInner.style.opacity = "0";
+			glareInner.style.transform = "rotate(180deg) translate(-50%, -50%)";
 
 			glareElement.appendChild(glareInner);
 			element.appendChild(glareElement);
@@ -96,10 +96,9 @@ export const useTiltEffect = (options: TiltOptions = {}) => {
 		}
 
 		if (!element.style.transform) {
-			element.style.transformStyle = 'preserve-3d';
-			element.style.willChange = 'transform';
-			element.style.transition = `transform ${speed}ms ${easing}`;
-			element.style.position = element.style.position || 'relative';
+			element.style.transformStyle = "preserve-3d";
+			element.style.willChange = "transform";
+			element.style.position = element.style.position || "relative";
 		}
 
 		const handleMouseMove = (e: MouseEvent) => {
@@ -124,7 +123,7 @@ export const useTiltEffect = (options: TiltOptions = {}) => {
 			if (glareRef.current) {
 				const glarePos = x * 100;
 
-				glareRef.current.style.transform = `rotate(${(90 * (x - 0.5) * 2)}deg) translate(-50%, -50%)`;
+				glareRef.current.style.transform = `rotate(${90 * (x - 0.5) * 2}deg) translate(-50%, -50%)`;
 				glareRef.current.style.opacity = (glareMaxOpacity * y).toString();
 				glareRef.current.style.left = `${glarePos}%`;
 			}
@@ -134,7 +133,7 @@ export const useTiltEffect = (options: TiltOptions = {}) => {
 			setIsHovering(true);
 
 			if (element) {
-				element.style.transition = `transform ${speed}ms ${easing}`;
+				element.style.transition = `scale ${speed}ms ${easing}`;
 			}
 
 			if (glareRef.current) {
@@ -150,10 +149,9 @@ export const useTiltEffect = (options: TiltOptions = {}) => {
 			}
 
 			if (glareRef.current) {
-				glareRef.current.style.opacity = '0';
+				glareRef.current.style.opacity = "0";
 			}
 		};
-
 
 		// TODO: Needs more testing on various devices before validating this solution
 		// Gyroscope support for mobile if enabled
@@ -167,8 +165,8 @@ export const useTiltEffect = (options: TiltOptions = {}) => {
 				const gamma = Math.min(Math.max(e.gamma, -90), 90);
 
 				// Calculate rotation angles based on device orientation
-				const tiltX = (max * beta / 90).toFixed(2);
-				const tiltY = (max * gamma / 90).toFixed(2);
+				const tiltX = ((max * beta) / 90).toFixed(2);
+				const tiltY = ((max * gamma) / 90).toFixed(2);
 
 				element.style.transform = `perspective(${perspective}px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) scale3d(${scale}, ${scale}, ${scale})`;
 
@@ -177,30 +175,42 @@ export const useTiltEffect = (options: TiltOptions = {}) => {
 					const glarePos = normalizedGamma * 100;
 
 					glareRef.current.style.transform = `rotate(${90 * (normalizedGamma - 0.5) * 2}deg) translate(-50%, -50%)`;
-					glareRef.current.style.opacity = (glareMaxOpacity * (beta + 90) / 180).toString();
+					glareRef.current.style.opacity = (
+						(glareMaxOpacity * (beta + 90)) /
+						180
+					).toString();
 					glareRef.current.style.left = `${glarePos}%`;
 				}
 			};
 
-			window.addEventListener('deviceorientation', gyroscopeHandler);
+			window.addEventListener("deviceorientation", gyroscopeHandler);
 		}
 
-		element.addEventListener('mousemove', handleMouseMove);
-		element.addEventListener('mouseenter', handleMouseEnter);
-		element.addEventListener('mouseleave', handleMouseLeave);
+		element.addEventListener("mousemove", handleMouseMove);
+		element.addEventListener("mouseenter", handleMouseEnter);
+		element.addEventListener("mouseleave", handleMouseLeave);
 
 		return () => {
 			if (element) {
-				element.removeEventListener('mousemove', handleMouseMove);
-				element.removeEventListener('mouseenter', handleMouseEnter);
-				element.removeEventListener('mouseleave', handleMouseLeave);
+				element.removeEventListener("mousemove", handleMouseMove);
+				element.removeEventListener("mouseenter", handleMouseEnter);
+				element.removeEventListener("mouseleave", handleMouseLeave);
 			}
 
 			if (gyroscopeHandler) {
-				window.removeEventListener('deviceorientation', gyroscopeHandler);
+				window.removeEventListener("deviceorientation", gyroscopeHandler);
 			}
 		};
-	}, [max, perspective, scale, speed, easing, glareMaxOpacity, glareColor, gyroscope]);
+	}, [
+		max,
+		perspective,
+		scale,
+		speed,
+		easing,
+		glareMaxOpacity,
+		glareColor,
+		gyroscope,
+	]);
 
 	return { elementRef, isHovering };
 };
