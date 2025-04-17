@@ -13,6 +13,7 @@ type TiltOptions = {
 	reverse?: boolean; // -------- Reverse tilt direction
 	disableAxis?: string; // ----- Disable an axis (x or y)
 	glarePosition?: string; // --- Position of the glare effect
+	glareSize?: number; // ------- Size of the glare effect (%)
 };
 
 /**
@@ -26,6 +27,7 @@ type TiltOptions = {
  *   speed: 400,
  *   glareMaxOpacity: 0.4,
  *   glareColor: "rgba(255, 255, 255, 0.7)",
+ *   glareSize: 180, // Size of the glare effect in %
  *   gyroscope: true, // (beta)
  * });
  *
@@ -51,7 +53,8 @@ export const useTiltEffect = (options: TiltOptions = {}) => {
 		easing = "cubic-bezier(.03,.98,.52,.99)",
 		glareMaxOpacity = 0.5,
 		glareColor = "rgba(255, 255, 255, 0.8)",
-		gyroscope = false
+		gyroscope = false,
+		glareSize = 200,
 	} = options;
 
 	const elementRef = useRef<HTMLDivElement | null>(null);
@@ -81,8 +84,8 @@ export const useTiltEffect = (options: TiltOptions = {}) => {
 			glareInner.style.left = '50%';
 			glareInner.style.transformOrigin = '0% 0%';
 			glareInner.style.pointerEvents = 'none';
-			glareInner.style.width = '200%';
-			glareInner.style.height = '200%';
+			glareInner.style.width = `${glareSize}%`;
+			glareInner.style.height = `${glareSize}%`;
 			glareInner.style.background = `linear-gradient(0deg, ${glareColor} 0%, transparent 80%)`;
 			glareInner.style.opacity = '0';
 			glareInner.style.transform = 'rotate(180deg) translate(-50%, -50%)';
@@ -170,7 +173,7 @@ export const useTiltEffect = (options: TiltOptions = {}) => {
 				element.style.transform = `perspective(${perspective}px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) scale3d(${scale}, ${scale}, ${scale})`;
 
 				if (glareRef.current) {
-					const normalizedGamma = (gamma + 90) / 180; // Normaliser entre 0 et 1
+					const normalizedGamma = (gamma + 90) / 180; // Normalize: 0 - 1
 					const glarePos = normalizedGamma * 100;
 
 					glareRef.current.style.transform = `rotate(${90 * (normalizedGamma - 0.5) * 2}deg) translate(-50%, -50%)`;
