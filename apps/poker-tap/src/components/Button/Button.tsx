@@ -3,7 +3,7 @@ import {StyledButton} from "./Button.styles.ts";
 import {useAnimation} from "@kijewoku/hooks/animation";
 
 interface ButtonProps {
-	label?: string;
+	label?: string|ReactNode;
 	disabled?: boolean;
 	onClick?: () => void;
 	type?: 'button' | 'submit' | 'reset';
