@@ -1,5 +1,5 @@
-import styled, {keyframes} from "styled-components";
-import {colors} from "./Colors.styles.ts";
+import styled, { keyframes } from "styled-components";
+import { colors } from "./Colors.styles.ts";
 
 // Animation clé pour déplacer le gradient
 const meshGradientAnimation = keyframes`
@@ -66,9 +66,6 @@ export const GameLayout = styled.div`
 		}
 
 		#poker-pads {
-				display: flex;
-				flex-direction: column;
-				justify-content: center;
 				align-items: center;
 				align-self: center;
 				position: relative;
