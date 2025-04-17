@@ -9,6 +9,7 @@ import {
 	SuitAndValueWrapper,
 } from "./Card.styles.ts";
 import { useDragAndDrop } from "../../hooks/utils/useDragAndDrop.utils.ts";
+import {useTiltEffect} from "../../hooks/styles/useTiltEffect.ts";
 
 function Card({
 	uid,
@@ -26,7 +27,7 @@ function Card({
 
 	const { toggleSelectedCard, forceHandOpen, setDraggingCardUid } = useHand();
 
-	const { elementRef, handleMouseDown, handleTouchStart, isDragging } =
+	const { elementRef: dragRef, handleMouseDown, handleTouchStart, isDragging } =
 		useDragAndDrop({
 			isDraggable,
 			onDragStart: () => {
@@ -38,9 +39,29 @@ function Card({
 			},
 		});
 
+	const { elementRef: tiltRef } = useTiltEffect({
+		max: 20,
+		perspective: 800,
+		scale: 1.03,
+		speed: 400,
+		glareMaxOpacity: 0.4,
+		glareColor: "rgba(255, 255, 255, 0.7)",
+		gyroscope: true, // (beta)
+	});
+
+	// Combined refs
+	const setRefs = (element: HTMLDivElement) => {
+		if (dragRef) {
+				dragRef.current = element;
+		}
+		if (tiltRef) {
+			tiltRef.current = element;
+		}
+	};
+
 	return (
 		<StyledCard
-			ref={elementRef}
+			ref={setRefs}
 			onMouseDown={handleMouseDown}
 			onTouchStart={handleTouchStart}
 			$isDragging={isDragging}

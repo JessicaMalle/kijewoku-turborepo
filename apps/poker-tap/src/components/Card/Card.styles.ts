@@ -27,13 +27,11 @@ export const StyledCard = styled.div<{
     
     user-select: none;
     overflow: hidden;
-    cursor: ${(props) => (props.$isDragging ? "grab" : "default")};
-
-    @media (hover: hover) and (pointer: fine) {
-        &:hover > div:last-child {
-            filter: ${(props) => (props.$isDragging ? "contrast(1.4)" : "brightness(1)")};
-        }
-    }
+    cursor: ${(props) => {
+        if (props.$isDragging) return "grabbing";
+        if (props.$isDraggable) return "grab";
+        return "default";
+    }};
 `;
 
 export const SuitAndValueWrapper = styled.div`
