@@ -29,7 +29,11 @@
     "packages/*"
   ],
   "dependencies": {
+    "@types/react": "^19.1.2",
+    "@types/react-dom": "^19.1.2",
     "docsify-cli": "^4.4.4",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
     "strip-indent": "2.0.0",
     "styled-components": "^6.1.13",
     "uuidv5": "^1.0.0"
