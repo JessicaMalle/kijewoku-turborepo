@@ -1,4 +1,4 @@
-import type React from "react";
+import type { ReactNode } from "react";
 import { useReducer } from "react";
 import useGameLoop from "../hooks/process/useGameLoop.ts";
 import ChipsService from "../services/ChipsService.ts";
@@ -8,6 +8,7 @@ import { SaveService } from "../services/SaveService.ts";
 import type { Deck } from "../types/gameTypes.ts";
 import { GameContext, type GameState } from "./GameContext.ts";
 import { GameReducer } from "./GameReducer.ts";
+import ItemsService from "../services/ItemsService.ts";
 
 const initialGameState: GameState = {
 	chips: 0,
@@ -15,11 +16,10 @@ const initialGameState: GameState = {
 	hand: { Cards: [], firstPickMade: false },
 	deck: DeckService.shuffleDeck(DeckService.createDeck()),
 	pokerPads: SaveService.initializePokerPads(),
-	cursors: 0,
-	croupiers: [],
+	items: ItemsService.getInitialItems(),
 };
 
-export const GameProvider = ({ children }: { children: React.ReactNode }) => {
+export const GameProvider = ({ children }: { children: ReactNode }) => {
 	const [state, dispatch] = useReducer(
 		GameReducer,
 		SaveService.loadGame(initialGameState),
@@ -68,12 +68,16 @@ export const GameProvider = ({ children }: { children: React.ReactNode }) => {
 
 	const getTotalBonus = () => ChipsService.getTotalBonus(state.pokerPads);
 
-	const buyCursor = () => {
-		dispatch({ type: "BUY_CURSOR" });
+	const buyItem = (itemUid: string) => {
+		dispatch({ type: "BUY_ITEM", payload: itemUid });
 	};
 
-	const buyCroupier = () => {
-		dispatch({ type: "BUY_CROUPIER" });
+	const getItemPrice = (itemUid: string) => {
+		return ItemsService.getItemPrice(state.items, itemUid);
+	};
+
+	const canBuyItem = (itemUid: string) => {
+		return ItemsService.canBuyItem(state.chips, state.items, itemUid);
 	};
 
 	return (
@@ -92,8 +96,9 @@ export const GameProvider = ({ children }: { children: React.ReactNode }) => {
 				toggleSelectedCard,
 				placeCardOnTable,
 				getTotalBonus,
-				buyCursor,
-				buyCroupier,
+				buyItem,
+				getItemPrice,
+				canBuyItem,
 			}}
 		>
 			{children}

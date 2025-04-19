@@ -1,40 +1,42 @@
 import { useState } from "react";
-import Cursors from "../Items/Cursors.tsx";
-import AddCroupiersButton from "../Items/AddCroupiersButton.tsx";
+import { StyledShopSection } from "./StyledShopSection.styles";
+import { ItemSelector, SelectorButton } from "./ShopSection.styles";
+import ItemCard from "../Items/ItemCard";
 import { useAppContext } from "../../hooks/states/useAppContext.ts";
-import { StyledShopSection } from "./StyledShopSection.styles.ts";
-import { ItemSelector, SelectorButton } from "./ShopSection.styles.ts";
-import ItemCard from "../Items/ItemCard.tsx";
+import Button from "../Button/Button.tsx";
+import { ITEM_DESCRIPTIONS } from "../../config/gameConfig.ts";
 
 type ItemsUid = "CURSOR" | "CROUPIER";
 
 function ShopSection(): JSX.Element {
-	const { cursors, croupiers } = useAppContext();
+	const { items, buyItem, getItemPrice, canBuyItem } = useAppContext();
+
 	const [activeItems, setActiveItems] = useState<ItemsUid>("CURSOR");
 
 	const handleItemSelect = (item: ItemsUid): void => setActiveItems(item);
 
 	const renderActiveItem = () => {
-		switch (activeItems) {
-			case "CURSOR":
-				return (
-					<ItemCard
-						title="Cursor"
-						count={cursors}
-						description="The cursor automatically clicks on the poker pad once per second."
-						actionComponent={<Cursors />}
+		const currentItem = items.find((item) => item.uid === activeItems);
+
+		if (!currentItem) return null;
+
+		const itemPrice = getItemPrice(activeItems);
+		const canBuy = canBuyItem(activeItems);
+
+		return (
+			<ItemCard
+				title={activeItems.charAt(0) + activeItems.slice(1).toLowerCase()}
+				count={currentItem.count}
+				description={ITEM_DESCRIPTIONS[activeItems]}
+				actionComponent={
+					<Button
+						label={`Buy (${itemPrice} chips)`}
+						onClick={() => buyItem(activeItems)}
+						disabled={!canBuy}
 					/>
-				);
-			case "CROUPIER":
-				return (
-					<ItemCard
-						title="Croupier"
-						count={croupiers.length}
-						description="The croupier automatically deals the cards, increasing your production."
-						actionComponent={<AddCroupiersButton />}
-					/>
-				);
-		}
+				}
+			/>
+		);
 	};
 
 	return (

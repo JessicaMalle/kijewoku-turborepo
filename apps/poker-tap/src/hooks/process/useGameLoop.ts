@@ -1,9 +1,10 @@
-import { useEffect, useRef, useCallback } from "react";
+import { type Dispatch, useEffect, useRef } from "react";
 import { AUTOSAVE_INTERVAL, GLOBAL_INTERVAL } from "../../config/gameConfig.ts";
 import type { Action, GameState } from "../../context/GameContext.ts";
 import { SaveService } from "../../services/SaveService.ts";
+import ItemsService from "../../services/ItemsService.ts";
 
-const useGameLoop = (state: GameState, dispatch: React.Dispatch<Action>) => {
+const useGameLoop = (state: GameState, dispatch: Dispatch<Action>) => {
 	const animationFrameRef = useRef<number | null>(null);
 	const stateRef = useRef(state);
 	const dispatchRef = useRef(dispatch);
@@ -15,14 +16,17 @@ const useGameLoop = (state: GameState, dispatch: React.Dispatch<Action>) => {
 		dispatchRef.current = dispatch;
 	}, [state, dispatch]);
 
-	const saveGame = useCallback(() => {
-		SaveService.saveGame(stateRef.current);
-	}, []);
+	const saveGame = () => SaveService.saveGame(stateRef.current);
 
-	const updateResources = useCallback(() => {
-		dispatchRef.current({ type: "ADD_CHIPS_BY_CURSORS" });
-		dispatchRef.current({ type: "ADD_CHIPS_BY_CROUPIERS" });
-	}, []);
+	const updateResources = () => {
+		const totalBonus = ItemsService.getTotalBonus(stateRef.current.items);
+		if (totalBonus > 0) {
+			dispatchRef.current({
+				type: "AUTO_CLICK",
+				payload: totalBonus,
+			});
+		}
+	};
 
 	useEffect(() => {
 		let lastFrameTime = performance.now();

@@ -1,5 +1,5 @@
 import { createContext } from "react";
-import type { Croupier, Deck, Hand, PokerPad } from "../types/gameTypes.ts";
+import type { Deck, Hand, Item, PokerPad } from "../types/gameTypes.ts";
 
 export interface GameState {
 	chips: number;
@@ -7,8 +7,7 @@ export interface GameState {
 	hand: Hand;
 	deck: Deck;
 	pokerPads: PokerPad[];
-	cursors: number;
-	croupiers: Croupier[];
+	items: Item[];
 }
 
 interface GameContextType extends GameState {
@@ -24,8 +23,9 @@ interface GameContextType extends GameState {
 	setDraggingCardUid: (cardUid: string) => void;
 	clearDraggingCardUid: () => void;
 	getTotalBonus: () => number;
-	buyCursor: () => void;
-	buyCroupier: () => void;
+	buyItem: (itemUid: string) => void;
+	getItemPrice: (itemUid: string) => number;
+	canBuyItem: (itemUid: string) => boolean;
 }
 
 export type Action =
@@ -43,10 +43,8 @@ export type Action =
 	| { type: "SET_LAST_DRAGGING_CARD_UID"; payload: string }
 	| { type: "CLEAR_DRAGGING_CARD_UID" }
 	| { type: "CLEAR_LAST_DRAGGING_CARD_UID" }
-	| { type: "BUY_CURSOR" }
-	| { type: "BUY_CROUPIER" }
-	| { type: "ADD_CHIPS_BY_CROUPIERS" }
-	| { type: "ADD_CHIPS_BY_CURSORS" };
+	| { type: "BUY_ITEM"; payload: string }
+	| { type: "AUTO_CLICK"; payload: number };
 
 export const GameContext = createContext<GameContextType | undefined>(
 	undefined,

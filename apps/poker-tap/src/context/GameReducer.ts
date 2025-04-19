@@ -1,12 +1,11 @@
 import ChipsService from "../services/ChipsService.ts";
-import CroupierService from "../services/CroupierService.ts";
-import CursorService from "../services/CursorService.ts";
 import DeckService from "../services/DeckService.ts";
 import GameService from "../services/GameService.ts";
 import HandService from "../services/HandService.ts";
 import PokerPadService from "../services/PokerPadService.ts";
 import PokerPasService from "../services/PokerPadService.ts";
 import type { Action, GameState } from "./GameContext";
+import ItemsService from "../services/ItemsService.ts";
 
 export const GameReducer = (state: GameState, action: Action): GameState => {
 	switch (action.type) {
@@ -19,25 +18,6 @@ export const GameReducer = (state: GameState, action: Action): GameState => {
 					pokerPads: state.pokerPads,
 				}),
 			};
-		case "ADD_CHIPS_BY_CROUPIERS": {
-			const totalBonus = state.croupiers.reduce(
-				(acc, croupier) => acc + croupier.bonus,
-				0,
-			);
-			return {
-				...state,
-				prevChips: state.chips,
-				chips: state.chips + totalBonus,
-			};
-		}
-		case "ADD_CHIPS_BY_CURSORS": {
-			const chipsFromCursors = state.cursors * 0.1;
-			return {
-				...state,
-				prevChips: state.chips,
-				chips: state.chips + chipsFromCursors,
-			};
-		}
 		case "BUY_POKER_PAD": {
 			const cost = PokerPadService.calculatePokerPadCost(
 				state.pokerPads.length,
@@ -158,33 +138,25 @@ export const GameReducer = (state: GameState, action: Action): GameState => {
 
 			return state;
 		}
-		case "BUY_CROUPIER": {
-			const cost = CroupierService.calculateCroupierCost(
-				state.croupiers.length,
-			);
-			if (state.chips >= cost) {
-				const newCroupier = CroupierService.createCroupier(
-					state.croupiers.length,
-				);
+		case "BUY_ITEM": {
+			const itemUid = action.payload;
+			const itemPrice = ItemsService.getItemPrice(state.items, itemUid);
+
+			if (state.chips >= itemPrice) {
 				return {
 					...state,
-					chips: state.chips - cost,
-					croupiers: [...state.croupiers, newCroupier],
+					chips: state.chips - itemPrice,
+					items: ItemsService.addItemByUid(state.items, itemUid),
 				};
 			}
 			return state;
 		}
-		case "BUY_CURSOR": {
-			const cost = CursorService.calculateCursorCost(state.cursors);
-			if (state.chips >= cost) {
-				return {
-					...state,
-					chips: state.chips - cost,
-					cursors: state.cursors + 1,
-				};
-			}
-			return state;
-		}
+		case "AUTO_CLICK":
+			return {
+				...state,
+				chips: state.chips + action.payload,
+				prevChips: state.chips,
+			};
 
 		default:
 			return state;

@@ -1,49 +1,63 @@
 export type SortType = "value" | "color";
 
-export type CardColor = 'spades' | 'hearts' | 'clover' | 'diamonds';
+export type CardColor = "spades" | "hearts" | "clover" | "diamonds";
 
 export type CardValue =
-  | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' | '10'
-  | 'J' | 'Q' | 'K' | 'A';
+	| "2"
+	| "3"
+	| "4"
+	| "5"
+	| "6"
+	| "7"
+	| "8"
+	| "9"
+	| "10"
+	| "J"
+	| "Q"
+	| "K"
+	| "A";
 
 export interface Card {
-  uid: string;
-  color: CardColor;
-  value: CardValue;
-  numericValue: number;
-  active?: boolean
-  isDraggable?: boolean;
+	uid: string;
+	color: CardColor;
+	value: CardValue;
+	numericValue: number;
+	active?: boolean;
+	isDraggable?: boolean;
 }
 
 export interface Hand {
-  Cards: Card[];
-  firstPickMade: boolean;
-  forceOpen?: boolean;
-  draggingCardUid?: string;
+	Cards: Card[];
+	firstPickMade: boolean;
+	forceOpen?: boolean;
+	draggingCardUid?: string;
 }
 
 export interface Deck {
-  cards: Card[];
+	cards: Card[];
 }
 
 export interface Combination {
-  uid: string;
-  bonusValue: number;
+	uid: string;
+	bonusValue: number;
 }
 
 export interface History {
-  startDatetime: Date;
-  totalChipsAcquired: number;
-  totalHandsAdded: number;
-  totalDealersAcquired: number;
+	startDatetime: Date;
+	totalChipsAcquired: number;
+	totalHandsAdded: number;
+	totalDealersAcquired: number;
 }
 
 export interface PokerPad {
-  uid: string;
-  cards: Card[];
+	uid: string;
+	cards: Card[];
 }
 
-export interface Croupier {
-  uid: string;
-  bonus: number;
+export type ItemType = "CURSOR" | "CROUPIER";
+
+export interface Item {
+	uid: ItemType;
+	originPrice: number;
+	count: number;
 }
