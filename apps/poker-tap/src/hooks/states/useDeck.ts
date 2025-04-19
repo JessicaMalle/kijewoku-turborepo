@@ -1,24 +1,24 @@
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import DeckService from "../../services/DeckService.ts";
-import { useAppContext } from './useAppContext.ts';
+import { useAppContext } from "./useAppContext.ts";
 
 export const useDeck = () => {
-  const { chips, deck, revealDeck } = useAppContext();
+	const { chips, deck, revealDeck } = useAppContext();
 
-  const [nextCardPrice, setNextCardPrice] = useState<number>(0);
+	const [nextCardPrice, setNextCardPrice] = useState<number>(0);
 
-  useEffect(() => {
-    setNextCardPrice(DeckService.nextCardPrice(deck))
-  }, [deck]);
+	useEffect(() => {
+		setNextCardPrice(DeckService.nextCardPrice(deck));
+	}, [chips, deck]);
 
-  const canDrawNextCard = () => {
-    return chips >= nextCardPrice;
-  }
+	const canDrawNextCard = () => {
+		return chips >= nextCardPrice;
+	};
 
-  return {
-    deck,
-    revealDeck,
-    nextCardPrice,
-    canDrawNextCard,
-  };
+	return {
+		deck,
+		revealDeck,
+		nextCardPrice,
+		canDrawNextCard,
+	};
 };
