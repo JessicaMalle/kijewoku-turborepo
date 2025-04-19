@@ -28,7 +28,7 @@ function ItemShop(): ReactNode {
 	return (
 		<StyledSection>
 			<div>
-				<StyledSection>
+				<StyledSection $lightStyle>
 					<div>
 						<div>
 							<ItemShopItemName>{formattedItemName}</ItemShopItemName>
