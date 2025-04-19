@@ -9,7 +9,6 @@ import PokerPads from "./components/Layouts/PokerPads.tsx";
 import type { ReactNode } from "react";
 import { useChips } from "./hooks/states/useChips.ts";
 import useDigits from "./hooks/utils/useDigits.utils.ts";
-import ShopSection from "./components/DataDisplay/ShopSection.tsx";
 import { PositionProvider } from "./context/PositionStore.tsx";
 import { GameLoopProvider } from "./context/game-loop/GameLoopProvider.tsx";
 import ItemShop from "./components/Items/ItemShop.tsx";
@@ -38,9 +37,8 @@ function App(): ReactNode {
 						<StyledSection id="poker-pads" $neutralStyle>
 							<PokerPads />
 						</StyledSection>
-						<StyledSection id="items">
+						<StyledSection id="items" $neutralStyle>
 							<ItemShop />
-							<ShopSection />
 						</StyledSection>
 						<StyledSection id="deck">
 							<Deck />
