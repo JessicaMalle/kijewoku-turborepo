@@ -7,11 +7,11 @@ export const ItemSelector = styled.div`
     gap: 10px;
 `;
 
-export const SelectorButton = styled.button<{ active: boolean }>`
+export const SelectorButton = styled.button<{ $active: "true" | "false" }>`
     border-radius: 8px;
     border: 2px solid ${colors.neutrals.paleLight};
-    background-color: ${(props) => (props.active ? colors.neutrals.paleLight : colors.neutrals.veryPaleLight)};
-    font-weight: ${(props) => (props.active ? "bold" : "normal")};
+    background-color: ${(props) => (props.$active === "true" ? colors.neutrals.paleLight : colors.neutrals.veryPaleLight)};
+    font-weight: ${(props) => (props.$active === "true" ? "bold" : "normal")};
     cursor: pointer;
 		font-size: 12px;
     transition: all 0.2s;

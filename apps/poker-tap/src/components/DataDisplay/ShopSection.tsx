@@ -49,7 +49,7 @@ function ShopSection(): JSX.Element {
 				{(["CURSOR", "CROUPIER"] as ItemsUid[]).map((item) => (
 					<SelectorButton
 						key={item}
-						active={activeItems === item}
+						$active={activeItems === item ? "true" : "false"}
 						onClick={() => handleItemSelect(item)}
 					>
 						{item}
