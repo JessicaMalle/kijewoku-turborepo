@@ -1,25 +1,32 @@
 import { useState } from "react";
 import { StyledSection } from "../Layouts/Section.styles.ts";
 import ScrollZone from "../DataDisplay/ScrollZone.tsx";
-import { ItemShopItemCount, ItemShopItemName } from "./ItemShop.styles.ts";
+import {
+	ItemIllustration,
+	ItemShopContainer,
+	ItemShopDescription,
+	ItemShopItemCount,
+	ItemShopItemName,
+	ItemSlotsContainer,
+} from "./ItemShop.styles.ts";
 import Icon from "../DataDisplay/Icon.tsx";
 import Button from "../Button/Button.tsx";
 import { useAppContext } from "../../hooks/states/useAppContext.ts";
 import { ITEM_DESCRIPTIONS } from "../../config/gameConfig.ts";
 import type { ReactNode } from "react";
-
-// Utiliser le type ItemType défini dans les types du jeu
-type ItemsUid = "CURSOR" | "CROUPIER";
+import ItemSlot from "./ItemSlot.tsx";
+import type { ItemType } from "../../types/gameTypes.ts";
+import { INITIAL_ITEMS } from "../../services/ItemsService.ts";
 
 function ItemShop(): ReactNode {
 	const { items, buyItem, getItemPrice, canBuyItem } = useAppContext();
-	const [activeItem, setActiveItem] = useState<ItemsUid>("CURSOR");
+	const [activeItem, setActiveItem] = useState<ItemType>("CURSOR");
 
 	const currentItem = items.find((item) => item.uid === activeItem);
 	const itemPrice = getItemPrice(activeItem);
 	const canBuy = canBuyItem(activeItem);
 
-	const handleItemSelect = (item: ItemsUid): void => setActiveItem(item);
+	const handleItemSelect = (item: ItemType): void => setActiveItem(item);
 
 	// Formatage du nom de l'item (première lettre en majuscule, reste en minuscule)
 	const formattedItemName =
@@ -27,34 +34,34 @@ function ItemShop(): ReactNode {
 
 	return (
 		<StyledSection>
-			<div>
-				<StyledSection $lightStyle>
+			<ItemShopContainer>
+				<ItemShopDescription>
 					<div>
-						<div>
-							<ItemShopItemName>{formattedItemName}</ItemShopItemName>
-							<ItemShopItemCount>{currentItem?.count || 0}</ItemShopItemCount>
-						</div>
-						<Icon size={100} />
-						<ScrollZone maxHeight={60}>
-							{ITEM_DESCRIPTIONS[activeItem]}
-						</ScrollZone>
-						<Button
-							label={`Buy (${itemPrice} chips)`}
-							onClick={() => buyItem(activeItem)}
-							disabled={!canBuy}
-						/>
+						<ItemShopItemName>{formattedItemName}</ItemShopItemName>
+						<ItemShopItemCount>{currentItem?.count || 0}</ItemShopItemCount>
 					</div>
-				</StyledSection>
-				<ScrollZone maxHeight={400}>
-					{(["CURSOR", "CROUPIER"] as ItemsUid[]).map((item) => (
-						<Button
-							key={item}
-							label={item.charAt(0) + item.slice(1).toLowerCase()}
-							onClick={() => handleItemSelect(item)}
+					<ItemIllustration>
+						<Icon size={100} />
+					</ItemIllustration>
+					<ScrollZone minHeight={60} maxHeight={60}>
+						{ITEM_DESCRIPTIONS[activeItem]}
+					</ScrollZone>
+					<Button
+						label={`Buy (${itemPrice} chips)`}
+						onClick={() => buyItem(activeItem)}
+						disabled={!canBuy}
+					/>
+				</ItemShopDescription>
+				<ItemSlotsContainer>
+					{INITIAL_ITEMS.map((item) => (
+						<ItemSlot
+							key={item.uid}
+							uid={item.uid}
+							onClick={() => handleItemSelect(item.uid)}
 						/>
 					))}
-				</ScrollZone>
-			</div>
+				</ItemSlotsContainer>
+			</ItemShopContainer>
 		</StyledSection>
 	);
 }

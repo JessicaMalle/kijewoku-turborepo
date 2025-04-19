@@ -5,15 +5,14 @@ import ItemCard from "../Items/ItemCard";
 import { useAppContext } from "../../hooks/states/useAppContext.ts";
 import Button from "../Button/Button.tsx";
 import { ITEM_DESCRIPTIONS } from "../../config/gameConfig.ts";
-
-type ItemsUid = "CURSOR" | "CROUPIER";
+import type { ItemType } from "../../types/gameTypes.ts";
 
 function ShopSection(): JSX.Element {
 	const { items, buyItem, getItemPrice, canBuyItem } = useAppContext();
 
-	const [activeItems, setActiveItems] = useState<ItemsUid>("CURSOR");
+	const [activeItems, setActiveItems] = useState<ItemType>("CURSOR");
 
-	const handleItemSelect = (item: ItemsUid): void => setActiveItems(item);
+	const handleItemSelect = (item: ItemType): void => setActiveItems(item);
 
 	const renderActiveItem = () => {
 		const currentItem = items.find((item) => item.uid === activeItems);
@@ -46,7 +45,7 @@ function ShopSection(): JSX.Element {
 			{renderActiveItem()}
 
 			<ItemSelector>
-				{(["CURSOR", "CROUPIER"] as ItemsUid[]).map((item) => (
+				{(["CURSOR", "CROUPIER"] as ItemType[]).map((item) => (
 					<SelectorButton
 						key={item}
 						$active={activeItems === item ? "true" : "false"}

@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 import { useAppContext } from "./useAppContext.ts";
 import itemsService from "../../services/ItemsService.ts";
+import type { ItemType } from "../../types/gameTypes.ts";
 
-export const useItems = (itemUid: string) => {
+export const useItems = (itemUid: ItemType) => {
 	const { items, buyItem, getItemPrice, canBuyItem } = useAppContext();
 
 	const currentItem = items.find((item) => item.uid === itemUid);
