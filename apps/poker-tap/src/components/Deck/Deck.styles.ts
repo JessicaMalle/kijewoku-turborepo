@@ -29,14 +29,15 @@ export const DeckCardsStack = styled.div<{ $deckSize: number }>`
 
     ${({ $deckSize }) =>
 			Array.from(
-				{ length: $deckSize },
+				{ length: Math.min($deckSize, 15) },
 				(_, i) => css`
         > div:nth-child(${i + 1}) {
 		        top: ${i + 1}px;
             left: ${-(i + 1)}px;
+            z-index: ${Math.min($deckSize, 5) - i};
+
             border: 3px solid ${i % 2 === 0 ? colors.neutrals.mediumDark : colors.neutrals.pale};
             box-shadow: 0 0 0 4px ${i % 2 === 0 ? colors.neutrals.mediumDark : colors.neutrals.pale};
-            z-index: ${$deckSize - i};
 		        
 		        background-color: ${colors.neutrals.white};
 				    background-image:  linear-gradient(135deg, ${colors.reds.cherryRed} 25%, transparent 25%),
