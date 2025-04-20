@@ -3,7 +3,7 @@ import { colors } from "../../Colors.styles.ts";
 
 export const StyledCard = styled.div<{
 	color: string;
-	active?: string;
+	$active?: string;
 	$isDraggable?: boolean;
 	$isDragging?: boolean;
 }>`
@@ -21,17 +21,19 @@ export const StyledCard = styled.div<{
     
     background-color: ${colors.neutrals.white};
     color: ${(props) => (props.color === "hearts" || props.color === "diamonds" ? colors.reds.cherryRed : colors.neutrals.paleDark)};
-    transform: ${(props) => (props.active ? "translateY(-10px)" : "translateY(0)")};
     transition: ${(props) => (props.$isDragging ? "0ms" : "200ms")};
     font-family: "Bebas Neue", sans-serif;
     
     user-select: none;
     overflow: hidden;
     cursor: ${(props) => {
-        if (props.$isDragging) return "grabbing";
-        if (props.$isDraggable) return "grab";
-        return "default";
-    }};
+			if (props.$isDragging) return "grabbing";
+			if (props.$isDraggable) return "grab";
+			return "default";
+		}};
+    
+		border: ${(props) => (props.$active ? `2px solid ${colors.reds.cherryRed}` : "0 solid transparent")};
+    box-shadow: ${(props) => (props.$active ? `0 0 0 2px ${colors.reds.coral}` : "none")};
 `;
 
 export const SuitAndValueWrapper = styled.div`

@@ -9,7 +9,7 @@ import {
 	SuitAndValueWrapper,
 } from "./Card.styles.ts";
 import { useDragAndDrop } from "../../hooks/utils/useDragAndDrop.utils.ts";
-import {useTiltEffect} from "../../hooks/styles/useTiltEffect.ts";
+import { useTiltEffect } from "../../hooks/styles/useTiltEffect.ts";
 
 function Card({
 	uid,
@@ -27,17 +27,21 @@ function Card({
 
 	const { toggleSelectedCard, forceHandOpen, setDraggingCardUid } = useHand();
 
-	const { elementRef: dragRef, handleMouseDown, handleTouchStart, isDragging } =
-		useDragAndDrop({
-			isDraggable,
-			onDragStart: () => {
-				setDraggingCardUid(uid);
-				forceHandOpen(true);
-			},
-			onDragEnd: () => {
-				forceHandOpen(false);
-			},
-		});
+	const {
+		elementRef: dragRef,
+		handleMouseDown,
+		handleTouchStart,
+		isDragging,
+	} = useDragAndDrop({
+		isDraggable,
+		onDragStart: () => {
+			setDraggingCardUid(uid);
+			forceHandOpen(true);
+		},
+		onDragEnd: () => {
+			forceHandOpen(false);
+		},
+	});
 
 	const { elementRef: tiltRef } = useTiltEffect({
 		max: 20,
@@ -52,7 +56,7 @@ function Card({
 	// Combined refs
 	const setRefs = (element: HTMLDivElement) => {
 		if (dragRef) {
-				dragRef.current = element;
+			dragRef.current = element;
 		}
 		if (tiltRef) {
 			tiltRef.current = element;
@@ -66,7 +70,7 @@ function Card({
 			onTouchStart={handleTouchStart}
 			$isDragging={isDragging}
 			color={color}
-			active={active ? "true" : undefined}
+			$active={active ? "true" : undefined}
 			$isDraggable={isDraggable}
 			onClick={() => toggleSelectedCard(uid)}
 		>
