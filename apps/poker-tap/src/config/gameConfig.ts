@@ -20,3 +20,5 @@ export const ITEM_DESCRIPTIONS: Record<ItemType, string> = {
 	CROUPIER:
 		"The croupier automatically deals cards, generating 1 chip per second.",
 };
+
+export const MAX_ACTIVE_POKER_PADS = 3;

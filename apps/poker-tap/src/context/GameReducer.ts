@@ -6,6 +6,7 @@ import PokerPadService from "../services/PokerPadService.ts";
 import PokerPasService from "../services/PokerPadService.ts";
 import type { Action, GameState } from "./GameContext";
 import ItemsService from "../services/ItemsService.ts";
+import { MAX_ACTIVE_POKER_PADS } from "../config/gameConfig.ts";
 
 export const GameReducer = (state: GameState, action: Action): GameState => {
 	switch (action.type) {
@@ -19,6 +20,10 @@ export const GameReducer = (state: GameState, action: Action): GameState => {
 				}),
 			};
 		case "BUY_POKER_PAD": {
+			if (state.pokerPads.length === MAX_ACTIVE_POKER_PADS) {
+				console.error(`Too many poker pads (max: ${MAX_ACTIVE_POKER_PADS}).`);
+				return state;
+			}
 			const cost = PokerPadService.calculatePokerPadCost(
 				state.pokerPads.length,
 			);
