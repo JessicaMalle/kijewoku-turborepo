@@ -42,6 +42,7 @@ export const Main = styled.main`
 		height: 100vh;
 		max-height: 100vh;
 		color: ${colors.neutrals.white};
+		user-select: none;
 `;
 
 export const GameLayout = styled.div`
