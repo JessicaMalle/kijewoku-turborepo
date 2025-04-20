@@ -1,4 +1,4 @@
-import { type ReactNode, useMemo } from "react";
+import type { ReactNode } from "react";
 import { useGame } from "../../hooks/states/useGame.tsx";
 import {
 	DeckContainer,
@@ -8,18 +8,14 @@ import {
 	StyledCardBack,
 } from "./Deck.styles.ts";
 import { useAppContext } from "../../hooks/states/useAppContext.ts";
-import DeckService from "../../services/DeckService.ts";
 import { useDeckAnimations } from "../../hooks/animations/useDeckAnimations.ts";
+import { useDeck } from "../../hooks/states/useDeck.ts";
 
 function Deck(): ReactNode {
-	const { chips, deck, revealDeck, hand } = useAppContext();
+	const { deck, revealDeck } = useAppContext();
 	const { drawCardAndDeductChips } = useGame();
 
-	const nextCardPrice: number = useMemo(() => {
-		return DeckService.nextCardPrice(deck);
-	}, [chips, deck]);
-
-	const canDrawCard = chips >= nextCardPrice && hand.Cards.length < 5;
+	const { nextCardPrice, canDrawCard, cardsInDeck } = useDeck();
 
 	const { combineRefs } = useDeckAnimations({
 		canDrawCard,
@@ -40,7 +36,7 @@ function Deck(): ReactNode {
 			>
 				👀
 			</RevealDeckButton>
-			<Rest>{deck.cards.length}</Rest>
+			<Rest>{cardsInDeck}</Rest>
 		</DeckContainer>
 	);
 }
