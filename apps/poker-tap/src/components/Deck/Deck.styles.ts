@@ -2,10 +2,38 @@ import styled, { css } from "styled-components";
 import { colors } from "../../Colors.styles.ts";
 
 export const DeckContainer = styled.div`
-    display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: center;
+		position: relative;
+    width: fit-content;
+`;
+
+export const DeckCardsStack = styled.div`
+    position: absolute;
+		top: 0;
+		left: 0;
+    width: 120px;
+    min-width: 100px;
+    aspect-ratio: 2 / 3;
+		z-index: -1;
+		
+		> div {
+        position: absolute;
+        top: 2px;
+        left: -2px;
+        width: 120px;
+        min-width: 100px;
+        aspect-ratio: 2 / 3;
+        border-radius: 8px;
+        background-color: ${colors.neutrals.white};
+		    background-image:  linear-gradient(135deg, ${colors.reds.cherryRed} 25%, transparent 25%),
+		                       linear-gradient(225deg, ${colors.reds.cherryRed} 25%, transparent 25%),
+		                       linear-gradient(45deg, ${colors.reds.cherryRed} 25%, transparent 25%),
+		                       linear-gradient(315deg, ${colors.reds.cherryRed} 25%, ${colors.neutrals.white} 25%);
+        background-position:  20px 0, 20px 0, 0 0, 0 0;
+        background-size: 20px 20px;
+        background-repeat: repeat;
+        border: 3px solid ${colors.neutrals.mediumDark};
+        box-shadow: 0 0 0 4px ${colors.neutrals.pale};
+		}
 `;
 
 export const StyledCardBack = styled.div<{ $disabled: boolean }>`
