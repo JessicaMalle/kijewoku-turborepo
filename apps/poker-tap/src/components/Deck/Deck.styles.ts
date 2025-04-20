@@ -29,9 +29,7 @@ export const StyledCardBack = styled.div<{ $disabled: boolean }>`
     ${(props) =>
 			props.$disabled &&
 			css`
-        opacity: 0.5;
         cursor: not-allowed;
-        pointer-events: none;
         
         &::after {
             content: '';
@@ -40,13 +38,6 @@ export const StyledCardBack = styled.div<{ $disabled: boolean }>`
             left: 0;
             right: 0;
             bottom: 0;
-            background: repeating-linear-gradient(
-                45deg,
-                transparent,
-                transparent 10px,
-                rgba(255, 0, 0, 0.1) 10px,
-                rgba(255, 0, 0, 0.1) 20px
-            );
             pointer-events: none;
         }
     `}
@@ -55,7 +46,7 @@ export const StyledCardBack = styled.div<{ $disabled: boolean }>`
 
 export const PriceTag = styled.div`
     background-color: ${colors.oranges.orangeYellow};
-    color: ${colors.neutrals.dark};
+    color: ${colors.purples.darkPurple};
     padding: 3px 24px;
     font-size: 1rem;
     font-weight: bold;
@@ -66,6 +57,7 @@ export const PriceTag = styled.div`
 		top: 0;
 		right: -20px;
 		transform: rotate(24deg);		
+		opacity: 1;
     &::before,
     &::after {
         content: '';
@@ -74,8 +66,8 @@ export const PriceTag = styled.div`
         bottom: 0;
         width: 10px;
         background:
-                linear-gradient(135deg, transparent 50%, ${colors.neutrals.dark} 50%),
-                linear-gradient(45deg, transparent 50%, ${colors.neutrals.dark} 50%);
+                linear-gradient(135deg, transparent 50%, ${colors.purples.darkPurple} 50%),
+                linear-gradient(45deg, transparent 50%, ${colors.purples.darkPurple} 50%);
         background-size: 10px 10px;
         background-repeat: repeat-y;
     }
