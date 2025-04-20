@@ -1,21 +1,10 @@
 import type { ReactNode } from "react";
-import { useGame } from "../../hooks/states/useGame.tsx";
-import {
-	DeckContainer,
-	PriceTag,
-	Rest,
-	RevealDeckButton,
-	StyledCardBack,
-} from "./Deck.styles.ts";
-import { useAppContext } from "../../hooks/states/useAppContext.ts";
+import { DeckContainer, PriceTag, StyledCardBack } from "./Deck.styles.ts";
 import { useDeckAnimations } from "../../hooks/animations/useDeckAnimations.ts";
 import { useDeck } from "../../hooks/states/useDeck.ts";
 
 function Deck(): ReactNode {
-	const { deck, revealDeck } = useAppContext();
-	const { drawCardAndDeductChips } = useGame();
-
-	const { nextCardPrice, canDrawCard, cardsInDeck } = useDeck();
+	const { nextCardPrice, canDrawCard, drawCardAndDeductChips } = useDeck();
 
 	const { combineRefs } = useDeckAnimations({
 		canDrawCard,
@@ -30,13 +19,6 @@ function Deck(): ReactNode {
 			>
 				<PriceTag>{nextCardPrice}€</PriceTag>
 			</StyledCardBack>
-			<RevealDeckButton
-				className="reveal-deck-text"
-				onClick={() => revealDeck(deck)}
-			>
-				👀
-			</RevealDeckButton>
-			<Rest>{cardsInDeck}</Rest>
 		</DeckContainer>
 	);
 }

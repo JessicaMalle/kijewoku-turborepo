@@ -81,27 +81,3 @@ export const PriceTag = styled.div`
         right: 0;
     }
 `;
-
-export const Rest = styled.div`
-    color: white;
-    font-size: 2rem;
-    background-color: black;
-    padding: 10px;
-		
-		display: none;
-`;
-
-export const RevealDeckButton = styled.button`
-    all: unset;
-    position: absolute;
-    top: 30px;
-    left: 30px;
-    transform: translate(-50%, -50%);
-    color: rgba(255, 255, 255, 0.9);
-		text-shadow: 0 2px 0 rgba(0, 0, 0, 0.3);
-		font-size: 40px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: opacity 0.3s ease, visibility 0.3s;
-    z-index: 10;
-`;
