@@ -7,9 +7,9 @@ import {
 	RevealDeckButton,
 	StyledCardBack,
 } from "./Deck.styles.ts";
-import { useAnimation } from "@kijewoku/hooks/animation";
 import { useAppContext } from "../../hooks/states/useAppContext.ts";
 import DeckService from "../../services/DeckService.ts";
+import { useDeckAnimations } from "../../hooks/animations/useDeckAnimations.ts";
 
 function Deck(): ReactNode {
 	const { chips, deck, revealDeck, hand } = useAppContext();
@@ -19,85 +19,17 @@ function Deck(): ReactNode {
 		return DeckService.nextCardPrice(deck);
 	}, [chips, deck]);
 
-	const mouseDownAnimationRef = useAnimation({
-		keyframes: [
-			{ transform: "scale(1) rotate(0deg)" },
-			{ transform: "scale(0.95) rotate(-3deg)" },
-		],
-		options: {
-			duration: 200,
-			easing: "ease-out",
-			fill: "forwards",
-		},
-		eventType: "mousedown",
-	});
+	const canDrawCard = chips >= nextCardPrice && hand.Cards.length < 5;
 
-	const mouseEnterAnimationRef = useAnimation({
-		keyframes: [
-			{ transform: "scale(1) rotate(0deg)" },
-			{ transform: "scale(1.05) rotate(3deg)" },
-			{ transform: "scale(1) rotate(0deg)" },
-		],
-		options: {
-			duration: 500,
-			easing: "ease-in-out",
-		},
-		eventType: "mouseenter",
-	});
-
-	const mouseLeaveAnimationRef = useAnimation({
-		keyframes: [
-			{ transform: "scale(1) rotate(0deg)" },
-			{ transform: "scale(0.95) rotate(-2deg)" },
-			{ transform: "scale(1) rotate(0deg)" },
-		],
-		options: {
-			duration: 500,
-			easing: "ease-in-out",
-		},
-		eventType: "mouseleave",
-	});
-
-	const mouseUpAnimations = [
-		[
-			{ transform: "scale(1) rotate(0deg)" },
-			{ transform: "scale(1.05) rotate(2deg)" },
-			{ transform: "scale(1) rotate(0deg)" },
-		],
-		[
-			{ transform: "translateX(0) rotate(0deg)" },
-			{ transform: "translateX(-10px) rotate(-3deg)" },
-			{ transform: "translateX(10px) rotate(3deg)" },
-			{ transform: "translateX(-10px) rotate(-3deg)" },
-			{ transform: "translateX(10px) rotate(3deg)" },
-			{ transform: "translateX(-5px) rotate(-1deg)" },
-			{ transform: "translateX(0) rotate(0deg)" },
-		],
-	];
-
-	const mouseUpAnimationRef = useAnimation({
-		keyframes:
-			chips >= nextCardPrice && hand.Cards.length < 5
-				? mouseUpAnimations[0]
-				: mouseUpAnimations[1],
-		options: {
-			duration: 250,
-			easing: "ease-out",
-			fill: "forwards",
-		},
-		eventType: "mouseup",
+	const { combineRefs } = useDeckAnimations({
+		canDrawCard,
 	});
 
 	return (
 		<DeckContainer>
 			<StyledCardBack
-				$disabled={!(chips >= nextCardPrice && hand.Cards.length < 5)}
-				ref={(element) => {
-					mouseDownAnimationRef.current = element;
-					mouseUpAnimationRef.current = element;
-					mouseEnterAnimationRef.current = element;
-					mouseLeaveAnimationRef.current = element;
-				}}
+				$disabled={!canDrawCard}
+				ref={combineRefs}
 				onClick={drawCardAndDeductChips}
 			>
 				<PriceTag>{nextCardPrice}€</PriceTag>
