@@ -29,9 +29,9 @@ function Deck(): ReactNode {
 			>
 				<PriceTag>{nextCardPrice}€</PriceTag>
 			</StyledCardBack>
-			<DeckCardsStack>
-				{Array.from({ length: deckSize }).map((_, index) => (
-					<div key={index}>Card {index + 1}</div>
+			<DeckCardsStack $deckSize={deckSize}>
+				{deck.cards.map((card) => (
+					<div key={`deck-card-stack-${card.uid}`} />
 				))}
 			</DeckCardsStack>
 		</DeckContainer>
