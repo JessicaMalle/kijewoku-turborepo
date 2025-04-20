@@ -2,7 +2,9 @@ import styled, { css } from "styled-components";
 import { colors } from "../../Colors.styles.ts";
 
 export const DeckContainer = styled.div`
-		position: relative;
+		position: absolute;
+		bottom: 50px;
+		right: 50px;
     width: fit-content;
 `;
 

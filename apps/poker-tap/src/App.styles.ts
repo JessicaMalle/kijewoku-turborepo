@@ -80,7 +80,7 @@ export const GameLayout = styled.div`
 
 		#items {
 				grid-column: 3/4;
-				grid-row: 1/7;
+				grid-row: 1/5;
         position: relative;
         z-index: 2;
 		}

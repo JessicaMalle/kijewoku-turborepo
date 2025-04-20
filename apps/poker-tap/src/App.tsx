@@ -40,10 +40,10 @@ function App(): ReactNode {
 						<StyledSection id="items" $neutralStyle>
 							<ItemShop />
 						</StyledSection>
-						<Deck />
 					</GameLayout>
 					<StyledSection id="hand" $neutralStyle>
 						<Hand />
+						<Deck />
 					</StyledSection>
 				</PositionProvider>
 			</GameLoopProvider>
