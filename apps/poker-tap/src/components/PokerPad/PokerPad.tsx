@@ -11,9 +11,12 @@ import { useElementBounds } from "../../hooks/utils/useElementBounds.ts";
 import { useHand } from "../../hooks/states/useHand.ts";
 import useReleaseDetection from "../../hooks/process/useReleaseDetection.ts";
 import Button from "../Button/Button.tsx";
+import { useAppContext } from "../../hooks/states/useAppContext.ts";
 
 function PokerPad({ id }: { id: number }): ReactNode {
-	const { pokerPad, placeCardOnTable, markPokerPadAsPlayed } = usePokerPad(id);
+	const { pokerPads } = useAppContext();
+	const pokerPad = pokerPads[id];
+	const { placeCardOnTable, markPokerPadAsPlayed } = usePokerPad(id);
 	const { sortedCards } = useSortedCards(pokerPad.cards, "value");
 	const { position } = usePosition();
 	const { hand } = useHand();

@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import {colors} from "../../Colors.styles.ts";
+import { colors } from "../../Colors.styles.ts";
 
-export const StyledCardPlaceholder = styled.div`
+export const StyledCardPlaceholder = styled.div<{ $noHover?: boolean }>`
     container-name: card-placeholder;
     container-type: inline-size;
     position: relative;
@@ -15,14 +15,16 @@ export const StyledCardPlaceholder = styled.div`
 
     border: 2px dashed ${colors.greens.darkGreen};
     background-color: ${colors.greens.green}50;
-		
-		transition: background-color 0.2s;
-		
-		&:hover {
-    	background-color: ${colors.greens.darkGreen}50;
-		}
+
+    transition: background-color 0.2s;
+
+    &:hover {
+        background-color: ${({ $noHover }) =>
+					$noHover
+						? `${colors.greens.green}50`
+						: `${colors.greens.darkGreen}50`};
+    }
 
     user-select: none;
     overflow: hidden;
-    cursor: default;
-`;
+    cursor: default;`;

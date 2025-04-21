@@ -11,17 +11,6 @@ export interface PokerHandResult {
 	bonus: number;
 }
 
-const countEmptySlots = (table: PokerPad["cards"]): number => {
-	return 5 - table.length;
-};
-
-const canHoldSelectedCards = ({
-	countSelectedCards,
-	table,
-}: { countSelectedCards: number; table: PokerPad["cards"] }): boolean => {
-	return countSelectedCards <= countEmptySlots(table);
-};
-
 const placeCardOnTable = (
 	hand: Hand["Cards"],
 	pokerPads: PokerPad[],
@@ -201,8 +190,6 @@ function createPokerPad(index: number): PokerPad {
 }
 
 const PokerPasService = {
-	countEmptySlots,
-	canHoldSelectedCards,
 	placeCardOnTable,
 	detectPokerHand,
 	getPokerHandScore,

@@ -12,10 +12,13 @@ import useDigits from "./hooks/utils/useDigits.utils.ts";
 import { PositionProvider } from "./context/PositionStore.tsx";
 import { GameLoopProvider } from "./context/game-loop/GameLoopProvider.tsx";
 import ItemShop from "./components/Items/ItemShop.tsx";
+import { useAppContext } from "./hooks/states/useAppContext.ts";
+import PlayedPokerPad from "./components/PokerPad/PlayedPokerPad.tsx";
 
 function App(): ReactNode {
 	const { totalBonus } = useChips();
 	const formatedTotalBonus = useDigits({ value: totalBonus, digits: 2 });
+	const { playedPokerPads } = useAppContext();
 
 	return (
 		<Main>
@@ -36,6 +39,14 @@ function App(): ReactNode {
 						</StyledSection>
 						<StyledSection id="poker-pads" $neutralStyle>
 							<PokerPads />
+							<div>
+								{playedPokerPads.map((ppp, index) => (
+									<PlayedPokerPad
+										key={`played-poker-pads-${ppp.uid}}`}
+										id={index}
+									/>
+								))}
+							</div>
 						</StyledSection>
 						<StyledSection id="items" $neutralStyle>
 							<ItemShop />

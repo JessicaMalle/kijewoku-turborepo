@@ -41,6 +41,32 @@ export const StyledPokerPad = styled.div<{ $hovered: boolean }>`
 
 `;
 
+export const StyledPlayedPokerPad = styled.div`
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    max-width: calc((clamp(40px, 8vw, 70px) * 5) + 10px);
+    max-height: 100px;
+
+    padding: 5px;
+    margin: 0 auto 15px auto;
+    border-radius: 8px;
+    border: 1px solid ${colors.greens.limeGreen};
+    
+    box-shadow: 0 2px 0 0 ${colors.greens.darkGreen};
+
+    background-color: ${colors.greens.forestGreen};
+    background-image:
+            radial-gradient(circle at 5% 20%, rgba(0, 0, 0, 0.02) 1px, transparent 1px),
+            radial-gradient(circle at 80% 5%, rgba(0, 0, 0, 0.01) 1px, transparent 1px),
+            radial-gradient(circle at 30% 70%, rgba(0, 0, 0, 0.02) 1px, transparent 1px),
+            radial-gradient(circle at 70% 50%, rgba(0, 0, 0, 0.01) 1px, transparent 1px);
+
+    background-blend-mode: multiply;
+    background-repeat: repeat;
+    background-size: 4px 4px;
+`;
+
 export const StyledPokerPadInfos = styled.div`
 	text-align: center;
 	color: ${colors.neutrals.white};
