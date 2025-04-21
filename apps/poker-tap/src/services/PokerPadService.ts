@@ -69,7 +69,7 @@ const detectPokerHand = (cards: Card[]): string => {
 	};
 
 	const occurrences = countOccurrences(values);
-	const counts = Object.values(occurrences).sort((a, b) => b - a); // Tri décroissant
+	const counts = Object.values(occurrences).sort((a, b) => b - a); // Descending order
 
 	// Checking combinations
 	const isFlush = uniqueSuits.length === 1 && cards.length === 5;
@@ -149,7 +149,7 @@ export const getPokerHandDetails = (cards: Card[]): PokerHandResult => {
 	const hand = detectPokerHand(cards);
 	const score = getPokerHandScore(cards);
 
-	let bonusBase = 1;
+	let bonusBase: number;
 
 	switch (hand) {
 		case "High Card":
