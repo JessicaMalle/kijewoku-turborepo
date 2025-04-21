@@ -38,6 +38,9 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
 		state.pokerPads.length,
 	);
 
+	const markPokerPadAsPlayed = (pokerPadId: number) =>
+		dispatch({ type: "MARK_POKER_PAD_AS_PLAYED", payload: pokerPadId });
+
 	const shuffleDeck = () => dispatch({ type: "SHUFFLE_DECK" });
 
 	const revealDeck = (deck: Deck) => DeckService.revealDeck(deck);
@@ -87,6 +90,7 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
 				addChips,
 				buyPokerPad,
 				nextPokerPadPrice,
+				markPokerPadAsPlayed,
 				shuffleDeck,
 				revealDeck,
 				drawCard,

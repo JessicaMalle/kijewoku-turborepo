@@ -4,7 +4,7 @@ import { useAppContext } from "./useAppContext.ts";
 import { useHand } from "./useHand.ts";
 
 export const usePokerPad = (index: number) => {
-	const { pokerPads, placeCardOnTable } = useAppContext();
+	const { pokerPads, placeCardOnTable, markPokerPadAsPlayed } = useAppContext();
 	const { countSelectedCards } = useHand();
 
 	const pokerPad = pokerPads[index];
@@ -18,6 +18,10 @@ export const usePokerPad = (index: number) => {
 		countSelectedCards,
 		table: pokerPad.cards,
 	});
+
+	const handleMarkPokerPadAsPlayed = () => {
+		markPokerPadAsPlayed(index);
+	};
 
 	useEffect(() => {
 		const hand = PokerPadService.detectPokerHand(pokerPad.cards);
@@ -35,5 +39,6 @@ export const usePokerPad = (index: number) => {
 		canHoldSelectedCards,
 		detectedHand,
 		handScore,
+		markPokerPadAsPlayed: handleMarkPokerPadAsPlayed,
 	};
 };

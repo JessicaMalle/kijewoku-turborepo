@@ -10,9 +10,10 @@ import { usePosition } from "../../hooks/process/usePosition.ts";
 import { useElementBounds } from "../../hooks/utils/useElementBounds.ts";
 import { useHand } from "../../hooks/states/useHand.ts";
 import useReleaseDetection from "../../hooks/process/useReleaseDetection.ts";
+import Button from "../Button/Button.tsx";
 
 function PokerPad({ id }: { id: number }): ReactNode {
-	const { pokerPad, placeCardOnTable } = usePokerPad(id);
+	const { pokerPad, placeCardOnTable, markPokerPadAsPlayed } = usePokerPad(id);
 	const { sortedCards } = useSortedCards(pokerPad.cards, "value");
 	const { position } = usePosition();
 	const { hand } = useHand();
@@ -45,7 +46,8 @@ function PokerPad({ id }: { id: number }): ReactNode {
 	return (
 		<div>
 			<StyledPokerPadInfos>
-				{isInsideElement ? "Dedans" : "Dehors"}
+				{pokerPad.played ? "Played" : "Unplayed"}
+				<Button label="Play the Poker Pad" onClick={markPokerPadAsPlayed} />
 				<div>
 					<b>Combination:</b> {pokerHand} <b>- Bonus:</b> +{formatedBonus} CpC
 				</div>

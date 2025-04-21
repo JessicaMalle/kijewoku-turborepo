@@ -7,6 +7,7 @@ import PokerPasService from "../services/PokerPadService.ts";
 import type { Action, GameState } from "./GameContext";
 import ItemsService from "../services/ItemsService.ts";
 import { MAX_ACTIVE_POKER_PADS } from "../config/gameConfig.ts";
+import { updateArrayItemByIndex } from "../utils/updateArrayItemByIndex.ts";
 
 export const GameReducer = (state: GameState, action: Action): GameState => {
 	switch (action.type) {
@@ -161,6 +162,15 @@ export const GameReducer = (state: GameState, action: Action): GameState => {
 				...state,
 				chips: state.chips + action.payload,
 				prevChips: state.chips,
+			};
+		case "MARK_POKER_PAD_AS_PLAYED":
+			return {
+				...state,
+				pokerPads: updateArrayItemByIndex({
+					array: state.pokerPads,
+					index: action.payload,
+					updateFn: (pokerPad) => ({ ...pokerPad, played: true }),
+				}),
 			};
 
 		default:

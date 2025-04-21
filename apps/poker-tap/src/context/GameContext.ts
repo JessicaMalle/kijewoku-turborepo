@@ -26,6 +26,7 @@ interface GameContextType extends GameState {
 	buyItem: (itemUid: string) => void;
 	getItemPrice: (itemUid: string) => number;
 	canBuyItem: (itemUid: string) => boolean;
+	markPokerPadAsPlayed: (pokerPadId: number) => void;
 }
 
 export type Action =
@@ -44,7 +45,8 @@ export type Action =
 	| { type: "CLEAR_DRAGGING_CARD_UID" }
 	| { type: "CLEAR_LAST_DRAGGING_CARD_UID" }
 	| { type: "BUY_ITEM"; payload: string }
-	| { type: "AUTO_CLICK"; payload: number };
+	| { type: "AUTO_CLICK"; payload: number }
+	| { type: "MARK_POKER_PAD_AS_PLAYED"; payload: number };
 
 export const GameContext = createContext<GameContextType | undefined>(
 	undefined,
