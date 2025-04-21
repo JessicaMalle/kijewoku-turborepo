@@ -28,7 +28,6 @@ export const SaveService = {
 			.map((_, index) => ({
 				uid: uuIdv5(`pokerPad-${index}`, NAMESPACE),
 				cards: [],
-				played: false,
 			}));
 	},
 

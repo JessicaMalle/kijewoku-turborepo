@@ -52,7 +52,6 @@ export interface History {
 export interface PokerPad {
 	uid: string;
 	cards: Card[];
-	played: boolean;
 }
 
 export type ItemType = "CURSOR" | "CROUPIER";

@@ -174,7 +174,7 @@ export const GameReducer = (state: GameState, action: Action): GameState => {
 				...state,
 				pokerPads: updatedPokerPads,
 				playedPokerPads: playedPokerPad
-					? [...state.playedPokerPads, { ...playedPokerPad, played: true }]
+					? [...state.playedPokerPads, { ...playedPokerPad }]
 					: state.playedPokerPads,
 			};
 		}

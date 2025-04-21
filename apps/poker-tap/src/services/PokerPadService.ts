@@ -197,14 +197,7 @@ function createPokerPad(index: number): PokerPad {
 	return {
 		uid: SaveService.getUid("PokerPad", index),
 		cards: [],
-		played: false,
 	};
-}
-
-function getUnplayedPokerPads(pokerPads: PokerPad[]): PokerPad[] {
-	const result = pokerPads.filter((pokerPad) => !pokerPad.played);
-	console.table(result);
-	return result;
 }
 
 const PokerPasService = {
@@ -216,7 +209,6 @@ const PokerPasService = {
 	getPokerHandDetails,
 	calculatePokerPadCost,
 	createPokerPad,
-	getUnplayedPokerPads,
 };
 
 export default PokerPasService;

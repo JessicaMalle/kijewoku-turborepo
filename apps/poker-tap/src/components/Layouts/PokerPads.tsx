@@ -2,7 +2,6 @@ import type { ReactNode } from "react";
 import { PokerPadsWrapperStyles } from "./PokerPadsWrapper.styles.ts";
 import PokerPad from "../PokerPad/PokerPad.tsx";
 import { useAppContext } from "../../hooks/states/useAppContext.ts";
-import PokerPasService from "../../services/PokerPadService.ts";
 
 function PokerPads(): ReactNode {
 	const { pokerPads } = useAppContext();
@@ -12,7 +11,7 @@ function PokerPads(): ReactNode {
 			<p>
 				<i>(Play card combinations to increase your Chips per click bonus!)</i>
 			</p>
-			{PokerPasService.getUnplayedPokerPads(pokerPads).map((pad, index) => (
+			{pokerPads.map((pad, index) => (
 				<PokerPad key={`${pad.uid}-${index}`} id={index} />
 			))}
 		</PokerPadsWrapperStyles>
