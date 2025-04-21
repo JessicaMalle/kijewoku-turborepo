@@ -17,6 +17,7 @@ export const GameReducer = (state: GameState, action: Action): GameState => {
 				chips: ChipsService.addChips({
 					currentChips: state.chips,
 					pokerPads: state.pokerPads,
+					playedPokerPads: state.playedPokerPads,
 				}),
 			};
 		case "BUY_POKER_PAD": {

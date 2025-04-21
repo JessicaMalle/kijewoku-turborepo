@@ -70,7 +70,8 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
 			payload: { index, cardUid },
 		});
 
-	const getTotalBonus = () => ChipsService.getTotalBonus(state.pokerPads);
+	const getTotalBonus = () =>
+		ChipsService.getTotalBonus(state.pokerPads, state.playedPokerPads);
 
 	const buyItem = (itemUid: string) => {
 		dispatch({ type: "BUY_ITEM", payload: itemUid });
