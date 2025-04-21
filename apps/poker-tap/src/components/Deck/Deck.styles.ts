@@ -38,8 +38,8 @@ export const DeckCardsStack = styled.div<{ $deckSize: number }>`
             left: ${-(i + 1)}px;
             z-index: ${Math.min($deckSize, 5) - i};
 
-            border: 3px solid ${i % 2 === 0 ? colors.neutrals.mediumDark : colors.neutrals.pale};
-            box-shadow: 0 0 0 4px ${i % 2 === 0 ? colors.neutrals.mediumDark : colors.neutrals.pale};
+            border: 3px solid ${i % 2 === 0 ? colors.neutrals.white : colors.neutrals.white};
+            box-shadow: 0 0 0 4px ${i % 2 === 0 ? colors.neutrals.veryPaleLight : colors.neutrals.white};
 		        
 		        background-color: ${colors.neutrals.white};
 				    background-image:  linear-gradient(135deg, ${colors.reds.cherryRed} 25%, transparent 25%),
@@ -70,7 +70,7 @@ export const StyledCardBack = styled.div<{ $disabled: boolean }>`
     background-repeat: repeat;
     border-radius: 8px;
 		border: 3px solid ${colors.reds.red};
-		box-shadow: 0 0 0 4px ${colors.neutrals.dark};
+		box-shadow: 0 0 0 4px ${colors.neutrals.white};
 		cursor: pointer;
 
     ${(props) =>

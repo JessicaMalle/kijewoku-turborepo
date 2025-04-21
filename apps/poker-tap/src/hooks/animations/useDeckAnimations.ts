@@ -8,7 +8,7 @@ export function useDeckAnimations({ canDrawCard }: UseDeckAnimationsProps) {
 	const mouseDownAnimationRef = useAnimation({
 		keyframes: [
 			{ transform: "scale(1) rotate(0deg)" },
-			{ transform: "scale(0.95) rotate(-3deg)" },
+			{ transform: "scale(1.05) rotate(3deg)" },
 		],
 		options: {
 			duration: 200,
@@ -21,7 +21,7 @@ export function useDeckAnimations({ canDrawCard }: UseDeckAnimationsProps) {
 	const mouseEnterAnimationRef = useAnimation({
 		keyframes: [
 			{ transform: "scale(1) rotate(0deg)" },
-			{ transform: "scale(1.05) rotate(3deg)" },
+			{ transform: "scale(1.05) rotate(-3deg)" },
 			{ transform: "scale(1) rotate(0deg)" },
 		],
 		options: {
@@ -33,9 +33,9 @@ export function useDeckAnimations({ canDrawCard }: UseDeckAnimationsProps) {
 
 	const mouseLeaveAnimationRef = useAnimation({
 		keyframes: [
-			{ transform: "scale(1) rotate(0deg)" },
-			{ transform: "scale(0.95) rotate(-2deg)" },
-			{ transform: "scale(1) rotate(0deg)" },
+			{ transform: "scale(1)" },
+			{ transform: "scale(1.02)" },
+			{ transform: "scale(1)" },
 		],
 		options: {
 			duration: 500,
