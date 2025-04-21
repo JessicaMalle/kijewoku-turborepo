@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import {colors} from "../../Colors.styles.ts";
+import { colors } from "../../Colors.styles.ts";
 
 export const StyledButton = styled.button`
       all: unset;
@@ -23,4 +23,17 @@ export const StyledButton = styled.button`
 		      color: ${colors.neutrals.dark};
 		      font-weight: 700;
       }
+
+	    &:disabled {
+	        cursor: not-allowed;
+	        opacity: 0.6;
+	        border-color: ${colors.neutrals.medium};
+	        background-color: ${colors.neutrals.paleLight};
+	
+	        > span {
+	            background-color: ${colors.neutrals.veryPaleLight};
+	            color: ${colors.neutrals.medium};
+	        }
+	    }
+
 `;

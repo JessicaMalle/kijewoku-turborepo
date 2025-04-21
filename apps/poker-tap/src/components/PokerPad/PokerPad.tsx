@@ -1,4 +1,4 @@
-import { type ReactNode, useRef } from "react";
+import { type ReactNode, useEffect, useRef } from "react";
 import { usePokerPad } from "../../hooks/states/usePokerPad.ts";
 import useDigits from "../../hooks/utils/useDigits.utils.ts";
 import { useSortedCards } from "../../hooks/utils/useSortedCards.utils.ts";
@@ -46,6 +46,12 @@ function PokerPad({ id }: { id: number }): ReactNode {
 		...Array(5 - sortedCards.length).fill(null),
 	];
 
+	useEffect(() => {
+		if (pokerPad.cards.length === 5) {
+			markPokerPadAsPlayed();
+		}
+	}, [pokerPad.cards.length]);
+
 	return (
 		<div>
 			<StyledPokerPadInfos>
@@ -72,7 +78,11 @@ function PokerPad({ id }: { id: number }): ReactNode {
 					),
 				)}
 			</StyledPokerPad>
-			<Button label="Play the Poker Pad" onClick={markPokerPadAsPlayed} />
+			<Button
+				label="Play the Poker Pad"
+				disabled={pokerPad.cards.length === 0}
+				onClick={markPokerPadAsPlayed}
+			/>
 		</div>
 	);
 }

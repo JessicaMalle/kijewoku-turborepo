@@ -74,8 +74,6 @@ export const GameLayout = styled.div`
         grid-row: 1/8;
         overflow-y: scroll;
 				max-height: 100%;
-				padding: 15px 0;
-				border-bottom: 2px solid ${colors.neutrals.veryPaleLight};
 		}
 
 		#items {
