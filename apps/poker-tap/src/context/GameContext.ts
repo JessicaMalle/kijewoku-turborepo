@@ -7,6 +7,7 @@ export interface GameState {
 	hand: Hand;
 	deck: Deck;
 	pokerPads: PokerPad[];
+	playedPokerPads: PokerPad[];
 	items: Item[];
 }
 

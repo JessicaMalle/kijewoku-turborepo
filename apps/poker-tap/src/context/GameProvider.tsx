@@ -16,6 +16,7 @@ const initialGameState: GameState = {
 	hand: { Cards: [], firstPickMade: false },
 	deck: DeckService.shuffleDeck(DeckService.createDeck()),
 	pokerPads: SaveService.initializePokerPads(),
+	playedPokerPads: [],
 	items: ItemsService.getInitialItems(),
 };
 
@@ -35,7 +36,7 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
 	};
 
 	const nextPokerPadPrice = PokerPadService.calculatePokerPadCost(
-		state.pokerPads.length,
+		state.pokerPads.length + state.playedPokerPads.length,
 	);
 
 	const markPokerPadAsPlayed = (pokerPadId: number) =>
