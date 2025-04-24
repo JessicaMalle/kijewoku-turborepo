@@ -1,5 +1,5 @@
 import { useAnimation } from "@kijewoku/hooks/animation";
-import type { ReactNode } from "react";
+import type { CSSProperties, ReactNode } from "react";
 import { useChips } from "../../hooks/states/useChips.ts";
 import { StyledBigChipWrapper, StyledPokerChip } from "./BigChip.styles.ts";
 import { colors } from "../../Colors.styles.ts";
@@ -8,6 +8,8 @@ interface BigChipProps {
 	size?: number;
 	scale?: number;
 	noInteraction?: boolean;
+	label?: string;
+	style?: CSSProperties;
 }
 
 const BIG_CHIP_DEFAULT_SIZE = 151;
@@ -16,6 +18,8 @@ function BigChip({
 	size,
 	scale = 1,
 	noInteraction = false,
+	label = "10",
+	style,
 }: BigChipProps): ReactNode {
 	const { addChips } = useChips();
 
@@ -95,12 +99,13 @@ function BigChip({
 						mouseLeaveAnimationRef.current = element;
 					}
 				}}
-				$value="10"
+				$value={label}
 				$accentColor={colors.blues.darkBlue}
 				$primaryColor={colors.neutrals.white}
 				$secondaryColor={colors.neutrals.veryPaleLight}
 				$noInteraction={noInteraction}
 				$scale={calculatePokerChipScale()}
+				style={style}
 				onClick={!noInteraction ? () => addChips(10) : undefined}
 			/>
 		</StyledBigChipWrapper>

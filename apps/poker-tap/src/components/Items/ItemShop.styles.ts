@@ -4,36 +4,67 @@ import { colors } from "../../Colors.styles.ts";
 export const ItemShopContainer = styled.div`
 		display: grid;
 		gap: 13px;
+		padding: 15px;
+		border-radius: 10px;
+		background-color: ${colors.blues.darkBlue};
+    border: 2px solid ${colors.blues.navyBlue};
 `;
 
 export const ItemShopDescription = styled.div`
 		display: grid;
 		gap: 13px;
-		
-		> div {
-      display: flex;
-			justify-content: space-between;
-			align-items: center;
-	}
+		padding: 10px;
+    background-color: ${colors.neutrals.veryPaleLight};
+    border: 2px solid ${colors.neutrals.white};
+		border-radius: 6px;
 `;
 
 export const ItemShopItemName = styled.h3`
 		margin: 0;
 		font-size: 1.6rem;
 		font-weight: 700;
-		text-shadow: 0 2px ${colors.neutrals.medium};
+		color: ${colors.neutrals.mediumDark};
+		text-shadow: 0 2px ${colors.neutrals.paleLight};
+		text-align: center;
+`;
+
+export const ItemNameAndInfoToggler = styled.div`
+	position: relative;
+`;
+
+export const ItemInfoToggler = styled.button`
+    all: unset;
+		position: absolute;
+		top: 0;
+		right: 0;
+		background-color: white;
+		color: black;
+		width: 20px;
+		height: 20px;
+		line-height: 20px;
+		font-size: 12px;
+		font-weight: 700;
+		border-radius: 50%;
+		text-align: center;
+    cursor: pointer;
+`;
+
+export const ItemPriceAndCount = styled.div`
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
 `;
 
 export const ItemShopItemCount = styled.div`
-    width: 52px;
-    height: 52px;
-    line-height: 52px;
+    width: 38px;
+    height: 38px;
+    line-height: 38px;
     text-align: center;
     font-weight: 700;
-    font-size: 26px;
+    font-size: 20px;
     border-radius: 50%;
-    border: 4px solid ${colors.neutrals.paleLight};
-    box-shadow: 0 0 0 4px ${colors.neutrals.medium};
+    border: 3px solid ${colors.neutrals.paleLight};
+    box-shadow: 0 0 0 2px ${colors.neutrals.medium};
     background-color: ${colors.neutrals.white};
     color: ${colors.neutrals.dark};
 `;
@@ -42,7 +73,7 @@ export const ItemIllustration = styled.div`
     display: flex;
 		justify-content: center !important;
 		width: 100%;
-		margin: 10px 0 30px 0;
+    padding: 10px;
 `;
 
 export const ItemSlotsContainer = styled.div`

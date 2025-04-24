@@ -1,8 +1,10 @@
 import { useState } from "react";
-import { StyledSection } from "../Layouts/Section.styles.ts";
 import ScrollZone from "../DataDisplay/ScrollZone.tsx";
 import {
 	ItemIllustration,
+	ItemInfoToggler,
+	ItemNameAndInfoToggler,
+	ItemPriceAndCount,
 	ItemShopContainer,
 	ItemShopDescription,
 	ItemShopItemCount,
@@ -17,10 +19,13 @@ import type { ReactNode } from "react";
 import ItemSlot from "./ItemSlot.tsx";
 import type { ItemType } from "../../types/gameTypes.ts";
 import { INITIAL_ITEMS } from "../../services/ItemsService.ts";
+import BigChip from "../Chips/BigChip.tsx";
+import { StyledSection } from "../Layouts/Section.styles.ts";
 
 function ItemShop(): ReactNode {
 	const { items, buyItem, getItemPrice, canBuyItem } = useAppContext();
 	const [activeItem, setActiveItem] = useState<ItemType>("CURSOR");
+	const [showDetail, setShowDetail] = useState<boolean>(false);
 
 	const currentItem = items.find((item) => item.uid === activeItem);
 	const itemPrice = getItemPrice(activeItem);
@@ -36,21 +41,42 @@ function ItemShop(): ReactNode {
 		<StyledSection>
 			<ItemShopContainer>
 				<ItemShopDescription>
-					<div>
+					<ItemNameAndInfoToggler>
 						<ItemShopItemName>{formattedItemName}</ItemShopItemName>
+						<ItemInfoToggler
+							type="button"
+							onClick={() => setShowDetail(!showDetail)}
+						>
+							i
+						</ItemInfoToggler>
+					</ItemNameAndInfoToggler>
+					{showDetail ? (
+						<ScrollZone minHeight={100} maxHeight={100}>
+							{ITEM_DESCRIPTIONS[activeItem]}
+						</ScrollZone>
+					) : (
+						<ItemIllustration>
+							<Icon size={100} />
+						</ItemIllustration>
+					)}
+					<ItemPriceAndCount>
+						<Button
+							label={
+								<div style={{ display: "flex", alignItems: "center", gap: 5 }}>
+									<BigChip
+										noInteraction
+										size={15}
+										label="O"
+										style={{ cursor: "pointer" }}
+									/>
+									{itemPrice}
+								</div>
+							}
+							onClick={() => buyItem(activeItem)}
+							disabled={!canBuy}
+						/>
 						<ItemShopItemCount>{currentItem?.count || 0}</ItemShopItemCount>
-					</div>
-					<ItemIllustration>
-						<Icon size={100} />
-					</ItemIllustration>
-					<ScrollZone minHeight={60} maxHeight={60}>
-						{ITEM_DESCRIPTIONS[activeItem]}
-					</ScrollZone>
-					<Button
-						label={`Buy (${itemPrice} chips)`}
-						onClick={() => buyItem(activeItem)}
-						disabled={!canBuy}
-					/>
+					</ItemPriceAndCount>
 				</ItemShopDescription>
 				<ItemSlotsContainer>
 					{INITIAL_ITEMS.map((item) => (

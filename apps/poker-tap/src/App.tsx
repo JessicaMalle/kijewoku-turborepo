@@ -38,10 +38,10 @@ function App(): ReactNode {
 						<StyledSection id="poker-pads" $neutralStyle>
 							<PokerPads />
 						</StyledSection>
-						<StyledSection id="items" $neutralStyle>
+						<div id="items">
 							<ItemShop />
 							<PlayedPokerPads />
-						</StyledSection>
+						</div>
 					</GameLayout>
 					<StyledSection id="hand" $neutralStyle>
 						<Hand />
