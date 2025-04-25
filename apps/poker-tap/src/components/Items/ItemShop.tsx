@@ -60,18 +60,31 @@ function ItemShop(): ReactNode {
 					<ItemPriceAndCount>
 						<Button
 							label={
-								<div style={{ display: "flex", alignItems: "center", gap: 5 }}>
-									<BigChip
-										noInteraction
-										size={15}
-										label="O"
-										style={{ cursor: "pointer" }}
-									/>
+								<div
+									style={{
+										display: "flex",
+										alignItems: "center",
+										gap: 5,
+									}}
+								>
+									<div
+										style={{ border: "2px solid white", borderRadius: "100%" }}
+									>
+										<BigChip
+											noInteraction
+											size={24}
+											label="O"
+											style={{ cursor: "pointer" }}
+										/>
+									</div>
+
 									{itemPrice}
 								</div>
 							}
 							onClick={() => buyItem(activeItem)}
 							disabled={!canBuy}
+							fontSize={30}
+							hasTextShadow
 						/>
 						<ItemShopItemCount>{currentItem?.count || 0}</ItemShopItemCount>
 					</ItemPriceAndCount>

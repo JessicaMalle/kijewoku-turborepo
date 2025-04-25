@@ -1,15 +1,24 @@
-import type {ReactNode} from "react";
-import {StyledButton, ButtonContainer} from "./Button.styles.ts";
-import {useAnimation} from "@kijewoku/hooks/animation";
+import type { ReactNode } from "react";
+import { StyledButton, ButtonContainer } from "./Button.styles.ts";
+import { useAnimation } from "@kijewoku/hooks/animation";
 
 interface ButtonProps {
-	label?: string|ReactNode;
+	label?: string | ReactNode;
 	disabled?: boolean;
 	onClick?: () => void;
-	type?: 'button' | 'submit' | 'reset';
+	type?: "button" | "submit" | "reset";
+	fontSize?: string | number;
+	hasTextShadow?: boolean;
 }
 
-function Button({ label, disabled, onClick, type = 'button' }: ButtonProps): ReactNode {
+function Button({
+	label,
+	disabled,
+	onClick,
+	type = "button",
+	fontSize = "1rem",
+	hasTextShadow = false,
+}: ButtonProps): ReactNode {
 	const hoverAnimation = useAnimation({
 		keyframes: [
 			{ height: "45px", transform: "translateY(0)" },
@@ -50,9 +59,7 @@ function Button({ label, disabled, onClick, type = 'button' }: ButtonProps): Rea
 	});
 
 	const mouseleaveResetAnimation = useAnimation({
-		keyframes: [
-			{ height: "45px", transform: "translateY(0)" },
-		],
+		keyframes: [{ height: "45px", transform: "translateY(0)" }],
 		options: {
 			duration: 20,
 			easing: "ease-in",
@@ -67,7 +74,9 @@ function Button({ label, disabled, onClick, type = 'button' }: ButtonProps): Rea
 				type={type}
 				disabled={disabled}
 				onClick={onClick}
-				ref={element => {
+				$fontSize={fontSize}
+				$hasTextShadow={hasTextShadow}
+				ref={(element) => {
 					hoverAnimation.current = element;
 					activeAnimation.current = element;
 					mouseupResetAnimation.current = element;
