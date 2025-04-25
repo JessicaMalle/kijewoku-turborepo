@@ -12,11 +12,14 @@ export const ItemShopContainer = styled.div`
 
 export const ItemShopDescription = styled.div`
 		display: grid;
-		gap: 13px;
+		grid-template-rows: 40px 1fr 51px;
+		gap: 10px;
 		padding: 10px;
+    position: relative;
     background-color: ${colors.neutrals.veryPaleLight};
     border: 2px solid ${colors.neutrals.white};
 		border-radius: 6px;
+		aspect-ratio: 1/1;
 `;
 
 export const ItemShopItemName = styled.h3`
@@ -28,22 +31,22 @@ export const ItemShopItemName = styled.h3`
 		text-align: center;
 `;
 
-export const ItemNameAndInfoToggler = styled.div`
-	position: relative;
+export const ItemNameAndInfoToggle = styled.div`
+    position: relative;
 `;
 
-export const ItemInfoToggler = styled.button`
+export const ItemInfoToggle = styled.button`
     all: unset;
-		position: absolute;
-		top: 0;
+    position: absolute;
 		right: 0;
-		background-color: white;
-		color: black;
-		width: 20px;
-		height: 20px;
-		line-height: 20px;
-		font-size: 12px;
+		top: 0;
+		background-color: ${colors.neutrals.white};
+		color: ${colors.neutrals.paleDark};
+		height: calc(100% - 4px);
+		aspect-ratio: 1/1;
+		font-size: 24px;
 		font-weight: 700;
+		border: 2px solid ${colors.neutrals.paleLight};
 		border-radius: 50%;
 		text-align: center;
     cursor: pointer;
@@ -53,6 +56,7 @@ export const ItemPriceAndCount = styled.div`
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
+		max-height: fit-content;
 `;
 
 export const ItemShopItemCount = styled.div`
@@ -71,8 +75,9 @@ export const ItemShopItemCount = styled.div`
 
 export const ItemIllustration = styled.div`
     display: flex;
-		justify-content: center !important;
-		width: 100%;
+		justify-content: center;
+		align-items: center;
+		width: calc(100% - 20px);
     padding: 10px;
 `;
 

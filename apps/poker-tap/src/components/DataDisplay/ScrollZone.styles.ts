@@ -2,23 +2,29 @@ import styled from "styled-components";
 import { colors } from "../../Colors.styles.ts";
 
 export const ScrollContainer = styled.div<{
-	$minHeight: number | string | null;
-	$maxHeight: number | string;
+	$minHeight?: number | string | null;
+	$maxHeight?: number | string;
+	$fullHeight?: boolean;
 }>`
     min-height: ${(props) =>
-			typeof props.$minHeight === "number"
-				? `${props.$minHeight}px`
-				: props.$minHeight};
+			props.$fullHeight
+				? "calc(100% - 20px)"
+				: typeof props.$minHeight === "number"
+					? `${props.$minHeight}px`
+					: props.$minHeight};
 
     max-height: ${(props) =>
-			typeof props.$maxHeight === "number"
-				? `${props.$maxHeight}px`
-				: props.$maxHeight};
+			props.$fullHeight
+				? "calc(100% - 20px)"
+				: typeof props.$maxHeight === "number"
+					? `${props.$maxHeight}px`
+					: props.$maxHeight};
+    height: ${(props) => (props.$fullHeight ? "100%" : "auto")};
     overflow-y: auto;
-    width: calc(100% - 12px);
-		padding: 10px;
-		border-radius: 6px;
-		background-color: ${colors.neutrals.dark}50;
+    width: calc(100% - 20px);
+    padding: 10px;
+    border-radius: 6px;
+    background-color: ${colors.neutrals.dark}50;
 
     /* Stylisation de la scrollbar */
     /* Pour Chrome, Edge, et Safari */

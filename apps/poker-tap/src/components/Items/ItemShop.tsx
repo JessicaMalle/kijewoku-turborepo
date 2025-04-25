@@ -2,8 +2,8 @@ import { useState } from "react";
 import ScrollZone from "../DataDisplay/ScrollZone.tsx";
 import {
 	ItemIllustration,
-	ItemInfoToggler,
-	ItemNameAndInfoToggler,
+	ItemInfoToggle,
+	ItemNameAndInfoToggle,
 	ItemPriceAndCount,
 	ItemShopContainer,
 	ItemShopDescription,
@@ -41,19 +41,17 @@ function ItemShop(): ReactNode {
 		<StyledSection>
 			<ItemShopContainer>
 				<ItemShopDescription>
-					<ItemNameAndInfoToggler>
+					<ItemNameAndInfoToggle>
 						<ItemShopItemName>{formattedItemName}</ItemShopItemName>
-						<ItemInfoToggler
+						<ItemInfoToggle
 							type="button"
 							onClick={() => setShowDetail(!showDetail)}
 						>
 							i
-						</ItemInfoToggler>
-					</ItemNameAndInfoToggler>
+						</ItemInfoToggle>
+					</ItemNameAndInfoToggle>
 					{showDetail ? (
-						<ScrollZone minHeight={100} maxHeight={100}>
-							{ITEM_DESCRIPTIONS[activeItem]}
-						</ScrollZone>
+						<ScrollZone fullHeight>{ITEM_DESCRIPTIONS[activeItem]}</ScrollZone>
 					) : (
 						<ItemIllustration>
 							<Icon size={100} />
