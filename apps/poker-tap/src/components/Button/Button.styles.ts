@@ -1,6 +1,13 @@
 import styled from "styled-components";
 import { colors } from "../../Colors.styles.ts";
 
+export const ButtonContainer = styled.div`
+      height: 45px;
+      max-width: fit-content;
+      position: relative;
+      display: inline-block;
+`;
+
 export const StyledButton = styled.button`
       all: unset;
       display: flex;
@@ -10,7 +17,7 @@ export const StyledButton = styled.button`
       border: 3px solid ${colors.neutrals.dark};
       border-radius: 6px;
       background-color: ${colors.oranges.orange2};
-			max-width: fit-content;
+      max-width: fit-content;
       height: 45px;
 
       > span {
@@ -20,20 +27,19 @@ export const StyledButton = styled.button`
           padding: 0 30px;
           background-color: ${colors.oranges.orangeYellow};
           border-radius: 3px;
-		      color: ${colors.neutrals.dark};
-		      font-weight: 700;
+          color: ${colors.neutrals.dark};
+          font-weight: 700;
       }
 
-	    &:disabled {
-	        cursor: not-allowed;
-	        opacity: 0.6;
-	        border-color: ${colors.neutrals.medium};
-	        background-color: ${colors.neutrals.paleLight};
-	
-	        > span {
-	            background-color: ${colors.neutrals.veryPaleLight};
-	            color: ${colors.neutrals.medium};
-	        }
-	    }
+      &:disabled {
+          cursor: not-allowed;
+          opacity: 0.6;
+          border-color: ${colors.neutrals.medium};
+          background-color: ${colors.neutrals.paleLight};
 
+          > span {
+              background-color: ${colors.neutrals.veryPaleLight};
+              color: ${colors.neutrals.medium};
+          }
+      }
 `;

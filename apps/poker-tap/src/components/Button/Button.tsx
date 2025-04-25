@@ -1,5 +1,5 @@
 import type {ReactNode} from "react";
-import {StyledButton} from "./Button.styles.ts";
+import {StyledButton, ButtonContainer} from "./Button.styles.ts";
 import {useAnimation} from "@kijewoku/hooks/animation";
 
 interface ButtonProps {
@@ -62,19 +62,21 @@ function Button({ label, disabled, onClick, type = 'button' }: ButtonProps): Rea
 	});
 
 	return (
-		<StyledButton
-			type={type}
-			disabled={disabled}
-			onClick={onClick}
-			ref={element => {
-				hoverAnimation.current = element;
-				activeAnimation.current = element;
-				mouseupResetAnimation.current = element;
-				mouseleaveResetAnimation.current = element;
-			}}
-		>
-			<span>{label}</span>
-		</StyledButton>
+		<ButtonContainer>
+			<StyledButton
+				type={type}
+				disabled={disabled}
+				onClick={onClick}
+				ref={element => {
+					hoverAnimation.current = element;
+					activeAnimation.current = element;
+					mouseupResetAnimation.current = element;
+					mouseleaveResetAnimation.current = element;
+				}}
+			>
+				<span>{label}</span>
+			</StyledButton>
+		</ButtonContainer>
 	);
 }
 
