@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { colors } from "../../Colors.styles.ts";
 
 export const ButtonContainer = styled.div`
-      height: 45px;
+      height: 51px;
       max-width: fit-content;
       position: relative;
       display: inline-block;

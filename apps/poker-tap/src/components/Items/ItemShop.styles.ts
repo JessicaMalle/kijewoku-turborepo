@@ -12,7 +12,7 @@ export const ItemShopContainer = styled.div`
 
 export const ItemShopDescription = styled.div`
 		display: grid;
-		grid-template-rows: 40px 1fr 51px;
+		grid-template-rows: 40px 1fr auto;
 		gap: 10px;
 		padding: 10px;
     position: relative;
