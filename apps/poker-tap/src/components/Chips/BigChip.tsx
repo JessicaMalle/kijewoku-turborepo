@@ -100,7 +100,7 @@ function BigChip({
 					}
 				}}
 				$value={label}
-				$accentColor={colors.blue1100}
+				$accentColor={colors.blue700}
 				$primaryColor={colors.neutral100}
 				$secondaryColor={colors.neutral300}
 				$noInteraction={noInteraction}
