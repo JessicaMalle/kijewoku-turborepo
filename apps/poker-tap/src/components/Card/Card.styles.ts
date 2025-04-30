@@ -20,7 +20,7 @@ export const StyledCard = styled.div<{
     justify-content: space-between;
     
     background-color: ${colors.neutral100};
-    color: ${(props) => (props.color === "hearts" || props.color === "diamonds" ? colors.red200 : colors.neutral300)};
+    color: ${(props) => (props.color === "hearts" || props.color === "diamonds" ? colors.red100 : colors.neutral1300)};
     transition: ${(props) => (props.$isDragging ? "0ms" : "200ms")};
     font-family: "Bebas Neue", sans-serif;
     
@@ -111,11 +111,11 @@ export const BigCardValue = styled.div<BigCardValueProps>`
     font-size: 90px;
     ${generateFontSizeContainers(fontSizeSteps)}
 
-    color: ${({ color }) => (color === "hearts" || color === "diamonds" ? colors.red200 : colors.neutral400)};
+    color: ${({ color }) => (color === "hearts" || color === "diamonds" ? colors.red100 : colors.neutral1200)};
     background: ${({ color }) =>
 			(color === "hearts" || color === "diamonds")
-				? `linear-gradient(to bottom, ${colors.red200}, ${colors.red1200})`
-				: `linear-gradient(to bottom, ${colors.neutral800}, ${colors.neutral1000})`};
+				? `linear-gradient(to bottom, ${colors.red100}, ${colors.red700})`
+				: `linear-gradient(to bottom, ${colors.neutral1300}, ${colors.neutral1600})`};
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 
