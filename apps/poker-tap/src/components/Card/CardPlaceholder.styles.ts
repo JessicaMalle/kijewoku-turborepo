@@ -13,16 +13,14 @@ export const StyledCardPlaceholder = styled.div<{ $noHover?: boolean }>`
     justify-content: center;
     align-items: center;
 
-    border: 2px dashed ${colors.green1400};
+    border: 2px dashed ${colors.green800};
     background-color: ${colors.green600}50;
 
     transition: background-color 0.2s;
 
     &:hover {
         background-color: ${({ $noHover }) =>
-					$noHover
-						? `${colors.green600}50`
-						: `${colors.green1400}50`};
+					$noHover ? `${colors.green600}50` : `${colors.green1400}50`};
     }
 
     user-select: none;
