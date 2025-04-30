@@ -9,8 +9,8 @@ export const ItemSelector = styled.div`
 
 export const SelectorButton = styled.button<{ $active: "true" | "false" }>`
     border-radius: 8px;
-    border: 2px solid ${colors.neutrals.paleLight};
-    background-color: ${(props) => (props.$active === "true" ? colors.neutrals.paleLight : colors.neutrals.veryPaleLight)};
+    border: 2px solid ${colors.coolBeige400};
+    background-color: ${(props) => (props.$active === "true" ? colors.coolBeige400 : colors.coolBeige100)};
     font-weight: ${(props) => (props.$active === "true" ? "bold" : "normal")};
     cursor: pointer;
 		font-size: 12px;

@@ -14,7 +14,7 @@ const ExampleContainer = styled.div`
 
 const ModalContent = styled.div`
   padding: 20px;
-  color: ${colors.neutrals.white};
+  color: ${colors.neutral100};
   
   p {
     margin-bottom: 15px;

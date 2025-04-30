@@ -20,7 +20,7 @@ export const StyledPokerChip = styled.div<StyledPokerChipProps>`
   cursor: ${(props) => (props.$noInteraction ? "default" : "pointer")};
   border-bottom: ${(props) => 5 * (props.$scale || 1)}px solid ${(props) => props.$accentColor};
 
-  box-shadow: 0 0 0 ${(props) => 4 * (props.$scale || 1)}px ${colors.neutrals.dark};
+  box-shadow: 0 0 0 ${(props) => 4 * (props.$scale || 1)}px ${colors.neutral1600};
 
   &:before {
     position: absolute;

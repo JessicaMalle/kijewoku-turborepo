@@ -100,9 +100,9 @@ function BigChip({
 					}
 				}}
 				$value={label}
-				$accentColor={colors.blues.darkBlue}
-				$primaryColor={colors.neutrals.white}
-				$secondaryColor={colors.neutrals.veryPaleLight}
+				$accentColor={colors.blue1100}
+				$primaryColor={colors.neutral100}
+				$secondaryColor={colors.neutral300}
 				$noInteraction={noInteraction}
 				$scale={calculatePokerChipScale()}
 				style={style}

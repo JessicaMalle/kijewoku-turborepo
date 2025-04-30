@@ -25,11 +25,11 @@ export const MeshGradientWrapper = styled.div`
     width: 100%;
     height: 100%;
     /* Création du gradient radial avec des zones floues */
-    background: radial-gradient(circle at 20% 20%, ${colors.blues.turquoise}, transparent 40%),
-    radial-gradient(circle at 80% 30%, ${colors.blues.darkBlue}, transparent 60%),
-    radial-gradient(circle at 60% 70%, ${colors.blues.skyBlue}, transparent 70%),
-    radial-gradient(circle at 30% 80%, ${colors.blues.teal}, transparent 50%),
-    radial-gradient(circle at 70% 90%, ${colors.blues.cyan}, transparent 60%);
+    background: radial-gradient(circle at 20% 20%, ${colors.blue700}, transparent 40%),
+    radial-gradient(circle at 80% 30%, ${colors.softRed200}, transparent 60%),
+    radial-gradient(circle at 60% 70%, ${colors.slateBlue100}, transparent 70%),
+    radial-gradient(circle at 30% 80%, ${colors.brightGreen100}, transparent 50%),
+    radial-gradient(circle at 70% 90%, ${colors.lavender400}, transparent 60%);
     background-size: 200% 200%;
     animation: ${meshGradientAnimation} 15s ease-in-out infinite;
 		z-index: -1;
@@ -41,7 +41,7 @@ export const Main = styled.main`
 		grid-template-rows: 60px 1fr fit-content(100%);
 		height: 100vh;
 		max-height: 100vh;
-		color: ${colors.neutrals.white};
+		color: ${colors.neutral100};
 		user-select: none;
 `;
 

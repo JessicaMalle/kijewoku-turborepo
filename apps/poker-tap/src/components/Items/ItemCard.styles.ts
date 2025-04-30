@@ -4,9 +4,9 @@ import { colors } from "../../Colors.styles.ts";
 export const StyledItemCard = styled.div`
     padding: 10px;
     border-radius: 8px;
-    border: 2px solid ${colors.neutrals.paleLight};
-    background-color: ${colors.neutrals.veryPaleLight};
-		color: ${colors.neutrals.mediumDark};
+    border: 2px solid ${colors.neutral300};
+    background-color: ${colors.neutral300};
+		color: ${colors.neutral1000};
     aspect-ratio: 1 / 1;
 `;
 
@@ -17,7 +17,7 @@ export const TitleItemCard = styled.div`
 		font-size: 1.4rem;
 		font-weight: 700;
 		border-radius: 8px;
-		background-color: ${colors.neutrals.paleLight};
+		background-color: ${colors.neutral300};
 `;
 
 export const IllustrationItemCard = styled.div`
@@ -32,6 +32,6 @@ export const IllustrationItemCard = styled.div`
 				border-radius: 50%;
 				left: 50%;
 				transform: translateX(-50%);
-    		background-color: ${colors.neutrals.white};
+    		background-color: ${colors.neutral100};
 		}
 `;

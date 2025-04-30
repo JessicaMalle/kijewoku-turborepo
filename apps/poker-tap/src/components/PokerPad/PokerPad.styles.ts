@@ -11,11 +11,11 @@ export const StyledPokerPad = styled.div<{ $hovered: boolean }>`
     padding: 10px;
 		margin: 0 auto 30px auto;
     border-radius: 12px;
-    border: 2px solid ${colors.greens.limeGreen};
+    border: 2px solid ${colors.brightGreen100};
 		
-		box-shadow: 0 4px 0 0 ${colors.greens.darkGreen};
+		box-shadow: 0 4px 0 0 ${colors.green1400};
 
-    background-color: ${colors.greens.forestGreen};
+    background-color: ${colors.vibrantGreen800};
     background-image:
             radial-gradient(circle at 5% 20%, rgba(0, 0, 0, 0.04) 1px, transparent 1px),
             radial-gradient(circle at 80% 5%, rgba(0, 0, 0, 0.03) 1px, transparent 1px),
@@ -34,9 +34,9 @@ export const StyledPokerPad = styled.div<{ $hovered: boolean }>`
 			$hovered &&
 			`
         transform: translateY(-5px) scale(1.02);
-        box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2), 0 6px 0 0 ${colors.greens.darkGreen};
-        border-color: ${colors.greens.paleGreen};
-        background-color: ${colors.greens.green};
+        box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2), 0 6px 0 0 ${colors.green1400};
+        border-color: ${colors.green100};
+        background-color: ${colors.green600};
     `}
 
 `;
@@ -51,11 +51,11 @@ export const StyledPlayedPokerPad = styled.div`
     padding: 5px;
     margin: 0 auto 15px auto;
     border-radius: 8px;
-    border: 1px solid ${colors.greens.limeGreen};
+    border: 1px solid ${colors.brightGreen100};
     
-    box-shadow: 0 2px 0 0 ${colors.greens.darkGreen};
+    box-shadow: 0 2px 0 0 ${colors.green1400};
 
-    background-color: ${colors.greens.forestGreen};
+    background-color: ${colors.vibrantGreen800};
     background-image:
             radial-gradient(circle at 5% 20%, rgba(0, 0, 0, 0.02) 1px, transparent 1px),
             radial-gradient(circle at 80% 5%, rgba(0, 0, 0, 0.01) 1px, transparent 1px),
@@ -69,5 +69,5 @@ export const StyledPlayedPokerPad = styled.div`
 
 export const StyledPokerPadInfos = styled.div`
 	text-align: center;
-	color: ${colors.neutrals.white};
+	color: ${colors.neutral100};
 `;

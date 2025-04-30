@@ -9,10 +9,10 @@ export const ItemSlotContainer = styled.button`
 		position: relative;
     aspect-ratio: 1 / 1;
     cursor: pointer;
-		background-color: ${colors.neutrals.veryPaleLight};
-		color: ${colors.neutrals.dark};
-		border: 3px solid ${colors.neutrals.paleLight};
-		box-shadow: 0 0 0 2px ${colors.neutrals.medium};
+		background-color: ${colors.neutral300};
+		color: ${colors.neutral1600};
+		border: 3px solid ${colors.neutral300};
+		box-shadow: 0 0 0 2px ${colors.neutral800};
 		border-radius: 6px;
 
     &:hover, &:active {
@@ -39,9 +39,9 @@ export const ItemSlotCount = styled.div`
 		font-weight: 700;
 		font-size: 13px;
 		border-radius: 50%;
-		border: 2px solid ${colors.neutrals.paleLight};
-    box-shadow: 0 0 0 2px ${colors.neutrals.medium};
-		background-color: ${colors.neutrals.white};
-		color: ${colors.neutrals.dark};
+		border: 2px solid ${colors.neutral300};
+    box-shadow: 0 0 0 2px ${colors.neutral800};
+		background-color: ${colors.neutral100};
+		color: ${colors.neutral1600};
 		z-index: 1;
 `;

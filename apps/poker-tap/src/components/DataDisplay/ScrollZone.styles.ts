@@ -24,7 +24,7 @@ export const ScrollContainer = styled.div<{
     width: calc(100% - 20px);
     padding: 10px;
     border-radius: 6px;
-    background-color: ${colors.neutrals.dark}50;
+    background-color: ${colors.neutral1600}50;
 
     /* Stylisation de la scrollbar */
     /* Pour Chrome, Edge, et Safari */

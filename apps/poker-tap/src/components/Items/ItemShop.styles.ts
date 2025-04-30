@@ -6,8 +6,8 @@ export const ItemShopContainer = styled.div`
 		gap: 13px;
 		padding: 15px;
 		border-radius: 10px;
-		background-color: ${colors.blues.darkBlue};
-    border: 2px solid ${colors.blues.navyBlue};
+		background-color: ${colors.blue1100};
+    border: 2px solid ${colors.royalBlue400};
 `;
 
 export const ItemShopDescription = styled.div`
@@ -16,8 +16,8 @@ export const ItemShopDescription = styled.div`
 		gap: 10px;
 		padding: 10px;
     position: relative;
-    background-color: ${colors.neutrals.veryPaleLight};
-    border: 2px solid ${colors.neutrals.white};
+    background-color: ${colors.neutral300};
+    border: 2px solid ${colors.neutral100};
 		border-radius: 6px;
 		aspect-ratio: 1/1;
 `;
@@ -26,8 +26,8 @@ export const ItemShopItemName = styled.h3`
 		margin: 0;
 		font-size: 1.6rem;
 		font-weight: 700;
-		color: ${colors.neutrals.mediumDark};
-		text-shadow: 0 2px ${colors.neutrals.paleLight};
+		color: ${colors.neutral1000};
+		text-shadow: 0 2px ${colors.neutral300};
 		text-align: center;
 `;
 
@@ -40,13 +40,13 @@ export const ItemInfoToggle = styled.button`
     position: absolute;
 		right: 0;
 		top: 0;
-		background-color: ${colors.neutrals.white};
-		color: ${colors.neutrals.paleDark};
+		background-color: ${colors.neutral100};
+		color: ${colors.neutral300};
 		height: calc(100% - 4px);
 		aspect-ratio: 1/1;
 		font-size: 24px;
 		font-weight: 700;
-		border: 2px solid ${colors.neutrals.paleLight};
+		border: 2px solid ${colors.neutral300};
 		border-radius: 50%;
 		text-align: center;
     cursor: pointer;
@@ -67,10 +67,10 @@ export const ItemShopItemCount = styled.div`
     font-weight: 700;
     font-size: 20px;
     border-radius: 50%;
-    border: 3px solid ${colors.neutrals.paleLight};
-    box-shadow: 0 0 0 2px ${colors.neutrals.medium};
-    background-color: ${colors.neutrals.white};
-    color: ${colors.neutrals.dark};
+    border: 3px solid ${colors.neutral300};
+    box-shadow: 0 0 0 2px ${colors.neutral800};
+    background-color: ${colors.neutral100};
+    color: ${colors.neutral1600};
 `;
 
 export const ItemIllustration = styled.div`

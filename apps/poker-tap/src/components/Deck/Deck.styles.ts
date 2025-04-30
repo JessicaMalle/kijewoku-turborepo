@@ -25,8 +25,8 @@ export const DeckCardsStack = styled.div<{ $deckSize: number }>`
         min-width: 100px;
         aspect-ratio: 2 / 3;
         border-radius: 8px;
-        border: 3px solid ${colors.neutrals.mediumDark};
-        box-shadow: 0 0 0 4px ${colors.neutrals.mediumDark};
+        border: 3px solid ${colors.neutral1000};
+        box-shadow: 0 0 0 4px ${colors.neutral1000};
     }
 
     ${({ $deckSize }) =>
@@ -38,14 +38,14 @@ export const DeckCardsStack = styled.div<{ $deckSize: number }>`
             left: ${-(i + 1)}px;
             z-index: ${Math.min($deckSize, 5) - i};
 
-            border: 3px solid ${i % 2 === 0 ? colors.neutrals.white : colors.neutrals.white};
-            box-shadow: 0 0 0 4px ${i % 2 === 0 ? colors.neutrals.veryPaleLight : colors.neutrals.white};
+            border: 3px solid ${i % 2 === 0 ? colors.neutral100 : colors.neutral100};
+            box-shadow: 0 0 0 4px ${i % 2 === 0 ? colors.neutral300 : colors.neutral100};
 		        
-		        background-color: ${colors.neutrals.white};
-				    background-image:  linear-gradient(135deg, ${colors.reds.cherryRed} 25%, transparent 25%),
-				                       linear-gradient(225deg, ${colors.reds.cherryRed} 25%, transparent 25%),
-				                       linear-gradient(45deg, ${colors.reds.cherryRed} 25%, transparent 25%),
-				                       linear-gradient(315deg, ${colors.reds.cherryRed} 25%, ${colors.neutrals.white} 25%);
+		        background-color: ${colors.neutral100};
+				    background-image:  linear-gradient(135deg, ${colors.red200} 25%, transparent 25%),
+				                       linear-gradient(225deg, ${colors.red200} 25%, transparent 25%),
+				                       linear-gradient(45deg, ${colors.red200} 25%, transparent 25%),
+				                       linear-gradient(315deg, ${colors.red200} 25%, ${colors.neutral100} 25%);
 				    background-position:  20px 0, 20px 0, 0 0, 0 0;
 				    background-size: 20px 20px;
 				    background-repeat: repeat;
@@ -60,17 +60,17 @@ export const StyledCardBack = styled.div<{ $disabled: boolean }>`
     width: 120px;
     min-width: 100px;
     aspect-ratio: 2 / 3;
-    background-color: ${colors.neutrals.white};
-    background-image:  linear-gradient(135deg, ${colors.reds.cherryRed} 25%, transparent 25%),
-                       linear-gradient(225deg, ${colors.reds.cherryRed} 25%, transparent 25%),
-    									 linear-gradient(45deg, ${colors.reds.cherryRed} 25%, transparent 25%),
-    									 linear-gradient(315deg, ${colors.reds.cherryRed} 25%, ${colors.neutrals.white} 25%);
+    background-color: ${colors.neutral100};
+    background-image:  linear-gradient(135deg, ${colors.red200} 25%, transparent 25%),
+                       linear-gradient(225deg, ${colors.red200} 25%, transparent 25%),
+    									 linear-gradient(45deg, ${colors.red200} 25%, transparent 25%),
+    									 linear-gradient(315deg, ${colors.red200} 25%, ${colors.neutral100} 25%);
     background-position:  20px 0, 20px 0, 0 0, 0 0;
     background-size: 20px 20px;
     background-repeat: repeat;
     border-radius: 8px;
-		border: 3px solid ${colors.reds.red};
-		box-shadow: 0 0 0 4px ${colors.neutrals.white};
+		border: 3px solid ${colors.red100};
+		box-shadow: 0 0 0 4px ${colors.neutral100};
 		cursor: pointer;
 
     ${(props) =>
@@ -92,8 +92,8 @@ export const StyledCardBack = styled.div<{ $disabled: boolean }>`
 `;
 
 export const PriceTag = styled.div`
-    background-color: ${colors.oranges.orangeYellow};
-    color: ${colors.purples.darkPurple};
+    background-color: ${colors.yellow300};
+    color: ${colors.purple500};
     padding: 3px 24px;
     font-size: 1rem;
     font-weight: bold;
@@ -113,8 +113,8 @@ export const PriceTag = styled.div`
         bottom: 0;
         width: 10px;
         background:
-                linear-gradient(135deg, transparent 50%, ${colors.purples.darkPurple} 50%),
-                linear-gradient(45deg, transparent 50%, ${colors.purples.darkPurple} 50%);
+                linear-gradient(135deg, transparent 50%, ${colors.purple500} 50%),
+                linear-gradient(45deg, transparent 50%, ${colors.purple500} 50%);
         background-size: 10px 10px;
         background-repeat: repeat-y;
     }

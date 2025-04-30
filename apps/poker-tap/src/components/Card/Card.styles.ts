@@ -12,15 +12,15 @@ export const StyledCard = styled.div<{
     position: relative;
     width: clamp(60px, 12vw, 100px);
     min-width: 60px;
-    border: 2px solid ${colors.neutrals.veryPaleLight};
+    border: 2px solid ${colors.neutral300};
     aspect-ratio: 2 / 3;
     border-radius: 8px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     
-    background-color: ${colors.neutrals.white};
-    color: ${(props) => (props.color === "hearts" || props.color === "diamonds" ? colors.reds.cherryRed : colors.neutrals.paleDark)};
+    background-color: ${colors.neutral100};
+    color: ${(props) => (props.color === "hearts" || props.color === "diamonds" ? colors.red200 : colors.neutral300)};
     transition: ${(props) => (props.$isDragging ? "0ms" : "200ms")};
     font-family: "Bebas Neue", sans-serif;
     
@@ -32,8 +32,8 @@ export const StyledCard = styled.div<{
 			return "default";
 		}};
     
-		border: ${(props) => (props.$active ? `2px solid ${colors.reds.cherryRed}` : "0 solid transparent")};
-    box-shadow: ${(props) => (props.$active ? `0 0 0 2px ${colors.reds.coral}` : "none")};
+		border: ${(props) => (props.$active ? `2px solid ${colors.red200}` : "0 solid transparent")};
+    box-shadow: ${(props) => (props.$active ? `0 0 0 2px ${colors.softRed300}` : "none")};
 `;
 
 export const SuitAndValueWrapper = styled.div`
@@ -46,12 +46,12 @@ export const SuitAndValueWrapper = styled.div`
     border: 2px solid transparent;
     border-radius: 6px;
     background:
-        linear-gradient(to bottom, ${colors.neutrals.white}, ${colors.neutrals.white}) padding-box,
+        linear-gradient(to bottom, ${colors.neutral100}, ${colors.neutral100}) padding-box,
         linear-gradient(
                 to top,
-                ${colors.neutrals.veryPaleLight} 0%,
-                ${colors.neutrals.white} 75%,
-                ${colors.neutrals.white} 100%
+                ${colors.neutral300} 0%,
+                ${colors.neutral100} 75%,
+                ${colors.neutral100} 100%
         ) border-box;
     background-clip: content-box, border-box;
 `;
@@ -111,11 +111,11 @@ export const BigCardValue = styled.div<BigCardValueProps>`
     font-size: 90px;
     ${generateFontSizeContainers(fontSizeSteps)}
 
-    color: ${({ color }) => (color === "hearts" || color === "diamonds" ? colors.reds.cherryRed : colors.neutrals.pale)};
+    color: ${({ color }) => (color === "hearts" || color === "diamonds" ? colors.red200 : colors.neutral400)};
     background: ${({ color }) =>
 			(color === "hearts" || color === "diamonds")
-				? `linear-gradient(to bottom, ${colors.reds.cherryRed}, ${colors.reds.crimson})`
-				: `linear-gradient(to bottom, ${colors.neutrals.medium}, ${colors.neutrals.mediumDark})`};
+				? `linear-gradient(to bottom, ${colors.red200}, ${colors.red1200})`
+				: `linear-gradient(to bottom, ${colors.neutral800}, ${colors.neutral1000})`};
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 
