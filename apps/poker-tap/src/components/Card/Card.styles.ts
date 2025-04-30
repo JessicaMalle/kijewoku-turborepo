@@ -1,8 +1,35 @@
 import styled, { css } from "styled-components";
 import { colors } from "../../Colors.styles.ts";
+import type { CardColor } from "../../types/gameTypes.ts";
+
+const getTextColor = (color: CardColor): string => {
+	switch (color) {
+		case "spades":
+			return colors.neutral1300;
+		case "hearts":
+			return colors.red100;
+		case "clover":
+			return colors.vibrantGreen700;
+		case "diamonds":
+			return colors.blue400;
+	}
+};
+
+const getBackgroundGradient = (color: CardColor): string => {
+	switch (color) {
+		case "spades":
+			return `linear-gradient(to bottom, ${colors.neutral1300}, ${colors.neutral1600})`;
+		case "hearts":
+			return `linear-gradient(to bottom, ${colors.red100}, ${colors.red1000})`;
+		case "clover":
+			return `linear-gradient(to bottom, ${colors.vibrantGreen700}, ${colors.vibrantGreen1000})`;
+		case "diamonds":
+			return `linear-gradient(to bottom, ${colors.blue400}, ${colors.blue1000})`;
+	}
+};
 
 export const StyledCard = styled.div<{
-	color: string;
+	color: CardColor;
 	$active?: string;
 	$isDraggable?: boolean;
 	$isDragging?: boolean;
@@ -18,12 +45,12 @@ export const StyledCard = styled.div<{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    
+
     background-color: ${colors.neutral100};
-    color: ${(props) => (props.color === "hearts" || props.color === "diamonds" ? colors.red100 : colors.neutral1300)};
+    color: ${(props) => getTextColor(props.color)};
     transition: ${(props) => (props.$isDragging ? "0ms" : "200ms")};
     font-family: "Bebas Neue", sans-serif;
-    
+
     user-select: none;
     overflow: hidden;
     cursor: ${(props) => {
@@ -31,7 +58,7 @@ export const StyledCard = styled.div<{
 			if (props.$isDraggable) return "grab";
 			return "default";
 		}};
-    
+
 		border: ${(props) => (props.$active ? `2px solid ${colors.red200}` : "0 solid transparent")};
     box-shadow: ${(props) => (props.$active ? `0 0 0 2px ${colors.softRed300}` : "none")};
 `;
@@ -107,15 +134,12 @@ export const BigCardValue = styled.div<BigCardValueProps>`
     align-items: center;
     justify-content: center;
     font-weight: 800;
-    
+
     font-size: 90px;
     ${generateFontSizeContainers(fontSizeSteps)}
 
-    color: ${({ color }) => (color === "hearts" || color === "diamonds" ? colors.red100 : colors.neutral1200)};
-    background: ${({ color }) =>
-			(color === "hearts" || color === "diamonds")
-				? `linear-gradient(to bottom, ${colors.red100}, ${colors.red700})`
-				: `linear-gradient(to bottom, ${colors.neutral1300}, ${colors.neutral1600})`};
+    color: ${({ color }) => getTextColor(color)};
+    background: ${({ color }) => getBackgroundGradient(color)};
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 

@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 import { useHand } from "../../hooks/states/useHand.ts";
-import type { Card as CardType } from "../../types/gameTypes.ts";
+import type { Card as CardType, CardColor } from "../../types/gameTypes.ts";
 import {
 	BigCardValue,
 	CardSuit,
@@ -18,7 +18,7 @@ function Card({
 	active,
 	isDraggable = false,
 }: CardType): ReactNode {
-	const suitSymbols: Record<string, string> = {
+	const suitSymbols: Record<CardColor, string> = {
 		spades: "♠",
 		hearts: "♥",
 		clover: "♣",
