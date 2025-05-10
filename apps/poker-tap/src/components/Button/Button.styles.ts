@@ -19,7 +19,7 @@ export const StyledButton = styled.button<{
     cursor: pointer;
     border: 3px solid ${Colors.dark.nightPurple};
     border-radius: 6px;
-    background-color: ${Colors.yellow.canary};
+    background-color: ${Colors.yellow.gold};
     max-width: fit-content;
     height: 45px;
     font-size: ${({ $fontSize }) => (typeof $fontSize === "number" ? `${$fontSize}px` : $fontSize || "1rem")};
@@ -29,7 +29,7 @@ export const StyledButton = styled.button<{
         height: 40px;
         line-height: 40px;
         padding: 0 30px;
-        background-color: ${Colors.yellow.gold};
+        background-color: ${Colors.yellow.yellow};
         border-radius: 3px;
         color: ${Colors.dark.nightPurple};
         ${({ $hasTextShadow = true }) =>

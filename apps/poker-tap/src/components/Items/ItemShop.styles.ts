@@ -3,7 +3,7 @@ import { Colors } from "../../Colors.styles.ts";
 
 export const ItemShopContainer = styled.div`
 		display: grid;
-		gap: 13px;
+		gap: 15px;
 		padding: 15px;
 		border-radius: 10px;
 		background-color: ${Colors.blue.navy};
@@ -13,40 +13,39 @@ export const ItemShopContainer = styled.div`
 export const ItemShopDescription = styled.div`
 		display: grid;
 		grid-template-rows: 40px 1fr auto;
-		gap: 10px;
+		gap: 15px;
 		padding: 10px;
     position: relative;
-    background-color: ${Colors.neutral.mint};
-    border: 2px solid ${Colors.neutral.white};
+    border: 3px solid ${Colors.yellow.yellow};
+    box-shadow: 0 0 0 2px ${Colors.yellow.gold};
+    background-color: ${Colors.yellow.canary};
 		border-radius: 6px;
 		aspect-ratio: 1/1;
 `;
 
 export const ItemShopItemName = styled.h3`
 		margin: 0;
-		font-size: 1.6rem;
+		font-size: 28px;
 		font-weight: 700;
-		color: ${Colors.dark.mediumPurple};
-		text-shadow: 0 2px ${Colors.neutral.mint};
-		text-align: center;
+		color: ${Colors.dark.deepPurple};
 `;
 
 export const ItemNameAndInfoToggle = styled.div`
     position: relative;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
 `;
 
 export const ItemInfoToggle = styled.button`
     all: unset;
-    position: absolute;
-		right: 0;
-		top: 0;
-		background-color: ${Colors.neutral.white};
-		color: ${Colors.neutral.mint};
-		height: calc(100% - 4px);
+		background-color: ${Colors.blue.azure};
+		color: ${Colors.neutral.white};
+		height: 30px;
 		aspect-ratio: 1/1;
-		font-size: 24px;
+		font-size: 20px;
 		font-weight: 700;
-		border: 2px solid ${Colors.neutral.mint};
+		border: 2px solid ${Colors.blue.navy};
 		border-radius: 50%;
 		text-align: center;
     cursor: pointer;
@@ -60,17 +59,10 @@ export const ItemPriceAndCount = styled.div`
 `;
 
 export const ItemShopItemCount = styled.div`
-    width: 38px;
-    height: 38px;
-    line-height: 38px;
-    text-align: center;
     font-weight: 700;
-    font-size: 20px;
-    border-radius: 50%;
-    border: 3px solid ${Colors.neutral.mint};
-    box-shadow: 0 0 0 2px ${Colors.neutral.slate};
-    background-color: ${Colors.neutral.white};
-    color: ${Colors.dark.nightPurple};
+    font-size: 51px;
+		line-height: 51px;
+    color: ${Colors.dark.deepPurple};
 `;
 
 export const ItemIllustration = styled.div`

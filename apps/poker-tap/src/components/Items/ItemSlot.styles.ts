@@ -13,13 +13,16 @@ export const ItemSlotContainer = styled.button`
 		color: ${Colors.dark.nightPurple};
 		border: 3px solid ${Colors.neutral.mint};
 		box-shadow: 0 0 0 2px ${Colors.neutral.slate};
+
+    border: 3px solid ${Colors.yellow.yellow};
+    box-shadow: 0 0 0 2px ${Colors.yellow.gold};
+    background-color: ${Colors.yellow.canary};
+		
 		border-radius: 6px;
+		
+		transition: 0.2s;
 
     &:hover, &:active {
-				filter: brightness(0.9);
-		}
-
-		&:focus {
 				filter: brightness(1.1);
 		}
 
