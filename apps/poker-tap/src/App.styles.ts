@@ -1,5 +1,5 @@
 import styled, { keyframes } from "styled-components";
-import { colors } from "./Colors.styles.ts";
+import { Colors } from "./Colors.styles.ts";
 
 // Animation clé pour déplacer le gradient
 const meshGradientAnimation = keyframes`
@@ -25,11 +25,11 @@ export const MeshGradientWrapper = styled.div`
     width: 100%;
     height: 100%;
     /* Création du gradient radial avec des zones floues */
-    background: radial-gradient(circle at 20% 20%, ${colors.blue700}, transparent 40%),
-    radial-gradient(circle at 80% 30%, ${colors.softRed200}, transparent 60%),
-    radial-gradient(circle at 60% 70%, ${colors.slateBlue100}, transparent 70%),
-    radial-gradient(circle at 30% 80%, ${colors.brightGreen100}, transparent 50%),
-    radial-gradient(circle at 70% 90%, ${colors.lavender400}, transparent 60%);
+    background: radial-gradient(circle at 20% 20%, ${Colors.blue.azure}, transparent 40%),
+    radial-gradient(circle at 80% 30%, ${Colors.teal.aqua}, transparent 60%),
+    radial-gradient(circle at 60% 70%, ${Colors.blue.skyBlue}, transparent 70%),
+    radial-gradient(circle at 30% 80%, ${Colors.teal.cyan}, transparent 50%),
+    radial-gradient(circle at 70% 90%, ${Colors.purple.lilac}, transparent 60%);
     background-size: 200% 200%;
     animation: ${meshGradientAnimation} 15s ease-in-out infinite;
 		z-index: -1;
@@ -41,7 +41,7 @@ export const Main = styled.main`
 		grid-template-rows: 60px 1fr fit-content(100%);
 		height: 100vh;
 		max-height: 100vh;
-		color: ${colors.neutral100};
+		color: ${Colors.neutral.white};
 		user-select: none;
 `;
 

@@ -1,30 +1,30 @@
 import styled, { css } from "styled-components";
-import { colors } from "../../Colors.styles.ts";
+import { Colors } from "../../Colors.styles.ts";
 import type { CardColor } from "../../types/gameTypes.ts";
 
 const getTextColor = (color: CardColor): string => {
 	switch (color) {
 		case "spades":
-			return colors.neutral1300;
+			return Colors.dark.mediumPurple;
 		case "hearts":
-			return colors.red100;
+			return Colors.red.crimson;
 		case "clover":
-			return colors.vibrantGreen700;
+			return Colors.green.jade;
 		case "diamonds":
-			return colors.blue400;
+			return Colors.blue.azure;
 	}
 };
 
 const getBackgroundGradient = (color: CardColor): string => {
 	switch (color) {
 		case "spades":
-			return `linear-gradient(to bottom, ${colors.neutral1300}, ${colors.neutral1600})`;
+			return `linear-gradient(to bottom, ${Colors.dark.mediumPurple}, ${Colors.dark.nightPurple})`;
 		case "hearts":
-			return `linear-gradient(to bottom, ${colors.red100}, ${colors.red1000})`;
+			return `linear-gradient(to bottom, ${Colors.red.crimson}, ${Colors.red.burgundy})`;
 		case "clover":
-			return `linear-gradient(to bottom, ${colors.vibrantGreen700}, ${colors.vibrantGreen1000})`;
+			return `linear-gradient(to bottom, ${Colors.green.jade}, ${Colors.green.forest})`;
 		case "diamonds":
-			return `linear-gradient(to bottom, ${colors.blue400}, ${colors.blue1000})`;
+			return `linear-gradient(to bottom, ${Colors.blue.azure}, ${Colors.blue.navy})`;
 	}
 };
 
@@ -39,14 +39,14 @@ export const StyledCard = styled.div<{
     position: relative;
     width: clamp(60px, 12vw, 100px);
     min-width: 60px;
-    border: 2px solid ${colors.neutral300};
+    border: 2px solid ${Colors.neutral.mint};
     aspect-ratio: 2 / 3;
     border-radius: 8px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 
-    background-color: ${colors.neutral100};
+    background-color: ${Colors.neutral.white};
     color: ${(props) => getTextColor(props.color)};
     transition: ${(props) => (props.$isDragging ? "0ms" : "200ms")};
     font-family: "Bebas Neue", sans-serif;
@@ -59,8 +59,8 @@ export const StyledCard = styled.div<{
 			return "default";
 		}};
 
-		border: ${(props) => (props.$active ? `2px solid ${colors.red200}` : "0 solid transparent")};
-    box-shadow: ${(props) => (props.$active ? `0 0 0 2px ${colors.softRed300}` : "none")};
+		border: ${(props) => (props.$active ? `2px solid ${Colors.red.crimson}` : "0 solid transparent")};
+    box-shadow: ${(props) => (props.$active ? `0 0 0 2px ${Colors.pink.salmon}` : "none")};
 `;
 
 export const SuitAndValueWrapper = styled.div`
@@ -73,12 +73,12 @@ export const SuitAndValueWrapper = styled.div`
     border: 2px solid transparent;
     border-radius: 6px;
     background:
-        linear-gradient(to bottom, ${colors.neutral100}, ${colors.neutral100}) padding-box,
+        linear-gradient(to bottom, ${Colors.neutral.white}, ${Colors.neutral.white}) padding-box,
         linear-gradient(
                 to top,
-                ${colors.neutral300} 0%,
-                ${colors.neutral100} 75%,
-                ${colors.neutral100} 100%
+                ${Colors.neutral.mint} 0%,
+                ${Colors.neutral.white} 75%,
+                ${Colors.neutral.white} 100%
         ) border-box;
     background-clip: content-box, border-box;
 `;

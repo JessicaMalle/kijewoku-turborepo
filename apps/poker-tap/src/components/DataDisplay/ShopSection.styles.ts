@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { colors } from "../../Colors.styles.ts";
+import { Colors } from "../../Colors.styles.ts";
 
 export const ItemSelector = styled.div`
     display: grid;
@@ -9,8 +9,8 @@ export const ItemSelector = styled.div`
 
 export const SelectorButton = styled.button<{ $active: "true" | "false" }>`
     border-radius: 8px;
-    border: 2px solid ${colors.coolBeige400};
-    background-color: ${(props) => (props.$active === "true" ? colors.coolBeige400 : colors.coolBeige100)};
+    border: 2px solid ${Colors.brown.sandBeige};
+    background-color: ${(props) => (props.$active === "true" ? Colors.brown.sandBeige : Colors.coral.peach)};
     font-weight: ${(props) => (props.$active === "true" ? "bold" : "normal")};
     cursor: pointer;
 		font-size: 12px;
@@ -24,5 +24,5 @@ export const SelectorButton = styled.button<{ $active: "true" | "false" }>`
 `;
 
 export const DescriptionItemCard = styled.div`
-		
+
 `;

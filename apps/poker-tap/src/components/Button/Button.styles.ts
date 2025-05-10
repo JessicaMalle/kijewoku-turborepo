@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { colors } from "../../Colors.styles.ts";
+import { Colors } from "../../Colors.styles.ts";
 
 export const ButtonContainer = styled.div`
     height: 51px;
@@ -17,9 +17,9 @@ export const StyledButton = styled.button<{
     justify-content: center;
     align-items: flex-start;
     cursor: pointer;
-    border: 3px solid ${colors.neutral1600};
+    border: 3px solid ${Colors.dark.nightPurple};
     border-radius: 6px;
-    background-color: ${colors.yellow400};
+    background-color: ${Colors.yellow.canary};
     max-width: fit-content;
     height: 45px;
     font-size: ${({ $fontSize }) => (typeof $fontSize === "number" ? `${$fontSize}px` : $fontSize || "1rem")};
@@ -29,17 +29,17 @@ export const StyledButton = styled.button<{
         height: 40px;
         line-height: 40px;
         padding: 0 30px;
-        background-color: ${colors.yellow100};
+        background-color: ${Colors.yellow.gold};
         border-radius: 3px;
-        color: ${colors.neutral1600};
+        color: ${Colors.dark.nightPurple};
         ${({ $hasTextShadow = true }) =>
 					$hasTextShadow
 						? `
           text-shadow:
-                  -1px -1px 0 ${colors.neutral100},
-                  1px -1px 0 ${colors.neutral100},
-                  -1px 1px 0 ${colors.neutral100},
-                  1px 1px 0 ${colors.neutral100};
+                  -1px -1px 0 ${Colors.neutral.white},
+                  1px -1px 0 ${Colors.neutral.white},
+                  -1px 1px 0 ${Colors.neutral.white},
+                  1px 1px 0 ${Colors.neutral.white};
           `
 						: ""}
         font-weight: 700;

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { colors } from "../../Colors.styles.ts";
+import { Colors } from "../../Colors.styles.ts";
 
 export const StyledPokerPad = styled.div<{ $hovered: boolean }>`
     display: flex;
@@ -11,11 +11,11 @@ export const StyledPokerPad = styled.div<{ $hovered: boolean }>`
     padding: 10px;
 		margin: 0 auto 30px auto;
     border-radius: 12px;
-    border: 2px solid ${colors.green700};
-		
-		box-shadow: 0 4px 0 0 ${colors.green800};
+    border: 2px solid ${Colors.green.forest};
 
-    background-color: ${colors.green400};
+		box-shadow: 0 4px 0 0 ${Colors.green.forest};
+
+    background-color: ${Colors.green.jade};
     background-image:
             radial-gradient(circle at 5% 20%, rgba(0, 0, 0, 0.04) 1px, transparent 1px),
             radial-gradient(circle at 80% 5%, rgba(0, 0, 0, 0.03) 1px, transparent 1px),
@@ -34,9 +34,9 @@ export const StyledPokerPad = styled.div<{ $hovered: boolean }>`
 			$hovered &&
 			`
         transform: translateY(-5px) scale(1.02);
-        box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2), 0 6px 0 0 ${colors.green400};
-        border-color: ${colors.green400};
-        background-color: ${colors.green600};
+        box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2), 0 6px 0 0 ${Colors.green.jade};
+        border-color: ${Colors.green.jade};
+        background-color: ${Colors.green.emerald};
     `}
 `;
 
@@ -50,11 +50,11 @@ export const StyledPlayedPokerPad = styled.div`
     padding: 5px;
     margin: 0 auto 15px auto;
     border-radius: 8px;
-    border: 1px solid ${colors.green400};
-    
-    box-shadow: 0 2px 0 0 ${colors.green600};
+    border: 1px solid ${Colors.green.jade};
 
-    background-color: ${colors.green600};
+    box-shadow: 0 2px 0 0 ${Colors.green.emerald};
+
+    background-color: ${Colors.green.emerald};
     background-image:
             radial-gradient(circle at 5% 20%, rgba(0, 0, 0, 0.02) 1px, transparent 1px),
             radial-gradient(circle at 80% 5%, rgba(0, 0, 0, 0.01) 1px, transparent 1px),
@@ -68,5 +68,5 @@ export const StyledPlayedPokerPad = styled.div`
 
 export const StyledPokerPadInfos = styled.div`
 	text-align: center;
-	color: ${colors.neutral100};
+	color: ${Colors.neutral.white};
 `;

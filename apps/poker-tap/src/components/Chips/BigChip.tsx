@@ -2,7 +2,7 @@ import { useAnimation } from "@kijewoku/hooks/animation";
 import type { CSSProperties, ReactNode } from "react";
 import { useChips } from "../../hooks/states/useChips.ts";
 import { StyledBigChipWrapper, StyledPokerChip } from "./BigChip.styles.ts";
-import { colors } from "../../Colors.styles.ts";
+import { Colors } from "../../Colors.styles.ts";
 
 interface BigChipProps {
 	size?: number;
@@ -100,9 +100,9 @@ function BigChip({
 					}
 				}}
 				$value={label}
-				$accentColor={colors.blue700}
-				$primaryColor={colors.neutral100}
-				$secondaryColor={colors.neutral300}
+				$accentColor={Colors.blue.indigo}
+				$primaryColor={Colors.neutral.white}
+				$secondaryColor={Colors.neutral.mint}
 				$noInteraction={noInteraction}
 				$scale={calculatePokerChipScale()}
 				style={style}

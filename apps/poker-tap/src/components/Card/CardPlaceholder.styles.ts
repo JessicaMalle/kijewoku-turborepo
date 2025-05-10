@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { colors } from "../../Colors.styles.ts";
+import { Colors } from "../../Colors.styles.ts";
 
 export const StyledCardPlaceholder = styled.div<{ $noHover?: boolean }>`
     container-name: card-placeholder;
@@ -13,14 +13,14 @@ export const StyledCardPlaceholder = styled.div<{ $noHover?: boolean }>`
     justify-content: center;
     align-items: center;
 
-    border: 2px dashed ${colors.green800};
-    background-color: ${colors.green600}50;
+    border: 2px dashed ${Colors.green.forest};
+    background-color: ${Colors.green.emerald}50;
 
     transition: background-color 0.2s;
 
     &:hover {
         background-color: ${({ $noHover }) =>
-					$noHover ? `${colors.green600}50` : `${colors.green1400}50`};
+					$noHover ? `${Colors.green.emerald}50` : `${Colors.green.forest}50`};
     }
 
     user-select: none;

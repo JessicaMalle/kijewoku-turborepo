@@ -2,7 +2,7 @@ import { useState } from "react";
 import Modal from "./Modal.tsx";
 import Button from "../Button/Button.tsx";
 import styled from "styled-components";
-import { colors } from "../../Colors.styles.ts";
+import { Colors } from "../../Colors.styles.ts";
 
 const ExampleContainer = styled.div`
   padding: 20px;
@@ -14,8 +14,8 @@ const ExampleContainer = styled.div`
 
 const ModalContent = styled.div`
   padding: 20px;
-  color: ${colors.neutral100};
-  
+  color: ${Colors.neutral.white};
+
   p {
     margin-bottom: 15px;
   }
@@ -28,42 +28,36 @@ const ButtonContainer = styled.div`
 `;
 
 function ModalExample() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+	const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const openModal = () => setIsModalOpen(true);
-  const closeModal = () => setIsModalOpen(false);
+	const openModal = () => setIsModalOpen(true);
+	const closeModal = () => setIsModalOpen(false);
 
-  return (
-    <ExampleContainer>
-      <h2>Modal Component Example</h2>
+	return (
+		<ExampleContainer>
+			<h2>Modal Component Example</h2>
 
-      <Button
-        label="Open Modal"
-        onClick={openModal}
-        hasTextShadow
-      />
+			<Button label="Open Modal" onClick={openModal} hasTextShadow />
 
-      <Modal
-        isOpen={isModalOpen}
-        onClose={closeModal}
-        title="Example Modal"
-        width="90%"
-      >
-        <ModalContent>
-          <p>This is an example of the Modal component.</p>
-          <p>You can put any content here, including text, images, forms, etc.</p>
+			<Modal
+				isOpen={isModalOpen}
+				onClose={closeModal}
+				title="Example Modal"
+				width="90%"
+			>
+				<ModalContent>
+					<p>This is an example of the Modal component.</p>
+					<p>
+						You can put any content here, including text, images, forms, etc.
+					</p>
 
-          <ButtonContainer>
-            <Button
-              label="Close"
-              onClick={closeModal}
-              hasTextShadow
-            />
-          </ButtonContainer>
-        </ModalContent>
-      </Modal>
-    </ExampleContainer>
-  );
+					<ButtonContainer>
+						<Button label="Close" onClick={closeModal} hasTextShadow />
+					</ButtonContainer>
+				</ModalContent>
+			</Modal>
+		</ExampleContainer>
+	);
 }
 
 export default ModalExample;

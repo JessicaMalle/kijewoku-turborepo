@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { colors } from "../../Colors.styles.ts";
+import { Colors } from "../../Colors.styles.ts";
 
 interface StyledPokerChipProps {
 	$value: string;
@@ -20,7 +20,7 @@ export const StyledPokerChip = styled.div<StyledPokerChipProps>`
   cursor: ${(props) => (props.$noInteraction ? "default" : "pointer")};
   border-bottom: ${(props) => 5 * (props.$scale || 1)}px solid ${(props) => props.$accentColor};
 
-  box-shadow: 0 0 0 ${(props) => 4 * (props.$scale || 1)}px ${colors.neutral1600};
+  box-shadow: 0 0 0 ${(props) => 4 * (props.$scale || 1)}px ${Colors.dark.nightPurple};
 
   &:before {
     position: absolute;

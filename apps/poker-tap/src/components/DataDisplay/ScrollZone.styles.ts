@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { colors } from "../../Colors.styles.ts";
+import { Colors } from "../../Colors.styles.ts";
 
 export const ScrollContainer = styled.div<{
 	$minHeight?: number | string | null;
@@ -24,7 +24,7 @@ export const ScrollContainer = styled.div<{
     width: calc(100% - 20px);
     padding: 10px;
     border-radius: 6px;
-    background-color: ${colors.neutral1600}50;
+    background-color: ${Colors.dark.nightPurple}50;
 
     /* Stylisation de la scrollbar */
     /* Pour Chrome, Edge, et Safari */
