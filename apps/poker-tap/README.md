@@ -1,4 +1,16 @@
-# React + TypeScript + Vite
+# Poker Tap
+
+A poker game application built with React, TypeScript, and Vite.
+
+## Third-Party Attributions
+
+### Dicier Font
+
+This project uses [Dicier](https://speakthesky.itch.io/typeface-dicier), a typeface designed by Speak the Sky, licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
+
+Dicier is an analog game typeface designed for putting icons for analog game tools (like dice and playing cards) in-line with text. For more information about Dicier, including the Dicier User Guide, see the [official Dicier page](https://speakthesky.itch.io/typeface-dicier).
+
+## Development
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
