@@ -16,9 +16,9 @@ export const ItemShopDescription = styled.div`
 		gap: 15px;
 		padding: 10px;
     position: relative;
-    border: 3px solid ${Colors.yellow.yellow};
-    box-shadow: 0 0 0 2px ${Colors.yellow.gold};
-    background-color: ${Colors.yellow.canary};
+    border: 3px solid ${Colors.blue.skyBlue};
+    box-shadow: 0 0 0 3px ${Colors.blue.indigo};
+    background-color: ${Colors.blue.azure};
 		border-radius: 6px;
 		aspect-ratio: 1/1;
 `;
@@ -39,8 +39,8 @@ export const ItemNameAndInfoToggle = styled.div`
 
 export const ItemInfoToggle = styled.button`
     all: unset;
-		background-color: ${Colors.blue.azure};
-		color: ${Colors.neutral.white};
+		background-color: ${Colors.neutral.white};
+		color: ${Colors.dark.nightPurple};
 		height: 30px;
 		aspect-ratio: 1/1;
 		font-size: 20px;

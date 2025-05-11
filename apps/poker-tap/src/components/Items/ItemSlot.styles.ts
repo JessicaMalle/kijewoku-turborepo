@@ -9,14 +9,10 @@ export const ItemSlotContainer = styled.button`
 		position: relative;
     aspect-ratio: 1 / 1;
     cursor: pointer;
-		background-color: ${Colors.neutral.mint};
 		color: ${Colors.dark.nightPurple};
-		border: 3px solid ${Colors.neutral.mint};
-		box-shadow: 0 0 0 2px ${Colors.neutral.slate};
-
-    border: 3px solid ${Colors.yellow.yellow};
-    box-shadow: 0 0 0 2px ${Colors.yellow.gold};
-    background-color: ${Colors.yellow.canary};
+    border: 3px solid ${Colors.blue.skyBlue};
+    box-shadow: 0 0 0 3px ${Colors.blue.indigo};
+    background-color: ${Colors.blue.azure};
 		
 		border-radius: 6px;
 		
