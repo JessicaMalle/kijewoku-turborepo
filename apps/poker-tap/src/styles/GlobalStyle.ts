@@ -1,12 +1,61 @@
 import { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
+    /* Round variants */
+    @font-face {
+        font-family: Dicier-Round-Light;
+        src: url('/fonts/Dicier-Round-Light.woff2');
+    }
+    @font-face {
+        font-family: Dicier-Round-Heavy;
+        src: url('/fonts/Dicier-Round-Heavy.woff2');
+    }
+    @font-face {
+        font-family: Dicier-Round-Dark;
+        src: url('/fonts/Dicier-Round-Dark.woff2');
+    }
+
+    /* Flat variants */
+    @font-face {
+        font-family: Dicier-Flat-Light;
+        src: url('/fonts/Dicier-Flat-Light.woff2');
+    }
+    @font-face {
+        font-family: Dicier-Flat-Heavy;
+        src: url('/fonts/Dicier-Flat-Heavy.woff2');
+    }
+    @font-face {
+        font-family: Dicier-Flat-Dark;
+        src: url('/fonts/Dicier-Flat-Dark.woff2');
+    }
+
+    /* Block variants */
+    @font-face {
+        font-family: Dicier-Block-Light;
+        src: url('/fonts/Dicier-Block-Light.woff2');
+    }
+    @font-face {
+        font-family: Dicier-Block-Heavy;
+        src: url('/fonts/Dicier-Block-Heavy.woff2');
+    }
+    @font-face {
+        font-family: Dicier-Block-Dark;
+        src: url('/fonts/Dicier-Block-Dark.woff2');
+    }
+
+    /* Pixel variant */
+    @font-face {
+        font-family: Dicier-Pixel;
+        src: url('/fonts/Dicier-Pixel.woff2');
+    }
+
+    /* For backward compatibility */
     @font-face {
         font-family: Dicier;
         src: url('/fonts/Dicier-Round-Heavy.woff2');
     }
+
     .dicier {
-        font-family: Dicier, sans-serif;
         font-feature-settings: "liga" 1, "kern" 1, "calt" 1;
     }
 

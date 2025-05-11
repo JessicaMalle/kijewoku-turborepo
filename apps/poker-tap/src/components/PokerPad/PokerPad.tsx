@@ -14,7 +14,8 @@ import { usePosition } from "../../hooks/process/usePosition.ts";
 import { useElementBounds } from "../../hooks/utils/useElementBounds.ts";
 import { useHand } from "../../hooks/states/useHand.ts";
 import useReleaseDetection from "../../hooks/process/useReleaseDetection.ts";
-import Button from "../Button/Button.tsx";
+import ButtonWithIcon from "../Button/ButtonWithIcon.tsx";
+import DicierIcon from "../DicierIcon/DicierIcon.tsx";
 import { useAppContext } from "../../hooks/states/useAppContext.ts";
 
 function PokerPad({ id }: { id: number }): ReactNode {
@@ -65,7 +66,10 @@ function PokerPad({ id }: { id: number }): ReactNode {
 			>
 				<StyledPokerPadInfos>
 					<div>
-						<b>Combination:</b> {pokerHand} <b>- Bonus:</b> +{formatedBonus} CpC
+						<b>Combination: </b>
+						<DicierIcon code="DIAMONDS" size="1em" mode="Flat" weight="Dark" /> {pokerHand}
+						<b> - Bonus: </b>
+						<DicierIcon code="6" size="1em" mode="Block" weight="Heavy" /> +{formatedBonus} CpC
 					</div>
 				</StyledPokerPadInfos>
 				<PokerPadCardsSection>
@@ -84,8 +88,12 @@ function PokerPad({ id }: { id: number }): ReactNode {
 					)}
 				</PokerPadCardsSection>
 			</StyledPokerPad>
-			<Button
+			<ButtonWithIcon
 				label="Play the Poker Pad"
+				iconCode="ACE_SPADES"
+				iconPosition="left"
+				iconMode="Block"
+				iconWeight="Dark"
 				disabled={pokerPad.cards.length === 0}
 				onClick={markPokerPadAsPlayed}
 			/>

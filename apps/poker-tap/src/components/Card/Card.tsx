@@ -10,6 +10,7 @@ import {
 } from "./Card.styles.ts";
 import { useDragAndDrop } from "../../hooks/utils/useDragAndDrop.utils.ts";
 import { useTiltEffect } from "../../hooks/styles/useTiltEffect.ts";
+import DicierIcon from "../DicierIcon/DicierIcon.tsx";
 
 function Card({
 	uid,
@@ -18,11 +19,11 @@ function Card({
 	active,
 	isDraggable = false,
 }: CardType): ReactNode {
-	const suitSymbols: Record<CardColor, string> = {
-		spades: "♠",
-		hearts: "♥",
-		clover: "♣",
-		diamonds: "♦",
+	const suitCodes: Record<CardColor, string> = {
+		spades: "SPADES",
+		hearts: "HEARTS",
+		clover: "CLUBS",
+		diamonds: "DIAMONDS",
 	};
 
 	const { toggleSelectedCard, forceHandOpen, setDraggingCardUid } = useHand();
@@ -76,7 +77,14 @@ function Card({
 		>
 			<SuitAndValueWrapper>
 				<CardValue>{value}</CardValue>
-				<CardSuit>{suitSymbols[color]}</CardSuit>
+				<CardSuit>
+					<DicierIcon
+						code={suitCodes[color]}
+						size="20px"
+						mode="Flat"
+						weight="Dark"
+					/>
+				</CardSuit>
 			</SuitAndValueWrapper>
 			<BigCardValue color={color} value={value}>
 				{value}
