@@ -13,7 +13,7 @@ export const StyledCardPlaceholder = styled.div<{ $noHover?: boolean }>`
     justify-content: center;
     align-items: center;
 
-    border: 2px dashed ${Colors.green.forest};
+    border: 2px dashed ${Colors.neutral.mint};
     background-color: ${Colors.green.emerald}50;
 
     transition: background-color 0.2s;

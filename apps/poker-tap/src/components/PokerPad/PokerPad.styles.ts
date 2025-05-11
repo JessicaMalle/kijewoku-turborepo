@@ -3,17 +3,15 @@ import { Colors } from "../../Colors.styles.ts";
 
 export const StyledPokerPad = styled.div<{ $hovered: boolean }>`
     display: flex;
-    align-items: center;
-    gap: 10px;
-    max-width: calc((clamp(60px, 12vw, 100px) * 5) + 20px + (40px));
-    max-height: 154px;
-
-    padding: 10px;
+		flex-direction: column;
+		gap: 10px;
+		
+		padding: 10px;
 		margin: 0 auto 30px auto;
     border-radius: 12px;
-    border: 2px solid ${Colors.green.forest};
+    border: 2px solid ${Colors.green.grass};
 
-		box-shadow: 0 4px 0 0 ${Colors.green.forest};
+		box-shadow: 0 4px 0 0 ${Colors.green.emerald};
 
     background-color: ${Colors.green.jade};
     background-image:
@@ -69,4 +67,12 @@ export const StyledPlayedPokerPad = styled.div`
 export const StyledPokerPadInfos = styled.div`
 	text-align: center;
 	color: ${Colors.neutral.white};
+`;
+
+export const PokerPadCardsSection = styled.section`
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    max-width: calc((clamp(60px, 12vw, 100px) * 5) + 20px + (40px));
+    max-height: 154px;
 `;

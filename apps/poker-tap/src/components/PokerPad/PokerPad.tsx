@@ -5,7 +5,11 @@ import { useSortedCards } from "../../hooks/utils/useSortedCards.utils.ts";
 import PokerPadService from "../../services/PokerPadService.ts";
 import Card from "../Card/Card.tsx";
 import CardPlaceholder from "../Card/CardPlaceholder.tsx";
-import { StyledPokerPad, StyledPokerPadInfos } from "./PokerPad.styles.ts";
+import {
+	PokerPadCardsSection,
+	StyledPokerPad,
+	StyledPokerPadInfos,
+} from "./PokerPad.styles.ts";
 import { usePosition } from "../../hooks/process/usePosition.ts";
 import { useElementBounds } from "../../hooks/utils/useElementBounds.ts";
 import { useHand } from "../../hooks/states/useHand.ts";
@@ -54,29 +58,31 @@ function PokerPad({ id }: { id: number }): ReactNode {
 
 	return (
 		<div>
-			<StyledPokerPadInfos>
-				<div>
-					<b>Combination:</b> {pokerHand} <b>- Bonus:</b> +{formatedBonus} CpC
-				</div>
-			</StyledPokerPadInfos>
 			<StyledPokerPad
 				id={`pp-${id}`}
 				ref={myElementRef}
 				$hovered={isInsideElement && !!hand.draggingCardUid}
 			>
-				{cardsWithPlaceholders.map((card, index) =>
-					card ? (
-						<Card
-							{...card}
-							key={`hand-card-${card.color}-${card.value}-i${index}`}
-						/>
-					) : (
-						<CardPlaceholder
-							key={window.btoa(`placeholder-${index}`)}
-							onClick={() => placeCardOnTable(id, card.uid)}
-						/>
-					),
-				)}
+				<StyledPokerPadInfos>
+					<div>
+						<b>Combination:</b> {pokerHand} <b>- Bonus:</b> +{formatedBonus} CpC
+					</div>
+				</StyledPokerPadInfos>
+				<PokerPadCardsSection>
+					{cardsWithPlaceholders.map((card, index) =>
+						card ? (
+							<Card
+								{...card}
+								key={`hand-card-${card.color}-${card.value}-i${index}`}
+							/>
+						) : (
+							<CardPlaceholder
+								key={window.btoa(`placeholder-${index}`)}
+								onClick={() => placeCardOnTable(id, card.uid)}
+							/>
+						),
+					)}
+				</PokerPadCardsSection>
 			</StyledPokerPad>
 			<Button
 				label="Play the Poker Pad"
