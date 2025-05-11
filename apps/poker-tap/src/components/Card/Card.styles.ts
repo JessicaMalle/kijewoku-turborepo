@@ -98,14 +98,13 @@ export const CardValue = styled.div`
 
 export const CardSuit = styled.div`
     position: absolute;
-    top: -10px;
-    right: -2px;
+    top: 0;
+    right: 0;
     display: flex;
     align-items: center;
     justify-content: center;
     width: 20px;
-    height: 40px;
-    font-size: 20px;
+    height: 14px;
 `;
 
 interface BigCardValueProps {
