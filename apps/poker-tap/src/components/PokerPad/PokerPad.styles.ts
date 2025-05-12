@@ -75,4 +75,9 @@ export const PokerPadCardsSection = styled.section`
     gap: 10px;
     max-width: calc((clamp(60px, 12vw, 100px) * 5) + 20px + (40px));
     max-height: 154px;
+		padding: 12px;
+		border-radius: 12px;
+		background-color: ${Colors.dark.nightPurple}50;
+		border-top: 4px solid ${Colors.dark.nightPurple}25;
+    box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.1);
 `;

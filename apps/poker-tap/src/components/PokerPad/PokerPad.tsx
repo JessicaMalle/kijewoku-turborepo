@@ -67,9 +67,11 @@ function PokerPad({ id }: { id: number }): ReactNode {
 				<StyledPokerPadInfos>
 					<div>
 						<b>Combination: </b>
-						<DicierIcon code="DIAMONDS" size="1em" mode="Flat" weight="Dark" /> {pokerHand}
+						<DicierIcon code="DIAMONDS" size="1em" mode="Flat" weight="Dark" />{" "}
+						{pokerHand}
 						<b> - Bonus: </b>
-						<DicierIcon code="6" size="1em" mode="Block" weight="Heavy" /> +{formatedBonus} CpC
+						<DicierIcon code="6" size="1em" mode="Block" weight="Heavy" /> +
+						{formatedBonus} CpC
 					</div>
 				</StyledPokerPadInfos>
 				<PokerPadCardsSection>
@@ -89,7 +91,6 @@ function PokerPad({ id }: { id: number }): ReactNode {
 				</PokerPadCardsSection>
 			</StyledPokerPad>
 			<ButtonWithIcon
-				label="Play the Poker Pad"
 				iconCode="ACE_SPADES"
 				iconPosition="left"
 				iconMode="Block"
