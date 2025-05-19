@@ -7,6 +7,7 @@ import Card from "../Card/Card.tsx";
 import CardPlaceholder from "../Card/CardPlaceholder.tsx";
 import {
 	PokerPadCardsSection,
+	PokerPadHead,
 	StyledPokerPad,
 	StyledPokerPadInfos,
 } from "./PokerPad.styles.ts";
@@ -14,9 +15,8 @@ import { usePosition } from "../../hooks/process/usePosition.ts";
 import { useElementBounds } from "../../hooks/utils/useElementBounds.ts";
 import { useHand } from "../../hooks/states/useHand.ts";
 import useReleaseDetection from "../../hooks/process/useReleaseDetection.ts";
-import ButtonWithIcon from "../Button/ButtonWithIcon.tsx";
-import DicierIcon from "../DicierIcon/DicierIcon.tsx";
 import { useAppContext } from "../../hooks/states/useAppContext.ts";
+import TextButton from "../Button/TextButton.tsx";
 
 function PokerPad({ id }: { id: number }): ReactNode {
 	const { pokerPads } = useAppContext();
@@ -64,40 +64,36 @@ function PokerPad({ id }: { id: number }): ReactNode {
 				ref={myElementRef}
 				$hovered={isInsideElement && !!hand.draggingCardUid}
 			>
-				<StyledPokerPadInfos>
-					<div>
-						<b>Combination: </b>
-						<DicierIcon code="DIAMONDS" size="1em" mode="Flat" weight="Dark" />{" "}
-						{pokerHand}
-						<b> - Bonus: </b>
-						<DicierIcon code="6" size="1em" mode="Block" weight="Heavy" /> +
-						{formatedBonus} CpC
-					</div>
-				</StyledPokerPadInfos>
-				<PokerPadCardsSection>
-					{cardsWithPlaceholders.map((card, index) =>
-						card ? (
-							<Card
-								{...card}
-								key={`hand-card-${card.color}-${card.value}-i${index}`}
-							/>
-						) : (
-							<CardPlaceholder
-								key={window.btoa(`placeholder-${index}`)}
-								onClick={() => placeCardOnTable(id, card.uid)}
-							/>
-						),
+				<PokerPadHead>
+					<StyledPokerPadInfos>
+						{pokerHand || "(Player a poker hand)"}
+					</StyledPokerPadInfos>
+					{pokerHand && (
+						<TextButton
+							label="Play the poker pad"
+							onClick={markPokerPadAsPlayed}
+						/>
 					)}
+				</PokerPadHead>
+				<PokerPadCardsSection>
+					<div>
+						{cardsWithPlaceholders.map((card, index) =>
+							card ? (
+								<Card
+									{...card}
+									key={`hand-card-${card.color}-${card.value}-i${index}`}
+								/>
+							) : (
+								<CardPlaceholder
+									key={window.btoa(`placeholder-${index}`)}
+									onClick={() => placeCardOnTable(id, card.uid)}
+								/>
+							),
+						)}
+					</div>
+					<StyledPokerPadInfos>+ {formatedBonus} CpC</StyledPokerPadInfos>
 				</PokerPadCardsSection>
 			</StyledPokerPad>
-			<ButtonWithIcon
-				iconCode="ACE_SPADES"
-				iconPosition="left"
-				iconMode="Block"
-				iconWeight="Dark"
-				disabled={pokerPad.cards.length === 0}
-				onClick={markPokerPadAsPlayed}
-			/>
 		</div>
 	);
 }

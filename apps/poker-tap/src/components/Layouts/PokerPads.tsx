@@ -17,9 +17,6 @@ function PokerPads(): ReactNode {
 
 	return (
 		<PokerPadsWrapperStyles>
-			<p>
-				<i>(Play card combinations to increase your Chips per click bonus!)</i>
-			</p>
 			{pokerPads.map((pad, index) => (
 				<PokerPad key={`${pad.uid}-${index}`} id={index} />
 			))}

@@ -64,20 +64,32 @@ export const StyledPlayedPokerPad = styled.div`
     background-size: 4px 4px;
 `;
 
+export const PokerPadHead = styled.div`
+		display: flex;
+		justify-content: space-between;
+`;
+
 export const StyledPokerPadInfos = styled.div`
-	text-align: center;
-	color: ${Colors.neutral.white};
+    text-transform: uppercase;
+    font-weight: 700;
+		text-align: center;
+		color: ${Colors.neutral.white};
 `;
 
 export const PokerPadCardsSection = styled.section`
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    max-width: calc((clamp(60px, 12vw, 100px) * 5) + 20px + (40px));
-    max-height: 154px;
-		padding: 12px;
-		border-radius: 12px;
+		padding: 12px 14px;
 		background-color: ${Colors.dark.nightPurple}50;
-		border-top: 4px solid ${Colors.dark.nightPurple}25;
+		border-radius: 12px;
     box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.1);
+		border-top: 4px solid ${Colors.dark.nightPurple}25;
+		> div:first-child {
+	    display: flex;
+	    align-items: center;
+	    gap: 10px;
+	    max-width: calc((clamp(60px, 12vw, 100px) * 5) + 20px + (40px));
+	    max-height: 154px;
+		}
+		> div:last-child {
+				margin-top: 12px;
+		}
 `;
