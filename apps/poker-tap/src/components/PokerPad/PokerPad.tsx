@@ -67,11 +67,11 @@ function PokerPad({ id }: { id: number }): ReactNode {
 			>
 				<PokerPadHead>
 					<StyledPokerPadInfos>
-						<Title level={3}>{pokerHand || "(Player a poker hand)"}</Title>
+						<Title level={3}>{pokerHand || "(Play poker hand)"}</Title>
 					</StyledPokerPadInfos>
 					{pokerHand && (
 						<TextButton
-							label="Play the poker pad"
+							label="> Archive this Poker-Pad <"
 							onClick={markPokerPadAsPlayed}
 						/>
 					)}
