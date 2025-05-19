@@ -17,6 +17,7 @@ import { useHand } from "../../hooks/states/useHand.ts";
 import useReleaseDetection from "../../hooks/process/useReleaseDetection.ts";
 import { useAppContext } from "../../hooks/states/useAppContext.ts";
 import TextButton from "../Button/TextButton.tsx";
+import Title from "../Typography/Typography.tsx";
 
 function PokerPad({ id }: { id: number }): ReactNode {
 	const { pokerPads } = useAppContext();
@@ -55,7 +56,7 @@ function PokerPad({ id }: { id: number }): ReactNode {
 		if (pokerPad.cards.length === 5) {
 			markPokerPadAsPlayed();
 		}
-	}, [pokerPad.cards.length]);
+	}, [pokerPad.cards.length, markPokerPadAsPlayed]);
 
 	return (
 		<div>
@@ -66,7 +67,7 @@ function PokerPad({ id }: { id: number }): ReactNode {
 			>
 				<PokerPadHead>
 					<StyledPokerPadInfos>
-						{pokerHand || "(Player a poker hand)"}
+						<Title level={3}>{pokerHand || "(Player a poker hand)"}</Title>
 					</StyledPokerPadInfos>
 					{pokerHand && (
 						<TextButton
