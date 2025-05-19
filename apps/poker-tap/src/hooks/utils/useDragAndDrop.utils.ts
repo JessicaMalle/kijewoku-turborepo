@@ -15,12 +15,14 @@ export function useDragAndDrop({
 	const [position, setPosition] = useState<Position>({ x: 0, y: 0 });
 	const startPosition = useRef<Position>({ x: 0, y: 0 });
 	const elementRef = useRef<HTMLDivElement | null>(null);
+	const hasDragged = useRef<boolean>(false);
 
 	// Gestionnaire commun pour démarrer le déplacement
 	const startDragging = (clientX: number, clientY: number) => {
 		if (!isDraggable) return;
 
 		setIsDragging(true);
+		hasDragged.current = false;
 		startPosition.current = { x: clientX, y: clientY };
 
 		// Appel du callback
@@ -33,6 +35,11 @@ export function useDragAndDrop({
 
 		const deltaX = clientX - startPosition.current.x;
 		const deltaY = clientY - startPosition.current.y;
+
+		// Seuil a atteindre pour considérer que l'élément a été déplacé
+		if (Math.abs(deltaX) > 5 || Math.abs(deltaY) > 5) {
+			hasDragged.current = true;
+		}
 
 		setPosition({ x: deltaX, y: deltaY });
 
@@ -127,5 +134,6 @@ export function useDragAndDrop({
 		position,
 		handleMouseDown,
 		handleTouchStart,
+		hasDragged,
 	};
 }

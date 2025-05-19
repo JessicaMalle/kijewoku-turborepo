@@ -33,6 +33,7 @@ function Card({
 		handleMouseDown,
 		handleTouchStart,
 		isDragging,
+		hasDragged,
 	} = useDragAndDrop({
 		isDraggable,
 		onDragStart: () => {
@@ -73,7 +74,11 @@ function Card({
 			color={color}
 			$active={active ? "true" : undefined}
 			$isDraggable={isDraggable}
-			onClick={() => toggleSelectedCard(uid)}
+			onClick={() => {
+				if (!hasDragged.current) {
+					toggleSelectedCard(uid);
+				}
+			}}
 		>
 			<SuitAndValueWrapper>
 				<CardValue>{value}</CardValue>
