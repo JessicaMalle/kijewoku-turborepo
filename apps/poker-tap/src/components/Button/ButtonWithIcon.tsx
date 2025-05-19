@@ -4,9 +4,9 @@ import DicierIcon from "../DicierIcon/DicierIcon";
 import styled from "styled-components";
 
 interface ButtonWithIconProps {
-	label: string;
 	iconCode: string;
 	iconPosition?: "left" | "right";
+	label?: string;
 	iconSize?: string;
 	iconMode?: "Round" | "Flat" | "Block" | "Pixel";
 	iconWeight?: "Light" | "Heavy" | "Dark";
