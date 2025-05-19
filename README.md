@@ -70,14 +70,14 @@ When contributing to this project, please follow these commit message convention
 - Avoid overly verbose descriptions or unnecessary details and NO UPPERCASE please. Commit message with a short sentence in imperative form, no more.
 
 Important to add a prefix before message:
-- ✨ feat: Introduces a new feature.
-- 🐞 fix: Patches a bug.
-- 📖 docs: Updates documentation only.
-- 🎠 style: Changes that do not affect meaning (white-space, formatting, missing semicolons, etc.).
-- 💎 refactor: Code changes that neither fix a bug nor add a feature.
-- 🧪 test: Adds or updates tests.
-- 🧹 chore: Other changes that don't modify src or test files.
-- 🏗️ build: Changes that affect the build system or external dependencies.
+- ✨feat: Introduces a new feature.
+- 🐞fix: Patches a bug.
+- 📖docs: Updates documentation only.
+- 🎠style: Changes that do not affect meaning (white-space, formatting, missing semicolons, etc.).
+- 💎refactor: Code changes that neither fix a bug nor add a feature.
+- 🧪test: Adds or updates tests.
+- 🧹chore: Other changes that don't modify src or test files.
+- 🏗️build: Changes that affect the build system or external dependencies.
 
 ### 🧑‍💻 Remote Caching
 
