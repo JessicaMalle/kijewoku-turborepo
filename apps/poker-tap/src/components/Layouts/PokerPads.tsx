@@ -9,23 +9,16 @@ function PokerPads(): ReactNode {
 
 	const [activeId, setActiveId] = useState<number>(0);
 
-	const handleNavigatePokerPad = (dir: "next" | "prev") => {
-		if (dir === "next") {
-			setActiveId((prevState) => (prevState + 1 > 2 ? 0 : prevState + 1));
-		}
-		if (dir === "prev") {
-			setActiveId((prevState) => (prevState - 1 < 0 ? 2 : prevState - 1));
-		}
-	};
-
 	return (
 		<>
 			<PokerPadsWrapperStyles>
-				<button type="button" onClick={() => handleNavigatePokerPad("prev")}>
-					Prev
-				</button>
 				{pokerPads[activeId] ? <PokerPad id={activeId} /> : <BuyPokerPad />}
-				<button type="button" onClick={() => handleNavigatePokerPad("next")}>
+				<button
+					type="button"
+					onClick={() =>
+						setActiveId((prevState) => (prevState + 1 > 2 ? 0 : prevState + 1))
+					}
+				>
 					Next
 				</button>
 			</PokerPadsWrapperStyles>
