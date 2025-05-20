@@ -58,6 +58,10 @@ const GlobalStyle = createGlobalStyle`
     .dicier {
         font-feature-settings: "liga" 1, "kern" 1, "calt" 1;
     }
+    
+    * {
+        box-sizing: border-box;
+    }
 
     /* Stylisation de la scrollbar */
     /* Pour Chrome, Edge, et Safari */

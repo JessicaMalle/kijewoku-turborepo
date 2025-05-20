@@ -19,8 +19,8 @@ export const StyledSection = styled.section<{
 					: `3px solid ${Colors.blue.navy}`};
     border-radius: ${({ $neutralStyle }) => ($neutralStyle ? "0" : "6px")};
     > div {
-        width: ${({ $neutralStyle }) => ($neutralStyle ? "auto" : "calc(100% - 2px - 30px)")};
-        height: ${({ $neutralStyle }) => ($neutralStyle ? "auto" : "calc(100% - 30px - 2px - 5px)")};
+        width: ${({ $neutralStyle }) => ($neutralStyle ? "auto" : "100%")};
+        height: ${({ $neutralStyle }) => ($neutralStyle ? "auto" : "calc(100% - 5px)")};
         padding: ${({ $neutralStyle }) => ($neutralStyle ? "0" : "15px")};
         background-color: ${({ $neutralStyle, $lightStyle }) =>
 					$neutralStyle

@@ -42,7 +42,8 @@ export const StyledPlayedPokerPad = styled.div`
     display: flex;
     align-items: center;
     gap: 5px;
-    max-width: calc((clamp(40px, 8vw, 70px) * 5) + 10px);
+    width: calc((clamp(40px, 8vw, 70px) * 5) + 10px);
+    min-width: calc((clamp(40px, 8vw, 70px) * 5) + 10px);
     max-height: 100px;
 
     padding: 5px;

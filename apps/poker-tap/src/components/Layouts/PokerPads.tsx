@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import { type ReactNode, useState } from "react";
 import { PokerPadsWrapperStyles } from "./PokerPadsWrapper.styles.ts";
 import PokerPad from "../PokerPad/PokerPad.tsx";
 import { useAppContext } from "../../hooks/states/useAppContext.ts";
@@ -15,12 +15,31 @@ function PokerPads(): ReactNode {
 		digits: 0,
 	});
 
+	const [activeId, setActiveId] = useState<number>(
+		pokerPads.length > 0 ? 1 : 0,
+	);
+
+	const handleNavigatePokerPad = (dir: "next" | "prev") => {
+		if (dir === "next" && pokerPads.length > 0) {
+			setActiveId((prevState) => (prevState + 1) % pokerPads.length);
+		}
+		if (dir === "prev" && pokerPads.length > 0) {
+			setActiveId(
+				(prevState) => (prevState - 1 + pokerPads.length) % pokerPads.length,
+			);
+		}
+	};
+
 	return (
 		<PokerPadsWrapperStyles>
-			{pokerPads.map((pad, index) => (
-				<PokerPad key={`${pad.uid}-${index}`} id={index} />
-			))}
-			<div style={{ margin: "30px 0" }}>
+			<button type="button" onClick={() => handleNavigatePokerPad("next")}>
+				Next
+			</button>
+			<PokerPad id={activeId} />
+			<button type="button" onClick={() => handleNavigatePokerPad("prev")}>
+				Prev
+			</button>
+			{/*<div style={{ margin: "30px 0" }}>
 				{pokerPads.length < MAX_ACTIVE_POKER_PADS && (
 					<Button
 						label={`Add Poker Pad (${formatedNextPokerPadPrice}€)`}
@@ -28,7 +47,7 @@ function PokerPads(): ReactNode {
 						onClick={buyPokerPad}
 					/>
 				)}
-			</div>
+			</div>*/}
 		</PokerPadsWrapperStyles>
 	);
 }
