@@ -1,7 +1,10 @@
 import styled from "styled-components";
 import { Colors } from "../../Colors.styles.ts";
 
-export const StyledCardPlaceholder = styled.div<{ $noHover?: boolean }>`
+export const StyledCardPlaceholder = styled.div<{
+	$noHover?: boolean;
+	$invisible?: boolean;
+}>`
     container-name: card-placeholder;
     container-type: inline-size;
     position: relative;
@@ -10,6 +13,7 @@ export const StyledCardPlaceholder = styled.div<{ $noHover?: boolean }>`
     aspect-ratio: 2 / 3;
     border-radius: 8px;
     display: flex;
+    opacity: ${({ $invisible }) => ($invisible ? 0 : 1)};
     justify-content: center;
     align-items: center;
 
@@ -25,4 +29,5 @@ export const StyledCardPlaceholder = styled.div<{ $noHover?: boolean }>`
 
     user-select: none;
     overflow: hidden;
-    cursor: default;`;
+    cursor: default;
+`;

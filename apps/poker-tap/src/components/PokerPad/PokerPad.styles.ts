@@ -96,52 +96,36 @@ export const PokerPadCardsSection = styled.section`
 `;
 
 export const StyledPokerPadPlaceholder = styled.div<{ $noHover?: boolean }>`
-    container-name: poker-pad-placeholder;
-    container-type: inline-size;
-    position: relative;
-
-    /* Dimensions matching StyledPokerPad */
-    display: flex;
+		display: flex;
     flex-direction: column;
     gap: 10px;
+		position: relative;
     padding: 10px;
     margin: 0 auto 30px auto;
     border-radius: 12px;
-
-    /* Width calculation based on 5 cards with their padding */
-    /* Each card is clamp(60px, 12vw, 100px) wide */
-    width: calc((clamp(60px, 12vw, 100px) * 5) + 40px); /* 40px accounts for gaps between cards */
-    min-width: calc((60px * 5) + 40px);
-
-    /* Style visuel */
-    border: 2px dashed ${Colors.neutral.mint};
-    background-color: ${Colors.green.emerald}50;
-
-    /* Effets */
-    transition: background-color 0.2s;
-
-    /* Center the TextButton */
-    > button {
-        align-self: center;
-        margin: 10px 0;
+		
+    > div:first-child {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        max-width: calc((clamp(60px, 12vw, 100px) * 5) + 20px + (40px));
+        max-height: 154px;
+    }
+    > div:last-child {
+        margin-top: 12px;
     }
 
-    &:hover {
-        background-color: ${({ $noHover }) =>
-					$noHover ? `${Colors.green.emerald}50` : `${Colors.green.forest}50`};
-    }
-
-    /* Add a mock card section to match the real PokerPad structure */
-    &::after {
-        content: "";
-        display: block;
-        width: 100%;
-        min-height: calc((clamp(60px, 12vw, 100px) * 3/2) + 24px); /* Card height (using aspect ratio 2/3) + padding */
-        border-radius: 12px;
-        background-color: ${Colors.dark.nightPurple}25;
-    }
-
-    user-select: none;
+    border: 2px dashed ${Colors.neutral.white};
+    background-color: ${Colors.dark.nightPurple}50;
+		
     overflow: hidden;
     cursor: default;
+`;
+
+export const FloatPokerPadButtonWrapper = styled.div`
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		z-index: 1;
 `;
