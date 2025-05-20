@@ -5,7 +5,7 @@ export const StyledPokerPad = styled.div<{ $hovered: boolean }>`
     display: flex;
 		flex-direction: column;
 		gap: 10px;
-		
+
 		padding: 10px;
 		margin: 0 auto 30px auto;
     border-radius: 12px;
@@ -99,29 +99,48 @@ export const StyledPokerPadPlaceholder = styled.div<{ $noHover?: boolean }>`
     container-name: poker-pad-placeholder;
     container-type: inline-size;
     position: relative;
-    
-    /* Dimensions basées sur StyledPokerPad et StyledPlayedPokerPad */
-    width: calc((clamp(40px, 8vw, 70px) * 5) + 10px);
-    min-width: calc((clamp(40px, 8vw, 70px) * 5) + 10px);
-    min-height: 80px;
-    max-height: 100px;
-    
-    /* Style visuel */
+
+    /* Dimensions matching StyledPokerPad */
     display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 8px;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+    margin: 0 auto 30px auto;
+    border-radius: 12px;
+
+    /* Width calculation based on 5 cards with their padding */
+    /* Each card is clamp(60px, 12vw, 100px) wide */
+    width: calc((clamp(60px, 12vw, 100px) * 5) + 40px); /* 40px accounts for gaps between cards */
+    min-width: calc((60px * 5) + 40px);
+
+    /* Style visuel */
     border: 2px dashed ${Colors.neutral.mint};
     background-color: ${Colors.green.emerald}50;
-    
+
     /* Effets */
     transition: background-color 0.2s;
-    
+
+    /* Center the TextButton */
+    > button {
+        align-self: center;
+        margin: 10px 0;
+    }
+
     &:hover {
         background-color: ${({ $noHover }) =>
 					$noHover ? `${Colors.green.emerald}50` : `${Colors.green.forest}50`};
     }
-    
+
+    /* Add a mock card section to match the real PokerPad structure */
+    &::after {
+        content: "";
+        display: block;
+        width: 100%;
+        min-height: calc((clamp(60px, 12vw, 100px) * 3/2) + 24px); /* Card height (using aspect ratio 2/3) + padding */
+        border-radius: 12px;
+        background-color: ${Colors.dark.nightPurple}25;
+    }
+
     user-select: none;
     overflow: hidden;
     cursor: default;

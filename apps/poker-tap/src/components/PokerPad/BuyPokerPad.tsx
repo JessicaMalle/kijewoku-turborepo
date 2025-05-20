@@ -15,13 +15,11 @@ function BuyPokerPad(): ReactNode {
 
 	return (
 		<StyledPokerPadPlaceholder>
-			<div style={{ margin: "30px 0" }}>
-				<TextButton
-					label={`> Add Poker Pad (${formatedNextPokerPadPrice}€) <`}
-					disabled={nextPokerPadPrice > chips}
-					onClick={buyPokerPad}
-				/>
-			</div>
+			<TextButton
+				label={`> Add Poker Pad (${formatedNextPokerPadPrice}€) <`}
+				disabled={nextPokerPadPrice > chips}
+				onClick={buyPokerPad}
+			/>
 		</StyledPokerPadPlaceholder>
 	);
 }
