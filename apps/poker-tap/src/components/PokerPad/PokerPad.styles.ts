@@ -94,3 +94,35 @@ export const PokerPadCardsSection = styled.section`
 				margin-top: 12px;
 		}
 `;
+
+export const StyledPokerPadPlaceholder = styled.div<{ $noHover?: boolean }>`
+    container-name: poker-pad-placeholder;
+    container-type: inline-size;
+    position: relative;
+    
+    /* Dimensions basées sur StyledPokerPad et StyledPlayedPokerPad */
+    width: calc((clamp(40px, 8vw, 70px) * 5) + 10px);
+    min-width: calc((clamp(40px, 8vw, 70px) * 5) + 10px);
+    min-height: 80px;
+    max-height: 100px;
+    
+    /* Style visuel */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    border: 2px dashed ${Colors.neutral.mint};
+    background-color: ${Colors.green.emerald}50;
+    
+    /* Effets */
+    transition: background-color 0.2s;
+    
+    &:hover {
+        background-color: ${({ $noHover }) =>
+					$noHover ? `${Colors.green.emerald}50` : `${Colors.green.forest}50`};
+    }
+    
+    user-select: none;
+    overflow: hidden;
+    cursor: default;
+`;
