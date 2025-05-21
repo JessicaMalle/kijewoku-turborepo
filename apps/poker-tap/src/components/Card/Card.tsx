@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { useRef } from "react";
 import { useHand } from "../../hooks/states/useHand.ts";
 import type { Card as CardType, CardColor } from "../../types/gameTypes.ts";
 import {
@@ -12,13 +13,18 @@ import { useDragAndDrop } from "../../hooks/utils/useDragAndDrop.utils.ts";
 import { useTiltEffect } from "../../hooks/styles/useTiltEffect.ts";
 import DicierIcon from "../DicierIcon/DicierIcon.tsx";
 
+interface CardProps extends CardType {
+	disableTilt?: boolean;
+}
+
 function Card({
 	uid,
 	color,
 	value,
 	active,
 	isDraggable = false,
-}: CardType): ReactNode {
+	disableTilt = false,
+}: CardProps): ReactNode {
 	const suitCodes: Record<CardColor, string> = {
 		spades: "SPADES",
 		hearts: "HEARTS",
@@ -45,7 +51,8 @@ function Card({
 		},
 	});
 
-	const { elementRef: tiltRef } = useTiltEffect({
+	// Only apply tilt effect if not disabled
+	const { elementRef: tiltRef } = !disableTilt ? useTiltEffect({
 		max: 20,
 		perspective: 800,
 		scale: 1.03,
@@ -53,7 +60,7 @@ function Card({
 		glareMaxOpacity: 0.4,
 		glareColor: "rgba(255, 255, 255, 0.7)",
 		gyroscope: true, // (beta)
-	});
+	}) : { elementRef: useRef<HTMLDivElement>(null) };
 
 	// Combined refs
 	const setRefs = (element: HTMLDivElement) => {

@@ -47,6 +47,7 @@ function PlayedPokerPad({ id, size = 'default' }: PlayedPokerPadProps): ReactNod
 								<Card
 									{...card}
 									key={`hand-card-${card.color}-${card.value}-i${index}`}
+									disableTilt={true}
 								/>
 							) : (
 								<CardPlaceholder key={window.btoa(`placeholder-${index}`)} />
