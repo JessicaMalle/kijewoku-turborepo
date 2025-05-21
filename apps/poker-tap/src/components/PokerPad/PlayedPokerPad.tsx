@@ -6,10 +6,19 @@ import CardPlaceholder from "../Card/CardPlaceholder.tsx";
 import {
 	StyledPlayedPokerPad,
 	StyledPokerPadInfos,
+	PokerPadCardsSection,
+	PokerPadHead,
 } from "./PokerPad.styles.ts";
 import { useAppContext } from "../../hooks/states/useAppContext.ts";
+import Title from "../Typography/Typography.tsx";
+import { PokerPadsWrapperStyles } from "../Layouts/PokerPadsWrapper.styles.ts";
 
-function PlayedPokerPad({ id }: { id: number }): ReactNode {
+type PlayedPokerPadProps = {
+	id: number;
+	size?: number | 'small' | 'medium' | 'default';
+};
+
+function PlayedPokerPad({ id, size = 'default' }: PlayedPokerPadProps): ReactNode {
 	const { playedPokerPads } = useAppContext();
 	const pokerPad = playedPokerPads[id];
 
@@ -24,25 +33,30 @@ function PlayedPokerPad({ id }: { id: number }): ReactNode {
 	];
 
 	return (
-		<div>
-			<StyledPokerPadInfos>
-				<div>
-					<b>Combination:</b> {pokerHand} <b>- Bonus:</b> +{formatedBonus} CpC
-				</div>
-			</StyledPokerPadInfos>
-			<StyledPlayedPokerPad id={`pp-${id}`}>
-				{cardsWithPlaceholders.map((card, index) =>
-					card ? (
-						<Card
-							{...card}
-							key={`hand-card-${card.color}-${card.value}-i${index}`}
-						/>
-					) : (
-						<CardPlaceholder key={window.btoa(`placeholder-${index}`)} />
-					),
-				)}
+		<PokerPadsWrapperStyles>
+			<StyledPlayedPokerPad id={`pp-${id}`} $size={size}>
+				<PokerPadHead>
+					<StyledPokerPadInfos>
+						<Title level={3}>{pokerHand || "(No combination)"}</Title>
+					</StyledPokerPadInfos>
+				</PokerPadHead>
+				<PokerPadCardsSection>
+					<div>
+						{cardsWithPlaceholders.map((card, index) =>
+							card ? (
+								<Card
+									{...card}
+									key={`hand-card-${card.color}-${card.value}-i${index}`}
+								/>
+							) : (
+								<CardPlaceholder key={window.btoa(`placeholder-${index}`)} />
+							),
+						)}
+					</div>
+					<StyledPokerPadInfos>+ {formatedBonus} CpC</StyledPokerPadInfos>
+				</PokerPadCardsSection>
 			</StyledPlayedPokerPad>
-		</div>
+		</PokerPadsWrapperStyles>
 	);
 }
 
