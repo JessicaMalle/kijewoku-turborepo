@@ -20,25 +20,25 @@ export const GameReducer = (state: GameState, action: Action): GameState => {
 					playedPokerPads: state.playedPokerPads,
 				}),
 			};
-		case "BUY_POKER_PAD": {
-			if (state.pokerPads.length === MAX_ACTIVE_POKER_PADS) {
-				console.error(`Too many poker pads (max: ${MAX_ACTIVE_POKER_PADS}).`);
-				return state;
-			}
-			const cost = PokerPadService.calculatePokerPadCost(
-				state.pokerPads.length,
-			);
-			if (state.chips >= cost) {
-				const newPokerPad = PokerPasService.createPokerPad(
-					state.pokerPads.length,
-				);
+		case "VALIDATE_POKER_PAD": {
+			// If there's an existing poker pad, move it to playedPokerPads
+			if (state.pokerPads.length > 0) {
+				const playedPokerPad = state.pokerPads[0];
 				return {
 					...state,
-					chips: state.chips - cost,
-					pokerPads: [...state.pokerPads, newPokerPad],
+					pokerPads: [PokerPasService.createPokerPad(state.pokerPads.length + state.playedPokerPads.length)],
+					playedPokerPads: [...state.playedPokerPads, { ...playedPokerPad }],
 				};
 			}
-			return state;
+
+			// If there's no poker pad, create a new one
+			const newPokerPad = PokerPasService.createPokerPad(
+				state.pokerPads.length + state.playedPokerPads.length,
+			);
+			return {
+				...state,
+				pokerPads: [newPokerPad],
+			};
 		}
 		case "SHUFFLE_DECK":
 			return { ...state, deck: DeckService.shuffleDeck(state.deck) };

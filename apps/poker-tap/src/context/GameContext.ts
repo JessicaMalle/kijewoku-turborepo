@@ -13,8 +13,7 @@ export interface GameState {
 
 interface GameContextType extends GameState {
 	addChips: (chips: number) => void;
-	buyPokerPad: () => void;
-	nextPokerPadPrice: number;
+	validatePokerPad: () => void;
 	shuffleDeck: () => void;
 	drawCard: (numberOfCardsToDraw?: number) => void;
 	revealDeck: (deck: Deck) => void;
@@ -32,7 +31,7 @@ interface GameContextType extends GameState {
 
 export type Action =
 	| { type: "ADD_CHIPS" }
-	| { type: "BUY_POKER_PAD" }
+	| { type: "VALIDATE_POKER_PAD" }
 	| { type: "SHUFFLE_DECK" }
 	| { type: "TOGGLE_SELECTED_HAND_CARD"; payload: string }
 	| {

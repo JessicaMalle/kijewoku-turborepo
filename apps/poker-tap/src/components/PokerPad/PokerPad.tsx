@@ -1,4 +1,4 @@
-import { type ReactNode, useEffect, useRef } from "react";
+import { type ReactNode, useRef } from "react";
 import { usePokerPad } from "../../hooks/states/usePokerPad.ts";
 import useDigits from "../../hooks/utils/useDigits.utils.ts";
 import { useSortedCards } from "../../hooks/utils/useSortedCards.utils.ts";
@@ -20,9 +20,9 @@ import TextButton from "../Button/TextButton.tsx";
 import Title from "../Typography/Typography.tsx";
 
 function PokerPad({ id }: { id: number }): ReactNode {
-	const { pokerPads } = useAppContext();
+	const { pokerPads, validatePokerPad } = useAppContext();
 	const pokerPad = pokerPads[id];
-	const { placeCardOnTable, markPokerPadAsPlayed } = usePokerPad(id);
+	const { placeCardOnTable } = usePokerPad(id);
 	const { sortedCards } = useSortedCards(pokerPad.cards, "value");
 	const { position } = usePosition();
 	const { hand } = useHand();
@@ -52,11 +52,6 @@ function PokerPad({ id }: { id: number }): ReactNode {
 		...Array(5 - sortedCards.length).fill(null),
 	];
 
-	useEffect(() => {
-		if (pokerPad.cards.length === 5) {
-			markPokerPadAsPlayed();
-		}
-	}, [pokerPad.cards.length, markPokerPadAsPlayed]);
 
 	return (
 		<div>
@@ -69,12 +64,10 @@ function PokerPad({ id }: { id: number }): ReactNode {
 					<StyledPokerPadInfos>
 						<Title level={3}>{pokerHand || "(Play poker hand)"}</Title>
 					</StyledPokerPadInfos>
-					{pokerHand && (
-						<TextButton
-							label="> Archive this Poker-Pad <"
-							onClick={markPokerPadAsPlayed}
-						/>
-					)}
+					<TextButton
+						label="> Validate this Poker-Pad <"
+						onClick={validatePokerPad}
+					/>
 				</PokerPadHead>
 				<PokerPadCardsSection>
 					<div>

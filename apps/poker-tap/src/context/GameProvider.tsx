@@ -31,13 +31,9 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
 	// Actions
 	const addChips = () => dispatch({ type: "ADD_CHIPS" });
 
-	const buyPokerPad = () => {
-		dispatch({ type: "BUY_POKER_PAD" });
+	const validatePokerPad = () => {
+		dispatch({ type: "VALIDATE_POKER_PAD" });
 	};
-
-	const nextPokerPadPrice = PokerPadService.calculatePokerPadCost(
-		state.pokerPads.length + state.playedPokerPads.length,
-	);
 
 	const markPokerPadAsPlayed = (pokerPadId: number) =>
 		dispatch({ type: "MARK_POKER_PAD_AS_PLAYED", payload: pokerPadId });
@@ -90,8 +86,7 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
 			value={{
 				...state,
 				addChips,
-				buyPokerPad,
-				nextPokerPadPrice,
+				validatePokerPad,
 				markPokerPadAsPlayed,
 				shuffleDeck,
 				revealDeck,
