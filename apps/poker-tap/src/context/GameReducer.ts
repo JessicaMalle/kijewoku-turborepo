@@ -4,6 +4,7 @@ import GameService from "../services/GameService.ts";
 import HandService from "../services/HandService.ts";
 import PokerPadService from "../services/PokerPadService.ts";
 import PokerPasService from "../services/PokerPadService.ts";
+import { SaveService } from "../services/SaveService.ts";
 import type { Action, GameState } from "./GameContext";
 import ItemsService from "../services/ItemsService.ts";
 import { MAX_ACTIVE_POKER_PADS } from "../config/gameConfig.ts";
@@ -16,28 +17,18 @@ export const GameReducer = (state: GameState, action: Action): GameState => {
 				prevChips: state.chips,
 				chips: ChipsService.addChips({
 					currentChips: state.chips,
-					pokerPads: state.pokerPads,
+					pokerPad: state.pokerPad,
 					playedPokerPads: state.playedPokerPads,
 				}),
 			};
 		case "VALIDATE_POKER_PAD": {
-			// If there's an existing poker pad, move it to playedPokerPads
-			if (state.pokerPads.length > 0) {
-				const playedPokerPad = state.pokerPads[0];
-				return {
-					...state,
-					pokerPads: [PokerPasService.createPokerPad(state.pokerPads.length + state.playedPokerPads.length)],
-					playedPokerPads: [...state.playedPokerPads, { ...playedPokerPad }],
-				};
-			}
-
-			// If there's no poker pad, create a new one
-			const newPokerPad = PokerPasService.createPokerPad(
-				state.pokerPads.length + state.playedPokerPads.length,
-			);
+			// Move the current poker pad to playedPokerPads and create a new one
+			const playedPokerPad = state.pokerPad;
+			const newPokerPad = SaveService.createPokerPad();
 			return {
 				...state,
-				pokerPads: [newPokerPad],
+				pokerPad: newPokerPad,
+				playedPokerPads: [...state.playedPokerPads, { ...playedPokerPad }],
 			};
 		}
 		case "SHUFFLE_DECK":
@@ -124,25 +115,31 @@ export const GameReducer = (state: GameState, action: Action): GameState => {
 			};
 		}
 		case "PLACE_CARD_ON_TABLE": {
-			const { newHand, newPokerPads } = PokerPadService.placeCardOnTable(
-				state.hand.Cards,
-				state.pokerPads,
-				action.payload.index,
-				action.payload.cardUid,
-			);
+			const cardUid = action.payload;
+			const cardToPlace = state.hand.Cards.find((card) => card.uid === cardUid);
 
-			if (newHand !== state.hand.Cards || newPokerPads !== state.pokerPads) {
-				return {
-					...state,
-					hand: {
-						...state.hand,
-						Cards: newHand,
-					},
-					pokerPads: newPokerPads,
-				};
+			if (!cardToPlace) {
+				return state;
 			}
 
-			return state;
+			if (state.pokerPad.cards.length + 1 > 5) {
+				return state;
+			}
+
+			const newHand = state.hand.Cards.filter((card) => card.uid !== cardUid);
+			const newCards = [...state.pokerPad.cards, { ...cardToPlace, active: false }];
+
+			return {
+				...state,
+				hand: {
+					...state.hand,
+					Cards: newHand,
+				},
+				pokerPad: {
+					...state.pokerPad,
+					cards: newCards,
+				},
+			};
 		}
 		case "BUY_ITEM": {
 			const itemUid = action.payload;
@@ -163,22 +160,6 @@ export const GameReducer = (state: GameState, action: Action): GameState => {
 				chips: state.chips + action.payload,
 				prevChips: state.chips,
 			};
-		case "MARK_POKER_PAD_AS_PLAYED": {
-			const updatedPokerPads = state.pokerPads.filter(
-				(_, index) => index !== action.payload,
-			);
-			const playedPokerPad = state.pokerPads.find(
-				(_, index) => index === action.payload,
-			);
-
-			return {
-				...state,
-				pokerPads: updatedPokerPads,
-				playedPokerPads: playedPokerPad
-					? [...state.playedPokerPads, { ...playedPokerPad }]
-					: state.playedPokerPads,
-			};
-		}
 
 		default:
 			return state;

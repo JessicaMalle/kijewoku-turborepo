@@ -3,32 +3,30 @@ import PokerPadService from "./PokerPadService";
 
 function addChips({
 	currentChips,
-	pokerPads,
+	pokerPad,
 	playedPokerPads,
 }: {
 	currentChips: number;
-	pokerPads: PokerPad[];
+	pokerPad: PokerPad;
 	playedPokerPads: PokerPad[];
 }): number {
 	const base = 100;
-	const totalBonus = getTotalBonus(pokerPads, playedPokerPads);
+	const totalBonus = getTotalBonus(pokerPad, playedPokerPads);
 
 	return currentChips + base + totalBonus;
 }
 
 function getTotalBonus(
-	pokerPads: PokerPad[],
+	pokerPad: PokerPad,
 	playedPokerPadsBonus: PokerPad[],
 ): number {
-	const resultPokerPadsBonus = pokerPads.reduce((acc, pad) => {
-		const { bonus } = PokerPadService.getPokerHandDetails(pad.cards);
-		return acc + bonus;
-	}, 0);
+	const { bonus: pokerPadBonus } = PokerPadService.getPokerHandDetails(pokerPad.cards);
+
 	const resultPlayedPokerPadsBonus = playedPokerPadsBonus.reduce((acc, pad) => {
 		const { bonus } = PokerPadService.getPokerHandDetails(pad.cards);
 		return acc + bonus;
 	}, 0);
-	return resultPokerPadsBonus + resultPlayedPokerPadsBonus;
+	return pokerPadBonus + resultPlayedPokerPadsBonus;
 }
 
 const ChipsService = {

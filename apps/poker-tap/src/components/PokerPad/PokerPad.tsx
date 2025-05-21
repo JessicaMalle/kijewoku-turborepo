@@ -1,5 +1,4 @@
 import { type ReactNode, useRef } from "react";
-import { usePokerPad } from "../../hooks/states/usePokerPad.ts";
 import useDigits from "../../hooks/utils/useDigits.utils.ts";
 import { useSortedCards } from "../../hooks/utils/useSortedCards.utils.ts";
 import PokerPadService from "../../services/PokerPadService.ts";
@@ -18,11 +17,10 @@ import useReleaseDetection from "../../hooks/process/useReleaseDetection.ts";
 import { useAppContext } from "../../hooks/states/useAppContext.ts";
 import TextButton from "../Button/TextButton.tsx";
 import Title from "../Typography/Typography.tsx";
+import { PokerPadsWrapperStyles } from "../Layouts/PokerPadsWrapper.styles.ts";
 
-function PokerPad({ id }: { id: number }): ReactNode {
-	const { pokerPads, validatePokerPad } = useAppContext();
-	const pokerPad = pokerPads[id];
-	const { placeCardOnTable } = usePokerPad(id);
+function PokerPad(): ReactNode {
+	const { pokerPad, validatePokerPad, placeCardOnTable } = useAppContext();
 	const { sortedCards } = useSortedCards(pokerPad.cards, "value");
 	const { position } = usePosition();
 	const { hand } = useHand();
@@ -34,7 +32,7 @@ function PokerPad({ id }: { id: number }): ReactNode {
 
 	const handleRelease = () => {
 		if (isInsideElement && hand.draggingCardUid) {
-			placeCardOnTable(id, hand.draggingCardUid);
+			placeCardOnTable(hand.draggingCardUid);
 		}
 	};
 
@@ -52,11 +50,10 @@ function PokerPad({ id }: { id: number }): ReactNode {
 		...Array(5 - sortedCards.length).fill(null),
 	];
 
-
 	return (
-		<div>
+		<PokerPadsWrapperStyles>
 			<StyledPokerPad
-				id={`pp-${id}`}
+				id="poker-pad"
 				ref={myElementRef}
 				$hovered={isInsideElement && !!hand.draggingCardUid}
 			>
@@ -80,7 +77,7 @@ function PokerPad({ id }: { id: number }): ReactNode {
 							) : (
 								<CardPlaceholder
 									key={window.btoa(`placeholder-${index}`)}
-									onClick={() => placeCardOnTable(id, card.uid)}
+									onClick={() => placeCardOnTable(card.uid)}
 								/>
 							),
 						)}
@@ -88,7 +85,7 @@ function PokerPad({ id }: { id: number }): ReactNode {
 					<StyledPokerPadInfos>+ {formatedBonus} CpC</StyledPokerPadInfos>
 				</PokerPadCardsSection>
 			</StyledPokerPad>
-		</div>
+		</PokerPadsWrapperStyles>
 	);
 }
 

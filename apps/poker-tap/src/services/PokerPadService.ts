@@ -1,7 +1,4 @@
-import {
-	POKER_PADS_BASE_PRICE,
-	POKER_PADS_PRICE_MULTIPLIER,
-} from "../config/gameConfig.ts";
+// No need to import price-related constants anymore
 import type { Card, Hand, PokerPad } from "../types/gameTypes.ts";
 import { SaveService } from "./SaveService.ts";
 
@@ -11,33 +8,7 @@ export interface PokerHandResult {
 	bonus: number;
 }
 
-const placeCardOnTable = (
-	hand: Hand["Cards"],
-	pokerPads: PokerPad[],
-	index: number,
-	cardUid: string,
-): { newHand: Hand["Cards"]; newPokerPads: PokerPad[] } => {
-	const cardToPlace = hand.find((card) => card.uid === cardUid);
-
-	if (!cardToPlace) {
-		return { newHand: hand, newPokerPads: pokerPads };
-	}
-
-	const table = pokerPads[index].cards;
-
-	if (table.length + 1 > 5) {
-		return { newHand: hand, newPokerPads: pokerPads };
-	}
-
-	const newHand = hand.filter((card) => card.uid !== cardUid);
-	const newTable = [...table, { ...cardToPlace, active: false }];
-
-	const newPokerPads = pokerPads.map((pokerPad, i) =>
-		i === index ? { ...pokerPad, cards: newTable } : pokerPad,
-	);
-
-	return { newHand, newPokerPads };
-};
+// placeCardOnTable function has been moved to the GameReducer
 
 const detectPokerHand = (cards: Card[]): string => {
 	if (cards.length === 0) return "";
@@ -178,24 +149,12 @@ export const getPokerHandDetails = (cards: Card[]): PokerHandResult => {
 	return { hand, score, bonus };
 };
 
-function calculatePokerPadCost(pokerPadCount: number): number {
-	return POKER_PADS_BASE_PRICE * POKER_PADS_PRICE_MULTIPLIER ** pokerPadCount;
-}
-
-function createPokerPad(index: number): PokerPad {
-	return {
-		uid: SaveService.getUid("PokerPad", index),
-		cards: [],
-	};
-}
+// These functions have been moved to SaveService
 
 const PokerPasService = {
-	placeCardOnTable,
 	detectPokerHand,
 	getPokerHandScore,
 	getPokerHandDetails,
-	calculatePokerPadCost,
-	createPokerPad,
 };
 
 export default PokerPasService;

@@ -1,37 +1,15 @@
-import { useEffect, useState } from "react";
-import PokerPadService from "../../services/PokerPadService.ts";
+// This hook has been deprecated as we now use a single pokerPad directly from useAppContext
+// Keeping this file as a placeholder in case we need to reimplement similar functionality in the future
+
 import { useAppContext } from "./useAppContext.ts";
 
-export const usePokerPad = (index: number) => {
-	const { pokerPads, playedPokerPads, placeCardOnTable, markPokerPadAsPlayed } =
-		useAppContext();
-
-	const pokerPad = pokerPads[index];
-
-	const [detectedHand, setDetectedHand] = useState<string>("");
-	const [handScore, setHandScore] = useState<number>(0);
-
-	const handleMarkPokerPadAsPlayed = () => {
-		markPokerPadAsPlayed(index);
-	};
-
-	useEffect(() => {
-		if (!pokerPad?.cards) return;
-
-		const hand = PokerPadService.detectPokerHand(pokerPad.cards);
-		setDetectedHand(hand);
-
-		const score = PokerPadService.getPokerHandScore(pokerPad.cards);
-		setHandScore(score);
-	}, [pokerPad?.cards]);
+export const usePokerPad = () => {
+	// Simply return the relevant parts from useAppContext
+	const { pokerPad, playedPokerPads, placeCardOnTable } = useAppContext();
 
 	return {
 		pokerPad,
-		pokerPads,
 		playedPokerPads,
 		placeCardOnTable,
-		detectedHand,
-		handScore,
-		markPokerPadAsPlayed: handleMarkPokerPadAsPlayed,
 	};
 };

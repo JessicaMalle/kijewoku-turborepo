@@ -24,19 +24,17 @@ export const SaveService = {
 		return uuIdv5(`${type}-${index}-${timestamp}-${random}`, NAMESPACE);
 	},
 
-	initializePokerPads: (): PokerPad[] => {
-		return Array(1)
-			.fill(null)
-			.map((_, index) => ({
-				uid: uuIdv5(`pokerPad-${index}`, NAMESPACE),
-				cards: [],
-			}));
+	createPokerPad: (): PokerPad => {
+		return {
+			uid: uuIdv5(`pokerPad-${Date.now()}`, NAMESPACE),
+			cards: [],
+		};
 	},
 
 	initializeGame: (initialGameState: { deck: Deck; hand: Hand }): {
 		deck: Deck;
 		hand: Hand;
-		pokerPads: PokerPad[];
+		pokerPad: PokerPad;
 	} => {
 		let newDeck: Deck = { cards: [...initialGameState.deck.cards] };
 		let newHand: Hand = {
@@ -48,12 +46,12 @@ export const SaveService = {
 		newDeck = result.deck;
 		newHand = result.hand;
 
-		const pokerPads = SaveService.initializePokerPads();
+		const pokerPad = SaveService.createPokerPad();
 
 		return {
 			deck: newDeck,
 			hand: newHand,
-			pokerPads: pokerPads,
+			pokerPad: pokerPad,
 		};
 	},
 

@@ -15,7 +15,7 @@ const initialGameState: GameState = {
 	prevChips: 0,
 	hand: { Cards: [], firstPickMade: false },
 	deck: DeckService.shuffleDeck(DeckService.createDeck()),
-	pokerPads: SaveService.initializePokerPads(),
+	pokerPad: SaveService.createPokerPad(),
 	playedPokerPads: [],
 	items: ItemsService.getInitialItems(),
 };
@@ -35,8 +35,6 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
 		dispatch({ type: "VALIDATE_POKER_PAD" });
 	};
 
-	const markPokerPadAsPlayed = (pokerPadId: number) =>
-		dispatch({ type: "MARK_POKER_PAD_AS_PLAYED", payload: pokerPadId });
 
 	const shuffleDeck = () => dispatch({ type: "SHUFFLE_DECK" });
 
@@ -60,14 +58,14 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
 	const toggleSelectedCard = (uid: string) =>
 		dispatch({ type: "TOGGLE_SELECTED_HAND_CARD", payload: uid });
 
-	const placeCardOnTable = (index: number, cardUid: string) =>
+	const placeCardOnTable = (cardUid: string) =>
 		dispatch({
 			type: "PLACE_CARD_ON_TABLE",
-			payload: { index, cardUid },
+			payload: cardUid,
 		});
 
 	const getTotalBonus = () =>
-		ChipsService.getTotalBonus(state.pokerPads, state.playedPokerPads);
+		ChipsService.getTotalBonus(state.pokerPad, state.playedPokerPads);
 
 	const buyItem = (itemUid: string) => {
 		dispatch({ type: "BUY_ITEM", payload: itemUid });
@@ -87,7 +85,6 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
 				...state,
 				addChips,
 				validatePokerPad,
-				markPokerPadAsPlayed,
 				shuffleDeck,
 				revealDeck,
 				drawCard,
