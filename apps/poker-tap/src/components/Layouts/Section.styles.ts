@@ -5,6 +5,7 @@ export const StyledSection = styled.section<{
 	$neutralStyle?: boolean;
 	$lightStyle?: boolean;
 }>`
+    overflow-y: auto;
     background-color: ${({ $neutralStyle, $lightStyle }) =>
 			$neutralStyle
 				? "transparent"

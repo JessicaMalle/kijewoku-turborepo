@@ -76,11 +76,13 @@ export const GameLayout = styled.div`
 				max-height: 100%;
 		}
 
-		#items {
+ 	#items {
 				grid-column: 3/4;
-				grid-row: 1/5;
+				grid-row: 1/8;
         position: relative;
         z-index: 2;
+        overflow-y: auto;
+        max-height: 100%;
 		}
 
 		#deck {

@@ -1,5 +1,5 @@
 import { createContext } from "react";
-import type { Deck, Hand, Item, PokerPad } from "../types/gameTypes.ts";
+import type { BoosterCollection, BoosterType, CardCollection, Deck, Hand, Item, PokerPad } from "../types/gameTypes.ts";
 
 export interface GameState {
 	chips: number;
@@ -9,6 +9,8 @@ export interface GameState {
 	pokerPad: PokerPad;
 	playedPokerPads: PokerPad[];
 	items: Item[];
+	boosterCollection: BoosterCollection;
+	cardCollection: CardCollection;
 }
 
 interface GameContextType extends GameState {
@@ -26,6 +28,10 @@ interface GameContextType extends GameState {
 	buyItem: (itemUid: string) => void;
 	getItemPrice: (itemUid: string) => number;
 	canBuyItem: (itemUid: string) => boolean;
+	buyBooster: (type: BoosterType) => void;
+	openBooster: (boosterUid: string) => void;
+	getBoosterPrice: (type: BoosterType) => number;
+	canBuyBooster: (type: BoosterType) => boolean;
 }
 
 export type Action =
@@ -41,7 +47,9 @@ export type Action =
 	| { type: "CLEAR_DRAGGING_CARD_UID" }
 	| { type: "CLEAR_LAST_DRAGGING_CARD_UID" }
 	| { type: "BUY_ITEM"; payload: string }
-	| { type: "AUTO_CLICK"; payload: number };
+	| { type: "AUTO_CLICK"; payload: number }
+	| { type: "BUY_BOOSTER"; payload: BoosterType }
+	| { type: "OPEN_BOOSTER"; payload: string };
 
 export const GameContext = createContext<GameContextType | undefined>(
 	undefined,

@@ -1,11 +1,12 @@
 import type { ReactNode } from "react";
 import { useReducer } from "react";
 import useGameLoop from "../hooks/process/useGameLoop.ts";
+import BoosterService from "../services/BoosterService.ts";
 import ChipsService from "../services/ChipsService.ts";
 import DeckService from "../services/DeckService.ts";
 import PokerPadService from "../services/PokerPadService.ts";
 import { SaveService } from "../services/SaveService.ts";
-import type { Deck } from "../types/gameTypes.ts";
+import type { BoosterType, Deck } from "../types/gameTypes.ts";
 import { GameContext, type GameState } from "./GameContext.ts";
 import { GameReducer } from "./GameReducer.ts";
 import ItemsService from "../services/ItemsService.ts";
@@ -18,6 +19,8 @@ const initialGameState: GameState = {
 	pokerPad: SaveService.createPokerPad(),
 	playedPokerPads: [],
 	items: ItemsService.getInitialItems(),
+	boosterCollection: BoosterService.createInitialBoosterCollection(),
+	cardCollection: { cards: [] },
 };
 
 export const GameProvider = ({ children }: { children: ReactNode }) => {
@@ -79,6 +82,22 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
 		return ItemsService.canBuyItem(state.chips, state.items, itemUid);
 	};
 
+	const buyBooster = (type: BoosterType) => {
+		dispatch({ type: "BUY_BOOSTER", payload: type });
+	};
+
+	const openBooster = (boosterUid: string) => {
+		dispatch({ type: "OPEN_BOOSTER", payload: boosterUid });
+	};
+
+	const getBoosterPrice = (type: BoosterType) => {
+		return BoosterService.getBoosterPrice(state.boosterCollection, type);
+	};
+
+	const canBuyBooster = (type: BoosterType) => {
+		return BoosterService.canBuyBooster(state.chips, state.boosterCollection, type);
+	};
+
 	return (
 		<GameContext.Provider
 			value={{
@@ -97,6 +116,10 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
 				buyItem,
 				getItemPrice,
 				canBuyItem,
+				buyBooster,
+				openBooster,
+				getBoosterPrice,
+				canBuyBooster,
 			}}
 		>
 			{children}

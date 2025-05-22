@@ -61,3 +61,27 @@ export interface Item {
 	originPrice: number;
 	count: number;
 }
+
+export type BoosterType = "CLASSIC";
+
+export type CardRarity = "COMMON" | "UNCOMMON" | "RARE" | "EPIC" | "LEGENDARY";
+
+export interface CardWithRarity extends Card {
+	rarity: CardRarity;
+}
+
+export interface Booster {
+	uid: string;
+	type: BoosterType;
+	cards: CardWithRarity[];
+	opened: boolean;
+}
+
+export interface CardCollection {
+	cards: CardWithRarity[];
+}
+
+export interface BoosterCollection {
+	boosters: Booster[];
+	purchaseCount: number;
+}

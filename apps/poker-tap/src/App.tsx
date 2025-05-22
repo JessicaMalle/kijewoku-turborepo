@@ -11,6 +11,7 @@ import useDigits from "./hooks/utils/useDigits.utils.ts";
 import { PositionProvider } from "./context/PositionStore.tsx";
 import { GameLoopProvider } from "./context/game-loop/GameLoopProvider.tsx";
 import ItemShop from "./components/Items/ItemShop.tsx";
+import BoosterShop from "./components/Boosters/BoosterShop.tsx";
 import PlayedPokerPads from "./components/Layouts/PlayedPokerPadds.tsx";
 import PokerPad from "./components/PokerPad/PokerPad.tsx";
 
@@ -40,7 +41,7 @@ function App(): ReactNode {
 						</StyledSection>
 						<div id="items">
 							<ItemShop />
-							<PlayedPokerPads />
+							<BoosterShop />
 						</div>
 					</GameLayout>
 					<StyledSection id="hand" $neutralStyle>

@@ -1,3 +1,4 @@
+import BoosterService from "../services/BoosterService.ts";
 import ChipsService from "../services/ChipsService.ts";
 import DeckService from "../services/DeckService.ts";
 import GameService from "../services/GameService.ts";
@@ -160,6 +161,36 @@ export const GameReducer = (state: GameState, action: Action): GameState => {
 				chips: state.chips + action.payload,
 				prevChips: state.chips,
 			};
+
+		case "BUY_BOOSTER": {
+			const boosterType = action.payload;
+			const boosterPrice = BoosterService.getBoosterPrice(state.boosterCollection, boosterType);
+
+			if (state.chips >= boosterPrice) {
+				return {
+					...state,
+					chips: state.chips - boosterPrice,
+					boosterCollection: BoosterService.buyBooster(state.boosterCollection, boosterType)
+				};
+			}
+			return state;
+		}
+
+		case "OPEN_BOOSTER": {
+			const boosterUid = action.payload;
+			const { boosterCollection, openedCards } = BoosterService.openBooster(
+				state.boosterCollection,
+				boosterUid
+			);
+
+			return {
+				...state,
+				boosterCollection,
+				cardCollection: {
+					cards: [...state.cardCollection.cards, ...openedCards]
+				}
+			};
+		}
 
 		default:
 			return state;
