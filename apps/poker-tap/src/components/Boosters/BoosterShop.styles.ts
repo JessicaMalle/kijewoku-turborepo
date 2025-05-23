@@ -40,7 +40,7 @@ export const BoosterCard = styled.div<{ $isSelected?: boolean }>`
   height: 160px;
   padding: 10px;
   background-color: ${({ $isSelected }) =>
-		$isSelected ? Colors.slateGreen.sage : Colors.neutral.darkSlate};
+		$isSelected ? Colors.slateGreen.sage : Colors.dark.lightPurple};
   border: 2px solid ${Colors.dark.mediumPurple};
   border-radius: 8px;
   cursor: pointer;
@@ -79,7 +79,7 @@ export const BoosterName = styled.div`
 
 export const BoosterCount = styled.div`
   font-size: 0.9rem;
-  color: ${Colors.neutral.lightGray};
+  color: ${Colors.neutral.slate};
 `;
 
 export const BoosterDetails = styled.div`
@@ -87,7 +87,7 @@ export const BoosterDetails = styled.div`
   flex-direction: column;
   gap: 10px;
   padding: 10px;
-  background-color: ${Colors.neutral.darkSlate};
+  background-color: ${Colors.dark.lightPurple};
   border: 2px solid ${Colors.dark.mediumPurple};
   border-radius: 8px;
 `;
@@ -117,7 +117,7 @@ export const BoosterPrice = styled.div`
 export const OpenBoosterButton = styled.button<{ $disabled?: boolean }>`
   padding: 8px 15px;
   background-color: ${({ $disabled }) =>
-		$disabled ? Colors.neutral.darkGray : Colors.slateGreen.sage};
+		$disabled ? Colors.dark.lightPurple : Colors.slateGreen.sage};
   color: ${Colors.neutral.white};
   border: 2px solid ${Colors.dark.mediumPurple};
   border-radius: 5px;
@@ -128,14 +128,14 @@ export const OpenBoosterButton = styled.button<{ $disabled?: boolean }>`
   
   &:hover {
     background-color: ${({ $disabled }) =>
-			$disabled ? Colors.neutral.darkGray : Colors.slateGreen.darkSage};
+			$disabled ? Colors.dark.lightPurple : Colors.slateGreen.darkSlate};
   }
 `;
 
 export const BuyBoosterButton = styled.button<{ $disabled?: boolean }>`
   padding: 8px 15px;
   background-color: ${({ $disabled }) =>
-		$disabled ? Colors.neutral.darkGray : Colors.slateGreen.sage};
+		$disabled ? Colors.dark.lightPurple : Colors.slateGreen.sage};
   color: ${Colors.neutral.white};
   border: 2px solid ${Colors.dark.mediumPurple};
   border-radius: 5px;
@@ -146,6 +146,6 @@ export const BuyBoosterButton = styled.button<{ $disabled?: boolean }>`
   
   &:hover {
     background-color: ${({ $disabled }) =>
-			$disabled ? Colors.neutral.darkGray : Colors.slateGreen.darkSage};
+			$disabled ? Colors.dark.lightPurple : Colors.slateGreen.darkSlate};
   }
 `;
