@@ -26,10 +26,21 @@ export const GameReducer = (state: GameState, action: Action): GameState => {
 			// Move the current poker pad to playedPokerPads and create a new one
 			const playedPokerPad = state.pokerPad;
 			const newPokerPad = SaveService.createPokerPad();
+
+			// Get the UIDs of cards in the poker pad being validated
+			const pokerPadCardUids = playedPokerPad.cards.map(card => card.uid);
+
+			// Remove these cards from the deck to prevent them from being drawn again
+			const newDeck = {
+				...state.deck,
+				cards: state.deck.cards.filter(card => !pokerPadCardUids.includes(card.uid))
+			};
+
 			return {
 				...state,
 				pokerPad: newPokerPad,
 				playedPokerPads: [...state.playedPokerPads, { ...playedPokerPad }],
+				deck: newDeck,
 			};
 		}
 		case "SHUFFLE_DECK":
@@ -130,6 +141,12 @@ export const GameReducer = (state: GameState, action: Action): GameState => {
 			const newHand = state.hand.Cards.filter((card) => card.uid !== cardUid);
 			const newCards = [...state.pokerPad.cards, { ...cardToPlace, active: false }];
 
+			// Also remove the card from the deck to prevent it from being drawn again
+			const newDeck = {
+				...state.deck,
+				cards: state.deck.cards.filter((card) => card.uid !== cardUid)
+			};
+
 			return {
 				...state,
 				hand: {
@@ -140,6 +157,7 @@ export const GameReducer = (state: GameState, action: Action): GameState => {
 					...state.pokerPad,
 					cards: newCards,
 				},
+				deck: newDeck,
 			};
 		}
 		case "BUY_ITEM": {
@@ -188,6 +206,70 @@ export const GameReducer = (state: GameState, action: Action): GameState => {
 				boosterCollection,
 				cardCollection: {
 					cards: [...state.cardCollection.cards, ...openedCards]
+				}
+			};
+		}
+
+		case "CREATE_DECK": {
+			const cardUids = action.payload;
+
+			// Ensure minimum deck size
+			if (cardUids.length < 32) {
+				return state;
+			}
+
+			// Get UIDs of cards in poker pads (current and played)
+			const currentPokerPadCardUids = state.pokerPad.cards.map(card => card.uid);
+			const playedPokerPadsCardUids = state.playedPokerPads.flatMap(pad => pad.cards.map(card => card.uid));
+			const allPokerPadCardUids = [...currentPokerPadCardUids, ...playedPokerPadsCardUids];
+
+			// Get UIDs of cards in hand
+			const handCardUids = state.hand.Cards.map(card => card.uid);
+
+			// Find the cards in the collection, excluding those in poker pads
+			// Include all cards from the hand (they should already be in cardUids due to validation)
+			const selectedCards = state.cardCollection.cards.filter(card =>
+				(cardUids.includes(card.uid) || handCardUids.includes(card.uid)) &&
+				!allPokerPadCardUids.includes(card.uid)
+			);
+
+			// Create a new deck with the selected cards
+			return {
+				...state,
+				deck: {
+					cards: selectedCards
+				}
+			};
+		}
+
+		case "UPDATE_DECK": {
+			const cardUids = action.payload;
+
+			// Ensure minimum deck size
+			if (cardUids.length < 32) {
+				return state;
+			}
+
+			// Get UIDs of cards in poker pads (current and played)
+			const currentPokerPadCardUids = state.pokerPad.cards.map(card => card.uid);
+			const playedPokerPadsCardUids = state.playedPokerPads.flatMap(pad => pad.cards.map(card => card.uid));
+			const allPokerPadCardUids = [...currentPokerPadCardUids, ...playedPokerPadsCardUids];
+
+			// Get UIDs of cards in hand
+			const handCardUids = state.hand.Cards.map(card => card.uid);
+
+			// Find the cards in the collection, excluding those in poker pads
+			// Include all cards from the hand (they should already be in cardUids due to validation)
+			const selectedCards = state.cardCollection.cards.filter(card =>
+				(cardUids.includes(card.uid) || handCardUids.includes(card.uid)) &&
+				!allPokerPadCardUids.includes(card.uid)
+			);
+
+			// Update the deck with the selected cards
+			return {
+				...state,
+				deck: {
+					cards: selectedCards
 				}
 			};
 		}

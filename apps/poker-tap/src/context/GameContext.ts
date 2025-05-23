@@ -32,6 +32,9 @@ interface GameContextType extends GameState {
 	openBooster: (boosterUid: string) => void;
 	getBoosterPrice: (type: BoosterType) => number;
 	canBuyBooster: (type: BoosterType) => boolean;
+	createDeck: (cardUids: string[]) => boolean;
+	updateDeck: (cardUids: string[]) => boolean;
+	canCreateDeck: (cardUids: string[]) => boolean;
 }
 
 export type Action =
@@ -49,7 +52,9 @@ export type Action =
 	| { type: "BUY_ITEM"; payload: string }
 	| { type: "AUTO_CLICK"; payload: number }
 	| { type: "BUY_BOOSTER"; payload: BoosterType }
-	| { type: "OPEN_BOOSTER"; payload: string };
+	| { type: "OPEN_BOOSTER"; payload: string }
+	| { type: "CREATE_DECK"; payload: string[] }
+	| { type: "UPDATE_DECK"; payload: string[] };
 
 export const GameContext = createContext<GameContextType | undefined>(
 	undefined,

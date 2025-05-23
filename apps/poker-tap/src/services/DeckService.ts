@@ -9,7 +9,10 @@ const createDeck = (): Deck => {
 
   for (const color of colors) {
     for (const value of values) {
-      const uid = uuIdv5(`card-${color}-${value}`, NAMESPACE);
+      // Add timestamp and random value to ensure uniqueness
+      const timestamp = Date.now();
+      const random = Math.random();
+      const uid = uuIdv5(`card-${color}-${value}-${timestamp}-${random}`, NAMESPACE);
       cards.push({ uid, color, value, numericValue: getNumericValue(value) });
     }
   }
@@ -57,6 +60,35 @@ const nextCardPrice = (deck: Deck): number => {
   return basePrice + (totalCards - remainingCards) * priceMultiplier;
 };
 
+// Test function to check for duplicate UIDs
+const testUniqueUIDs = (): void => {
+  console.log("Testing for unique UIDs across multiple decks...");
+
+  // Create multiple decks
+  const numDecks = 5;
+  const decks = [];
+
+  for (let i = 0; i < numDecks; i++) {
+    const deck = createDeck();
+    decks.push(deck);
+    console.log(`Deck ${i + 1} created with ${deck.cards.length} cards.`);
+  }
+
+  // Collect all UIDs
+  const allUids = decks.flatMap(deck => deck.cards.map(card => card.uid));
+  console.log(`Total cards across all decks: ${allUids.length}`);
+
+  // Check for duplicates
+  const uniqueUids = new Set(allUids);
+  console.log(`Unique UIDs: ${uniqueUids.size}`);
+
+  if (uniqueUids.size === allUids.length) {
+    console.log("SUCCESS: All cards have unique UIDs!");
+  } else {
+    console.log(`ERROR: Found ${allUids.length - uniqueUids.size} duplicate UIDs!`);
+  }
+};
+
 const DeckService = {
   createDeck,
   shuffleDeck,
@@ -64,6 +96,7 @@ const DeckService = {
   placeCardUnderDeck,
   revealDeck,
   nextCardPrice,
+  testUniqueUIDs,
 };
 
 export default DeckService;

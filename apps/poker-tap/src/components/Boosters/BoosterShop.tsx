@@ -7,6 +7,7 @@ import type { ReactNode } from "react";
 import type { Booster, BoosterType, CardWithRarity } from "../../types/gameTypes.ts";
 import Button from "../Button/Button.tsx";
 import BoosterService from "../../services/BoosterService.ts";
+import DeckBuilder from "../Deck/DeckBuilder.tsx";
 import {
   BoosterCard,
   BoosterCount,
@@ -43,6 +44,7 @@ function BoosterShop(): ReactNode {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [openedCards, setOpenedCards] = useState<CardWithRarity[]>([]);
   const [isCollectionModalOpen, setIsCollectionModalOpen] = useState<boolean>(false);
+  const [isDeckBuilderOpen, setIsDeckBuilderOpen] = useState<boolean>(false);
 
   // Get unopened boosters of the selected type
   const unopenedBoosters = boosterCollection.boosters.filter(
@@ -109,16 +111,31 @@ function BoosterShop(): ReactNode {
     setIsCollectionModalOpen(false);
   };
 
+  // Open the deck builder modal
+  const handleOpenDeckBuilder = () => {
+    setIsDeckBuilderOpen(true);
+  };
+
+  // Close the deck builder modal
+  const handleCloseDeckBuilder = () => {
+    setIsDeckBuilderOpen(false);
+  };
+
   return (
     <StyledSection>
       <BoosterShopContainer>
         <BoosterShopTitle>Booster Shop</BoosterShopTitle>
 
-        {/* Button to view card collection */}
-        <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '10px' }}>
+        {/* Buttons for card collection and deck builder */}
+        <div style={{ display: 'flex', justifyContent: 'center', gap: '10px', marginBottom: '10px' }}>
           <Button
             label="View Card Collection"
             onClick={handleOpenCollectionModal}
+            hasTextShadow
+          />
+          <Button
+            label="Deck Builder"
+            onClick={handleOpenDeckBuilder}
             hasTextShadow
           />
         </div>
@@ -328,6 +345,12 @@ function BoosterShop(): ReactNode {
           </button>
         </div>
       </Modal>
+
+      {/* Deck Builder Modal */}
+      <DeckBuilder
+        isOpen={isDeckBuilderOpen}
+        onClose={handleCloseDeckBuilder}
+      />
     </StyledSection>
   );
 }

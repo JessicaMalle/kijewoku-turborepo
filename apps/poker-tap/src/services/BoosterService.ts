@@ -30,8 +30,8 @@ const PRICE_INCREASE_PER_PURCHASE = 20;
 const createInitialBoosterCollection = (): BoosterCollection => {
   const boosters = [];
 
-  // Add 10 classic boosters to start with
-  for (let i = 0; i < 10; i++) {
+  // Add 5 classic boosters to start with
+  for (let i = 0; i < 5; i++) {
     boosters.push(createBooster("CLASSIC"));
   }
 
