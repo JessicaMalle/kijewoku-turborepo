@@ -72,7 +72,7 @@ function PokerPad(): ReactNode {
 							card ? (
 								<Card
 									{...card}
-									key={`hand-card-${card.color}-${card.value}-i${index}`}
+									key={`hand-card-${card.uid}`}
 								/>
 							) : (
 								<CardPlaceholder

@@ -57,7 +57,7 @@ function Hand(): ReactNode {
 		<StyledHand $forceOpen={hand.forceOpen || false}>
 			{hand.Cards.map((card, index) => (
 				<StyledCard
-					key={`hand-card-${card.color}-${card.value}-i${index}`}
+					key={`hand-card-${card.uid}`}
 					$isDragging={hand.draggingCardUid === card.uid}
 					style={
 						hand.draggingCardUid !== card.uid

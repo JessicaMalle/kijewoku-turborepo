@@ -10,9 +10,15 @@ const createDeck = (): Deck => {
   for (const color of colors) {
     for (const value of values) {
       // Add timestamp and random value to ensure uniqueness
+      // Update timestamp for each card to ensure uniqueness even for same color and value
       const timestamp = Date.now();
-      const random = Math.random();
-      const uid = uuIdv5(`card-${color}-${value}-${timestamp}-${random}`, NAMESPACE);
+      // Generate a more complex random string to ensure uniqueness
+      const random1 = Math.random().toString(36).substring(2);
+      const random2 = Math.random().toString(36).substring(2);
+      const random3 = Math.random().toString(36).substring(2);
+      // Combine multiple random values to create a highly unique string
+      const uniqueString = `${random1}-${random2}-${random3}-${timestamp}`;
+      const uid = uuIdv5(`card-${color}-${value}-${uniqueString}`, NAMESPACE);
       cards.push({ uid, color, value, numericValue: getNumericValue(value) });
     }
   }

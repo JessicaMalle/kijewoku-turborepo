@@ -46,7 +46,7 @@ function PlayedPokerPad({ id, size = 'default' }: PlayedPokerPadProps): ReactNod
 							card ? (
 								<Card
 									{...card}
-									key={`hand-card-${card.color}-${card.value}-i${index}`}
+									key={`hand-card-${card.uid}`}
 									disableTilt={true}
 								/>
 							) : (
