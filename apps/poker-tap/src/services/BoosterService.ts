@@ -58,19 +58,20 @@ const createBooster = (type: BoosterType): Booster => {
 /**
  * Generates cards for a booster based on its type
  */
-const generateBoosterCards = (booster: Booster): Booster => {
+const generateBoosterCards = (booster: Booster, deck: Deck): Booster => {
   if (booster.cards.length > 0 || booster.opened) {
     return booster; // Booster already has cards or is already opened
   }
 
   const cards: CardWithRarity[] = [];
-  const deck = DeckService.createDeck();
-  const shuffledDeck = DeckService.shuffleDeck(deck);
+
+  // If the deck is empty, create a temporary deck with cards
+  const deckToUse = deck.cards.length === 0 ? DeckService.createDeck() : deck;
 
   // Generate cards based on booster type
   switch (booster.type) {
     case "CLASSIC":
-      generateClassicBoosterCards(cards, shuffledDeck.cards);
+      generateClassicBoosterCards(cards, deckToUse.cards);
       break;
     // Add more booster types here in the future
   }
@@ -134,7 +135,7 @@ const generateClassicBoosterCards = (cards: CardWithRarity[], deckCards: Card[])
 /**
  * Opens a booster and returns its cards
  */
-const openBooster = (boosterCollection: BoosterCollection, boosterUid: string): {
+const openBooster = (boosterCollection: BoosterCollection, boosterUid: string, deck: Deck): {
   boosterCollection: BoosterCollection,
   openedCards: CardWithRarity[]
 } => {
@@ -152,7 +153,7 @@ const openBooster = (boosterCollection: BoosterCollection, boosterUid: string): 
 
   // Generate cards if not already generated
   const updatedBooster = booster.cards.length === 0
-    ? generateBoosterCards(booster)
+    ? generateBoosterCards(booster, deck)
     : booster;
 
   // Mark as opened

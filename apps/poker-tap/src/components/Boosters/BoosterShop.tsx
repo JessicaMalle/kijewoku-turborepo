@@ -42,6 +42,7 @@ function BoosterShop(): ReactNode {
 		openBooster,
 		getBoosterPrice,
 		canBuyBooster,
+		deck,
 	} = useAppContext();
 
 	const [selectedType, setSelectedType] = useState<BoosterType>("CLASSIC");
@@ -88,6 +89,7 @@ function BoosterShop(): ReactNode {
 			const { openedCards: cards } = BoosterService.openBooster(
 				boosterCollection,
 				selectedBooster.uid,
+				deck,
 			);
 
 			// Set the opened cards in the local state

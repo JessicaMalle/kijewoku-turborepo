@@ -198,7 +198,8 @@ export const GameReducer = (state: GameState, action: Action): GameState => {
 			const boosterUid = action.payload;
 			const { boosterCollection, openedCards } = BoosterService.openBooster(
 				state.boosterCollection,
-				boosterUid
+				boosterUid,
+				state.deck
 			);
 
 			return {
