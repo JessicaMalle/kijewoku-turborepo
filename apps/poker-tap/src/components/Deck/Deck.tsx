@@ -2,15 +2,13 @@ import { type ReactNode, useMemo } from "react";
 import {
 	DeckCardsStack,
 	DeckContainer,
-	PriceTag,
 	StyledCardBack,
 } from "./Deck.styles.ts";
 import { useDeckAnimations } from "../../hooks/animations/useDeckAnimations.ts";
 import { useDeck } from "../../hooks/states/useDeck.ts";
 
 function Deck(): ReactNode {
-	const { deck, nextCardPrice, canDrawCard, drawCardAndDeductChips } =
-		useDeck();
+	const { deck, canDrawCard, drawCardAndDeductChips } = useDeck();
 
 	const { combineRefs } = useDeckAnimations({
 		canDrawCard,
@@ -26,9 +24,7 @@ function Deck(): ReactNode {
 				$disabled={!canDrawCard}
 				ref={combineRefs}
 				onClick={drawCardAndDeductChips}
-			>
-				<PriceTag>{nextCardPrice}€</PriceTag>
-			</StyledCardBack>
+			></StyledCardBack>
 			<DeckCardsStack $deckSize={deckSize}>
 				{deck.cards.map((card) => (
 					<div key={`deck-card-stack-${card.uid}`} />
