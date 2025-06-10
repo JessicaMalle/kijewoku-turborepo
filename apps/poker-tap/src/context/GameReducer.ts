@@ -2,12 +2,9 @@ import ChipsService from "../services/ChipsService.ts";
 import DeckService from "../services/DeckService.ts";
 import GameService from "../services/GameService.ts";
 import HandService from "../services/HandService.ts";
-import PokerPadService from "../services/PokerPadService.ts";
-import PokerPasService from "../services/PokerPadService.ts";
 import { SaveService } from "../services/SaveService.ts";
 import type { Action, GameState } from "./GameContext";
 import ItemsService from "../services/ItemsService.ts";
-import { MAX_ACTIVE_POKER_PADS } from "../config/gameConfig.ts";
 
 export const GameReducer = (state: GameState, action: Action): GameState => {
 	switch (action.type) {
@@ -52,16 +49,14 @@ export const GameReducer = (state: GameState, action: Action): GameState => {
 			};
 		}
 		case "DRAW_CARD_AND_DEDUCT_CHIPS": {
-			const { deck, hand, updatedChips } = GameService.drawCardAndDeductChips(
+			const { deck, hand } = GameService.drawCardAndDeductChips(
 				state.deck,
 				state.hand,
-				state.chips,
 			);
 			return {
 				...state,
 				deck,
 				hand,
-				chips: updatedChips,
 			};
 		}
 		case "TOGGLE_SELECTED_HAND_CARD": {
@@ -127,7 +122,10 @@ export const GameReducer = (state: GameState, action: Action): GameState => {
 			}
 
 			const newHand = state.hand.Cards.filter((card) => card.uid !== cardUid);
-			const newCards = [...state.pokerPad.cards, { ...cardToPlace, active: false }];
+			const newCards = [
+				...state.pokerPad.cards,
+				{ ...cardToPlace, active: false },
+			];
 
 			return {
 				...state,
