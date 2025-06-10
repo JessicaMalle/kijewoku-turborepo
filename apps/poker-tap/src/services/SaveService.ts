@@ -18,7 +18,7 @@ export const SaveService = {
 		}
 	},
 
-	getUid: (type: string, index: number) => {
+	genUid: (type: string, index: number) => {
 		const timestamp = Date.now();
 		const random = Math.floor(Math.random() * 1000000);
 		return uuIdv5(`${type}-${index}-${timestamp}-${random}`, NAMESPACE);
