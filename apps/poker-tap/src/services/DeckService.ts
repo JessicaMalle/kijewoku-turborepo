@@ -1,4 +1,5 @@
 import type { Card, CardColor, CardValue, Deck } from "../types/gameTypes.ts";
+import { getNumericValue } from "../utils/getNumericalValue.ts";
 import { SaveService } from "./SaveService.ts";
 
 const createDeck = (): Deck => {
@@ -28,14 +29,6 @@ const createDeck = (): Deck => {
 	}
 
 	return { cards };
-};
-
-const getNumericValue = (value: CardValue): number => {
-	if (value === "J") return 11;
-	if (value === "Q") return 12;
-	if (value === "K") return 13;
-	if (value === "A") return 14;
-	return Number.parseInt(value, 10);
 };
 
 const shuffleDeck = (deck: Deck): Deck => {

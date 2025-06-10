@@ -37,11 +37,14 @@ export interface Deck {
 	cards: Card[];
 }
 
-export interface Booster {
+export interface BoosterProps {
+	edition?: "basic"; // the first edition is called "Basic Edition"
+	type?: "gameCard"; // later we have to add some new type of cards in the game
+	size?: 3 | 5 | 7; // affect the price and/or the rarity of the booster
+}
+
+export interface Booster extends BoosterProps {
 	cards: Card[];
-	edition: "basic"; // the first edition is called "Basic Edition"
-	type: "gameCard"; // later we have to add some new type of cards in the game
-	size: 3 | 5 | 7; // affect the price and/or the rarity of the booster
 }
 
 export interface Combination {
