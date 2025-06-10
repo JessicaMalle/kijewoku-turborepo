@@ -24,7 +24,7 @@ function Deck(): ReactNode {
 				$disabled={!canDrawCard}
 				ref={combineRefs}
 				onClick={drawCardAndDeductChips}
-			></StyledCardBack>
+			/>
 			<DeckCardsStack $deckSize={deckSize}>
 				{deck.cards.map((card) => (
 					<div key={`deck-card-stack-${card.uid}`} />
